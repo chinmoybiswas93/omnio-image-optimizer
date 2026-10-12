@@ -7,6 +7,7 @@
 
 namespace OmnioImageOptimizer\App\Http\Policies;
 
+use OmnioImageOptimizer\App\Http\Requests\OptimizeRequest;
 use WP_REST_Request;
 
 if ( ! defined('ABSPATH')) {
@@ -21,6 +22,12 @@ if ( ! defined('ABSPATH')) {
  * Replaces the old Controller::can_edit_media(). Both capabilities are
  * required: upload_files alone would let a contributor-like role act on
  * attachments it has no business editing.
+ *
+ * The global capabilities are not enough on their own. An Author has both,
+ * yet may not edit another user's attachment - and converting one deletes its
+ * original file. Every ID in the request must pass edit_post, the same check
+ * the Media Library row and bulk actions make, and one failure refuses the
+ * whole request rather than running the part that happens to be allowed.
  */
 class MediaPolicy extends Policy {
 
@@ -31,8 +38,16 @@ class MediaPolicy extends Policy {
      * @return bool
      */
     public function verifyRequest( WP_REST_Request $request ) {
-        unset($request);
+        if ( ! current_user_can('upload_files') || ! current_user_can('edit_posts')) {
+            return false;
+        }
 
-        return current_user_can('upload_files') && current_user_can('edit_posts');
+        foreach (OptimizeRequest::sanitizeIds($request->get_param('ids')) as $id) {
+            if ( ! current_user_can('edit_post', $id)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -16,6 +16,9 @@ Not shippable yet: [issues.md](issues.md) issue 1 is a data-loss bug in the uplo
 
 ## Where things stand
 
+- **Unit 15 / I-20** — `/optimize` and `/restore` now require `edit_post` on every ID; an Author
+  could previously act on anyone's images. `readme.txt` links the source for `build/`
+  (Guideline 4). See [memory/fixed-issues.md](memory/fixed-issues.md).
 - **I-19** — Images uploaded through Gutenberg were converted to WebP correctly but the panel
   showed **nothing at all** — no status, no error. Root cause is **WordPress 7.1's client-side
   media processing**, which is on by default in a secure context: the block editor uploads the

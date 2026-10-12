@@ -2,18 +2,18 @@
 /**
  * Admin screen hosting the React dashboard.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Handlers;
+namespace OmnioImageOptimizer\App\Hooks\Handlers;
 
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Services\Backup\BackupManager;
-use SwiftImageOptimizer\App\Services\Bulk\Scanner;
-use SwiftImageOptimizer\App\Services\Bulk\ScanRunner;
-use SwiftImageOptimizer\App\Services\Engine\EngineFactory;
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\Api\Resource\StatsResource;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Services\Backup\BackupManager;
+use OmnioImageOptimizer\App\Services\Bulk\Scanner;
+use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
+use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\Api\Resource\StatsResource;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -27,12 +27,12 @@ class MenuHandler {
 	/**
 	 * Menu slug.
 	 */
-	const SLUG = 'swift-image-optimizer';
+	const SLUG = 'omnio-image-optimizer';
 
 	/**
 	 * Element ID the admin bundle mounts into.
 	 */
-	const MOUNT_ID = 'swift-image-optimizer-root';
+	const MOUNT_ID = 'omnio-image-optimizer-root';
 
 	/**
 	 * Register hooks.
@@ -42,7 +42,7 @@ class MenuHandler {
 	public function register() {
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
-		add_filter( 'plugin_action_links_' . SWIFT_IMAGE_OPTIMIZER_BASENAME, array( $this, 'action_links' ) );
+		add_filter( 'plugin_action_links_' . OMNIO_IO_BASENAME, array( $this, 'action_links' ) );
 	}
 
 	/**
@@ -53,8 +53,8 @@ class MenuHandler {
 	public function add_menu() {
 		add_submenu_page(
 			'upload.php',
-			__( 'Swift Image Optimizer', 'swift-image-optimizer' ),
-			__( 'Bulk Optimize', 'swift-image-optimizer' ),
+			__( 'Omnio Image Optimizer', 'omnio-image-optimizer' ),
+			__( 'Bulk Optimize', 'omnio-image-optimizer' ),
 			'manage_options',
 			self::SLUG,
 			array( $this, 'render' )
@@ -73,7 +73,7 @@ class MenuHandler {
 			sprintf(
 				'<a href="%s">%s</a>',
 				esc_url( admin_url( 'upload.php?page=' . self::SLUG ) ),
-				esc_html__( 'Settings', 'swift-image-optimizer' )
+				esc_html__( 'Settings', 'omnio-image-optimizer' )
 			)
 		);
 
@@ -90,7 +90,7 @@ class MenuHandler {
 			'admin.admin_app',
 			array(
 				'mountId' => self::MOUNT_ID,
-				'title'   => __( 'Loading Swift Image Optimizer…', 'swift-image-optimizer' ),
+				'title'   => __( 'Loading Omnio Image Optimizer…', 'omnio-image-optimizer' ),
 			)
 		);
 	}
@@ -106,7 +106,7 @@ class MenuHandler {
 			return;
 		}
 
-		$asset_file = SWIFT_IMAGE_OPTIMIZER_DIR . 'build/admin.asset.php';
+		$asset_file = OMNIO_IO_DIR . 'build/admin.asset.php';
 
 		if ( ! file_exists( $asset_file ) ) {
 			add_action( 'admin_notices', array( $this, 'missing_build_notice' ) );
@@ -120,8 +120,8 @@ class MenuHandler {
 		$asset = include $asset_file;
 
 		wp_enqueue_script(
-			'swift-image-optimizer-admin',
-			SWIFT_IMAGE_OPTIMIZER_URL . 'build/admin.js',
+			'omnio-image-optimizer-admin',
+			OMNIO_IO_URL . 'build/admin.js',
 			$asset['dependencies'],
 			$asset['version'],
 			true
@@ -130,23 +130,23 @@ class MenuHandler {
 		// The generated version hash tracks the JavaScript only, so a CSS-only
 		// rebuild would keep shipping the old stylesheet from the browser cache.
 		// Version the stylesheet by its own mtime instead.
-		$style_path = SWIFT_IMAGE_OPTIMIZER_DIR . 'build/admin.css';
+		$style_path = OMNIO_IO_DIR . 'build/admin.css';
 
 		wp_enqueue_style(
-			'swift-image-optimizer-admin',
-			SWIFT_IMAGE_OPTIMIZER_URL . 'build/admin.css',
+			'omnio-image-optimizer-admin',
+			OMNIO_IO_URL . 'build/admin.css',
 			array(),
 			file_exists( $style_path ) ? (string) filemtime( $style_path ) : $asset['version']
 		);
 
-		wp_set_script_translations( 'swift-image-optimizer-admin', 'swift-image-optimizer' );
+		wp_set_script_translations( 'omnio-image-optimizer-admin', 'omnio-image-optimizer' );
 
 		$engine   = EngineFactory::get();
 		$snapshot = ScanRunner::snapshot();
 
 		wp_localize_script(
-			'swift-image-optimizer-admin',
-			'swiftImageOptimizer',
+			'omnio-image-optimizer-admin',
+			'omnioImageOptimizer',
 			array(
 				'restUrl'       => esc_url_raw( rest_url( App::router()->getNamespace() . '/' ) ),
 				'nonce'         => wp_create_nonce( 'wp_rest' ),
@@ -190,8 +190,8 @@ class MenuHandler {
 			'admin.parts.notice',
 			array(
 				'type'    => 'error',
-				'heading' => __( 'Swift Image Optimizer:', 'swift-image-optimizer' ),
-				'message' => __( 'The admin assets have not been built. Run "npm install && npm run build" in the plugin directory.', 'swift-image-optimizer' ),
+				'heading' => __( 'Omnio Image Optimizer:', 'omnio-image-optimizer' ),
+				'message' => __( 'The admin assets have not been built. Run "npm install && npm run build" in the plugin directory.', 'omnio-image-optimizer' ),
 			)
 		);
 	}

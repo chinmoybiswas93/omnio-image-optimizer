@@ -2,12 +2,12 @@
 /**
  * Diagnostic log endpoints.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Controllers;
+namespace OmnioImageOptimizer\App\Http\Controllers;
 
-use SwiftImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
 use WP_REST_Request;
 use WP_REST_Response;
 
@@ -50,7 +50,7 @@ class LogController extends Controller {
         nocache_headers();
 
         header('Content-Type: text/plain; charset=utf-8');
-        header('Content-Disposition: attachment; filename="swift-image-optimizer-' . gmdate('Ymd-His') . '.log"');
+        header('Content-Disposition: attachment; filename="omnio-image-optimizer-' . gmdate('Ymd-His') . '.log"');
         header('Content-Length: ' . filesize($file));
 
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_readfile -- Streaming a plain text file the plugin itself wrote; WP_Filesystem would load it entirely into memory.

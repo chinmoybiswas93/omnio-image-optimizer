@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'crocodevs/swift-image-optimizer',
+        'name' => 'chinmoybiswas93/omnio-image-optimizer',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'aeb035000d86b4f45f656810926685637c65b47f',
+        'reference' => 'bf7e764c9b311da4ad0833ba3a9f245b761f3d8d',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => false,
     ),
     'versions' => array(
-        'crocodevs/swift-image-optimizer' => array(
+        'chinmoybiswas93/omnio-image-optimizer' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'aeb035000d86b4f45f656810926685637c65b47f',
+            'reference' => 'bf7e764c9b311da4ad0833ba3a9f245b761f3d8d',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -5,13 +5,13 @@
  * Returns the closure the main plugin file invokes with __FILE__. Everything
  * the plugin does starts here.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-use SwiftImageOptimizer\Framework\Application;
-use SwiftImageOptimizer\App\Hooks\Handlers\ActivationHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\DeactivationHandler;
-use SwiftImageOptimizer\Database\DBMigrator;
+use OmnioImageOptimizer\Framework\Application;
+use OmnioImageOptimizer\App\Hooks\Handlers\ActivationHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\DeactivationHandler;
+use OmnioImageOptimizer\Database\DBMigrator;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -32,13 +32,13 @@ return function ( $file ) {
     });
 
     add_action('plugins_loaded', function () use ( $app ) {
-        do_action('swift_image_optimizer/loaded', $app);
+        do_action('omnio_io/loaded', $app);
 
         add_action('init', function () use ( $app ) {
             // Apply any pending schema change before anything reads the tables.
             DBMigrator::migrateUp();
 
-            do_action('swift_image_optimizer/init', $app);
+            do_action('omnio_io/init', $app);
         }, 1);
     });
 

@@ -2,15 +2,15 @@
 /**
  * Scheduled purge of expired backups.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Scheduler;
+namespace OmnioImageOptimizer\App\Hooks\Scheduler;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\App\Services\Backup\BackupManager;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
-use SwiftImageOptimizer\App\Services\Optimizer;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Services\Backup\BackupManager;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Optimizer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -24,7 +24,7 @@ class JobRunner {
 	/**
 	 * Cron hook name.
 	 */
-	const HOOK = 'swift_image_optimizer_purge_backups';
+	const HOOK = 'omnio_io_purge_backups';
 
 	/**
 	 * How many rows to process per run.

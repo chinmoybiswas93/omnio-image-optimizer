@@ -2,10 +2,10 @@
 /**
  * Plugin settings: registration, defaults and sanitization.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Api;
+namespace OmnioImageOptimizer\Api;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,7 +22,7 @@ class StoreSettings {
 	/**
 	 * Option name holding the settings array.
 	 */
-	const OPTION = 'swift_image_optimizer_settings';
+	const OPTION = 'omnio_io_settings';
 
 	/**
 	 * Default settings.
@@ -82,7 +82,7 @@ class StoreSettings {
 	 */
 	public function register() {
 		register_setting(
-			'swift_image_optimizer',
+			'omnio_io',
 			self::OPTION,
 			array(
 				'type'              => 'object',

@@ -48,6 +48,6 @@ const withOptimizationPanel = createHigherOrderComponent(
 
 addFilter(
 	'editor.BlockEdit',
-	'swift-image-optimizer/optimization-panel',
+	'omnio-image-optimizer/optimization-panel',
 	withOptimizationPanel
 );

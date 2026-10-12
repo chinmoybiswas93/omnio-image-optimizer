@@ -2,12 +2,12 @@
 /**
  * Engine detection and selection.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Engine;
+namespace OmnioImageOptimizer\App\Services\Engine;
 
-use SwiftImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\Api\StoreSettings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -64,10 +64,10 @@ const LibraryCard = ( {
 	return (
 		<Section
 			icon={ <IconLayers /> }
-			title={ __( 'Your library', 'swift-image-optimizer' ) }
+			title={ __( 'Your library', 'omnio-image-optimizer' ) }
 			description={ __(
 				'Measured against the files on disk, not assumed from past runs.',
-				'swift-image-optimizer'
+				'omnio-image-optimizer'
 			) }
 		>
 			<ScanSummary
@@ -92,14 +92,14 @@ const LibraryCard = ( {
 				onRun={ onDryRun }
 			/>
 
-			<div className="sio-actions">
+			<div className="oio-actions">
 				{ ! busy ? (
 					<Button
 						variant="primary"
 						onClick={ onOptimize }
 						disabled={ optimizeDisabled }
 					>
-						{ __( 'Bulk optimize', 'swift-image-optimizer' ) }
+						{ __( 'Bulk optimize', 'omnio-image-optimizer' ) }
 					</Button>
 				) : (
 					<Button
@@ -107,7 +107,7 @@ const LibraryCard = ( {
 						isDestructive
 						onClick={ onCancel }
 					>
-						{ __( 'Stop', 'swift-image-optimizer' ) }
+						{ __( 'Stop', 'omnio-image-optimizer' ) }
 					</Button>
 				) }
 				{ busy && <Spinner /> }
@@ -117,7 +117,7 @@ const LibraryCard = ( {
 				<Notice status="info" isDismissible={ false }>
 					{ __(
 						'Every image that can be optimized already has been. Scan again if you have added images since.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 				</Notice>
 			) }
@@ -126,7 +126,7 @@ const LibraryCard = ( {
 				<Notice status="warning" isDismissible={ false }>
 					{ __(
 						'A scan is still open but no batch has completed recently. Background work relies on WP-Cron, which only runs when someone visits the site. Leave this page open to keep it moving, or start the scan again.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 				</Notice>
 			) }
@@ -135,14 +135,14 @@ const LibraryCard = ( {
 				<Notice status="warning" isDismissible={ false }>
 					{ __(
 						'This run is still active but no batch has completed recently. Background processing relies on WP-Cron, which only runs when someone visits the site. Leave this page open to keep it moving, or set up a real system cron.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 				</Notice>
 			) }
 
 			{ bulk.errors && bulk.errors.length > 0 && (
-				<div className="sio-errors">
-					<h4>{ __( 'Failures', 'swift-image-optimizer' ) }</h4>
+				<div className="oio-errors">
+					<h4>{ __( 'Failures', 'omnio-image-optimizer' ) }</h4>
 					<ul>
 						{ bulk.errors.map( ( item ) => (
 							<li key={ item.id }>
@@ -160,7 +160,7 @@ const LibraryCard = ( {
 						/* translators: 1: images already done, 2: total images in the run. */
 						__(
 							'A previous run stopped after %1$d of %2$d images. Bulk optimize continues from there rather than starting again.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						),
 						bulk.done ?? 0,
 						bulk.total ?? 0

@@ -81,7 +81,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 			const result = await request( 'logs/reset', { method: 'POST' } );
 			setLog( result.log );
 			setConfirming( false );
-			toast.push( __( 'Log cleared.', 'swift-image-optimizer' ) );
+			toast.push( __( 'Log cleared.', 'omnio-image-optimizer' ) );
 		} catch ( e ) {
 			setError( e.message );
 			setConfirming( false );
@@ -98,7 +98,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					/* translators: %d: number of images returned to the queue. */
 					__(
 						'%d image(s) will be tried again on the next bulk run.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					),
 					result.requeued
 				)
@@ -120,7 +120,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 							/* translators: %d: number of records checked. */
 							__(
 								'Checked %d record(s). Every optimized file is present.',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							),
 							result.checked
 					  )
@@ -128,7 +128,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 							/* translators: 1: records checked, 2: records cleared. */
 							__(
 								'Checked %1$d record(s) and cleared %2$d whose file was missing. Those images are pending again.',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							),
 							result.checked,
 							result.cleared
@@ -150,7 +150,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					/* translators: %d: number of leftover files deleted. */
 					__(
 						'%d leftover file(s) removed.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					),
 					result.removed
 				)
@@ -172,14 +172,14 @@ const TroubleshootPage = ( { values, setValues } ) => {
 			toast.push(
 				__(
 					'Diagnostics copied to the clipboard.',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				)
 			);
 		} catch ( e ) {
 			setError(
 				__(
 					'Could not copy. Select the text and copy it manually.',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				)
 			);
 		}
@@ -206,17 +206,17 @@ const TroubleshootPage = ( { values, setValues } ) => {
 
 			<Section
 				icon={ <IconStethoscope /> }
-				title={ __( 'Server information', 'swift-image-optimizer' ) }
+				title={ __( 'Server information', 'omnio-image-optimizer' ) }
 				description={ __(
 					'What this server can and cannot do for image conversion.',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				) }
 			>
 				{ ! report && <Spinner /> }
 
 				{ report?.sections?.map( ( section ) => (
-					<div className="sio-diagnostics" key={ section.title }>
-						<h3 className="sio-diagnostics__title">
+					<div className="oio-diagnostics" key={ section.title }>
+						<h3 className="oio-diagnostics__title">
 							{ section.title }
 						</h3>
 						{ section.rows.map( ( row ) => (
@@ -225,77 +225,77 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					</div>
 				) ) }
 
-				<div className="sio-actions">
+				<div className="oio-actions">
 					<Button
 						variant="secondary"
 						onClick={ copyReport }
 						disabled={ ! report }
 					>
-						{ __( 'Copy for support', 'swift-image-optimizer' ) }
+						{ __( 'Copy for support', 'omnio-image-optimizer' ) }
 					</Button>
 					<Button variant="tertiary" onClick={ loadReport }>
-						{ __( 'Refresh', 'swift-image-optimizer' ) }
+						{ __( 'Refresh', 'omnio-image-optimizer' ) }
 					</Button>
 				</div>
 			</Section>
 
 			<Section
 				icon={ <IconDocument /> }
-				title={ __( 'Activity log', 'swift-image-optimizer' ) }
+				title={ __( 'Activity log', 'omnio-image-optimizer' ) }
 				description={ __(
 					'A step-by-step record of every conversion, written to a file.',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				) }
 			>
 				<Toggle
-					label={ __( 'Enable logging', 'swift-image-optimizer' ) }
+					label={ __( 'Enable logging', 'omnio-image-optimizer' ) }
 					help={ __(
 						'Records every step of every optimization: backup, encode, file rename, URL rewrite and file deletion. Failures are always recorded, even with this off. The file is capped at 10MB and never leaves your server.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 					checked={ enabled }
 					disabled={ 'toggle' === busy }
 					onChange={ toggleLogging }
 				/>
 
-				<div className="sio-logtoolbar">
+				<div className="oio-logtoolbar">
 					<input
 						type="search"
-						className="sio-logtoolbar__filter"
+						className="oio-logtoolbar__filter"
 						placeholder={ __(
 							'Filter lines…',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 						value={ filter }
 						onChange={ ( e ) => setFilter( e.target.value ) }
 					/>
-					<span className="sio-muted">
+					<span className="oio-muted">
 						{ sprintf(
 							/* translators: 1: number of lines shown, 2: log file size. */
-							__( '%1$d lines · %2$s', 'swift-image-optimizer' ),
+							__( '%1$d lines · %2$s', 'omnio-image-optimizer' ),
 							visible.length,
 							formatBytes( log.size )
 						) }
 					</span>
 				</div>
 
-				<div className="sio-logviewer" ref={ viewer } tabIndex={ 0 }>
+				<div className="oio-logviewer" ref={ viewer } tabIndex={ 0 }>
 					{ visible.length === 0 && (
-						<p className="sio-muted">
+						<p className="oio-muted">
 							{ enabled
 								? __(
 										'Nothing recorded yet. Optimize an image and refresh.',
-										'swift-image-optimizer'
+										'omnio-image-optimizer'
 								  )
 								: __(
 										'Nothing recorded yet. Turn logging on to capture the full detail of each conversion.',
-										'swift-image-optimizer'
+										'omnio-image-optimizer'
 								  ) }
 						</p>
 					) }
 					{ visible.map( ( line, i ) => (
 						<div
-							className={ `sio-logviewer__line${
+							className={ `oio-logviewer__line${
 								line.includes( ' ERROR ' ) ? ' is-error' : ''
 							}${ line.includes( ' WARN ' ) ? ' is-warn' : '' }` }
 							key={ i }
@@ -306,24 +306,24 @@ const TroubleshootPage = ( { values, setValues } ) => {
 				</div>
 
 				{ log.rotated && (
-					<p className="sio-muted">
+					<p className="oio-muted">
 						{ __(
 							'The log reached its 10MB limit and rolled over. Only the most recent file is shown; the download includes what is on disk now.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 					</p>
 				) }
 
-				<div className="sio-actions">
+				<div className="oio-actions">
 					<Button variant="secondary" onClick={ loadLog }>
-						{ __( 'Refresh', 'swift-image-optimizer' ) }
+						{ __( 'Refresh', 'omnio-image-optimizer' ) }
 					</Button>
 					<Button
 						variant="secondary"
 						href={ downloadUrl }
 						disabled={ ! log.size }
 					>
-						{ __( 'Download', 'swift-image-optimizer' ) }
+						{ __( 'Download', 'omnio-image-optimizer' ) }
 					</Button>
 					<Button
 						variant="secondary"
@@ -334,7 +334,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 						{ 'reset' === busy ? (
 							<Spinner />
 						) : (
-							__( 'Reset log', 'swift-image-optimizer' )
+							__( 'Reset log', 'omnio-image-optimizer' )
 						) }
 					</Button>
 				</div>
@@ -342,17 +342,17 @@ const TroubleshootPage = ( { values, setValues } ) => {
 
 			<Section
 				icon={ <IconLayers /> }
-				title={ __( 'Maintenance', 'swift-image-optimizer' ) }
+				title={ __( 'Maintenance', 'omnio-image-optimizer' ) }
 				description={ __(
 					'Recover images that were passed over because of a temporary problem.',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				) }
 			>
-				<div className="sio-stats">
+				<div className="oio-stats">
 					<Stat
 						label={ __(
 							'Images worth trying again',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 						value={ report?.retryable ?? '—' }
 						tone={ report?.retryable > 0 ? 'warning' : '' }
@@ -360,31 +360,31 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					<Stat
 						label={ __(
 							'Leftover temporary files',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 						value={ report?.tempFiles ?? '—' }
 						tone={ report?.tempFiles > 0 ? 'warning' : '' }
 					/>
 				</div>
-				<p className="sio-lede">
+				<p className="oio-lede">
 					{ __(
 						'Images skipped because the server ran out of memory or disk space, or because no engine was available, are not retried automatically. Once the cause is fixed, this returns them to the queue. Images skipped because they genuinely cannot be improved are left alone.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 				</p>
-				<p className="sio-lede">
+				<p className="oio-lede">
 					{ __(
 						'Temporary files are left behind when a conversion is interrupted, for example by a server timeout. They are cleared automatically once a day, and can be cleared now.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 				</p>
-				<p className="sio-lede">
+				<p className="oio-lede">
 					{ __(
 						'After restoring a site, the database and the uploads folder can come from different points in time, leaving images recorded as optimized whose files are no longer there. Rescanning checks every recorded result against the disk and returns any that no longer exist to the queue. Results whose files are intact are left untouched.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 				</p>
-				<div className="sio-actions">
+				<div className="oio-actions">
 					<Button
 						variant="secondary"
 						onClick={ requeue }
@@ -395,7 +395,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 						) : (
 							__(
 								'Requeue for another attempt',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							)
 						) }
 					</Button>
@@ -409,7 +409,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 						) : (
 							__(
 								'Rescan library against disk',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							)
 						) }
 					</Button>
@@ -423,7 +423,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 						) : (
 							__(
 								'Clean up temporary files',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							)
 						) }
 					</Button>
@@ -432,8 +432,8 @@ const TroubleshootPage = ( { values, setValues } ) => {
 
 			{ confirming && (
 				<ConfirmDialog
-					title={ __( 'Reset the log?', 'swift-image-optimizer' ) }
-					confirmLabel={ __( 'Reset log', 'swift-image-optimizer' ) }
+					title={ __( 'Reset the log?', 'omnio-image-optimizer' ) }
+					confirmLabel={ __( 'Reset log', 'omnio-image-optimizer' ) }
 					isDestructive
 					busy={ 'reset' === busy }
 					onConfirm={ reset }
@@ -442,13 +442,13 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					<p>
 						{ __(
 							'This permanently deletes the log file and everything recorded in it. Your images and backups are unaffected.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 					</p>
 					<p>
 						{ __(
 							'Download the log first if you still need it for support.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 					</p>
 				</ConfirmDialog>

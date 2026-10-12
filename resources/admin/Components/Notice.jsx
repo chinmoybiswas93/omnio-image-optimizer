@@ -15,7 +15,7 @@ const Notice = ( {
 	className = '',
 	children,
 } ) => {
-	const classes = [ 'sio-notice', `sio-notice--${ status }`, className ]
+	const classes = [ 'oio-notice', `oio-notice--${ status }`, className ]
 		.filter( Boolean )
 		.join( ' ' );
 
@@ -28,15 +28,15 @@ const Notice = ( {
 			role={ status === 'error' ? 'alert' : 'status' }
 			aria-live={ live }
 		>
-			<div className="sio-notice__body">{ children }</div>
+			<div className="oio-notice__body">{ children }</div>
 			{ isDismissible && onRemove && (
 				<button
 					type="button"
-					className="sio-notice__dismiss"
+					className="oio-notice__dismiss"
 					onClick={ onRemove }
 					aria-label={ __(
 						'Dismiss this notice',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 				>
 					<span aria-hidden="true">&times;</span>

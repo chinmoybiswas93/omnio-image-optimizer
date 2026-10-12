@@ -10,10 +10,10 @@ Written to survive WordPress.org review without a hardening pass later. Where th
 /**
  * One-line description.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Whatever;
+namespace OmnioImageOptimizer\Whatever;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -92,7 +92,7 @@ Return `WP_Error` with a **machine-readable code**, never `false` or `null`, and
 of a public method. Codes drive control flow, so they matter:
 
 ```php
-return new WP_Error( 'skipped-larger', __( 'Human readable.', 'swift-image-optimizer' ) );
+return new WP_Error( 'skipped-larger', __( 'Human readable.', 'omnio-image-optimizer' ) );
 ```
 
 Whether a code is a skip or a failure is decided in exactly one place —
@@ -125,7 +125,7 @@ function name — the real ones here are:
 
 ## i18n
 
-Text domain `swift-image-optimizer` on every string, PHP and JS. `/* translators: */` above every
+Text domain `omnio-image-optimizer` on every string, PHP and JS. `/* translators: */` above every
 `sprintf` with placeholders, numbered `%1$s` when there is more than one, `_n()` for anything
 countable, `wp_set_script_translations()` for the React bundle.
 
@@ -133,11 +133,11 @@ countable, `wp_set_script_translations()` for the React bundle.
 
 | Kind | Convention | Example |
 |---|---|---|
-| Class | StudlyCase, namespaced | `SwiftImageOptimizer\App\Services\Bulk\Runner` |
+| Class | StudlyCase, namespaced | `OmnioImageOptimizer\App\Services\Bulk\Runner` |
 | Method / variable | snake_case | `process_batch()`, `$attachment_id` |
 | Constant | UPPER_SNAKE | `PERMANENT_SKIPS` |
-| Hook, DB table, option | `swift_image_optimizer_` prefix | `swift_image_optimizer_settings` |
-| CSS class | `sio-` prefix, BEM-ish | `sio-progress__fill` |
+| Hook, DB table, option | `omnio_io_` prefix | `omnio_io_settings` |
+| CSS class | `oio-` prefix, BEM-ish | `oio-progress__fill` |
 
 ## Comments
 

@@ -2,10 +2,10 @@
 /**
  * Cross-request mutual exclusion.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services;
+namespace OmnioImageOptimizer\App\Services;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -2,12 +2,12 @@
 /**
  * Enqueues the block editor integration assets.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Handlers;
+namespace OmnioImageOptimizer\App\Hooks\Handlers;
 
-use SwiftImageOptimizer\App\App;
+use OmnioImageOptimizer\App\App;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,7 +26,7 @@ class EditorAssetHandler {
 	/**
 	 * Script handle.
 	 */
-	const HANDLE = 'swift-image-optimizer-editor';
+	const HANDLE = 'omnio-image-optimizer-editor';
 
 	/**
 	 * Register hooks.
@@ -47,7 +47,7 @@ class EditorAssetHandler {
 			return;
 		}
 
-		$asset_file = SWIFT_IMAGE_OPTIMIZER_DIR . 'build/editor.asset.php';
+		$asset_file = OMNIO_IO_DIR . 'build/editor.asset.php';
 
 		if ( ! file_exists( $asset_file ) ) {
 			return;
@@ -57,7 +57,7 @@ class EditorAssetHandler {
 
 		wp_enqueue_script(
 			self::HANDLE,
-			SWIFT_IMAGE_OPTIMIZER_URL . 'build/editor.js',
+			OMNIO_IO_URL . 'build/editor.js',
 			$asset['dependencies'],
 			$asset['version'],
 			true
@@ -65,12 +65,12 @@ class EditorAssetHandler {
 
 		wp_enqueue_style(
 			self::HANDLE,
-			SWIFT_IMAGE_OPTIMIZER_URL . 'build/editor.css',
+			OMNIO_IO_URL . 'build/editor.css',
 			array(),
 			$asset['version']
 		);
 
-		wp_set_script_translations( self::HANDLE, 'swift-image-optimizer' );
+		wp_set_script_translations( self::HANDLE, 'omnio-image-optimizer' );
 
 		/*
 		 * Only the namespace, not a full REST URL or nonce: this bundle only
@@ -82,7 +82,7 @@ class EditorAssetHandler {
 		 */
 		wp_localize_script(
 			self::HANDLE,
-			'swiftImageOptimizerEditor',
+			'omnioImageOptimizerEditor',
 			array(
 				'namespace' => App::router()->getNamespace(),
 			)

@@ -2,12 +2,12 @@
 /**
  * Serialization-safe URL replacement across the database.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Rewrite;
+namespace OmnioImageOptimizer\App\Services\Rewrite;
 
-use SwiftImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -616,7 +616,7 @@ class DatabaseRewriter {
 		 *
 		 * Page-cache plugins can hook this to purge their own stores.
 		 */
-		do_action( 'swift_image_optimizer_urls_rewritten' );
+		do_action( 'omnio_io_urls_rewritten' );
 	}
 
 	/**

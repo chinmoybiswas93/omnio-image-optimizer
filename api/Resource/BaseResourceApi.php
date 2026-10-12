@@ -2,10 +2,10 @@
 /**
  * Base resource API.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Api\Resource;
+namespace OmnioImageOptimizer\Api\Resource;
 
 if ( ! defined('ABSPATH')) {
     exit;

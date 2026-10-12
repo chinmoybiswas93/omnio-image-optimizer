@@ -47,20 +47,20 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 	const lastScanned = snapshot ? formatTimeAgo( snapshot.completed_at ) : '';
 
 	return (
-		<div className="sio-library">
-			<div className="sio-library__ring">
+		<div className="oio-library">
+			<div className="oio-library__ring">
 				<ProgressRing
 					percent={ percent }
 					mutedPercent={ mutedPercent }
 					label={ snapshot ? `${ percent }%` : '—' }
-					caption={ __( 'optimized', 'swift-image-optimizer' ) }
+					caption={ __( 'optimized', 'omnio-image-optimizer' ) }
 					valueText={
 						snapshot
 							? sprintf(
 									/* translators: 1: percentage, 2: images optimized, 3: images in the library. */
 									__(
 										'%1$d%% optimized: %2$d of %3$d images.',
-										'swift-image-optimizer'
+										'omnio-image-optimizer'
 									),
 									percent,
 									optimized,
@@ -68,27 +68,27 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 							  )
 							: __(
 									'Your library has not been scanned yet.',
-									'swift-image-optimizer'
+									'omnio-image-optimizer'
 							  )
 					}
 				/>
 			</div>
 
-			<div className="sio-library__facts">
+			<div className="oio-library__facts">
 				{ ! snapshot ? (
-					<p className="sio-lede">
+					<p className="oio-lede">
 						{ __(
-							'Swift has not scanned your library yet. A scan checks every image against the files on disk, so the figures here describe what is really there rather than what was recorded at the time.',
-							'swift-image-optimizer'
+							'Omnio has not scanned your library yet. A scan checks every image against the files on disk, so the figures here describe what is really there rather than what was recorded at the time.',
+							'omnio-image-optimizer'
 						) }
 					</p>
 				) : (
 					<>
-						<div className="sio-stats">
+						<div className="oio-stats">
 							<Stat
 								label={ __(
 									'Optimized',
-									'swift-image-optimizer'
+									'omnio-image-optimizer'
 								) }
 								value={ optimized }
 								tone="good"
@@ -96,7 +96,7 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 							<Stat
 								label={ __(
 									'Still to do',
-									'swift-image-optimizer'
+									'omnio-image-optimizer'
 								) }
 								value={ actionable }
 								tone={ actionable > 0 ? 'warn' : 'good' }
@@ -104,28 +104,28 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 							<Stat
 								label={ __(
 									'Cannot be improved',
-									'swift-image-optimizer'
+									'omnio-image-optimizer'
 								) }
 								value={ permanent }
 							/>
 							<Stat
 								label={ __(
 									'Failed',
-									'swift-image-optimizer'
+									'omnio-image-optimizer'
 								) }
 								value={ failed }
 								tone={ failed > 0 ? 'warn' : undefined }
 							/>
 						</div>
 
-						<p className="sio-lede">
+						<p className="oio-lede">
 							{ sprintf(
 								/* translators: %d: number of images in the library. */
 								_n(
 									'%d image in your library.',
 									'%d images in your library.',
 									total,
-									'swift-image-optimizer'
+									'omnio-image-optimizer'
 								),
 								total
 							) }{ ' ' }
@@ -136,14 +136,14 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 										'%d cannot be made smaller as WebP, so the ring stops short of 100%%.',
 										'%d cannot be made smaller as WebP, so the ring stops short of 100%%.',
 										permanent,
-										'swift-image-optimizer'
+										'omnio-image-optimizer'
 									),
 									permanent
 								) }
 						</p>
 
 						{ retryable > 0 && (
-							<details className="sio-scanmeta__details">
+							<details className="oio-scanmeta__details">
 								<summary>
 									{ sprintf(
 										/* translators: %d: number of images worth retrying. */
@@ -151,7 +151,7 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 											'%d image was skipped for a reason that may have changed',
 											'%d images were skipped for reasons that may have changed',
 											retryable,
-											'swift-image-optimizer'
+											'omnio-image-optimizer'
 										),
 										retryable
 									) }
@@ -159,7 +159,7 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 								<p>
 									{ __(
 										'These ran out of memory, disk space or a working engine rather than being unsuitable. Bulk optimization will not retry them on its own — use Requeue on the Troubleshoot tab to return them to the queue.',
-										'swift-image-optimizer'
+										'omnio-image-optimizer'
 									) }
 								</p>
 							</details>
@@ -167,7 +167,7 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 					</>
 				) }
 
-				<div className="sio-scanmeta">
+				<div className="oio-scanmeta">
 					<Button
 						variant="secondary"
 						onClick={ onScan }
@@ -176,17 +176,17 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 						{ scanning && ! stalled ? (
 							<Spinner />
 						) : (
-							__( 'Scan library', 'swift-image-optimizer' )
+							__( 'Scan library', 'omnio-image-optimizer' )
 						) }
 					</Button>
 
-					<span className="sio-scanmeta__time">
+					<span className="oio-scanmeta__time">
 						{ scanning && ! stalled
 							? sprintf(
 									/* translators: 1: images checked, 2: images to check. */
 									__(
 										'Checking %1$d of %2$d…',
-										'swift-image-optimizer'
+										'omnio-image-optimizer'
 									),
 									scan.scanned ?? 0,
 									scan.total_estimate ?? 0
@@ -196,7 +196,7 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 									/* translators: %s: how long ago, e.g. "5 minutes ago". */
 									__(
 										'Last scanned %s',
-										'swift-image-optimizer'
+										'omnio-image-optimizer'
 									),
 									lastScanned
 							  ) }
@@ -204,10 +204,10 @@ const ScanSummary = ( { snapshot, scan, stale, disabled, onScan } ) => {
 				</div>
 
 				{ stale && (
-					<p className="sio-scanmeta__stale">
+					<p className="oio-scanmeta__stale">
 						{ __(
 							'Your settings changed after this scan. Scan again for accurate figures.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 					</p>
 				) }

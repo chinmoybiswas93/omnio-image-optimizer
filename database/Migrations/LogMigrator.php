@@ -2,19 +2,19 @@
 /**
  * Optimization log table schema.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Database\Migrations;
+namespace OmnioImageOptimizer\Database\Migrations;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Creates and upgrades {prefix}swift_image_optimizer_log.
+ * Creates and upgrades {prefix}omnio_io_log.
  */
 class LogMigrator {
 

@@ -7,7 +7,7 @@
  * backups - 228 original files. Nothing in this file deletes by glob. Backups
  * are removed only via the manifest recorded on the harness's own log row.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
 // phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.PHP.DevelopmentFunctions, WordPress.Security.EscapeOutput, WordPress.NamingConventions.PrefixAllGlobals, WordPress.DB.DirectDatabaseQuery, Squiz.Commenting, Generic.Commenting, WordPress.PHP.NoSilencedErrors, WordPress.PHP.DiscouragedPHPFunctions
@@ -26,13 +26,13 @@ require_once ABSPATH . 'wp-admin/includes/image.php';
 require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/media.php';
 
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\App\Services\AttachmentConverter;
-use SwiftImageOptimizer\App\Services\Backup\BackupManager;
-use SwiftImageOptimizer\App\Services\Engine\EngineFactory;
-use SwiftImageOptimizer\App\Services\Optimizer;
-use SwiftImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Services\AttachmentConverter;
+use OmnioImageOptimizer\App\Services\Backup\BackupManager;
+use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
+use OmnioImageOptimizer\App\Services\Optimizer;
+use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
 
 /**
  * Write an explicit settings baseline.
@@ -44,13 +44,13 @@ use SwiftImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
 function harness_set_baseline_settings( array $overrides = array() ) {
 	$settings = array_merge( StoreSettings::defaults(), $overrides );
 
-	$engine = getenv( 'SIO_TEST_ENGINE' );
+	$engine = getenv( 'OIO_TEST_ENGINE' );
 
 	if ( $engine ) {
 		$settings['engine'] = $engine;
 	}
 
-	update_option( 'swift_image_optimizer_settings', StoreSettings::sanitize( $settings ) );
+	update_option( 'omnio_io_settings', StoreSettings::sanitize( $settings ) );
 
 	if ( method_exists( EngineFactory::class, 'reset' ) ) {
 		EngineFactory::reset();
@@ -111,7 +111,7 @@ function harness_make_jpeg( $width, $height ) {
 		);
 	}
 
-	$path = wp_tempnam( 'sio-harness-' . wp_generate_password( 8, false ) . '.jpg' );
+	$path = wp_tempnam( 'oio-harness-' . wp_generate_password( 8, false ) . '.jpg' );
 	$path = preg_replace( '/\.tmp$/', '.jpg', $path );
 
 	imagejpeg( $image, $path, 90 );
@@ -126,7 +126,7 @@ function harness_make_jpeg( $width, $height ) {
  */
 function harness_import_attachment( $source_path ) {
 	$uploads  = wp_upload_dir();
-	$basename = 'sio-harness-' . wp_generate_password( 10, false ) . '-' . basename( $source_path );
+	$basename = 'oio-harness-' . wp_generate_password( 10, false ) . '-' . basename( $source_path );
 	$target   = trailingslashit( $uploads['path'] ) . $basename;
 
 	if ( ! copy( $source_path, $target ) ) {

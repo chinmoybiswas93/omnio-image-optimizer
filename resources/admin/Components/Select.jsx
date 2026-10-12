@@ -16,11 +16,11 @@ const Select = ( {
 	onChange,
 	disabled = false,
 } ) => (
-	<Field label={ label } help={ help } className="sio-select">
+	<Field label={ label } help={ help } className="oio-select">
 		{ ( { id, helpId } ) => (
 			<select
 				id={ id }
-				className="sio-select__input"
+				className="oio-select__input"
 				value={ value }
 				disabled={ disabled }
 				aria-describedby={ helpId }

@@ -26,7 +26,7 @@ row.
 **Never weaken a guard to make a test pass.** If `is_serialized()`, the `__PHP_Incomplete_Class`
 check, or `BackupManager::safe_path()` is in the way, the test is wrong.
 
-**Never touch `wp-content/uploads/swift-image-optimizer/backup/`.** User data, and the only copy
+**Never touch `wp-content/uploads/omnio-image-optimizer/backup/`.** User data, and the only copy
 of their originals.
 
 **Never hand-edit `build/**`** — regenerate with `npm run build`.
@@ -81,8 +81,8 @@ availability from a real request instead:
 
 ```bash
 # browser console, on any admin page
-fetch('/wp-json/swift-image-optimizer/v1/scan', {
-  headers: { 'X-WP-Nonce': swiftImageOptimizerMedia.nonce }, credentials: 'same-origin'
+fetch('/wp-json/omnio-image-optimizer/v1/scan', {
+  headers: { 'X-WP-Nonce': omnioImageOptimizerMedia.nonce }, credentials: 'same-origin'
 }).then( r => r.json() ).then( j => console.log( j.engine, j.engines ) );
 ```
 
@@ -106,7 +106,7 @@ No PHPUnit. Standalone PHP scripts run against the real Local install, **committ
 npm run test:php                  # default suite, socket pinned by the runner
 tests/php/run.sh --web            # same, through php-fpm — the only way to exercise Imagick
 tests/php/run.sh rewriter-test    # just one
-SIO_TEST_ENGINE=gd npm run test:php
+OIO_TEST_ENGINE=gd npm run test:php
 
 npm run test:cli                  # the CLI suite, separately
 tests/php/run-cli.sh --sites      # every Local site: name, PHP, domain, socket
@@ -116,7 +116,7 @@ tests/php/run-cli.sh --smoke      # read-only commands only, no fixtures written
 `cli-bulk-e2e.php` stays out of the default suite because it runs `optimize --all` and
 `restore --all`, which act on the whole media library rather than its own fixtures — not something
 to trip over while running the others. It refuses to start if the library holds any pending or
-restorable image it did not create (`SIO_CLI_ALLOW_DIRTY=1` overrides).
+restorable image it did not create (`OIO_CLI_ALLOW_DIRTY=1` overrides).
 
 `run-cli.sh` is the one runner **not** pinned to cb-test: socket, the site's own PHP version and
 the expected domain all come from Local's `sites.json`. Use it as the model when a harness needs

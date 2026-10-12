@@ -34,7 +34,7 @@ const Modal = ( {
 	children,
 	footer,
 } ) => {
-	const id = useFieldId( 'sio-modal' );
+	const id = useFieldId( 'oio-modal' );
 	const titleId = `${ id }-title`;
 	const bodyId = `${ id }-body`;
 	const dialog = useRef( null );
@@ -121,7 +121,7 @@ const Modal = ( {
 
 	return (
 		<div
-			className="sio-modal__backdrop"
+			className="oio-modal__backdrop"
 			// Presentational: the backdrop is a convenience for the mouse.
 			// Escape and the two buttons are what actually close the dialog,
 			// so there is nothing here a keyboard user has to reach.
@@ -135,7 +135,7 @@ const Modal = ( {
 			} }
 		>
 			<div
-				className={ [ 'sio-modal', className ]
+				className={ [ 'oio-modal', className ]
 					.filter( Boolean )
 					.join( ' ' ) }
 				role="dialog"
@@ -145,18 +145,18 @@ const Modal = ( {
 				ref={ dialog }
 				tabIndex={ -1 }
 			>
-				<div className="sio-modal__head">
-					<h2 className="sio-modal__title" id={ titleId }>
+				<div className="oio-modal__head">
+					<h2 className="oio-modal__title" id={ titleId }>
 						{ title }
 					</h2>
 					{ dismissible && (
 						<button
 							type="button"
-							className="sio-modal__dismiss"
+							className="oio-modal__dismiss"
 							onClick={ close }
 							aria-label={ __(
 								'Close',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							) }
 						>
 							<span aria-hidden="true">&times;</span>
@@ -164,11 +164,11 @@ const Modal = ( {
 					) }
 				</div>
 
-				<div className="sio-modal__body" id={ bodyId }>
+				<div className="oio-modal__body" id={ bodyId }>
 					{ children }
 				</div>
 
-				{ footer && <div className="sio-modal__foot">{ footer }</div> }
+				{ footer && <div className="oio-modal__foot">{ footer }</div> }
 			</div>
 		</div>
 	);

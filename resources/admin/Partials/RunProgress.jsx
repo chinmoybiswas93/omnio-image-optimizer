@@ -33,16 +33,16 @@ const RunProgress = ( { phase } ) => {
 	}
 
 	return (
-		<div className="sio-phase">
-			<div className="sio-phase__head">
-				<span className="sio-phase__label">{ phase.phase_label }</span>
+		<div className="oio-phase">
+			<div className="oio-phase__head">
+				<span className="oio-phase__label">{ phase.phase_label }</span>
 
 				{ index > 0 && (
-					<span className="sio-phase__steps" aria-hidden="true">
+					<span className="oio-phase__steps" aria-hidden="true">
 						{ steps.map( ( step ) => (
 							<span
 								key={ step }
-								className={ `sio-phase__dot${
+								className={ `oio-phase__dot${
 									step <= index ? ' is-done' : ''
 								}` }
 							/>
@@ -51,19 +51,19 @@ const RunProgress = ( { phase } ) => {
 				) }
 			</div>
 
-			<div className="sio-progress">
-				<div className="sio-progress__bar">
+			<div className="oio-progress">
+				<div className="oio-progress__bar">
 					<div
-						className="sio-progress__fill"
+						className="oio-progress__fill"
 						style={ { width: `${ percent }%` } }
 					/>
 				</div>
 
-				<div className="sio-progress__meta">
+				<div className="oio-progress__meta">
 					<span>
 						{ sprintf(
 							/* translators: %d: overall percentage complete. */
-							__( '%d%% complete', 'swift-image-optimizer' ),
+							__( '%d%% complete', 'omnio-image-optimizer' ),
 							percent
 						) }
 					</span>
@@ -76,7 +76,7 @@ const RunProgress = ( { phase } ) => {
 									/* translators: 1: optimized, 2: skipped, 3: failed. */
 									__(
 										'%1$d optimized · %2$d skipped · %3$d failed',
-										'swift-image-optimizer'
+										'omnio-image-optimizer'
 									),
 									bulk.optimized ?? 0,
 									bulk.skipped ?? 0,
@@ -85,7 +85,7 @@ const RunProgress = ( { phase } ) => {
 							</span>
 							<span>
 								{ formatBytes( bulk.saved ) }{ ' ' }
-								{ __( 'saved', 'swift-image-optimizer' ) }
+								{ __( 'saved', 'omnio-image-optimizer' ) }
 							</span>
 						</>
 					) }

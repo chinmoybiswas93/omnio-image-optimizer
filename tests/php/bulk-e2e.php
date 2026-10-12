@@ -8,7 +8,7 @@
  *
  *   "$PHP" -d mysqli.default_socket="$SOCK" tests/php/bulk-e2e.php
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
 // phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.PHP.DevelopmentFunctions, WordPress.Security.EscapeOutput, WordPress.NamingConventions.PrefixAllGlobals, WordPress.DB.DirectDatabaseQuery, Squiz.Commenting, Generic.Commenting, WordPress.PHP.NoSilencedErrors, Universal.Files.SeparateFunctionsFromOO, WordPress.PHP.DiscouragedPHPFunctions
@@ -16,15 +16,15 @@
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/wp.php';
 
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
-use SwiftImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\App\Services\Bulk\Coordinator;
-use SwiftImageOptimizer\App\Services\Bulk\Runner;
-use SwiftImageOptimizer\App\Services\Bulk\Scanner;
-use SwiftImageOptimizer\App\Services\Bulk\ScanRunner;
-use SwiftImageOptimizer\App\Services\Lock;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
+use OmnioImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Services\Bulk\Coordinator;
+use OmnioImageOptimizer\App\Services\Bulk\Runner;
+use OmnioImageOptimizer\App\Services\Bulk\Scanner;
+use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
+use OmnioImageOptimizer\App\Services\Lock;
 
 harness_require_site();
 harness_set_baseline_settings( array( 'backup_originals' => true ) );
@@ -200,7 +200,7 @@ Lock::release( Runner::LOCK );
 /* ================================================================ */
 Harness::suite( 'Runner state' );
 
-$runner = new Runner( harness_make_converter(), new SwiftImageOptimizer\App\Services\Rewrite\DatabaseRewriter() );
+$runner = new Runner( harness_make_converter(), new OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter() );
 
 $state = $runner->state();
 Harness::ok( is_array( $state ), 'state() returns an array' );

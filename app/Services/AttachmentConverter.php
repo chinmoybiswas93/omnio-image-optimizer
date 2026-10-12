@@ -2,19 +2,19 @@
 /**
  * Feature 2: convert an existing attachment and repoint everything at it.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services;
+namespace OmnioImageOptimizer\App\Services;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\App\Models\UrlLookup;
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Services\Backup\BackupManager;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
-use SwiftImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
-use SwiftImageOptimizer\App\Services\Rewrite\UrlMap;
-use SwiftImageOptimizer\App\Services\Lock;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Models\UrlLookup;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Services\Backup\BackupManager;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use OmnioImageOptimizer\App\Services\Rewrite\UrlMap;
+use OmnioImageOptimizer\App\Services\Lock;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -194,12 +194,12 @@ class AttachmentConverter {
 			Logger::start_run( 'convert' );
 		}
 
-		$lock = 'swift_image_optimizer_lock_' . $attachment_id;
+		$lock = 'omnio_io_lock_' . $attachment_id;
 
 		if ( ! Lock::acquire( $lock ) ) {
 			Logger::warn( 'lock', 'Already being processed, skipping.', $attachment_id );
 
-			return new WP_Error( 'locked', __( 'This image is already being processed.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'locked', __( 'This image is already being processed.', 'omnio-image-optimizer' ) );
 		}
 
 		Logger::info( 'lock', 'Acquired.', $attachment_id );
@@ -226,7 +226,7 @@ class AttachmentConverter {
 	 */
 	private function do_convert( $attachment_id, $defer_rewrite ) {
 		if ( 'attachment' !== get_post_type( $attachment_id ) ) {
-			return new WP_Error( 'not-attachment', __( 'That is not an attachment.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'not-attachment', __( 'That is not an attachment.', 'omnio-image-optimizer' ) );
 		}
 
 		$existing = OptimizationLog::find( $attachment_id );
@@ -242,12 +242,12 @@ class AttachmentConverter {
 			 * broke Restore original. Refuse instead; the row already has
 			 * enough information for Restore original to recover correctly.
 			 */
-			return new WP_Error( 'conversion-pending', __( 'A previous optimization of this image did not finish. Use Restore original, then try again.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'conversion-pending', __( 'A previous optimization of this image did not finish. Use Restore original, then try again.', 'omnio-image-optimizer' ) );
 		}
 
 		if ( $existing && OptimizationLog::STATUS_OPTIMIZED === $existing['status'] ) {
 			if ( self::optimized_output_exists( $attachment_id, $existing ) ) {
-				return new WP_Error( 'already-optimized', __( 'This image has already been optimized.', 'swift-image-optimizer' ) );
+				return new WP_Error( 'already-optimized', __( 'This image has already been optimized.', 'omnio-image-optimizer' ) );
 			}
 
 			/*
@@ -317,7 +317,7 @@ class AttachmentConverter {
 			wp_delete_file( $optimized['temp_file'] );
 			BackupManager::delete( $backup['relative_dir'], $backup['files'] );
 
-			$moved = new WP_Error( 'move-failed', __( 'The converted file could not be moved into place.', 'swift-image-optimizer' ) );
+			$moved = new WP_Error( 'move-failed', __( 'The converted file could not be moved into place.', 'omnio-image-optimizer' ) );
 
 			Logger::error( 'rename', 'move-failed: could not move the WebP to ' . $target, $attachment_id );
 
@@ -466,7 +466,7 @@ class AttachmentConverter {
 		$restorable_statuses = array( OptimizationLog::STATUS_OPTIMIZED, OptimizationLog::STATUS_PENDING );
 
 		if ( ! $row || ! in_array( $row['status'], $restorable_statuses, true ) ) {
-			$missing = new WP_Error( 'nothing-to-restore', __( 'This image has not been optimized by this plugin.', 'swift-image-optimizer' ) );
+			$missing = new WP_Error( 'nothing-to-restore', __( 'This image has not been optimized by this plugin.', 'omnio-image-optimizer' ) );
 
 			Logger::wp_error( 'restore', $missing, $attachment_id, true );
 
@@ -476,7 +476,7 @@ class AttachmentConverter {
 		$backup = json_decode( (string) $row['backup_path'], true );
 
 		if ( ! is_array( $backup ) || empty( $backup['relative_dir'] ) ) {
-			$expired = new WP_Error( 'backup-expired', __( 'The backup for this image is no longer available.', 'swift-image-optimizer' ) );
+			$expired = new WP_Error( 'backup-expired', __( 'The backup for this image is no longer available.', 'omnio-image-optimizer' ) );
 
 			Logger::wp_error( 'restore', $expired, $attachment_id, true );
 

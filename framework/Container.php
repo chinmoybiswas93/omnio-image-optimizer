@@ -2,10 +2,10 @@
 /**
  * Dependency container.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Framework;
+namespace OmnioImageOptimizer\Framework;
 
 use ReflectionClass;
 use ReflectionNamedType;

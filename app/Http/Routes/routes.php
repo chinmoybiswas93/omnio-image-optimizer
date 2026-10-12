@@ -6,7 +6,7 @@
  * Routes are declared here and flushed through register_rest_route() in one
  * pass afterwards.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
 if ( ! defined('ABSPATH')) {
@@ -16,7 +16,7 @@ if ( ! defined('ABSPATH')) {
 /**
  * Router instance supplied by the route loader.
  *
- * @var \SwiftImageOptimizer\Framework\Router $router
+ * @var \OmnioImageOptimizer\Framework\Router $router
  */
 // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- $router is consumed by api.php, which is required into this closure's scope.
 $router->group(function ( $router ) {

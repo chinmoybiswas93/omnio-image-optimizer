@@ -1,10 +1,10 @@
-=== Swift Image Optimizer ===
-Contributors: wpswift
+=== Omnio Image Optimizer ===
+Contributors: chinmoy709
 Tags: images, webp, optimization, compress, performance
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Automatically convert and compress images to WebP on upload, plus individual and
 
 == Description ==
 
-Swift Image Optimizer converts your images to WebP and compresses them, cutting image weight by 60-80% without a visible quality loss.
+Omnio Image Optimizer converts your images to WebP and compresses them, cutting image weight by 60-80% without a visible quality loss.
 
 Everything happens on your own server. There is no API key, no monthly quota, no account to create, and your images are never sent to a third party.
 
@@ -93,39 +93,13 @@ In a protected folder inside your uploads directory, under an unguessable filena
 
 == Changelog ==
 
-= 1.2.0 =
-* New: optimization status now appears in the block editor, in the Image block's settings sidebar — until now it was only visible in the classic media modal
-* Added: support for WordPress 7.1's client-side media processing, where the browser prepares each image size before uploading it
-* Fixed: images uploaded through a block in WordPress 7.1 were converted correctly but reported no status at all
-* Fixed: an image uploaded through a block was processed once per generated size instead of once, which also stored a redundant backup for every size
-* Fixed: large photos were refused with "Too large for the available memory" even when they converted comfortably — the estimate charged for the full-resolution frame twice, so anything past roughly 28 megapixels was skipped on a 256M limit
-* Fixed: Imagick is no longer measured against PHP's memory limit, which it does not allocate from, and now decodes large JPEGs at a reduced scale
-* Fixed: the same photo could be optimized from the Media Library but skipped on upload, because the two paths were measuring different files
-* Fixed: Troubleshoot tools returned "No route was found" on sites using plain permalinks
-* Fixed: a thumbnail or scaled copy re-submitted for an image already converted is no longer converted a second time, which used to leave the file and the database describing different things
-* Added: a repair tool for images left with the wrong file type recorded by that problem, in Troubleshoot and as `wp swift-image-optimizer repair-mime`
-
-= 1.1.0 =
-* New Troubleshoot tab: server diagnostics, an activity log with a viewer, and maintenance tools
-* Optional file-based logging of every conversion step, capped at 10MB, with download and reset
-* Uploaded originals are now backed up too, so images optimized on upload can be restored
-* Fixed: photos taken in portrait could be saved sideways when the cwebp binary was the active engine
-* Fixed: restoring an image whose thumbnails had not all regenerated could repoint full-size references at a thumbnail
-* Fixed: an image the server could not handle at the time — out of memory, out of disk, no engine — can now be returned to the queue instead of being skipped forever
-* Fixed: image URLs inside comments are now updated along with the rest of the database
-* Added: conversion falls back to another installed engine instead of failing when one cannot handle a particular file, including CMYK JPEGs
-* Added: animated PNGs are left alone rather than silently reduced to their first frame
-* Added: a disk space check before backing up, so a conversion cannot half-write a backup
-* Changed: bulk optimization no longer clears the whole object cache after every batch
-* Changed: far fewer database scans during bulk URL rewriting
-* Changed: old image URLs are resolved from an indexed table, and no longer confuse two images that share a filename in different months
-* Changed: temporary files are written to their own directory and cleaned up automatically
-* Changed: conversion locks can no longer be acquired twice by simultaneous requests
-
 = 1.0.0 =
 * Initial release
-* Automatic WebP conversion on upload
+* Automatic WebP conversion on upload, including WordPress 7.1 client-side media processing
 * Individual and bulk optimization for existing media
-* Original backups with configurable retention
-* Database URL rewriting with dry run
-* Restore to original
+* Optimization status in the Media Library and in the block editor Image sidebar
+* Original backups with configurable retention, and restore to original
+* Database URL rewriting with dry run, and old image URLs served the new file
+* Engine detection and fallback across Imagick, the cwebp binary, and GD
+* Troubleshoot tab: server diagnostics, an optional capped activity log, and maintenance tools
+* WP-CLI commands for bulk optimization and repair

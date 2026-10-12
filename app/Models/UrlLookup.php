@@ -2,10 +2,10 @@
 /**
  * The old-URL lookup table.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Models;
+namespace OmnioImageOptimizer\App\Models;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -26,7 +26,7 @@ class UrlLookup extends Model {
      *
      * @var string
      */
-    protected static $table = 'swift_image_optimizer_urls';
+    protected static $table = 'omnio_io_urls';
 
     /**
      * Record where each of an attachment's old URLs now points.

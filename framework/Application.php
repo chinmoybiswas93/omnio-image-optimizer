@@ -2,12 +2,12 @@
 /**
  * Plugin application kernel.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Framework;
+namespace OmnioImageOptimizer\Framework;
 
-use SwiftImageOptimizer\App\App;
+use OmnioImageOptimizer\App\App;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -29,7 +29,7 @@ class Application extends Container {
      * Root namespace of the app/ PSR-4 tree. Bare policy and controller names
      * declared in route files are resolved against it.
      */
-    const APP_NAMESPACE = 'SwiftImageOptimizer\\App';
+    const APP_NAMESPACE = 'OmnioImageOptimizer\\App';
 
     /**
      * Absolute path to the plugin directory, with trailing slash.

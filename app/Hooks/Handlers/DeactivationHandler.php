@@ -2,14 +2,14 @@
 /**
  * Plugin deactivation.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Handlers;
+namespace OmnioImageOptimizer\App\Hooks\Handlers;
 
-use SwiftImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
-use SwiftImageOptimizer\App\Hooks\Scheduler\JobRunner;
-use SwiftImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
+use OmnioImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
+use OmnioImageOptimizer\App\Hooks\Scheduler\JobRunner;
+use OmnioImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -39,6 +39,6 @@ class DeactivationHandler {
         // something cleared it.
         ScanJobRunner::unschedule();
 
-        do_action('swift_image_optimizer/deactivated');
+        do_action('omnio_io/deactivated');
     }
 }

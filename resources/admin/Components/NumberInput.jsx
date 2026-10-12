@@ -20,12 +20,12 @@ const NumberInput = ( {
 	max,
 	step = 1,
 } ) => (
-	<Field label={ label } help={ help } className="sio-number">
+	<Field label={ label } help={ help } className="oio-number">
 		{ ( { id, helpId } ) => (
 			<input
 				id={ id }
 				type="number"
-				className="sio-number__input"
+				className="oio-number__input"
 				value={ value }
 				min={ min }
 				max={ max }

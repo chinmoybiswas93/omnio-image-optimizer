@@ -37,19 +37,19 @@ const formatBytes = ( bytes ) => {
 const STATUS_META = {
 	optimized: {
 		dot: 'is-success',
-		label: __( 'Image Optimized', 'swift-image-optimizer' ),
+		label: __( 'Image Optimized', 'omnio-image-optimizer' ),
 	},
 	skipped: {
 		dot: 'is-muted',
-		label: __( 'Not Optimized', 'swift-image-optimizer' ),
+		label: __( 'Not Optimized', 'omnio-image-optimizer' ),
 	},
 	failed: {
 		dot: 'is-danger',
-		label: __( 'Optimization Failed', 'swift-image-optimizer' ),
+		label: __( 'Optimization Failed', 'omnio-image-optimizer' ),
 	},
 	restored: {
 		dot: 'is-muted',
-		label: __( 'Restored to Original', 'swift-image-optimizer' ),
+		label: __( 'Restored to Original', 'omnio-image-optimizer' ),
 	},
 };
 
@@ -110,22 +110,22 @@ export default function Panel( { attachmentId } ) {
 	}
 
 	return (
-		<div className={ `sio-panel ${ meta ? `is-${ data.status }` : '' }` }>
-			<div className="sio-panel__brand">
+		<div className={ `oio-panel ${ meta ? `is-${ data.status }` : '' }` }>
+			<div className="oio-panel__brand">
 				<span>
-					{ __( 'Swift Image Optimizer', 'swift-image-optimizer' ) }
+					{ __( 'Omnio Image Optimizer', 'omnio-image-optimizer' ) }
 				</span>
 			</div>
 
 			{ meta && (
-				<div className="sio-panel__head">
-					<span className={ `sio-panel__dot ${ meta.dot }` } />
+				<div className="oio-panel__head">
+					<span className={ `oio-panel__dot ${ meta.dot }` } />
 					<strong>{ meta.label }</strong>
 					{ optimized && (
-						<span className="sio-panel__percent">
+						<span className="oio-panel__percent">
 							{ sprintf(
 								/* translators: %s: percentage saved. */
-								__( 'Saved %s%%', 'swift-image-optimizer' ),
+								__( 'Saved %s%%', 'omnio-image-optimizer' ),
 								data.percent
 							) }
 						</span>
@@ -135,10 +135,10 @@ export default function Panel( { attachmentId } ) {
 
 			{ optimized && (
 				<>
-					<div className="sio-panel__sizes">
+					<div className="oio-panel__sizes">
 						{ sprintf(
 							/* translators: 1: original size, 2: optimized size. */
-							__( '%1$s → %2$s', 'swift-image-optimizer' ),
+							__( '%1$s → %2$s', 'omnio-image-optimizer' ),
 							formatBytes( data.originalSize ),
 							formatBytes( data.optimizedSize )
 						) }
@@ -147,20 +147,20 @@ export default function Panel( { attachmentId } ) {
 					{ data.canRestore ? (
 						<Button
 							variant="tertiary"
-							className="sio-panel__restore"
+							className="oio-panel__restore"
 							isBusy={ busy }
 							onClick={ () => runAction( 'restore' ) }
 						>
 							{ __(
 								'Restore original',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							) }
 						</Button>
 					) : (
-						<p className="sio-panel__note">
+						<p className="oio-panel__note">
 							{ __(
 								'No original stored, so this cannot be restored.',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							) }
 						</p>
 					) }
@@ -170,25 +170,25 @@ export default function Panel( { attachmentId } ) {
 			{ ! optimized && (
 				<>
 					{ data.reason && (
-						<p className="sio-panel__reason">{ data.reason }</p>
+						<p className="oio-panel__reason">{ data.reason }</p>
 					) }
 
 					{ data.canOptimize && (
 						<Button
 							variant="secondary"
-							className="sio-panel__optimize"
+							className="oio-panel__optimize"
 							isBusy={ busy }
 							onClick={ () => runAction( 'optimize' ) }
 						>
 							{ data.reason
-								? __( 'Try again', 'swift-image-optimizer' )
-								: __( 'Optimize', 'swift-image-optimizer' ) }
+								? __( 'Try again', 'omnio-image-optimizer' )
+								: __( 'Optimize', 'omnio-image-optimizer' ) }
 						</Button>
 					) }
 				</>
 			) }
 
-			{ error && <p className="sio-panel__error">{ error }</p> }
+			{ error && <p className="oio-panel__error">{ error }</p> }
 		</div>
 	);
 }

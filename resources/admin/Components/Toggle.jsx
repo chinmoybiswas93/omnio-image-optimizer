@@ -17,20 +17,20 @@ const Toggle = ( {
 	onChange,
 	disabled = false,
 } ) => {
-	const id = useFieldId( 'sio-toggle' );
+	const id = useFieldId( 'oio-toggle' );
 	const helpId = help ? `${ id }-help` : undefined;
 
 	return (
 		<div
-			className={ `sio-field sio-toggle${
+			className={ `oio-field oio-toggle${
 				disabled ? ' is-disabled' : ''
 			}` }
 		>
-			<label className="sio-toggle__row" htmlFor={ id }>
+			<label className="oio-toggle__row" htmlFor={ id }>
 				<input
 					id={ id }
 					type="checkbox"
-					className="sio-toggle__input"
+					className="oio-toggle__input"
 					checked={ !! checked }
 					disabled={ disabled }
 					aria-describedby={ helpId }
@@ -38,13 +38,13 @@ const Toggle = ( {
 						onChange && onChange( event.target.checked )
 					}
 				/>
-				<span className="sio-toggle__track" aria-hidden="true">
-					<span className="sio-toggle__thumb" />
+				<span className="oio-toggle__track" aria-hidden="true">
+					<span className="oio-toggle__thumb" />
 				</span>
-				<span className="sio-toggle__label">{ label }</span>
+				<span className="oio-toggle__label">{ label }</span>
 			</label>
 			{ help && (
-				<p className="sio-field__help" id={ helpId }>
+				<p className="oio-field__help" id={ helpId }>
 					{ help }
 				</p>
 			) }

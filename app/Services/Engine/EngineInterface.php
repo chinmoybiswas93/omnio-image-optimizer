@@ -2,10 +2,10 @@
 /**
  * Contract every conversion engine implements.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Engine;
+namespace OmnioImageOptimizer\App\Services\Engine;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

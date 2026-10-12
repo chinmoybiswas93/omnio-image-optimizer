@@ -2,10 +2,10 @@
 /**
  * Log query request schema.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Requests;
+namespace OmnioImageOptimizer\App\Http\Requests;
 
 if ( ! defined('ABSPATH')) {
     exit;

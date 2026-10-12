@@ -10,7 +10,7 @@
 
 import apiFetch from '@wordpress/api-fetch';
 
-const config = window.swiftImageOptimizerEditor || {};
+const config = window.omnioImageOptimizerEditor || {};
 
 const request = ( action, attachmentId ) =>
 	apiFetch( {
@@ -31,12 +31,12 @@ const request = ( action, attachmentId ) =>
  * Fetch the current optimization payload for one attachment.
  *
  * @param {number} attachmentId Attachment ID.
- * @return {Promise<Object|null>} The swiftImageOptimizer field, or null.
+ * @return {Promise<Object|null>} The omnioImageOptimizer field, or null.
  */
 export const fetchStatus = ( attachmentId ) =>
 	apiFetch( {
-		path: `/wp/v2/media/${ attachmentId }?_fields=swiftImageOptimizer`,
-	} ).then( ( media ) => media.swiftImageOptimizer || null );
+		path: `/wp/v2/media/${ attachmentId }?_fields=omnioImageOptimizer`,
+	} ).then( ( media ) => media.omnioImageOptimizer || null );
 
 /**
  * Optimize one attachment.

@@ -2,10 +2,10 @@
 /**
  * A single declared route.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Framework;
+namespace OmnioImageOptimizer\Framework;
 
 if ( ! defined('ABSPATH')) {
     exit;

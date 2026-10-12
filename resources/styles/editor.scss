@@ -1,7 +1,7 @@
 /**
  * Block editor integration styles.
  *
- * Reuses the same .sio-panel/.sio-btn classes the classic media modal uses
+ * Reuses the same .oio-panel/.oio-btn classes the classic media modal uses
  * (see media.scss), so the panel this bundle renders inside a block's
  * InspectorControls reads as the same UI, not a second design.
  */
@@ -9,7 +9,7 @@
 @use 'controls';
 @use 'modal';
 
-.sio-panel {
+.oio-panel {
 	margin: 0 0 16px;
 	padding: 8px 10px;
 	border: 1px solid #e0e0e0;

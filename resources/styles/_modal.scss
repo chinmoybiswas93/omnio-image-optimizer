@@ -9,7 +9,7 @@
 
 @use 'controls' as ctl;
 
-.sio-modal__backdrop {
+.oio-modal__backdrop {
 	position: fixed;
 	inset: 0;
 	// Core's media modal sits at 160000 and the admin menu below that. This
@@ -18,23 +18,23 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: ctl.$sio-space-md;
+	padding: ctl.$oio-space-md;
 	background: rgba(0, 0, 0, 0.5);
-	animation: sio-modal-fade 120ms ease-out;
+	animation: oio-modal-fade 120ms ease-out;
 }
 
-.sio-modal {
+.oio-modal {
 	display: flex;
 	flex-direction: column;
 	width: min(460px, 100%);
-	max-height: calc(100vh - #{ctl.$sio-space-lg * 2});
+	max-height: calc(100vh - #{ctl.$oio-space-lg * 2});
 	background: #fff;
 	border-radius: 6px;
 	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-	color: ctl.$sio-text;
+	color: ctl.$oio-text;
 	font-size: 13px;
 	line-height: 1.6;
-	animation: sio-modal-in 140ms ease-out;
+	animation: oio-modal-in 140ms ease-out;
 
 	&:focus {
 		outline: none;
@@ -43,8 +43,8 @@
 	&__head {
 		display: flex;
 		align-items: flex-start;
-		gap: ctl.$sio-space-sm;
-		padding: ctl.$sio-space-md ctl.$sio-space-md ctl.$sio-space-sm;
+		gap: ctl.$oio-space-sm;
+		padding: ctl.$oio-space-md ctl.$oio-space-md ctl.$oio-space-sm;
 	}
 
 	&__title {
@@ -53,7 +53,7 @@
 		font-size: 16px;
 		font-weight: 600;
 		line-height: 1.4;
-		color: ctl.$sio-text;
+		color: ctl.$oio-text;
 	}
 
 	&__dismiss {
@@ -63,25 +63,25 @@
 		border: 0;
 		font-size: 20px;
 		line-height: 1;
-		color: ctl.$sio-text-muted;
+		color: ctl.$oio-text-muted;
 		cursor: pointer;
 
 		&:hover {
-			color: ctl.$sio-text;
+			color: ctl.$oio-text;
 		}
 
 		&:focus-visible {
-			@include ctl.sio-focus-ring;
+			@include ctl.oio-focus-ring;
 		}
 	}
 
 	&__body {
 		flex: 1 1 auto;
 		overflow-y: auto;
-		padding: 0 ctl.$sio-space-md ctl.$sio-space-md;
+		padding: 0 ctl.$oio-space-md ctl.$oio-space-md;
 
 		p {
-			margin: 0 0 ctl.$sio-space-sm;
+			margin: 0 0 ctl.$oio-space-sm;
 			font-size: 13px;
 			line-height: 1.6;
 
@@ -98,42 +98,42 @@
 	&__foot {
 		display: flex;
 		justify-content: flex-end;
-		gap: ctl.$sio-space-sm;
-		padding: ctl.$sio-space-sm ctl.$sio-space-md ctl.$sio-space-md;
-		border-top: 1px solid ctl.$sio-border;
+		gap: ctl.$oio-space-sm;
+		padding: ctl.$oio-space-sm ctl.$oio-space-md ctl.$oio-space-md;
+		border-top: 1px solid ctl.$oio-border;
 	}
 
 	// The typed-confirmation input, matching the other text controls.
 	&__confirm-field {
-		margin-top: ctl.$sio-space-md;
+		margin-top: ctl.$oio-space-md;
 	}
 
 	&__input {
 		width: 100%;
 		max-width: 220px;
 		min-height: 32px;
-		padding: 0 ctl.$sio-space-sm;
+		padding: 0 ctl.$oio-space-sm;
 		background: #fff;
-		border: 1px solid ctl.$sio-border-strong;
-		border-radius: ctl.$sio-radius-sm;
+		border: 1px solid ctl.$oio-border-strong;
+		border-radius: ctl.$oio-radius-sm;
 		font-size: 13px;
 		font-family: monospace;
 		letter-spacing: 0.04em;
-		color: ctl.$sio-text;
+		color: ctl.$oio-text;
 
 		&:focus {
-			border-color: ctl.$sio-brand;
-			@include ctl.sio-focus-ring;
+			border-color: ctl.$oio-brand;
+			@include ctl.oio-focus-ring;
 		}
 	}
 
 	// A destructive dialog says so before the operator reaches the buttons.
 	&--destructive &__title {
-		color: ctl.$sio-danger-dark;
+		color: ctl.$oio-danger-dark;
 	}
 }
 
-@keyframes sio-modal-fade {
+@keyframes oio-modal-fade {
 	from {
 		opacity: 0;
 	}
@@ -143,7 +143,7 @@
 	}
 }
 
-@keyframes sio-modal-in {
+@keyframes oio-modal-in {
 	from {
 		opacity: 0;
 		transform: translateY(8px) scale(0.98);
@@ -157,8 +157,8 @@
 
 // Respect a reduced-motion preference rather than animating regardless.
 @media (prefers-reduced-motion: reduce) {
-	.sio-modal,
-	.sio-modal__backdrop {
+	.oio-modal,
+	.oio-modal__backdrop {
 		animation: none;
 	}
 }

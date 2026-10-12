@@ -1,6 +1,6 @@
 # Project overview
 
-Swift Image Optimizer converts WordPress images to WebP and compresses them, entirely on the
+Omnio Image Optimizer converts WordPress images to WebP and compresses them, entirely on the
 site's own server. No API key, no quota, no account, no third-party service. Plain PHP with zero
 runtime dependencies and a React admin screen built with `@wordpress/scripts`.
 
@@ -27,22 +27,22 @@ lines and the converter plus `Rewrite/` are an order of magnitude more.
 
 | Thing | Value |
 |---|---|
-| Slug / directory / text domain | `swift-image-optimizer` |
-| PHP namespace | `SwiftImageOptimizer\` |
-| Constants prefix | `SWIFT_IMAGE_OPTIMIZER_` |
-| Option / function / hook prefix | `swift_image_optimizer_` |
-| REST namespace | `swift-image-optimizer/v1` |
-| DB tables | `{$wpdb->prefix}swift_image_optimizer_log`, `..._urls` |
-| Backup directory | `uploads/swift-image-optimizer/backup/` |
-| React mount point | `#swift-image-optimizer-root` |
-| CSS class prefix | `sio-` |
+| Slug / directory / text domain | `omnio-image-optimizer` |
+| PHP namespace | `OmnioImageOptimizer\` |
+| Constants prefix | `OMNIO_IO_` |
+| Option / function / hook prefix | `omnio_io_` |
+| REST namespace | `omnio-image-optimizer/v1` |
+| DB tables | `{$wpdb->prefix}omnio_io_log`, `..._urls` |
+| Backup directory | `uploads/omnio-image-optimizer/backup/` |
+| React mount point | `#omnio-image-optimizer-root` |
+| CSS class prefix | `oio-` |
 
-**Options:** `swift_image_optimizer_settings` (the settings array — `api/StoreSettings::defaults()`),
+**Options:** `omnio_io_settings` (the settings array — `api/StoreSettings::defaults()`),
 `..._schema_version`, `..._bulk_progress` (so a closed tab can resume).
 
-**Locks are options, not transients** — `swift_image_optimizer_bulk_lock` and
+**Locks are options, not transients** — `omnio_io_bulk_lock` and
 `..._lock_{id}` go through `add_option()` so the database arbitrates (invariant 18). The only real
-transient is `swift_image_optimizer_stats`, the cached aggregate.
+transient is `omnio_io_stats`, the cached aggregate.
 
 ## What it deliberately does not do
 

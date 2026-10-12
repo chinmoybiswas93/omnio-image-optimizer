@@ -21,8 +21,8 @@ import Modal from './Modal';
 
 const ConfirmDialog = ( {
 	title,
-	confirmLabel = __( 'Confirm', 'swift-image-optimizer' ),
-	cancelLabel = __( 'Cancel', 'swift-image-optimizer' ),
+	confirmLabel = __( 'Confirm', 'omnio-image-optimizer' ),
+	cancelLabel = __( 'Cancel', 'omnio-image-optimizer' ),
 	confirmWord = '',
 	isDestructive = false,
 	busy = false,
@@ -52,7 +52,7 @@ const ConfirmDialog = ( {
 			// While the request is in flight there is nothing useful to cancel
 			// and dismissing would only hide what is happening.
 			dismissible={ ! busy }
-			className={ isDestructive ? 'sio-modal--destructive' : '' }
+			className={ isDestructive ? 'oio-modal--destructive' : '' }
 			footer={
 				<>
 					<Button
@@ -80,16 +80,16 @@ const ConfirmDialog = ( {
 				<Field
 					label={ sprintf(
 						/* translators: %s: the word the operator must type, for example DELETE. */
-						__( 'Type %s to confirm', 'swift-image-optimizer' ),
+						__( 'Type %s to confirm', 'omnio-image-optimizer' ),
 						confirmWord
 					) }
-					className="sio-modal__confirm-field"
+					className="oio-modal__confirm-field"
 				>
 					{ ( { id } ) => (
 						<input
 							type="text"
 							id={ id }
-							className="sio-modal__input"
+							className="oio-modal__input"
 							value={ typed }
 							onChange={ ( event ) =>
 								setTyped( event.target.value )

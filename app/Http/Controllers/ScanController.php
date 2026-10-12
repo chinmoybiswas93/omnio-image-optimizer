@@ -2,12 +2,12 @@
 /**
  * Library scan endpoints.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Controllers;
+namespace OmnioImageOptimizer\App\Http\Controllers;
 
-use SwiftImageOptimizer\App\Services\Bulk\ScanRunner;
+use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;

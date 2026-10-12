@@ -1,5 +1,5 @@
 /**
- * Media Library integration for Swift Image Optimizer.
+ * Media Library integration for Omnio Image Optimizer.
  *
  * Two surfaces:
  *   1. A "Bulk Optimize" button in the grid-view toolbar, driving a multi-select run.
@@ -10,7 +10,7 @@
  *
  * The wp.media view hooks below are the Media Library's extension API and
  * have no alternative. Everything this renders inside them, though, uses the
- * plugin's own sio-* classes rather than core's button classes.
+ * plugin's own oio-* classes rather than core's button classes.
  */
 
 import { __, _n, sprintf } from '@wordpress/i18n';
@@ -19,7 +19,7 @@ import sioConfirm from './confirm';
 
 import '../styles/media.scss';
 
-const config = window.swiftImageOptimizerMedia || {};
+const config = window.omnioImageOptimizerMedia || {};
 
 /**
  * POST to one of the plugin's REST routes.
@@ -78,7 +78,7 @@ const formatDuration = ( ms ) => {
 		return sprintf(
 			/* translators: %d: milliseconds. */ __(
 				'%d ms',
-				'swift-image-optimizer'
+				'omnio-image-optimizer'
 			),
 			Math.round( value )
 		);
@@ -86,7 +86,7 @@ const formatDuration = ( ms ) => {
 
 	return sprintf(
 		/* translators: %s: seconds, to one decimal place. */
-		__( '%s sec', 'swift-image-optimizer' ),
+		__( '%s sec', 'omnio-image-optimizer' ),
 		( value / 1000 ).toFixed( 1 )
 	);
 };
@@ -142,7 +142,7 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
  */
 function boltIcon() {
 	const svg = document.createElementNS( SVG_NS, 'svg' );
-	svg.setAttribute( 'class', 'sio-btn__icon' );
+	svg.setAttribute( 'class', 'oio-btn__icon' );
 	svg.setAttribute( 'width', '14' );
 	svg.setAttribute( 'height', '14' );
 	svg.setAttribute( 'viewBox', '0 0 24 24' );
@@ -165,14 +165,14 @@ function boltIcon() {
 /**
  * The plugin's logo mark, inline, matching resources/admin/Icons/index.jsx's
  * LogoMark — same rounded tile and bolt, same gradient — so the panel this
- * bundle injects into the media modal is legible as Swift Image Optimizer's,
+ * bundle injects into the media modal is legible as Omnio Image Optimizer's,
  * not an unlabeled box of numbers.
  *
  * @return {SVGElement} The mark.
  */
 function logoMark() {
 	const svg = document.createElementNS( SVG_NS, 'svg' );
-	svg.setAttribute( 'class', 'sio-panel__mark' );
+	svg.setAttribute( 'class', 'oio-panel__mark' );
 	svg.setAttribute( 'width', '16' );
 	svg.setAttribute( 'height', '16' );
 	svg.setAttribute( 'viewBox', '0 0 38 38' );
@@ -181,7 +181,7 @@ function logoMark() {
 
 	const defs = document.createElementNS( SVG_NS, 'defs' );
 	const gradient = document.createElementNS( SVG_NS, 'linearGradient' );
-	gradient.setAttribute( 'id', 'sio-panel-mark-gradient' );
+	gradient.setAttribute( 'id', 'oio-panel-mark-gradient' );
 	gradient.setAttribute( 'x1', '0' );
 	gradient.setAttribute( 'y1', '0' );
 	gradient.setAttribute( 'x2', '1' );
@@ -204,7 +204,7 @@ function logoMark() {
 	rect.setAttribute( 'width', '38' );
 	rect.setAttribute( 'height', '38' );
 	rect.setAttribute( 'rx', '11' );
-	rect.setAttribute( 'fill', 'url(#sio-panel-mark-gradient)' );
+	rect.setAttribute( 'fill', 'url(#oio-panel-mark-gradient)' );
 	svg.appendChild( rect );
 
 	const path = document.createElementNS( SVG_NS, 'path' );
@@ -222,26 +222,26 @@ function logoMark() {
 const STATUS_META = {
 	optimized: {
 		dot: 'is-success',
-		label: __( 'Image Optimized', 'swift-image-optimizer' ),
+		label: __( 'Image Optimized', 'omnio-image-optimizer' ),
 	},
 	skipped: {
 		dot: 'is-muted',
-		label: __( 'Not Optimized', 'swift-image-optimizer' ),
+		label: __( 'Not Optimized', 'omnio-image-optimizer' ),
 	},
 	failed: {
 		dot: 'is-danger',
-		label: __( 'Optimization Failed', 'swift-image-optimizer' ),
+		label: __( 'Optimization Failed', 'omnio-image-optimizer' ),
 	},
 	restored: {
 		dot: 'is-muted',
-		label: __( 'Restored to Original', 'swift-image-optimizer' ),
+		label: __( 'Restored to Original', 'omnio-image-optimizer' ),
 	},
 };
 
 /**
  * Build the optimization panel for an attachment.
  *
- * @param {Object}   data     The swiftImageOptimizer payload.
+ * @param {Object}   data     The omnioImageOptimizer payload.
  * @param {Function} onAction Called with 'optimize' or 'restore'.
  * @return {HTMLElement|null} The panel, or null when there is nothing to say.
  */
@@ -256,15 +256,15 @@ function buildPanel( data, onAction ) {
 		return null;
 	}
 
-	const panel = el( 'div', 'sio-panel' );
+	const panel = el( 'div', 'oio-panel' );
 
-	const brand = el( 'div', 'sio-panel__brand' );
+	const brand = el( 'div', 'oio-panel__brand' );
 	brand.appendChild( logoMark() );
 	brand.appendChild(
 		el(
 			'span',
 			null,
-			__( 'Swift Image Optimizer', 'swift-image-optimizer' )
+			__( 'Omnio Image Optimizer', 'omnio-image-optimizer' )
 		)
 	);
 	panel.appendChild( brand );
@@ -274,18 +274,18 @@ function buildPanel( data, onAction ) {
 	if ( meta ) {
 		panel.classList.add( `is-${ data.status }` );
 
-		const head = el( 'div', 'sio-panel__head' );
-		head.appendChild( el( 'span', `sio-panel__dot ${ meta.dot }` ) );
+		const head = el( 'div', 'oio-panel__head' );
+		head.appendChild( el( 'span', `oio-panel__dot ${ meta.dot }` ) );
 		head.appendChild( el( 'strong', null, meta.label ) );
 
 		if ( optimized ) {
 			head.appendChild(
 				el(
 					'span',
-					'sio-panel__percent',
+					'oio-panel__percent',
 					sprintf(
 						/* translators: %s: percentage saved. */
-						__( 'Saved %s%%', 'swift-image-optimizer' ),
+						__( 'Saved %s%%', 'omnio-image-optimizer' ),
 						data.percent
 					)
 				)
@@ -299,10 +299,10 @@ function buildPanel( data, onAction ) {
 		panel.appendChild(
 			el(
 				'div',
-				'sio-panel__sizes',
+				'oio-panel__sizes',
 				sprintf(
 					/* translators: 1: original file size, 2: optimized file size. */
-					__( '%1$s → %2$s', 'swift-image-optimizer' ),
+					__( '%1$s → %2$s', 'omnio-image-optimizer' ),
 					formatBytes( data.originalSize ),
 					formatBytes( data.optimizedSize )
 				)
@@ -320,14 +320,14 @@ function buildPanel( data, onAction ) {
 		}
 
 		panel.appendChild(
-			el( 'div', 'sio-panel__meta', metaParts.join( ' · ' ) )
+			el( 'div', 'oio-panel__meta', metaParts.join( ' · ' ) )
 		);
 
 		if ( data.canRestore ) {
 			const restore = el(
 				'button',
-				'sio-btn sio-btn--tertiary sio-panel__restore',
-				__( 'Restore original', 'swift-image-optimizer' )
+				'oio-btn oio-btn--tertiary oio-panel__restore',
+				__( 'Restore original', 'omnio-image-optimizer' )
 			);
 			restore.type = 'button';
 			restore.addEventListener( 'click', () =>
@@ -341,10 +341,10 @@ function buildPanel( data, onAction ) {
 			panel.appendChild(
 				el(
 					'p',
-					'sio-panel__note',
+					'oio-panel__note',
 					__(
 						'No original stored, so this cannot be restored.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					)
 				)
 			);
@@ -355,7 +355,7 @@ function buildPanel( data, onAction ) {
 
 	// Not optimized: explain why if we know, and offer the action.
 	if ( data.reason ) {
-		panel.appendChild( el( 'p', 'sio-panel__reason', data.reason ) );
+		panel.appendChild( el( 'p', 'oio-panel__reason', data.reason ) );
 	}
 
 	if ( data.canOptimize ) {
@@ -363,10 +363,10 @@ function buildPanel( data, onAction ) {
 			panel.appendChild(
 				el(
 					'p',
-					'sio-panel__reason',
+					'oio-panel__reason',
 					__(
 						'No image conversion engine is available on this server.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					)
 				)
 			);
@@ -375,12 +375,12 @@ function buildPanel( data, onAction ) {
 		}
 
 		const label = data.reason
-			? __( 'Try again', 'swift-image-optimizer' )
-			: __( 'Optimize', 'swift-image-optimizer' );
+			? __( 'Try again', 'omnio-image-optimizer' )
+			: __( 'Optimize', 'omnio-image-optimizer' );
 
 		const button = el(
 			'button',
-			'sio-btn sio-btn--secondary sio-panel__optimize',
+			'oio-btn oio-btn--secondary oio-panel__optimize',
 			label
 		);
 		button.type = 'button';
@@ -406,26 +406,26 @@ function renderPanel( model, container ) {
 	}
 
 	// render() runs repeatedly; never stack panels.
-	const existing = container.querySelector( '.sio-panel, .sio-panel-busy' );
+	const existing = container.querySelector( '.oio-panel, .oio-panel-busy' );
 
 	if ( existing ) {
 		existing.remove();
 	}
 
-	const data = model.get( 'swiftImageOptimizer' );
+	const data = model.get( 'omnioImageOptimizer' );
 
 	const onAction = async ( action, button ) => {
 		if ( 'restore' === action ) {
 			const ok = await sioConfirm( {
 				title: __(
 					'Restore the original image?',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				),
 				message: __(
 					'The optimized file will be removed and every reference to it updated back to the original.',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				),
-				confirm: __( 'Restore original', 'swift-image-optimizer' ),
+				confirm: __( 'Restore original', 'omnio-image-optimizer' ),
 			} );
 
 			if ( ! ok ) {
@@ -434,7 +434,7 @@ function renderPanel( model, container ) {
 		}
 
 		button.disabled = true;
-		button.textContent = __( 'Working…', 'swift-image-optimizer' );
+		button.textContent = __( 'Working…', 'omnio-image-optimizer' );
 
 		request( action, { ids: [ model.get( 'id' ) ] } )
 			.then( ( result ) => {
@@ -450,9 +450,9 @@ function renderPanel( model, container ) {
 			.then( () => renderPanel( model, container ) )
 			.catch( ( error ) => {
 				button.disabled = false;
-				button.textContent = __( 'Optimize', 'swift-image-optimizer' );
+				button.textContent = __( 'Optimize', 'omnio-image-optimizer' );
 
-				const message = el( 'p', 'sio-panel__error', error.message );
+				const message = el( 'p', 'oio-panel__error', error.message );
 				button.parentNode.appendChild( message );
 			} );
 	};
@@ -523,19 +523,19 @@ class OptimizeProgress {
 		this.done = 0;
 		this.saved = 0;
 
-		this.root = el( 'div', 'sio-bulk' );
+		this.root = el( 'div', 'oio-bulk' );
 
-		this.bar = el( 'div', 'sio-bulk__bar' );
-		this.fill = el( 'div', 'sio-bulk__fill' );
+		this.bar = el( 'div', 'oio-bulk__bar' );
+		this.fill = el( 'div', 'oio-bulk__fill' );
 		this.bar.appendChild( this.fill );
 
-		this.label = el( 'span', 'sio-bulk__label' );
-		this.savedLabel = el( 'span', 'sio-bulk__saved' );
+		this.label = el( 'span', 'oio-bulk__label' );
+		this.savedLabel = el( 'span', 'oio-bulk__saved' );
 
 		this.stop = el(
 			'button',
-			'sio-btn sio-btn--secondary is-destructive sio-bulk__stop',
-			__( 'Stop', 'swift-image-optimizer' )
+			'oio-btn oio-btn--secondary is-destructive oio-bulk__stop',
+			__( 'Stop', 'omnio-image-optimizer' )
 		);
 		this.stop.type = 'button';
 		this.stop.addEventListener( 'click', onStop );
@@ -561,7 +561,7 @@ class OptimizeProgress {
 		this.fill.style.width = `${ percent }%`;
 		this.label.textContent = sprintf(
 			/* translators: 1: images completed, 2: total images. */
-			__( '%1$d of %2$d', 'swift-image-optimizer' ),
+			__( '%1$d of %2$d', 'omnio-image-optimizer' ),
 			this.done,
 			this.total
 		);
@@ -569,7 +569,7 @@ class OptimizeProgress {
 			this.saved > 0
 				? sprintf(
 						/* translators: %s: formatted file size. */
-						__( '%s saved', 'swift-image-optimizer' ),
+						__( '%s saved', 'omnio-image-optimizer' ),
 						formatBytes( this.saved )
 				  )
 				: '';
@@ -619,7 +619,7 @@ async function runSelection( controller, toolbar ) {
 				'Optimize %d image?',
 				'Optimize %d images?',
 				models.length,
-				'swift-image-optimizer'
+				'omnio-image-optimizer'
 			),
 			models.length
 		),
@@ -627,9 +627,9 @@ async function runSelection( controller, toolbar ) {
 			'The original is backed up first, and every reference to it is updated.',
 			'Originals are backed up first, and every reference to them is updated.',
 			models.length,
-			'swift-image-optimizer'
+			'omnio-image-optimizer'
 		),
-		confirm: __( 'Optimize', 'swift-image-optimizer' ),
+		confirm: __( 'Optimize', 'omnio-image-optimizer' ),
 	} );
 
 	if ( ! ok ) {
@@ -643,7 +643,7 @@ async function runSelection( controller, toolbar ) {
 		chunks.push( models.slice( i, i + size ) );
 	}
 
-	toolbar.$el.addClass( 'sio-running' );
+	toolbar.$el.addClass( 'oio-running' );
 
 	let stopped = false;
 	const progress = new OptimizeProgress( toolbar.el, models.length, () => {
@@ -690,14 +690,14 @@ async function runSelection( controller, toolbar ) {
 	};
 
 	runChunk( 0 ).then( () => {
-		toolbar.$el.removeClass( 'sio-running' );
+		toolbar.$el.removeClass( 'oio-running' );
 
 		progress.finish(
 			sprintf(
 				/* translators: 1: optimized count, 2: skipped count, 3: failed count. */
 				__(
 					'Done — %1$d optimized, %2$d skipped, %3$d failed.',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				),
 				optimized,
 				skipped,
@@ -762,7 +762,7 @@ function registerToolbar() {
 		render() {
 			Button.prototype.render.apply( this, arguments );
 			this.$el.addClass(
-				'swift-optimize-mode-button sio-btn sio-btn--secondary'
+				'omnio-optimize-mode-button oio-btn oio-btn--secondary'
 			);
 			this.el.insertBefore( boltIcon(), this.el.firstChild );
 			this.toggleVisible();
@@ -788,10 +788,10 @@ function registerToolbar() {
 				text: count
 					? sprintf(
 							/* translators: %d: number of selected images. */
-							__( 'Optimize (%d)', 'swift-image-optimizer' ),
+							__( 'Optimize (%d)', 'omnio-image-optimizer' ),
 							count
 					  )
-					: __( 'Optimize', 'swift-image-optimizer' ),
+					: __( 'Optimize', 'omnio-image-optimizer' ),
 			} );
 		},
 
@@ -804,7 +804,7 @@ function registerToolbar() {
 			Button.prototype.render.apply( this, arguments );
 
 			this.$el.addClass(
-				'swift-optimize-selected-button sio-btn sio-btn--primary'
+				'omnio-optimize-selected-button oio-btn oio-btn--primary'
 			);
 			this.el.insertBefore( boltIcon(), this.el.firstChild );
 
@@ -835,9 +835,9 @@ function registerToolbar() {
 		}
 
 		this.toolbar.set(
-			'swiftOptimizeMode',
+			'omnioOptimizeMode',
 			new OptimizeModeButton( {
-				text: __( 'Bulk Optimize', 'swift-image-optimizer' ),
+				text: __( 'Bulk Optimize', 'omnio-image-optimizer' ),
 				controller: this.controller,
 				// Core's Button defaults to size 'large', which adds a
 				// `button-large` class fighting our own sizing at equal CSS
@@ -850,12 +850,12 @@ function registerToolbar() {
 		);
 
 		this.toolbar.set(
-			'swiftOptimizeSelected',
+			'omnioOptimizeSelected',
 			new OptimizeSelectedButton( {
 				style: 'primary',
 				size: '',
 				disabled: true,
-				text: __( 'Optimize', 'swift-image-optimizer' ),
+				text: __( 'Optimize', 'omnio-image-optimizer' ),
 				controller: this.controller,
 				priority: -78,
 			} ).render()
@@ -867,7 +867,7 @@ function registerToolbar() {
 			'select:activate',
 			function () {
 				this.toolbar
-					.$( '.swift-optimize-selected-button' )
+					.$( '.omnio-optimize-selected-button' )
 					.removeClass( 'hidden' );
 			},
 			this
@@ -877,7 +877,7 @@ function registerToolbar() {
 			'select:deactivate',
 			function () {
 				this.toolbar
-					.$( '.swift-optimize-selected-button' )
+					.$( '.omnio-optimize-selected-button' )
 					.addClass( 'hidden' );
 			},
 			this

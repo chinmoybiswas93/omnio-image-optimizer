@@ -52,10 +52,10 @@ Four options, all `autoload = false`:
 
 | Option | Holds |
 |---|---|
-| `swift_image_optimizer_library_scan` | The last **completed** snapshot — the dashboard's only source |
-| `swift_image_optimizer_scan_progress` | In-flight state; never rendered as truth |
-| `swift_image_optimizer_scan_lock` | `Services\Lock` name (invariant 18) |
-| `swift_image_optimizer_bulk_phase` | The chain's phase machine |
+| `omnio_io_library_scan` | The last **completed** snapshot — the dashboard's only source |
+| `omnio_io_scan_progress` | In-flight state; never rendered as truth |
+| `omnio_io_scan_lock` | `Services\Lock` name (invariant 18) |
+| `omnio_io_bulk_phase` | The chain's phase machine |
 
 **`total_images`** is every attachment with `post_mime_type LIKE 'image/%'` except
 `image/svg+xml`. **It includes the WebP files the plugin produced** — that is the whole fix.
@@ -107,14 +107,14 @@ scan — the chain re-scans anyway. A scheduled scan that fires during bulk defe
 `ScanJobRunner` copies `BulkJobRunner` exactly, including its self-heal-only-while-active guard
 and its in-process `process_batch()` call — invariant 13 forbids loopback HTTP, so cron in-process
 is the only option. `HOOK` is a self-re-arming single event; `SCHEDULE_HOOK` is recurring.
-`swift_image_optimizer_monthly` is the **only** custom `cron_schedules` entry needed: WP provides
+`omnio_io_monthly` is the **only** custom `cron_schedules` entry needed: WP provides
 `daily` and `weekly` natively, `monthly` does not exist. It is 30 days, and the help text says
 "about every 30 days" rather than implying a calendar month.
 
 ## The chain
 
-`Coordinator` listens to two new actions — `swift_image_optimizer_scan_completed` and
-`swift_image_optimizer_bulk_completed` — and walks `scanning-before` → `optimizing` →
+`Coordinator` listens to two new actions — `omnio_io_scan_completed` and
+`omnio_io_bulk_completed` — and walks `scanning-before` → `optimizing` →
 `scanning-after`, weighted 10/80/10 into one server-computed percent. Every stage was already
 cron-driven, so the chain is background by construction. The chained bulk calls
 `Runner::start( true )`, so `total` is fresh and `done` starts at 0 — which alone kills "369 of 1".
@@ -149,7 +149,7 @@ sees it, and the setting silently never saves.
 
 Never a synchronous scan on page load — that is the freeze this unit exists to prevent.
 Activation kicks a first scan. `MenuHandler::enqueue()` writes nothing, because it runs on every
-load. With no snapshot the UI shows a 0% muted ring, "Swift has not scanned your library yet",
+load. With no snapshot the UI shows a 0% muted ring, "Omnio has not scanned your library yet",
 and fires one `POST library/scan` behind a ref guard. **No backfill from `StatsResource`** — a
 log-derived pre-scan number is exactly the number this feature exists to stop trusting.
 

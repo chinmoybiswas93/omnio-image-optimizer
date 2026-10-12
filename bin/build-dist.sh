@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Build a distributable (org-ready) zip of the Swift Image Optimizer plugin.
+# Build a distributable (org-ready) zip of the Omnio Image Optimizer plugin.
 # Usage: ./bin/build-dist.sh
 
 set -euo pipefail
 
-PLUGIN_SLUG="swift-image-optimizer"
+PLUGIN_SLUG="omnio-image-optimizer"
 PLUGIN_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 VERSION="$(grep -E '^[[:space:]]*\*[[:space:]]*Version:' "$PLUGIN_ROOT/$PLUGIN_SLUG.php" | head -n1 | sed -E 's/.*Version:[[:space:]]*//; s/[[:space:]]*$//')"
@@ -63,7 +63,7 @@ rsync -a \
 # noticed at WordPress.org review. Fail the build instead: anything new at the
 # top level has to be named here deliberately, as shipped or excluded.
 echo "==> Checking staged top level"
-EXPECTED="api app boot build composer.json config database framework readme.txt swift-image-optimizer.php uninstall.php vendor"
+EXPECTED="api app boot build composer.json config database framework readme.txt omnio-image-optimizer.php uninstall.php vendor"
 ACTUAL="$(cd "$DIST_DIR" && ls -A | sort | tr '\n' ' ' | sed 's/ $//')"
 if [[ "$ACTUAL" != "$(echo "$EXPECTED" | tr ' ' '\n' | sort | tr '\n' ' ' | sed 's/ $//')" ]]; then
   echo "Unexpected top-level contents in the staged plugin." >&2

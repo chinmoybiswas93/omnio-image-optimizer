@@ -30,7 +30,7 @@ REST — contexts where the container may not exist. Never touches the database:
 that goes wrong tends to go wrong on disk, and a log living in the database the rewriter is
 halfway through modifying is the last place it should be.
 
-- `uploads/swift-image-optimizer-logs/swift-image-optimizer-<suffix>.log`, hardened the same way
+- `uploads/omnio-image-optimizer-logs/omnio-image-optimizer-<suffix>.log`, hardened the same way
   `BackupManager::ensure_root()` hardens backups, plus a per-site random suffix because hosts
   running nginx ignore `.htaccess` entirely.
 - Levels `ERROR` / `WARN` / `INFO` / `MARK`. Only `INFO` is gated on the setting, and that rule
@@ -75,7 +75,7 @@ unreachable and the person debugging only has SSH.
 | 5 | ~50 unindexable LIKE terms per batch | Needles reduced to the **filename stem** shared by every size of one image, then de-duplicated by prefix. Only affects which rows are read; the replacement map is untouched. |
 | 6 | Comments never scanned | `comments` and `commentmeta` added to `targets()`. |
 | 7 | Skips and failures were terminal forever | `SOFT_ERRORS` split into `PERMANENT_SKIPS` and `RETRYABLE_SKIPS`; `Scanner::requeue()` clears the retryable ones on demand. |
-| 8 | 404 fallback was an unindexed LIKE over LONGTEXT, basename-only | New `swift_image_optimizer_urls` table (schema v3, backfilled on upgrade), matched on full path first. |
+| 8 | 404 fallback was an unindexed LIKE over LONGTEXT, basename-only | New `omnio_io_urls` table (schema v3, backfilled on upgrade), matched on full path first. |
 | 9 | Memory estimate applied to out-of-process cwebp | Gated on `decodes_in_process()`. |
 | 10 | Temp files leaked into month folders | Own protected directory, swept by the existing daily cron, with a manual button. |
 | 11 | No disk check before backup | `has_space_for()` returns a retryable `insufficient-disk` rather than letting `copy()` fail halfway. |

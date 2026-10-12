@@ -2,10 +2,10 @@
 /**
  * Media-editor policy.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Policies;
+namespace OmnioImageOptimizer\App\Http\Policies;
 
 use WP_REST_Request;
 

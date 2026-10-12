@@ -1,12 +1,12 @@
 {
-	"name": "crocodevs/swift-image-optimizer",
+	"name": "chinmoybiswas93/omnio-image-optimizer",
 	"description": "Automatically convert and compress images to WebP on upload, plus individual and bulk optimization for the WordPress Media Library.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
-			"name": "crocodevs",
-			"homepage": "https://crocodevs.com"
+			"name": "Chinmoy Biswas",
+			"homepage": "https://chinmoybiswas.com"
 		}
 	],
 	"require": {
@@ -14,9 +14,9 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"SwiftImageOptimizer\\App\\": "app/",
-			"SwiftImageOptimizer\\Api\\": "api/",
-			"SwiftImageOptimizer\\Framework\\": "framework/"
+			"OmnioImageOptimizer\\App\\": "app/",
+			"OmnioImageOptimizer\\Api\\": "api/",
+			"OmnioImageOptimizer\\Framework\\": "framework/"
 		},
 		"classmap": [
 			"database/"

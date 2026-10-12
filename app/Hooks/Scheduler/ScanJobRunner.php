@@ -2,16 +2,16 @@
 /**
  * Cron driver for the library scan.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Scheduler;
+namespace OmnioImageOptimizer\App\Hooks\Scheduler;
 
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Services\Bulk\Runner;
-use SwiftImageOptimizer\App\Services\Bulk\ScanRunner;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Services\Bulk\Runner;
+use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -35,12 +35,12 @@ class ScanJobRunner {
 	/**
 	 * Single, self-re-arming event that advances a running scan.
 	 */
-	const HOOK = 'swift_image_optimizer_scan_batch';
+	const HOOK = 'omnio_io_scan_batch';
 
 	/**
 	 * Recurring event that starts a scheduled scan.
 	 */
-	const SCHEDULE_HOOK = 'swift_image_optimizer_scheduled_scan';
+	const SCHEDULE_HOOK = 'omnio_io_scheduled_scan';
 
 	/**
 	 * Custom cron interval key.
@@ -48,7 +48,7 @@ class ScanJobRunner {
 	 * WordPress ships hourly, twicedaily, daily and weekly. Monthly is the only
 	 * one of the plugin's four frequencies core does not provide.
 	 */
-	const MONTHLY = 'swift_image_optimizer_monthly';
+	const MONTHLY = 'omnio_io_monthly';
 
 	/**
 	 * Register hooks.
@@ -100,7 +100,7 @@ class ScanJobRunner {
 
 		$schedules[ self::MONTHLY ] = array(
 			'interval' => 30 * DAY_IN_SECONDS,
-			'display'  => __( 'About every 30 days', 'swift-image-optimizer' ),
+			'display'  => __( 'About every 30 days', 'omnio-image-optimizer' ),
 		);
 
 		return $schedules;

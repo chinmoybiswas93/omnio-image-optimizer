@@ -2,16 +2,16 @@
 /**
  * Media Library integration.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Handlers;
+namespace OmnioImageOptimizer\App\Hooks\Handlers;
 
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Services\AttachmentConverter;
-use SwiftImageOptimizer\App\Services\Backup\BackupManager;
-use SwiftImageOptimizer\App\Services\Bulk\Scanner;
-use SwiftImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Services\AttachmentConverter;
+use OmnioImageOptimizer\App\Services\Backup\BackupManager;
+use OmnioImageOptimizer\App\Services\Bulk\Scanner;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -44,7 +44,7 @@ class MediaLibraryHandler {
 	 * @return array
 	 */
 	public function add_column( $columns ) {
-		$columns['swift_image_optimizer'] = __( 'Optimization', 'swift-image-optimizer' );
+		$columns['omnio_io'] = __( 'Optimization', 'omnio-image-optimizer' );
 
 		return $columns;
 	}
@@ -57,7 +57,7 @@ class MediaLibraryHandler {
 	 * @return void
 	 */
 	public function render_column( $column, $attachment_id ) {
-		if ( 'swift_image_optimizer' !== $column ) {
+		if ( 'omnio_io' !== $column ) {
 			return;
 		}
 
@@ -85,7 +85,7 @@ class MediaLibraryHandler {
 
 			return array(
 				'state'   => 'pending',
-				'primary' => __( 'Not optimized', 'swift-image-optimizer' ),
+				'primary' => __( 'Not optimized', 'omnio-image-optimizer' ),
 				'detail'  => '',
 			);
 		}
@@ -99,8 +99,8 @@ class MediaLibraryHandler {
 			&& ! AttachmentConverter::optimized_output_exists( $attachment_id, $row ) ) {
 			return array(
 				'state'   => 'pending',
-				'primary' => __( 'Not optimized', 'swift-image-optimizer' ),
-				'detail'  => __( 'A previous result was recorded but its file is missing.', 'swift-image-optimizer' ),
+				'primary' => __( 'Not optimized', 'omnio-image-optimizer' ),
+				'detail'  => __( 'A previous result was recorded but its file is missing.', 'omnio-image-optimizer' ),
 			);
 		}
 
@@ -113,12 +113,12 @@ class MediaLibraryHandler {
 					'state'   => 'optimized',
 					'primary' => sprintf(
 						/* translators: %s: percentage saved. */
-						__( '%s%% smaller', 'swift-image-optimizer' ),
+						__( '%s%% smaller', 'omnio-image-optimizer' ),
 						number_format_i18n( $percent, 1 )
 					),
 					'detail'  => sprintf(
 						/* translators: 1: original size, 2: optimized size. */
-						__( '%1$s to %2$s', 'swift-image-optimizer' ),
+						__( '%1$s to %2$s', 'omnio-image-optimizer' ),
 						size_format( (int) $row['original_size'] ),
 						size_format( (int) $row['optimized_size'] )
 					),
@@ -134,14 +134,14 @@ class MediaLibraryHandler {
 			case OptimizationLog::STATUS_FAILED:
 				return array(
 					'state'   => 'failed',
-					'primary' => __( 'Failed', 'swift-image-optimizer' ),
+					'primary' => __( 'Failed', 'omnio-image-optimizer' ),
 					'detail'  => self::reason_label( $row['reason'] ),
 				);
 
 			case OptimizationLog::STATUS_RESTORED:
 				return array(
 					'state'   => 'restored',
-					'primary' => __( 'Restored to original', 'swift-image-optimizer' ),
+					'primary' => __( 'Restored to original', 'omnio-image-optimizer' ),
 					'detail'  => '',
 				);
 		}
@@ -160,17 +160,17 @@ class MediaLibraryHandler {
 	 */
 	public static function reason_label( $reason ) {
 		$labels = array(
-			'skipped-larger'      => __( 'Already efficient, WebP would be larger', 'swift-image-optimizer' ),
-			'insufficient-memory' => __( 'Too large for the available memory', 'swift-image-optimizer' ),
-			'unsupported-format'  => __( 'Format not supported', 'swift-image-optimizer' ),
-			'already-webp'        => __( 'Already WebP', 'swift-image-optimizer' ),
-			'png-disabled'        => __( 'PNG conversion is off', 'swift-image-optimizer' ),
-			'no-engine'           => __( 'No conversion engine available', 'swift-image-optimizer' ),
-			'missing-file'        => __( 'File missing on disk', 'swift-image-optimizer' ),
-			'backup-copy-failed'  => __( 'Backup could not be written', 'swift-image-optimizer' ),
-			'insufficient-disk'   => __( 'Not enough free disk space to back up safely', 'swift-image-optimizer' ),
-			'animated-image'      => __( 'Animated, so it was left as it is', 'swift-image-optimizer' ),
-			'engine-unsupported'  => __( 'No engine here can convert it correctly', 'swift-image-optimizer' ),
+			'skipped-larger'      => __( 'Already efficient, WebP would be larger', 'omnio-image-optimizer' ),
+			'insufficient-memory' => __( 'Too large for the available memory', 'omnio-image-optimizer' ),
+			'unsupported-format'  => __( 'Format not supported', 'omnio-image-optimizer' ),
+			'already-webp'        => __( 'Already WebP', 'omnio-image-optimizer' ),
+			'png-disabled'        => __( 'PNG conversion is off', 'omnio-image-optimizer' ),
+			'no-engine'           => __( 'No conversion engine available', 'omnio-image-optimizer' ),
+			'missing-file'        => __( 'File missing on disk', 'omnio-image-optimizer' ),
+			'backup-copy-failed'  => __( 'Backup could not be written', 'omnio-image-optimizer' ),
+			'insufficient-disk'   => __( 'Not enough free disk space to back up safely', 'omnio-image-optimizer' ),
+			'animated-image'      => __( 'Animated, so it was left as it is', 'omnio-image-optimizer' ),
+			'engine-unsupported'  => __( 'No engine here can convert it correctly', 'omnio-image-optimizer' ),
 		);
 
 		return isset( $labels[ $reason ] ) ? $labels[ $reason ] : ucfirst( str_replace( '-', ' ', (string) $reason ) );
@@ -194,11 +194,11 @@ class MediaLibraryHandler {
 		if ( $row && OptimizationLog::STATUS_OPTIMIZED === $row['status']
 			&& AttachmentConverter::optimized_output_exists( $post->ID, $row ) ) {
 			if ( BackupManager::manifest_is_intact( $row['backup_path'] ) ) {
-				$actions['swift_restore'] = sprintf(
-					'<a href="%s" class="sio-row-action sio-row-action--restore" data-action="restore" data-id="%d">%s</a>',
+				$actions['omnio_restore'] = sprintf(
+					'<a href="%s" class="oio-row-action oio-row-action--restore" data-action="restore" data-id="%d">%s</a>',
 					esc_url( $this->action_url( 'restore', $post->ID ) ),
 					(int) $post->ID,
-					esc_html__( 'Restore original', 'swift-image-optimizer' )
+					esc_html__( 'Restore original', 'omnio-image-optimizer' )
 				);
 			}
 
@@ -209,11 +209,11 @@ class MediaLibraryHandler {
 			return $actions;
 		}
 
-		$actions['swift_optimize'] = sprintf(
-			'<a href="%s" class="sio-row-action sio-row-action--optimize" data-action="optimize" data-id="%d">%s</a>',
+		$actions['omnio_optimize'] = sprintf(
+			'<a href="%s" class="oio-row-action oio-row-action--optimize" data-action="optimize" data-id="%d">%s</a>',
 			esc_url( $this->action_url( 'optimize', $post->ID ) ),
 			(int) $post->ID,
-			esc_html__( 'Optimize', 'swift-image-optimizer' )
+			esc_html__( 'Optimize', 'omnio-image-optimizer' )
 		);
 
 		return $actions;
@@ -230,12 +230,12 @@ class MediaLibraryHandler {
 		return wp_nonce_url(
 			add_query_arg(
 				array(
-					'swift_image_optimizer_action' => $action,
+					'omnio_io_action' => $action,
 					'attachment_id'                => (int) $id,
 				),
 				admin_url( 'upload.php' )
 			),
-			'swift_image_optimizer_' . $action . '_' . $id
+			'omnio_io_' . $action . '_' . $id
 		);
 	}
 
@@ -246,8 +246,8 @@ class MediaLibraryHandler {
 	 * @return array
 	 */
 	public function add_bulk_actions( $actions ) {
-		$actions['swift_image_optimizer_optimize'] = __( 'Optimize images', 'swift-image-optimizer' );
-		$actions['swift_image_optimizer_restore']  = __( 'Restore originals', 'swift-image-optimizer' );
+		$actions['omnio_io_optimize'] = __( 'Optimize images', 'omnio-image-optimizer' );
+		$actions['omnio_io_restore']  = __( 'Restore originals', 'omnio-image-optimizer' );
 
 		return $actions;
 	}
@@ -263,7 +263,7 @@ class MediaLibraryHandler {
 	public function handle_bulk_action( $redirect, $action, $ids ) {
 		$converter = App::make( 'converter' );
 
-		if ( 'swift_image_optimizer_optimize' === $action ) {
+		if ( 'omnio_io_optimize' === $action ) {
 			$done = 0;
 
 			foreach ( (array) $ids as $id ) {
@@ -272,10 +272,10 @@ class MediaLibraryHandler {
 				}
 			}
 
-			return add_query_arg( 'swift_image_optimizer_optimized', $done, $redirect );
+			return add_query_arg( 'omnio_io_optimized', $done, $redirect );
 		}
 
-		if ( 'swift_image_optimizer_restore' === $action ) {
+		if ( 'omnio_io_restore' === $action ) {
 			$done = 0;
 
 			foreach ( (array) $ids as $id ) {
@@ -284,7 +284,7 @@ class MediaLibraryHandler {
 				}
 			}
 
-			return add_query_arg( 'swift_image_optimizer_restored', $done, $redirect );
+			return add_query_arg( 'omnio_io_restored', $done, $redirect );
 		}
 
 		return $redirect;
@@ -322,16 +322,16 @@ class MediaLibraryHandler {
 		$this->maybe_handle_row_action();
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display of a count set by our own redirect.
-		$optimized = isset( $_GET['swift_image_optimizer_optimized'] ) ? absint( $_GET['swift_image_optimizer_optimized'] ) : null;
+		$optimized = isset( $_GET['omnio_io_optimized'] ) ? absint( $_GET['omnio_io_optimized'] ) : null;
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display of a count set by our own redirect.
-		$restored = isset( $_GET['swift_image_optimizer_restored'] ) ? absint( $_GET['swift_image_optimizer_restored'] ) : null;
+		$restored = isset( $_GET['omnio_io_restored'] ) ? absint( $_GET['omnio_io_restored'] ) : null;
 
 		if ( null !== $optimized ) {
 			$this->notice(
 				'success',
 				sprintf(
 					/* translators: %d: number of images. */
-					_n( '%d image optimized.', '%d images optimized.', $optimized, 'swift-image-optimizer' ),
+					_n( '%d image optimized.', '%d images optimized.', $optimized, 'omnio-image-optimizer' ),
 					$optimized
 				)
 			);
@@ -342,7 +342,7 @@ class MediaLibraryHandler {
 				'success',
 				sprintf(
 					/* translators: %d: number of images. */
-					_n( '%d image restored.', '%d images restored.', $restored, 'swift-image-optimizer' ),
+					_n( '%d image restored.', '%d images restored.', $restored, 'omnio-image-optimizer' ),
 					$restored
 				)
 			);
@@ -356,7 +356,7 @@ class MediaLibraryHandler {
 	 */
 	private function maybe_handle_row_action() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- The nonce is verified immediately below.
-		$action = isset( $_GET['swift_image_optimizer_action'] ) ? sanitize_key( wp_unslash( $_GET['swift_image_optimizer_action'] ) ) : '';
+		$action = isset( $_GET['omnio_io_action'] ) ? sanitize_key( wp_unslash( $_GET['omnio_io_action'] ) ) : '';
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- The nonce is verified immediately below.
 		$id = isset( $_GET['attachment_id'] ) ? absint( $_GET['attachment_id'] ) : 0;
 
@@ -364,10 +364,10 @@ class MediaLibraryHandler {
 			return;
 		}
 
-		check_admin_referer( 'swift_image_optimizer_' . $action . '_' . $id );
+		check_admin_referer( 'omnio_io_' . $action . '_' . $id );
 
 		if ( ! current_user_can( 'edit_post', $id ) ) {
-			wp_die( esc_html__( 'You are not allowed to modify this image.', 'swift-image-optimizer' ) );
+			wp_die( esc_html__( 'You are not allowed to modify this image.', 'omnio-image-optimizer' ) );
 		}
 
 		$converter = App::make( 'converter' );
@@ -382,8 +382,8 @@ class MediaLibraryHandler {
 		$this->notice(
 			'success',
 			'optimize' === $action
-				? __( 'Image optimized.', 'swift-image-optimizer' )
-				: __( 'Original restored.', 'swift-image-optimizer' )
+				? __( 'Image optimized.', 'omnio-image-optimizer' )
+				: __( 'Original restored.', 'omnio-image-optimizer' )
 		);
 	}
 
@@ -398,7 +398,7 @@ class MediaLibraryHandler {
 		$payload = self::optimization_payload( $attachment->ID );
 
 		if ( null !== $payload ) {
-			$response['swiftImageOptimizer'] = $payload;
+			$response['omnioImageOptimizer'] = $payload;
 		}
 
 		return $response;

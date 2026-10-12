@@ -11,40 +11,40 @@
  * one for its own controls; owning the controls means owning that too.
  */
 
-$sio-space-xs: 4px;
-$sio-space-sm: 8px;
-$sio-space-md: 16px;
-$sio-space-lg: 24px;
+$oio-space-xs: 4px;
+$oio-space-sm: 8px;
+$oio-space-md: 16px;
+$oio-space-lg: 24px;
 
-$sio-brand: #3858e9;
-$sio-brand-dark: #2c3fc0;
-$sio-danger: #d63638;
-$sio-danger-dark: #b32d2e;
-$sio-success: #008a20;
-$sio-warning: #bd8600;
+$oio-brand: #3858e9;
+$oio-brand-dark: #2c3fc0;
+$oio-danger: #d63638;
+$oio-danger-dark: #b32d2e;
+$oio-success: #008a20;
+$oio-warning: #bd8600;
 
-$sio-text: #1e1e1e;
-$sio-text-muted: #646970;
-$sio-border: #dcdcde;
-$sio-border-strong: #8c8f94;
-$sio-radius-sm: 4px;
+$oio-text: #1e1e1e;
+$oio-text-muted: #646970;
+$oio-border: #dcdcde;
+$oio-border-strong: #8c8f94;
+$oio-radius-sm: 4px;
 
-@mixin sio-focus-ring( $color: $sio-brand ) {
+@mixin oio-focus-ring( $color: $oio-brand ) {
 	outline: 2px solid $color;
 	outline-offset: 1px;
 }
 
 /* Buttons ---------------------------------------------------------------- */
 
-.sio-btn {
+.oio-btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: $sio-space-sm;
+	gap: $oio-space-sm;
 	min-height: 32px;
 	padding: 0 12px;
 	border: 1px solid transparent;
-	border-radius: $sio-radius-sm;
+	border-radius: $oio-radius-sm;
 	font-size: 13px;
 	font-weight: 500;
 	line-height: 1;
@@ -53,7 +53,7 @@ $sio-radius-sm: 4px;
 	transition: background-color 0.1s ease, border-color 0.1s ease, color 0.1s ease;
 
 	&:focus-visible {
-		@include sio-focus-ring;
+		@include oio-focus-ring;
 	}
 
 	&[disabled],
@@ -63,32 +63,32 @@ $sio-radius-sm: 4px;
 	}
 
 	&--primary {
-		background: $sio-brand;
-		border-color: $sio-brand;
+		background: $oio-brand;
+		border-color: $oio-brand;
 		color: #fff;
 
 		&:hover:not( [disabled] ) {
-			background: $sio-brand-dark;
-			border-color: $sio-brand-dark;
+			background: $oio-brand-dark;
+			border-color: $oio-brand-dark;
 			color: #fff;
 		}
 	}
 
 	&--secondary {
 		background: #fff;
-		border-color: $sio-brand;
-		color: $sio-brand;
+		border-color: $oio-brand;
+		color: $oio-brand;
 
 		&:hover:not( [disabled] ) {
 			background: rgba( 56, 88, 233, 0.06 );
-			color: $sio-brand-dark;
+			color: $oio-brand-dark;
 		}
 	}
 
 	&--tertiary {
 		background: transparent;
 		border-color: transparent;
-		color: $sio-brand;
+		color: $oio-brand;
 
 		&:hover:not( [disabled] ) {
 			background: rgba( 56, 88, 233, 0.08 );
@@ -97,21 +97,21 @@ $sio-radius-sm: 4px;
 
 	// Destructive modifies whichever variant it is applied to, so it comes last.
 	&.is-destructive {
-		border-color: $sio-danger;
-		color: $sio-danger;
+		border-color: $oio-danger;
+		color: $oio-danger;
 
 		&:hover:not( [disabled] ) {
 			background: rgba( 214, 54, 56, 0.06 );
-			color: $sio-danger-dark;
+			color: $oio-danger-dark;
 		}
 	}
 
 	&--primary.is-destructive {
-		background: $sio-danger;
+		background: $oio-danger;
 		color: #fff;
 
 		&:hover:not( [disabled] ) {
-			background: $sio-danger-dark;
+			background: $oio-danger-dark;
 			color: #fff;
 		}
 	}
@@ -119,7 +119,7 @@ $sio-radius-sm: 4px;
 
 /* Spinner ---------------------------------------------------------------- */
 
-.sio-spinner {
+.oio-spinner {
 	display: inline-block;
 	width: 16px;
 	height: 16px;
@@ -127,11 +127,11 @@ $sio-radius-sm: 4px;
 	border-right-color: transparent;
 	border-radius: 50%;
 	opacity: 0.7;
-	animation: sio-spin 0.7s linear infinite;
+	animation: oio-spin 0.7s linear infinite;
 	vertical-align: middle;
 }
 
-@keyframes sio-spin {
+@keyframes oio-spin {
 	to {
 		transform: rotate( 360deg );
 	}
@@ -139,68 +139,68 @@ $sio-radius-sm: 4px;
 
 // Respect a user who has asked for less motion: show the ring, stop the spin.
 @media ( prefers-reduced-motion: reduce ) {
-	.sio-spinner {
+	.oio-spinner {
 		animation-duration: 3s;
 	}
 }
 
 /* Fields ----------------------------------------------------------------- */
 
-.sio-field {
+.oio-field {
 	&__label {
 		display: block;
-		margin-bottom: $sio-space-xs;
+		margin-bottom: $oio-space-xs;
 		font-size: 13px;
 		font-weight: 500;
-		color: $sio-text;
+		color: $oio-text;
 	}
 
 	&__help {
-		margin: $sio-space-xs 0 0;
+		margin: $oio-space-xs 0 0;
 		font-size: 12px;
 		line-height: 1.5;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 }
 
-.sio-select__input,
-.sio-number__input {
+.oio-select__input,
+.oio-number__input {
 	width: 100%;
 	max-width: 360px;
 	min-height: 32px;
-	padding: 0 $sio-space-sm;
+	padding: 0 $oio-space-sm;
 	background: #fff;
-	border: 1px solid $sio-border-strong;
-	border-radius: $sio-radius-sm;
+	border: 1px solid $oio-border-strong;
+	border-radius: $oio-radius-sm;
 	font-size: 13px;
-	color: $sio-text;
+	color: $oio-text;
 
 	&:focus {
-		border-color: $sio-brand;
-		@include sio-focus-ring;
+		border-color: $oio-brand;
+		@include oio-focus-ring;
 	}
 }
 
-.sio-number__input {
+.oio-number__input {
 	max-width: 140px;
 }
 
 /* Range ------------------------------------------------------------------ */
 
-.sio-range {
+.oio-range {
 	&__row {
 		display: flex;
 		align-items: center;
-		gap: $sio-space-md;
+		gap: $oio-space-md;
 		max-width: 360px;
 	}
 
 	&__input {
 		flex: 1 1 auto;
-		accent-color: $sio-brand;
+		accent-color: $oio-brand;
 
 		&:focus-visible {
-			@include sio-focus-ring;
+			@include oio-focus-ring;
 		}
 	}
 
@@ -209,22 +209,22 @@ $sio-radius-sm: 4px;
 		min-width: 40px;
 		padding: 2px 8px;
 		background: rgba( 56, 88, 233, 0.08 );
-		border-radius: $sio-radius-sm;
+		border-radius: $oio-radius-sm;
 		font-size: 12px;
 		font-weight: 600;
 		font-variant-numeric: tabular-nums;
 		text-align: center;
-		color: $sio-brand;
+		color: $oio-brand;
 	}
 }
 
 /* Toggle ----------------------------------------------------------------- */
 
-.sio-toggle {
+.oio-toggle {
 	&__row {
 		display: flex;
 		align-items: flex-start;
-		gap: $sio-space-sm;
+		gap: $oio-space-sm;
 		cursor: pointer;
 	}
 
@@ -268,11 +268,11 @@ $sio-radius-sm: 4px;
 	&__label {
 		font-size: 13px;
 		line-height: 1.5;
-		color: $sio-text;
+		color: $oio-text;
 	}
 
 	&__input:checked + &__track {
-		background: $sio-brand;
+		background: $oio-brand;
 	}
 
 	&__input:checked + &__track &__thumb {
@@ -280,13 +280,13 @@ $sio-radius-sm: 4px;
 	}
 
 	&__input:focus-visible + &__track {
-		@include sio-focus-ring;
+		@include oio-focus-ring;
 	}
 
 	&.is-disabled {
 		opacity: 0.55;
 
-		.sio-toggle__row {
+		.oio-toggle__row {
 			cursor: not-allowed;
 		}
 	}
@@ -294,16 +294,16 @@ $sio-radius-sm: 4px;
 
 /* Notices ---------------------------------------------------------------- */
 
-.sio-notice {
+.oio-notice {
 	display: flex;
 	align-items: flex-start;
-	gap: $sio-space-sm;
-	margin: 0 0 $sio-space-md;
-	padding: 12px $sio-space-md;
+	gap: $oio-space-sm;
+	margin: 0 0 $oio-space-md;
+	padding: 12px $oio-space-md;
 	background: #fff;
-	border: 1px solid $sio-border;
+	border: 1px solid $oio-border;
 	border-left-width: 4px;
-	border-radius: $sio-radius-sm;
+	border-radius: $oio-radius-sm;
 	font-size: 13px;
 	line-height: 1.5;
 
@@ -319,32 +319,32 @@ $sio-radius-sm: 4px;
 		border: 0;
 		font-size: 18px;
 		line-height: 1;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 		cursor: pointer;
 
 		&:hover {
-			color: $sio-text;
+			color: $oio-text;
 		}
 
 		&:focus-visible {
-			@include sio-focus-ring;
+			@include oio-focus-ring;
 		}
 	}
 
 	&--error {
-		border-left-color: $sio-danger;
+		border-left-color: $oio-danger;
 	}
 
 	&--warning {
-		border-left-color: $sio-warning;
+		border-left-color: $oio-warning;
 	}
 
 	&--success {
-		border-left-color: $sio-success;
+		border-left-color: $oio-success;
 	}
 
 	&--info {
-		border-left-color: $sio-brand;
+		border-left-color: $oio-brand;
 	}
 
 	/*
@@ -354,39 +354,39 @@ $sio-radius-sm: 4px;
 	 * that made a notice sit correctly under the page heading.
 	 */
 	&--standalone {
-		margin: $sio-space-md 0 $sio-space-md 2px;
+		margin: $oio-space-md 0 $oio-space-md 2px;
 		max-width: 100%;
 	}
 }
 
 /* Toasts ----------------------------------------------------------------- */
 
-.sio-toasts {
+.oio-toasts {
 	position: fixed;
-	right: $sio-space-md;
-	bottom: $sio-space-md;
+	right: $oio-space-md;
+	bottom: $oio-space-md;
 	z-index: 100000; // Above WordPress's own admin chrome, including the menu.
 	display: flex;
 	flex-direction: column;
-	gap: $sio-space-sm;
-	width: min(360px, calc(100vw - #{$sio-space-md * 2}));
+	gap: $oio-space-sm;
+	width: min(360px, calc(100vw - #{$oio-space-md * 2}));
 	pointer-events: none; // The stack never blocks the page; each toast opts in.
 }
 
-.sio-toast {
+.oio-toast {
 	display: flex;
 	align-items: flex-start;
-	gap: $sio-space-sm;
-	padding: 12px $sio-space-md;
+	gap: $oio-space-sm;
+	padding: 12px $oio-space-md;
 	background: #fff;
-	border: 1px solid $sio-border;
+	border: 1px solid $oio-border;
 	border-left-width: 4px;
-	border-radius: $sio-radius-sm;
+	border-radius: $oio-radius-sm;
 	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 	font-size: 13px;
 	line-height: 1.5;
 	pointer-events: auto;
-	animation: sio-toast-in 160ms ease-out;
+	animation: oio-toast-in 160ms ease-out;
 
 	&__body {
 		flex: 1 1 auto;
@@ -400,36 +400,36 @@ $sio-radius-sm: 4px;
 		border: 0;
 		font-size: 18px;
 		line-height: 1;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 		cursor: pointer;
 
 		&:hover {
-			color: $sio-text;
+			color: $oio-text;
 		}
 
 		&:focus-visible {
-			@include sio-focus-ring;
+			@include oio-focus-ring;
 		}
 	}
 
 	&--error {
-		border-left-color: $sio-danger;
+		border-left-color: $oio-danger;
 	}
 
 	&--warning {
-		border-left-color: $sio-warning;
+		border-left-color: $oio-warning;
 	}
 
 	&--success {
-		border-left-color: $sio-success;
+		border-left-color: $oio-success;
 	}
 
 	&--info {
-		border-left-color: $sio-brand;
+		border-left-color: $oio-brand;
 	}
 }
 
-@keyframes sio-toast-in {
+@keyframes oio-toast-in {
 	from {
 		opacity: 0;
 		transform: translateY(6px);
@@ -443,14 +443,14 @@ $sio-radius-sm: 4px;
 
 // Respect a reduced-motion preference rather than animating regardless.
 @media (prefers-reduced-motion: reduce) {
-	.sio-toast {
+	.oio-toast {
 		animation: none;
 	}
 }
 
 /* Media Library cells and row actions ------------------------------------ */
 
-.sio-cell {
+.oio-cell {
 	display: block;
 	font-size: 13px;
 	line-height: 1.4;
@@ -463,22 +463,22 @@ $sio-radius-sm: 4px;
 		display: block;
 		margin-top: 2px;
 		font-size: 12px;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 
-	&--optimized .sio-cell__primary {
+	&--optimized .oio-cell__primary {
 		font-weight: 600;
-		color: $sio-success;
+		color: $oio-success;
 	}
 
-	&--failed .sio-cell__primary {
-		color: $sio-danger;
+	&--failed .oio-cell__primary {
+		color: $oio-danger;
 	}
 
-	&--pending .sio-cell__primary,
-	&--skipped .sio-cell__primary,
-	&--restored .sio-cell__primary {
-		color: $sio-text-muted;
+	&--pending .oio-cell__primary,
+	&--skipped .oio-cell__primary,
+	&--restored .oio-cell__primary {
+		color: $oio-text-muted;
 	}
 }
 
@@ -489,7 +489,7 @@ $sio-radius-sm: 4px;
  * reads as closed rather than stuck short of 100%.
  */
 
-.sio-ring {
+.oio-ring {
 	position: relative;
 	flex-shrink: 0;
 
@@ -499,17 +499,17 @@ $sio-radius-sm: 4px;
 	}
 
 	&__track {
-		stroke: $sio-border;
+		stroke: $oio-border;
 	}
 
 	&__muted {
-		stroke: $sio-border-strong;
+		stroke: $oio-border-strong;
 		opacity: 0.45;
 		transition: stroke-dasharray 300ms ease, stroke-dashoffset 300ms ease;
 	}
 
 	&__value {
-		stroke: $sio-brand;
+		stroke: $oio-brand;
 		transition: stroke-dasharray 300ms ease;
 	}
 
@@ -532,19 +532,19 @@ $sio-radius-sm: 4px;
 		font-size: 28px;
 		font-weight: 700;
 		line-height: 1.1;
-		color: $sio-text;
+		color: $oio-text;
 	}
 
 	&__caption {
 		margin-top: 2px;
 		font-size: 12px;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 }
 
 @media ( prefers-reduced-motion: reduce ) {
-	.sio-ring__value,
-	.sio-ring__muted {
+	.oio-ring__value,
+	.oio-ring__muted {
 		transition: none;
 	}
 }

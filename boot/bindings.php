@@ -5,17 +5,17 @@
  * The shared service instances the rest of the plugin resolves by name. These
  * were previously AppServiceProvider::register().
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Services\AttachmentConverter;
-use SwiftImageOptimizer\App\Services\Bulk\Coordinator;
-use SwiftImageOptimizer\App\Services\Bulk\Runner;
-use SwiftImageOptimizer\App\Services\Bulk\ScanRunner;
-use SwiftImageOptimizer\App\Services\Optimizer;
-use SwiftImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Services\AttachmentConverter;
+use OmnioImageOptimizer\App\Services\Bulk\Coordinator;
+use OmnioImageOptimizer\App\Services\Bulk\Runner;
+use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
+use OmnioImageOptimizer\App\Services\Optimizer;
+use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
 
 if ( ! defined('ABSPATH')) {
     exit;

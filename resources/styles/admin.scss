@@ -9,40 +9,40 @@
 @use 'controls';
 @use 'modal';
 
-$sio-space-xs: 4px;
-$sio-space-sm: 8px;
-$sio-space-md: 16px;
-$sio-space-lg: 24px;
-$sio-space-xl: 32px;
+$oio-space-xs: 4px;
+$oio-space-sm: 8px;
+$oio-space-md: 16px;
+$oio-space-lg: 24px;
+$oio-space-xl: 32px;
 
-$sio-brand: #3858e9;
-$sio-brand-dark: #2c3fc0;
-$sio-success: #008a20;
-$sio-warning: #bd8600;
-$sio-danger: #d63638;
+$oio-brand: #3858e9;
+$oio-brand-dark: #2c3fc0;
+$oio-success: #008a20;
+$oio-warning: #bd8600;
+$oio-danger: #d63638;
 
-$sio-text: #1e1e1e;
-$sio-text-muted: #757575;
-$sio-border: #e3e5e8;
-$sio-border-light: #f0f0f1;
-$sio-bg-subtle: #f6f7f7;
+$oio-text: #1e1e1e;
+$oio-text-muted: #757575;
+$oio-border: #e3e5e8;
+$oio-border-light: #f0f0f1;
+$oio-bg-subtle: #f6f7f7;
 
-$sio-radius: 10px;
-$sio-radius-sm: 8px;
-$sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.05 );
+$oio-radius: 10px;
+$oio-radius-sm: 8px;
+$oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.05 );
 
-.sio-app {
+.oio-app {
 	max-width: 1120px;
-	margin: $sio-space-md 0 $sio-space-xl;
+	margin: $oio-space-md 0 $oio-space-xl;
 }
 
 /* Masthead --------------------------------------------------------------- */
 
-.sio-masthead {
+.oio-masthead {
 	display: flex;
 	align-items: center;
-	gap: $sio-space-md;
-	margin-bottom: $sio-space-lg;
+	gap: $oio-space-md;
+	margin-bottom: $oio-space-lg;
 
 	&__mark {
 		flex: 0 0 auto;
@@ -61,18 +61,18 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 20px;
 		font-weight: 600;
 		line-height: 1.25;
-		color: $sio-text;
+		color: $oio-text;
 	}
 
 	&__tagline {
 		margin: 2px 0 0;
 		font-size: 13px;
 		line-height: 1.4;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 }
 
-.sio-pill {
+.oio-pill {
 	flex: 0 0 auto;
 	padding: 5px 12px;
 	border: 1px solid rgba( 56, 88, 233, 0.22 );
@@ -81,36 +81,36 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	font-size: 12px;
 	font-weight: 600;
 	line-height: 1.4;
-	color: $sio-brand;
+	color: $oio-brand;
 	text-transform: capitalize;
 }
 
 /* Hero ------------------------------------------------------------------- */
 
-.sio-hero {
-	margin-bottom: $sio-space-lg;
+.oio-hero {
+	margin-bottom: $oio-space-lg;
 
 	&__body {
 		display: grid;
 		grid-template-columns: minmax( 220px, 320px ) 1fr;
 		align-items: center;
-		gap: $sio-space-lg;
-		padding: $sio-space-lg $sio-space-xl;
+		gap: $oio-space-lg;
+		padding: $oio-space-lg $oio-space-xl;
 	}
 
 	&__label {
 		display: block;
 		font-size: 13px;
 		font-weight: 600;
-		color: $sio-text;
+		color: $oio-text;
 	}
 
 	&__figure {
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: $sio-space-sm $sio-space-md;
-		margin: $sio-space-sm 0 $sio-space-xs;
+		gap: $oio-space-sm $oio-space-md;
+		margin: $oio-space-sm 0 $oio-space-xs;
 	}
 
 	&__value {
@@ -118,7 +118,7 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-weight: 700;
 		line-height: 1.05;
 		letter-spacing: -0.02em;
-		color: $sio-text;
+		color: $oio-text;
 		font-variant-numeric: tabular-nums;
 	}
 
@@ -132,26 +132,26 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 13px;
 		font-weight: 600;
 		line-height: 1.3;
-		color: $sio-success;
+		color: $oio-success;
 		white-space: nowrap;
 	}
 
 	&__sub {
 		display: block;
 		font-size: 13px;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 
 	&__metrics {
 		display: grid;
 		grid-template-columns: repeat( 3, 1fr );
-		gap: $sio-space-md;
-		padding-left: $sio-space-xl;
-		border-left: 1px solid $sio-border-light;
+		gap: $oio-space-md;
+		padding-left: $oio-space-xl;
+		border-left: 1px solid $oio-border-light;
 	}
 }
 
-.sio-metric {
+.oio-metric {
 	text-align: center;
 
 	&__icon {
@@ -160,22 +160,22 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		justify-content: center;
 		width: 44px;
 		height: 44px;
-		margin-bottom: $sio-space-sm;
+		margin-bottom: $oio-space-sm;
 		border-radius: 12px;
 
 		&.is-blue {
 			background: rgba( 56, 88, 233, 0.1 );
-			color: $sio-brand;
+			color: $oio-brand;
 		}
 
 		&.is-rose {
 			background: rgba( 214, 54, 56, 0.1 );
-			color: $sio-danger;
+			color: $oio-danger;
 		}
 
 		&.is-green {
 			background: rgba( 0, 138, 32, 0.1 );
-			color: $sio-success;
+			color: $oio-success;
 		}
 	}
 
@@ -184,25 +184,25 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-weight: 700;
 		line-height: 1.2;
 		letter-spacing: -0.01em;
-		color: $sio-text;
+		color: $oio-text;
 		font-variant-numeric: tabular-nums;
 	}
 
 	&__label {
 		margin-top: 2px;
 		font-size: 13px;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 }
 
 /* Tabs ------------------------------------------------------------------- */
 
-.sio-tabs {
+.oio-tabs {
 	&__list {
 		display: flex;
-		gap: $sio-space-xs;
-		margin-bottom: $sio-space-lg;
-		border-bottom: 1px solid $sio-border;
+		gap: $oio-space-xs;
+		margin-bottom: $oio-space-lg;
+		border-bottom: 1px solid $oio-border;
 	}
 
 	// The indicator is the tab's own bottom border, pulled 1px down so it covers
@@ -211,7 +211,7 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	&__tab {
 		position: relative;
 		margin: 0 0 -1px;
-		padding: 12px $sio-space-md;
+		padding: 12px $oio-space-md;
 		appearance: none;
 		background: none;
 		border: none;
@@ -220,7 +220,7 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 14px;
 		font-weight: 500;
 		line-height: 1.4;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 		cursor: pointer;
 		// Text colour may fade, but the underline must not: fading it means both
 		// the outgoing and incoming tab carry a part-coloured border for the
@@ -240,7 +240,7 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		}
 
 		&:hover {
-			color: $sio-text;
+			color: $oio-text;
 		}
 
 		&:focus {
@@ -248,15 +248,15 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		}
 
 		&:focus-visible {
-			outline: 2px solid $sio-brand;
+			outline: 2px solid $oio-brand;
 			outline-offset: -2px;
-			border-radius: $sio-radius-sm $sio-radius-sm 0 0;
+			border-radius: $oio-radius-sm $oio-radius-sm 0 0;
 		}
 
 		&.is-active {
 			font-weight: 600;
-			color: $sio-brand;
-			border-bottom-color: $sio-brand;
+			color: $oio-brand;
+			border-bottom-color: $oio-brand;
 		}
 	}
 
@@ -265,29 +265,29 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 
 	&__panel:focus-visible {
-		outline: 2px solid $sio-brand;
+		outline: 2px solid $oio-brand;
 		outline-offset: 4px;
-		border-radius: $sio-radius-sm;
+		border-radius: $oio-radius-sm;
 	}
 }
 
 @media ( prefers-reduced-motion: reduce ) {
-	.sio-tabs__tab {
+	.oio-tabs__tab {
 		transition: none;
 	}
 }
 
 /* Sections --------------------------------------------------------------- */
 
-.sio-card {
-	margin-bottom: $sio-space-lg;
+.oio-card {
+	margin-bottom: $oio-space-lg;
 	background: #fff;
-	border: 1px solid $sio-border;
-	border-radius: $sio-radius;
-	box-shadow: $sio-shadow;
+	border: 1px solid $oio-border;
+	border-radius: $oio-radius;
+	box-shadow: $oio-shadow;
 
 	&__body {
-		padding: $sio-space-lg;
+		padding: $oio-space-lg;
 
 		// Notices carry a bottom margin so they separate from what follows.
 		// On the last one there is nothing to separate from, and it adds a dead
@@ -298,15 +298,15 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 }
 
-.sio-section {
+.oio-section {
 	&__header {
 		display: flex;
 		align-items: flex-start;
 		justify-content: flex-start;
-		gap: $sio-space-md;
-		padding: $sio-space-md $sio-space-lg;
+		gap: $oio-space-md;
+		padding: $oio-space-md $oio-space-lg;
 		background: #fff;
-		border-bottom: 1px solid $sio-border-light;
+		border-bottom: 1px solid $oio-border-light;
 		text-align: left;
 	}
 
@@ -317,9 +317,9 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		flex: 0 0 auto;
 		width: 36px;
 		height: 36px;
-		border-radius: $sio-radius-sm;
+		border-radius: $oio-radius-sm;
 		background: rgba( 56, 88, 233, 0.1 );
-		color: $sio-brand;
+		color: $oio-brand;
 	}
 
 	&__heading {
@@ -334,7 +334,7 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 15px;
 		font-weight: 600;
 		line-height: 1.3;
-		color: $sio-text;
+		color: $oio-text;
 	}
 
 	&__desc {
@@ -342,12 +342,12 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 13px;
 		font-weight: 400;
 		line-height: 1.4;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 
 	// Consistent breathing room between stacked controls.
-	.sio-field {
-		margin-bottom: $sio-space-lg;
+	.oio-field {
+		margin-bottom: $oio-space-lg;
 
 		&:last-child {
 			margin-bottom: 0;
@@ -355,8 +355,8 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 }
 
-.sio-lede {
-	margin: 0 0 $sio-space-md;
+.oio-lede {
+	margin: 0 0 $oio-space-md;
 	font-size: 14px;
 	line-height: 1.6;
 	color: #50575e;
@@ -364,47 +364,47 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 
 /* Stats tiles ------------------------------------------------------------ */
 
-.sio-stats {
+.oio-stats {
 	display: grid;
 	grid-template-columns: repeat( auto-fit, minmax( 150px, 1fr ) );
-	gap: $sio-space-md;
-	margin-bottom: $sio-space-md;
+	gap: $oio-space-md;
+	margin-bottom: $oio-space-md;
 }
 
-.sio-stat {
-	padding: $sio-space-md;
-	border: 1px solid $sio-border;
-	border-radius: $sio-radius-sm;
-	background: $sio-bg-subtle;
+.oio-stat {
+	padding: $oio-space-md;
+	border: 1px solid $oio-border;
+	border-radius: $oio-radius-sm;
+	background: $oio-bg-subtle;
 
 	&__value {
 		font-size: 24px;
 		font-weight: 700;
 		line-height: 1.2;
-		color: $sio-text;
+		color: $oio-text;
 		font-variant-numeric: tabular-nums;
 	}
 
 	&__label {
-		margin-top: $sio-space-xs;
+		margin-top: $oio-space-xs;
 		font-size: 13px;
 		line-height: 1.4;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 
 	&.is-good &__value {
-		color: $sio-success;
+		color: $oio-success;
 	}
 
 	&.is-warn &__value {
-		color: $sio-warning;
+		color: $oio-warning;
 	}
 }
 
-.sio-muted {
-	margin: $sio-space-sm 0 0;
+.oio-muted {
+	margin: $oio-space-sm 0 0;
 	font-size: 13px;
-	color: $sio-text-muted;
+	color: $oio-text-muted;
 }
 
 /* Library card ------------------------------------------------------------
@@ -413,127 +413,127 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
  * there were three - and one set of numbers, where there were two.
  */
 
-.sio-library {
+.oio-library {
 	display: grid;
 	grid-template-columns: auto 1fr;
-	gap: $sio-space-lg;
+	gap: $oio-space-lg;
 	align-items: center;
-	margin-bottom: $sio-space-md;
+	margin-bottom: $oio-space-md;
 
 	&__facts {
 		min-width: 0;
 	}
 }
 
-.sio-scanmeta {
+.oio-scanmeta {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: $sio-space-md;
-	margin-top: $sio-space-md;
+	gap: $oio-space-md;
+	margin-top: $oio-space-md;
 
 	&__time {
 		font-size: 13px;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 
 	&__stale {
-		margin: $sio-space-sm 0 0;
+		margin: $oio-space-sm 0 0;
 		font-size: 13px;
-		color: $sio-warning;
+		color: $oio-warning;
 	}
 
 	&__details {
-		margin-top: $sio-space-sm;
+		margin-top: $oio-space-sm;
 		font-size: 13px;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 
 		summary {
 			cursor: pointer;
 		}
 
 		p {
-			margin: $sio-space-sm 0 0;
+			margin: $oio-space-sm 0 0;
 		}
 	}
 }
 
 /* Run phases -------------------------------------------------------------- */
 
-.sio-phase {
-	margin-bottom: $sio-space-md;
+.oio-phase {
+	margin-bottom: $oio-space-md;
 
 	&__head {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: $sio-space-md;
-		margin-bottom: $sio-space-sm;
+		gap: $oio-space-md;
+		margin-bottom: $oio-space-sm;
 	}
 
 	&__label {
 		font-weight: 600;
-		color: $sio-text;
+		color: $oio-text;
 	}
 
 	&__steps {
 		display: flex;
-		gap: $sio-space-xs;
+		gap: $oio-space-xs;
 	}
 
 	&__dot {
 		width: 8px;
 		height: 8px;
 		border-radius: 999px;
-		background: $sio-border;
+		background: $oio-border;
 
 		&.is-done {
-			background: $sio-brand;
+			background: $oio-brand;
 		}
 	}
 }
 
 /* Progress --------------------------------------------------------------- */
 
-.sio-progress {
-	margin-bottom: $sio-space-md;
+.oio-progress {
+	margin-bottom: $oio-space-md;
 
 	&__bar {
 		height: 8px;
 		border-radius: 999px;
-		background: $sio-border-light;
+		background: $oio-border-light;
 		overflow: hidden;
 	}
 
 	&__fill {
 		height: 100%;
 		border-radius: 999px;
-		background: linear-gradient( 90deg, $sio-brand, $sio-brand-dark );
+		background: linear-gradient( 90deg, $oio-brand, $oio-brand-dark );
 		transition: width 200ms ease;
 	}
 
 	&__meta {
 		display: flex;
 		flex-wrap: wrap;
-		gap: $sio-space-md;
-		margin-top: $sio-space-sm;
+		gap: $oio-space-md;
+		margin-top: $oio-space-sm;
 		font-size: 13px;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 
 		span:first-child {
 			font-weight: 600;
-			color: $sio-text;
+			color: $oio-text;
 		}
 	}
 }
 
 /* Actions ---------------------------------------------------------------- */
 
-.sio-actions {
+.oio-actions {
 	display: flex;
 	align-items: center;
-	gap: $sio-space-sm;
-	margin-top: $sio-space-md;
+	gap: $oio-space-sm;
+	margin-top: $oio-space-md;
 
 	// No progress bar or copy above it: don't leave a gap at the top of the body.
 	&:first-child {
@@ -542,27 +542,27 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 
 	/*
 	 * A notice explaining the button it follows - "everything is already
-	 * optimized", a stalled run, a resumable one. `.sio-notice` carries a
+	 * optimized", a stalled run, a resumable one. `.oio-notice` carries a
 	 * bottom margin only, so without this it sits flush against the button.
-	 * Scoped to the adjacency rather than added to `.sio-notice` itself, which
+	 * Scoped to the adjacency rather than added to `.oio-notice` itself, which
 	 * every screen in the plugin shares.
 	 */
-	+ .sio-notice {
-		margin-top: $sio-space-md;
+	+ .oio-notice {
+		margin-top: $oio-space-md;
 	}
 }
 
-.sio-savebar {
+.oio-savebar {
 	position: sticky;
 	bottom: 0;
 	display: flex;
 	justify-content: flex-end;
-	gap: $sio-space-sm;
-	padding: $sio-space-md $sio-space-lg;
-	border: 1px solid $sio-border;
-	border-radius: $sio-radius;
+	gap: $oio-space-sm;
+	padding: $oio-space-md $oio-space-lg;
+	border: 1px solid $oio-border;
+	border-radius: $oio-radius;
 	background: #fff;
-	box-shadow: $sio-shadow;
+	box-shadow: $oio-shadow;
 }
 
 /* Dry run and failure lists ---------------------------------------------- */
@@ -570,16 +570,16 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 /*
  * The disclosure the dry run sits behind. It had no rule at all, so it rendered
  * with the browser's default marker and no margins - flush against the Bulk
- * optimize button below it. Follows `.sio-scanmeta__details`, the same pattern
+ * optimize button below it. Follows `.oio-scanmeta__details`, the same pattern
  * solved once already above.
  */
-.sio-dryrun__panel {
-	margin: $sio-space-md 0;
+.oio-dryrun__panel {
+	margin: $oio-space-md 0;
 	font-size: 13px;
 
 	summary {
 		cursor: pointer;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 
 		&:focus {
 			outline: none;
@@ -588,32 +588,32 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		// A <summary> is a control, and every control on this screen keeps a
 		// visible ring - core supplies one for its own, not for ours.
 		&:focus-visible {
-			outline: 2px solid $sio-brand;
+			outline: 2px solid $oio-brand;
 			outline-offset: 2px;
-			border-radius: $sio-radius-sm;
+			border-radius: $oio-radius-sm;
 		}
 	}
 
 	// Space between the disclosure's own contents and the summary above them.
 	> *:not( summary ) {
-		margin-top: $sio-space-sm;
+		margin-top: $oio-space-sm;
 	}
 }
 
-.sio-dryrun {
-	margin-top: $sio-space-md;
-	padding: $sio-space-md;
-	border: 1px solid $sio-border-light;
-	border-radius: $sio-radius-sm;
-	background: $sio-bg-subtle;
+.oio-dryrun {
+	margin-top: $oio-space-md;
+	padding: $oio-space-md;
+	border: 1px solid $oio-border-light;
+	border-radius: $oio-radius-sm;
+	background: $oio-bg-subtle;
 
 	p:first-child {
 		margin-top: 0;
 	}
 }
 
-.sio-tablecounts {
-	margin: $sio-space-sm 0 0;
+.oio-tablecounts {
+	margin: $oio-space-sm 0 0;
 	list-style: none;
 
 	li {
@@ -622,7 +622,7 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		max-width: 280px;
 		padding: 4px 0;
 		font-size: 13px;
-		border-bottom: 1px solid $sio-border-light;
+		border-bottom: 1px solid $oio-border-light;
 
 		&:last-child {
 			border-bottom: none;
@@ -630,16 +630,16 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 
 	code {
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 		font-size: 12px;
 	}
 }
 
-.sio-errors {
-	margin-top: $sio-space-md;
+.oio-errors {
+	margin-top: $oio-space-md;
 
 	h4 {
-		margin: 0 0 $sio-space-sm;
+		margin: 0 0 $oio-space-sm;
 		font-size: 14px;
 		font-weight: 600;
 	}
@@ -649,14 +649,14 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		max-height: 220px;
 		overflow-y: auto;
 		font-size: 13px;
-		border: 1px solid $sio-border-light;
-		border-radius: $sio-radius-sm;
+		border: 1px solid $oio-border-light;
+		border-radius: $oio-radius-sm;
 	}
 
 	li {
-		padding: $sio-space-sm $sio-space-md;
+		padding: $oio-space-sm $oio-space-md;
 		margin: 0;
-		border-bottom: 1px solid $sio-border-light;
+		border-bottom: 1px solid $oio-border-light;
 
 		&:last-child {
 			border-bottom: none;
@@ -666,55 +666,55 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 
 /* Troubleshoot ----------------------------------------------------------- */
 
-.sio-diagnostics {
-	margin-bottom: $sio-space-lg;
+.oio-diagnostics {
+	margin-bottom: $oio-space-lg;
 
 	&:last-of-type {
-		margin-bottom: $sio-space-md;
+		margin-bottom: $oio-space-md;
 	}
 
 	&__title {
-		margin: 0 0 $sio-space-sm;
+		margin: 0 0 $oio-space-sm;
 		font-size: 12px;
 		font-weight: 600;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 
 	&__row {
 		display: grid;
 		grid-template-columns: minmax(0, 15em) minmax(0, 1fr) 10px;
-		gap: $sio-space-md;
+		gap: $oio-space-md;
 		align-items: start;
-		padding: $sio-space-sm $sio-space-md;
-		border: 1px solid $sio-border-light;
+		padding: $oio-space-sm $oio-space-md;
+		border: 1px solid $oio-border-light;
 		border-bottom: none;
 		background: #fff;
 
 		&:first-of-type {
-			border-radius: $sio-radius-sm $sio-radius-sm 0 0;
+			border-radius: $oio-radius-sm $oio-radius-sm 0 0;
 		}
 
 		&:last-of-type {
-			border-bottom: 1px solid $sio-border-light;
-			border-radius: 0 0 $sio-radius-sm $sio-radius-sm;
+			border-bottom: 1px solid $oio-border-light;
+			border-radius: 0 0 $oio-radius-sm $oio-radius-sm;
 		}
 
 		&.is-warn,
 		&.is-error {
-			background: $sio-bg-subtle;
+			background: $oio-bg-subtle;
 		}
 	}
 
 	&__label {
 		font-size: 13px;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 
 	&__value {
 		font-size: 13px;
-		color: $sio-text;
+		color: $oio-text;
 
 		// Paths and version strings are long and have no spaces to break on.
 		overflow-wrap: anywhere;
@@ -722,10 +722,10 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 
 	&__hint {
 		display: block;
-		margin-top: $sio-space-xs;
+		margin-top: $oio-space-xs;
 		font-size: 12px;
 		line-height: 1.5;
-		color: $sio-text-muted;
+		color: $oio-text-muted;
 	}
 
 	&__state {
@@ -733,24 +733,24 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		height: 10px;
 		margin-top: 4px;
 		border-radius: 50%;
-		background: $sio-success;
+		background: $oio-success;
 
 		&.is-warn {
-			background: $sio-warning;
+			background: $oio-warning;
 		}
 
 		&.is-error {
-			background: $sio-danger;
+			background: $oio-danger;
 		}
 	}
 }
 
-.sio-logtoolbar {
+.oio-logtoolbar {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: $sio-space-md;
-	margin: $sio-space-md 0 $sio-space-sm;
+	gap: $oio-space-md;
+	margin: $oio-space-md 0 $oio-space-sm;
 
 	&__filter {
 		flex: 1 1 auto;
@@ -758,19 +758,19 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 }
 
-.sio-logviewer {
+.oio-logviewer {
 	height: 22em;
 	overflow: auto;
-	padding: $sio-space-md;
-	border: 1px solid $sio-border;
-	border-radius: $sio-radius-sm;
+	padding: $oio-space-md;
+	border: 1px solid $oio-border;
+	border-radius: $oio-radius-sm;
 	background: #1d2327;
 	font-family: Menlo, Consolas, monaco, monospace;
 	font-size: 12px;
 	line-height: 1.6;
 	color: #c3c4c7;
 
-	.sio-muted {
+	.oio-muted {
 		color: #8c8f94;
 	}
 
@@ -793,30 +793,30 @@ $sio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 /* Narrow screens --------------------------------------------------------- */
 
 @media screen and ( max-width: 782px ) {
-	.sio-hero__body {
+	.oio-hero__body {
 		grid-template-columns: 1fr;
-		padding: $sio-space-lg;
+		padding: $oio-space-lg;
 	}
 
-	.sio-hero__metrics {
+	.oio-hero__metrics {
 		padding-left: 0;
-		padding-top: $sio-space-lg;
+		padding-top: $oio-space-lg;
 		border-left: none;
-		border-top: 1px solid $sio-border-light;
+		border-top: 1px solid $oio-border-light;
 	}
 
-	.sio-masthead {
+	.oio-masthead {
 		flex-wrap: wrap;
 	}
 
 	/* The ring stops sitting beside the figures and sits above them. */
-	.sio-library {
+	.oio-library {
 		grid-template-columns: 1fr;
 		justify-items: center;
 		text-align: center;
 	}
 
-	.sio-scanmeta {
+	.oio-scanmeta {
 		justify-content: center;
 	}
 }

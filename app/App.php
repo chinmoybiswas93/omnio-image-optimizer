@@ -2,16 +2,16 @@
 /**
  * Static facade over the running Application.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App;
+namespace OmnioImageOptimizer\App;
 
 use RuntimeException;
-use SwiftImageOptimizer\Framework\Application;
-use SwiftImageOptimizer\Framework\Config;
-use SwiftImageOptimizer\Framework\Router;
-use SwiftImageOptimizer\Framework\View;
+use OmnioImageOptimizer\Framework\Application;
+use OmnioImageOptimizer\Framework\Config;
+use OmnioImageOptimizer\Framework\Router;
+use OmnioImageOptimizer\Framework\View;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -52,7 +52,7 @@ class App {
      */
     public static function getInstance() {
         if (null === self::$app) {
-            throw new RuntimeException('Swift Image Optimizer has not booted yet.');
+            throw new RuntimeException('Omnio Image Optimizer has not booted yet.');
         }
 
         return self::$app;

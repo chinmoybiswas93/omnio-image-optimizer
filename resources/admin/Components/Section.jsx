@@ -3,13 +3,13 @@
 import { Card, CardBody, CardHeader } from './Card';
 
 const Section = ( { icon, title, description, children } ) => (
-	<Card className="sio-section">
-		<CardHeader className="sio-section__header">
-			<span className="sio-section__icon">{ icon }</span>
-			<span className="sio-section__heading">
-				<span className="sio-section__title">{ title }</span>
+	<Card className="oio-section">
+		<CardHeader className="oio-section__header">
+			<span className="oio-section__icon">{ icon }</span>
+			<span className="oio-section__heading">
+				<span className="oio-section__title">{ title }</span>
 				{ description && (
-					<span className="sio-section__desc">{ description }</span>
+					<span className="oio-section__desc">{ description }</span>
 				) }
 			</span>
 		</CardHeader>

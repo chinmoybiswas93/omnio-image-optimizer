@@ -11,7 +11,7 @@
  * changes nothing at runtime - it is documentation until something loads it.
  * Any change here needs the matching edit in api/StoreSettings.php.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
 if ( ! defined('ABSPATH')) {
@@ -20,7 +20,7 @@ if ( ! defined('ABSPATH')) {
 
 return [
     // The option row that holds the user's saved settings.
-    'option_name'      => 'swift_image_optimizer_settings',
+    'option_name'      => 'omnio_io_settings',
 
     'defaults'         => [
         'auto_optimize'       => 1,

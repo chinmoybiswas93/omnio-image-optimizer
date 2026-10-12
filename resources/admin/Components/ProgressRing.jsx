@@ -56,13 +56,13 @@ const ProgressRing = ( {
 		valueText ||
 		sprintf(
 			/* translators: %d: percentage of the library optimized. */
-			__( '%d%% of your library is optimized.', 'swift-image-optimizer' ),
+			__( '%d%% of your library is optimized.', 'omnio-image-optimizer' ),
 			value
 		);
 
 	return (
 		<div
-			className="sio-ring"
+			className="oio-ring"
 			style={ { width: size, height: size } }
 			role="progressbar"
 			aria-valuenow={ value }
@@ -72,7 +72,7 @@ const ProgressRing = ( {
 		>
 			{ /* Decorative: every figure it encodes is in aria-valuetext above. */ }
 			<svg
-				className="sio-ring__svg"
+				className="oio-ring__svg"
 				width={ size }
 				height={ size }
 				viewBox={ `0 0 ${ size } ${ size }` }
@@ -80,7 +80,7 @@ const ProgressRing = ( {
 				focusable="false"
 			>
 				<circle
-					className="sio-ring__track"
+					className="oio-ring__track"
 					cx={ size / 2 }
 					cy={ size / 2 }
 					r={ radius }
@@ -96,7 +96,7 @@ const ProgressRing = ( {
 				 */ }
 				{ muted > 0 && (
 					<circle
-						className="sio-ring__muted"
+						className="oio-ring__muted"
 						cx={ size / 2 }
 						cy={ size / 2 }
 						r={ radius }
@@ -111,7 +111,7 @@ const ProgressRing = ( {
 				) }
 
 				<circle
-					className="sio-ring__value"
+					className="oio-ring__value"
 					cx={ size / 2 }
 					cy={ size / 2 }
 					r={ radius }
@@ -130,12 +130,12 @@ const ProgressRing = ( {
 			 * HTML rather than <text>, so the caption inherits the admin font
 			 * stack and a long translation wraps instead of overflowing.
 			 */ }
-			<div className="sio-ring__center">
-				<span className="sio-ring__figure">
+			<div className="oio-ring__center">
+				<span className="oio-ring__figure">
 					{ label ?? `${ value }%` }
 				</span>
 				{ caption && (
-					<span className="sio-ring__caption">{ caption }</span>
+					<span className="oio-ring__caption">{ caption }</span>
 				) }
 			</div>
 		</div>

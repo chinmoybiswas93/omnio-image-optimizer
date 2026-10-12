@@ -2,10 +2,10 @@
 /**
  * Builds the old-to-new URL pairs for a converted attachment.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Rewrite;
+namespace OmnioImageOptimizer\App\Services\Rewrite;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

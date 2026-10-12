@@ -2,13 +2,13 @@
 /**
  * Environment diagnostics shown in the admin.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Handlers;
+namespace OmnioImageOptimizer\App\Hooks\Handlers;
 
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Services\Engine\EngineFactory;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -50,8 +50,8 @@ class NoticeHandler {
 			'admin.parts.notice',
 			array(
 				'type'    => 'error',
-				'heading' => __( 'Swift Image Optimizer:', 'swift-image-optimizer' ),
-				'message' => __( 'No image conversion engine was found on this server. Ask your host to enable the GD extension with WebP support, or the Imagick extension. Image optimization is paused until then.', 'swift-image-optimizer' ),
+				'heading' => __( 'Omnio Image Optimizer:', 'omnio-image-optimizer' ),
+				'message' => __( 'No image conversion engine was found on this server. Ask your host to enable the GD extension with WebP support, or the Imagick extension. Image optimization is paused until then.', 'omnio-image-optimizer' ),
 			)
 		);
 	}

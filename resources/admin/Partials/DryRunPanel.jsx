@@ -19,15 +19,15 @@ import { Button, Notice, Spinner } from '../Components';
  * @return {JSX.Element} The panel.
  */
 const DryRunPanel = ( { report, busy, disabled, onRun } ) => (
-	<details className="sio-dryrun__panel">
+	<details className="oio-dryrun__panel">
 		<summary>
-			{ __( 'Preview what would change', 'swift-image-optimizer' ) }
+			{ __( 'Preview what would change', 'omnio-image-optimizer' ) }
 		</summary>
 
-		<p className="sio-lede">
+		<p className="oio-lede">
 			{ __(
 				'A dry run reports how many references would be rewritten, without changing anything.',
-				'swift-image-optimizer'
+				'omnio-image-optimizer'
 			) }
 		</p>
 
@@ -39,18 +39,18 @@ const DryRunPanel = ( { report, busy, disabled, onRun } ) => (
 			{ busy ? (
 				<Spinner />
 			) : (
-				__( 'Run dry run', 'swift-image-optimizer' )
+				__( 'Run dry run', 'omnio-image-optimizer' )
 			) }
 		</Button>
 
 		{ report && (
-			<div className="sio-dryrun">
+			<div className="oio-dryrun">
 				<p>
 					{ sprintf(
 						/* translators: 1: references found, 2: rows, 3: images sampled. */
 						__(
 							'Found %1$d references across %2$d rows in a sample of %3$d images.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						),
 						report.replacements,
 						report.rows,
@@ -62,12 +62,12 @@ const DryRunPanel = ( { report, busy, disabled, onRun } ) => (
 						/* translators: %d: estimated total references. */
 						__(
 							'Estimated across the whole library: about %d references.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						),
 						report.estimated_total
 					) }
 				</p>
-				<ul className="sio-tablecounts">
+				<ul className="oio-tablecounts">
 					{ Object.entries( report.by_table || {} ).map(
 						( [ table, count ] ) => (
 							<li key={ table }>
@@ -82,7 +82,7 @@ const DryRunPanel = ( { report, busy, disabled, onRun } ) => (
 							/* translators: %d: number of values. */
 							__(
 								'%d values contain data that cannot be safely rewritten and will be left untouched.',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							),
 							report.skipped
 						) }

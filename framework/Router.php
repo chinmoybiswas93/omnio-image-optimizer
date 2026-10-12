@@ -2,10 +2,10 @@
 /**
  * REST route registrar.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Framework;
+namespace OmnioImageOptimizer\Framework;
 
 use RuntimeException;
 use WP_REST_Server;
@@ -36,7 +36,7 @@ class Router {
     private $container;
 
     /**
-     * REST namespace, e.g. 'swift-image-optimizer/v1'.
+     * REST namespace, e.g. 'omnio-image-optimizer/v1'.
      *
      * @var string
      */

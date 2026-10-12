@@ -49,7 +49,7 @@ export const formatTimeAgo = ( timestamp ) => {
 	const seconds = Math.max( 0, Math.floor( Date.now() / 1000 ) - then );
 
 	if ( seconds < 60 ) {
-		return __( 'just now', 'swift-image-optimizer' );
+		return __( 'just now', 'omnio-image-optimizer' );
 	}
 
 	const minutes = Math.floor( seconds / 60 );
@@ -61,7 +61,7 @@ export const formatTimeAgo = ( timestamp ) => {
 				'%d minute ago',
 				'%d minutes ago',
 				minutes,
-				'swift-image-optimizer'
+				'omnio-image-optimizer'
 			),
 			minutes
 		);
@@ -72,7 +72,7 @@ export const formatTimeAgo = ( timestamp ) => {
 	if ( hours < 24 ) {
 		return sprintf(
 			/* translators: %d: number of hours. */
-			_n( '%d hour ago', '%d hours ago', hours, 'swift-image-optimizer' ),
+			_n( '%d hour ago', '%d hours ago', hours, 'omnio-image-optimizer' ),
 			hours
 		);
 	}
@@ -81,7 +81,7 @@ export const formatTimeAgo = ( timestamp ) => {
 
 	return sprintf(
 		/* translators: %d: number of days. */
-		_n( '%d day ago', '%d days ago', days, 'swift-image-optimizer' ),
+		_n( '%d day ago', '%d days ago', days, 'omnio-image-optimizer' ),
 		days
 	);
 };

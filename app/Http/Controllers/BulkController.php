@@ -2,13 +2,13 @@
 /**
  * Bulk run endpoints.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Controllers;
+namespace OmnioImageOptimizer\App\Http\Controllers;
 
-use SwiftImageOptimizer\App\Services\Bulk\Coordinator;
-use SwiftImageOptimizer\App\Services\Bulk\Runner;
+use OmnioImageOptimizer\App\Services\Bulk\Coordinator;
+use OmnioImageOptimizer\App\Services\Bulk\Runner;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;

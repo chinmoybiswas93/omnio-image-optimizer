@@ -2,10 +2,10 @@
 /**
  * Argument schema for starting a library scan.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Requests;
+namespace OmnioImageOptimizer\App\Http\Requests;
 
 if ( ! defined('ABSPATH')) {
     exit;

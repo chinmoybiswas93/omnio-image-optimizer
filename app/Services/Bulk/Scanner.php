@@ -2,14 +2,14 @@
 /**
  * Finds attachments that still need optimizing.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Bulk;
+namespace OmnioImageOptimizer\App\Services\Bulk;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Services\AttachmentConverter;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Services\AttachmentConverter;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

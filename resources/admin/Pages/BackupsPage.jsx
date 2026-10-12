@@ -20,7 +20,7 @@ import { formatBytes } from '../Services/format';
  * The word the operator types to unlock the purge. Translated, because the
  * label tells them what to type and the two have to agree.
  */
-const CONFIRM_WORD = __( 'DELETE', 'swift-image-optimizer' );
+const CONFIRM_WORD = __( 'DELETE', 'omnio-image-optimizer' );
 
 const BackupsPage = () => {
 	const [ bytes, setBytes ] = useState( config.backupBytes || 0 );
@@ -49,13 +49,13 @@ const BackupsPage = () => {
 								'%d image can be restored again.',
 								'%d images can be restored again.',
 								result.repaired,
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							),
 							result.repaired
 					  )
 					: __(
 							'Nothing to recover. Every backup on disk is already accounted for.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 					  )
 			);
 		} catch ( e ) {
@@ -88,13 +88,13 @@ const BackupsPage = () => {
 							/* translators: %s: formatted size, e.g. 12.4 MB. */
 							__(
 								'Backups deleted. %s reclaimed.',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							),
 							formatBytes( freed )
 					  )
 					: __(
 							'There was nothing left to delete.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 					  )
 			);
 		} catch ( e ) {
@@ -116,28 +116,28 @@ const BackupsPage = () => {
 
 			<Section
 				icon={ <IconArchive /> }
-				title={ __( 'Original backups', 'swift-image-optimizer' ) }
+				title={ __( 'Original backups', 'omnio-image-optimizer' ) }
 				description={ __(
 					'Every original is kept so any image can be restored.',
-					'swift-image-optimizer'
+					'omnio-image-optimizer'
 				) }
 			>
-				<div className="sio-stats">
+				<div className="oio-stats">
 					<Stat
 						label={ __(
 							'Backup storage used',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 						value={ formatBytes( bytes ) }
 					/>
 				</div>
-				<p className="sio-lede">
+				<p className="oio-lede">
 					{ __(
 						'Originals are kept so any image can be restored. They are removed automatically once the retention period set in Settings has passed.',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 				</p>
-				<div className="sio-actions">
+				<div className="oio-actions">
 					{ /*
 					 * Repair sits before Delete deliberately. The purge sweeps
 					 * the whole backup folder, including the unreferenced files
@@ -154,7 +154,7 @@ const BackupsPage = () => {
 						) : (
 							__(
 								'Repair backup records',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							)
 						) }
 					</Button>
@@ -169,7 +169,7 @@ const BackupsPage = () => {
 						) : (
 							__(
 								'Delete all backups now',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							)
 						) }
 					</Button>
@@ -180,11 +180,11 @@ const BackupsPage = () => {
 				<ConfirmDialog
 					title={ __(
 						'Repair backup records?',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 					confirmLabel={ __(
 						'Repair records',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 					busy={ busy }
 					onConfirm={ repair }
@@ -193,13 +193,13 @@ const BackupsPage = () => {
 					<p>
 						{ __(
 							'This looks for originals still on disk that no image points at any more, and makes them restorable again. No file is deleted or changed.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 					</p>
 					<p>
 						{ __(
 							'Run this before deleting backups. Deleting removes the same files this would recover.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 					</p>
 				</ConfirmDialog>
@@ -209,11 +209,11 @@ const BackupsPage = () => {
 				<ConfirmDialog
 					title={ __(
 						'Delete every stored original?',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 					confirmLabel={ __(
 						'Delete backups',
-						'swift-image-optimizer'
+						'omnio-image-optimizer'
 					) }
 					confirmWord={ CONFIRM_WORD }
 					isDestructive
@@ -226,7 +226,7 @@ const BackupsPage = () => {
 							/* translators: %s: formatted size, e.g. 831.4 KB. */
 							__(
 								'This permanently deletes every stored original, freeing %s.',
-								'swift-image-optimizer'
+								'omnio-image-optimizer'
 							),
 							formatBytes( bytes )
 						) }
@@ -234,7 +234,7 @@ const BackupsPage = () => {
 					<p>
 						{ __(
 							'Your optimized images are unaffected and stay exactly as they are. But nothing can be restored to its original afterwards, and this cannot be undone.',
-							'swift-image-optimizer'
+							'omnio-image-optimizer'
 						) }
 					</p>
 				</ConfirmDialog>

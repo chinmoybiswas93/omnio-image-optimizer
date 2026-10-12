@@ -2,10 +2,10 @@
 /**
  * Configuration repository.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Framework;
+namespace OmnioImageOptimizer\Framework;
 
 if ( ! defined('ABSPATH')) {
     exit;

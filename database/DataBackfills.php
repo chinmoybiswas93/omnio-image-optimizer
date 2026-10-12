@@ -2,13 +2,13 @@
 /**
  * Post-upgrade data migrations.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Database;
+namespace OmnioImageOptimizer\Database;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\App\Models\UrlLookup;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Models\UrlLookup;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

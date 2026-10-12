@@ -2,10 +2,10 @@
 /**
  * Base REST controller.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Controllers;
+namespace OmnioImageOptimizer\App\Http\Controllers;
 
 use WP_Error;
 use WP_REST_Response;

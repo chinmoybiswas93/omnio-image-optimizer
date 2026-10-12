@@ -9,26 +9,26 @@
  *
  * Required by Framework\Application::requireCommonFiles(). $app is in scope.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Hooks\CLI\Commands;
-use SwiftImageOptimizer\App\Hooks\Handlers\AssetHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\EditorAssetHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\ForeignNoticeHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\MediaLibraryHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\MenuHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\NoticeHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\RestFieldHandler;
-use SwiftImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
-use SwiftImageOptimizer\App\Hooks\Scheduler\JobRunner;
-use SwiftImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Services\Engine\EngineFactory;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
-use SwiftImageOptimizer\App\Services\Rewrite\Fallback404;
-use SwiftImageOptimizer\App\Services\Upload\Interceptor;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Hooks\CLI\Commands;
+use OmnioImageOptimizer\App\Hooks\Handlers\AssetHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\EditorAssetHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\ForeignNoticeHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\MediaLibraryHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\MenuHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\NoticeHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\RestFieldHandler;
+use OmnioImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
+use OmnioImageOptimizer\App\Hooks\Scheduler\JobRunner;
+use OmnioImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Rewrite\Fallback404;
+use OmnioImageOptimizer\App\Services\Upload\Interceptor;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -112,15 +112,15 @@ add_action('init', static function () {
  * WP-CLI.
  */
 if (defined('WP_CLI') && WP_CLI) {
-    $swift_image_optimizer_commands = App::make(Commands::class);
+    $omnio_io_commands = App::make(Commands::class);
 
-    WP_CLI::add_command('swift-image-optimizer optimize', [ $swift_image_optimizer_commands, 'optimize' ]);
-    WP_CLI::add_command('swift-image-optimizer restore', [ $swift_image_optimizer_commands, 'restore' ]);
-    WP_CLI::add_command('swift-image-optimizer stats', [ $swift_image_optimizer_commands, 'stats' ]);
-    WP_CLI::add_command('swift-image-optimizer diagnostics', [ $swift_image_optimizer_commands, 'diagnostics' ]);
-    WP_CLI::add_command('swift-image-optimizer logs', [ $swift_image_optimizer_commands, 'logs' ]);
-    WP_CLI::add_command('swift-image-optimizer requeue', [ $swift_image_optimizer_commands, 'requeue' ]);
-    WP_CLI::add_command('swift-image-optimizer rescan', [ $swift_image_optimizer_commands, 'rescan' ]);
-    WP_CLI::add_command('swift-image-optimizer repair-backups', [ $swift_image_optimizer_commands, 'repair_backups' ]);
-    WP_CLI::add_command('swift-image-optimizer repair-mime', [ $swift_image_optimizer_commands, 'repair_mime' ]);
+    WP_CLI::add_command('omnio-image-optimizer optimize', [ $omnio_io_commands, 'optimize' ]);
+    WP_CLI::add_command('omnio-image-optimizer restore', [ $omnio_io_commands, 'restore' ]);
+    WP_CLI::add_command('omnio-image-optimizer stats', [ $omnio_io_commands, 'stats' ]);
+    WP_CLI::add_command('omnio-image-optimizer diagnostics', [ $omnio_io_commands, 'diagnostics' ]);
+    WP_CLI::add_command('omnio-image-optimizer logs', [ $omnio_io_commands, 'logs' ]);
+    WP_CLI::add_command('omnio-image-optimizer requeue', [ $omnio_io_commands, 'requeue' ]);
+    WP_CLI::add_command('omnio-image-optimizer rescan', [ $omnio_io_commands, 'rescan' ]);
+    WP_CLI::add_command('omnio-image-optimizer repair-backups', [ $omnio_io_commands, 'repair_backups' ]);
+    WP_CLI::add_command('omnio-image-optimizer repair-mime', [ $omnio_io_commands, 'repair_mime' ]);
 }

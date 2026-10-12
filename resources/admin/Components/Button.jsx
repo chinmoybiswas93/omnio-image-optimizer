@@ -19,8 +19,8 @@ const Button = ( {
 	...rest
 } ) => {
 	const classes = [
-		'sio-btn',
-		`sio-btn--${ variant }`,
+		'oio-btn',
+		`oio-btn--${ variant }`,
 		isDestructive ? 'is-destructive' : '',
 		isBusy ? 'is-busy' : '',
 		className,

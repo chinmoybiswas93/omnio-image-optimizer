@@ -2,10 +2,10 @@
 /**
  * Imagick conversion engine.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Engine;
+namespace OmnioImageOptimizer\App\Services\Engine;
 
 use Imagick;
 use ImagickException;
@@ -156,18 +156,18 @@ class ImagickEngine extends AbstractEngine {
 				$image->destroy();
 			}
 
-			return new WP_Error( 'swift_image_optimizer_imagick_failed', $e->getMessage() );
+			return new WP_Error( 'omnio_io_imagick_failed', $e->getMessage() );
 		} catch ( \Exception $e ) {
 			if ( $image instanceof Imagick ) {
 				$image->clear();
 				$image->destroy();
 			}
 
-			return new WP_Error( 'swift_image_optimizer_imagick_failed', $e->getMessage() );
+			return new WP_Error( 'omnio_io_imagick_failed', $e->getMessage() );
 		}
 
 		if ( ! file_exists( $destination ) || 0 === filesize( $destination ) ) {
-			return new WP_Error( 'swift_image_optimizer_encode_failed', __( 'Imagick failed to write the WebP file.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'omnio_io_encode_failed', __( 'Imagick failed to write the WebP file.', 'omnio-image-optimizer' ) );
 		}
 
 		return true;

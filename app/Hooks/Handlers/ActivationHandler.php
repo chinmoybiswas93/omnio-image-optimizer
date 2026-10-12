@@ -2,16 +2,16 @@
 /**
  * Plugin activation.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Handlers;
+namespace OmnioImageOptimizer\App\Hooks\Handlers;
 
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Hooks\Scheduler\JobRunner;
-use SwiftImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
-use SwiftImageOptimizer\App\Services\Bulk\ScanRunner;
-use SwiftImageOptimizer\Database\DBMigrator;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Hooks\Scheduler\JobRunner;
+use OmnioImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
+use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
+use OmnioImageOptimizer\Database\DBMigrator;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -81,6 +81,6 @@ class ActivationHandler {
          */
         ( new ScanRunner() )->start('activation');
 
-        do_action('swift_image_optimizer/activated');
+        do_action('omnio_io/activated');
     }
 }

@@ -2,10 +2,10 @@
 /**
  * Base model.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Models;
+namespace OmnioImageOptimizer\App\Models;
 
 use wpdb;
 

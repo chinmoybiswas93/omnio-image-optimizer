@@ -2,10 +2,10 @@
 /**
  * Shared engine behaviour.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Engine;
+namespace OmnioImageOptimizer\App\Services\Engine;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

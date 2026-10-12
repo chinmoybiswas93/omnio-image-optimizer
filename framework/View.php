@@ -2,10 +2,10 @@
 /**
  * Plain-PHP view renderer.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Framework;
+namespace OmnioImageOptimizer\Framework;
 
 use RuntimeException;
 

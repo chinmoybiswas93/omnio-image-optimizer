@@ -2,12 +2,12 @@
 /**
  * The scan, optimize, scan chain behind one Bulk Optimize button.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Bulk;
+namespace OmnioImageOptimizer\App\Services\Bulk;
 
-use SwiftImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -33,7 +33,7 @@ class Coordinator {
 	/**
 	 * Option holding the current phase.
 	 */
-	const PHASE_OPTION = 'swift_image_optimizer_bulk_phase';
+	const PHASE_OPTION = 'omnio_io_bulk_phase';
 
 	/**
 	 * Chain id passed to ScanRunner, marking a scan as one of our stages.
@@ -94,8 +94,8 @@ class Coordinator {
 	 * @return void
 	 */
 	public function register() {
-		add_action( 'swift_image_optimizer_scan_completed', array( $this, 'on_scan_completed' ), 10, 3 );
-		add_action( 'swift_image_optimizer_bulk_completed', array( $this, 'on_bulk_completed' ) );
+		add_action( 'omnio_io_scan_completed', array( $this, 'on_scan_completed' ), 10, 3 );
+		add_action( 'omnio_io_bulk_completed', array( $this, 'on_bulk_completed' ) );
 	}
 
 	/**
@@ -298,22 +298,22 @@ class Coordinator {
 	private function phase_label( $phase, array $bulk ) {
 		switch ( $phase ) {
 			case self::PHASE_SCAN_PRE:
-				return __( 'Checking your library', 'swift-image-optimizer' );
+				return __( 'Checking your library', 'omnio-image-optimizer' );
 
 			case self::PHASE_OPTIMIZE:
 				return sprintf(
 					/* translators: 1: images optimized so far, 2: images in this run. */
-					__( 'Optimizing %1$d of %2$d', 'swift-image-optimizer' ),
+					__( 'Optimizing %1$d of %2$d', 'omnio-image-optimizer' ),
 					isset( $bulk['done'] ) ? (int) $bulk['done'] : 0,
 					isset( $bulk['total'] ) ? (int) $bulk['total'] : 0
 				);
 
 			case self::PHASE_SCAN_POST:
-				return __( 'Updating your figures', 'swift-image-optimizer' );
+				return __( 'Updating your figures', 'omnio-image-optimizer' );
 		}
 
 		if ( ! empty( $bulk['running'] ) ) {
-			return __( 'Optimizing', 'swift-image-optimizer' );
+			return __( 'Optimizing', 'omnio-image-optimizer' );
 		}
 
 		return '';

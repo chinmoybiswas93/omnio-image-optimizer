@@ -4,7 +4,7 @@
  * The admin app has Components/ConfirmDialog.jsx. This bundle deliberately
  * carries no React - the media modal is Backbone and this script loads on
  * screens the admin app never touches - so the same dialog is built here by
- * hand. Both render the identical `sio-modal` markup and share
+ * hand. Both render the identical `oio-modal` markup and share
  * styles/_modal.scss, which is what stops the two drifting into
  * different-looking dialogs for the same kind of decision.
  *
@@ -35,16 +35,16 @@ export default function sioConfirm( options ) {
 	const {
 		title,
 		message,
-		confirm = __( 'Confirm', 'swift-image-optimizer' ),
-		cancel = __( 'Cancel', 'swift-image-optimizer' ),
+		confirm = __( 'Confirm', 'omnio-image-optimizer' ),
+		cancel = __( 'Cancel', 'omnio-image-optimizer' ),
 		destructive = false,
 	} = options;
 
 	return new Promise( ( resolve ) => {
 		nextId += 1;
 
-		const titleId = `sio-modal-title-${ nextId }`;
-		const bodyId = `sio-modal-body-${ nextId }`;
+		const titleId = `oio-modal-title-${ nextId }`;
+		const bodyId = `oio-modal-body-${ nextId }`;
 
 		const backdrop = document.createElement( 'div' );
 
@@ -53,12 +53,12 @@ export default function sioConfirm( options ) {
 		const doc = backdrop.ownerDocument;
 		const opener = doc.activeElement;
 
-		backdrop.className = 'sio-modal__backdrop';
+		backdrop.className = 'oio-modal__backdrop';
 
 		const dialog = document.createElement( 'div' );
 		dialog.className = destructive
-			? 'sio-modal sio-modal--destructive'
-			: 'sio-modal';
+			? 'oio-modal oio-modal--destructive'
+			: 'oio-modal';
 		dialog.setAttribute( 'role', 'dialog' );
 		dialog.setAttribute( 'aria-modal', 'true' );
 		dialog.setAttribute( 'aria-labelledby', titleId );
@@ -66,19 +66,19 @@ export default function sioConfirm( options ) {
 		dialog.tabIndex = -1;
 
 		const head = document.createElement( 'div' );
-		head.className = 'sio-modal__head';
+		head.className = 'oio-modal__head';
 
 		const heading = document.createElement( 'h2' );
-		heading.className = 'sio-modal__title';
+		heading.className = 'oio-modal__title';
 		heading.id = titleId;
 		heading.textContent = title;
 
 		const dismiss = document.createElement( 'button' );
 		dismiss.type = 'button';
-		dismiss.className = 'sio-modal__dismiss';
+		dismiss.className = 'oio-modal__dismiss';
 		dismiss.setAttribute(
 			'aria-label',
-			__( 'Close', 'swift-image-optimizer' )
+			__( 'Close', 'omnio-image-optimizer' )
 		);
 		dismiss.innerHTML = '<span aria-hidden="true">&times;</span>';
 
@@ -86,7 +86,7 @@ export default function sioConfirm( options ) {
 		head.appendChild( dismiss );
 
 		const body = document.createElement( 'div' );
-		body.className = 'sio-modal__body';
+		body.className = 'oio-modal__body';
 		body.id = bodyId;
 
 		const paragraph = document.createElement( 'p' );
@@ -94,18 +94,18 @@ export default function sioConfirm( options ) {
 		body.appendChild( paragraph );
 
 		const foot = document.createElement( 'div' );
-		foot.className = 'sio-modal__foot';
+		foot.className = 'oio-modal__foot';
 
 		const cancelButton = document.createElement( 'button' );
 		cancelButton.type = 'button';
-		cancelButton.className = 'sio-btn sio-btn--tertiary';
+		cancelButton.className = 'oio-btn oio-btn--tertiary';
 		cancelButton.textContent = cancel;
 
 		const confirmButton = document.createElement( 'button' );
 		confirmButton.type = 'button';
 		confirmButton.className = destructive
-			? 'sio-btn sio-btn--primary is-destructive'
-			: 'sio-btn sio-btn--primary';
+			? 'oio-btn oio-btn--primary is-destructive'
+			: 'oio-btn oio-btn--primary';
 		confirmButton.textContent = confirm;
 
 		foot.appendChild( cancelButton );

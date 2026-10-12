@@ -2,14 +2,14 @@
 /**
  * Enqueues the Media Library integration assets.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Handlers;
+namespace OmnioImageOptimizer\App\Hooks\Handlers;
 
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Services\Bulk\Scanner;
-use SwiftImageOptimizer\App\Services\Engine\EngineFactory;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Services\Bulk\Scanner;
+use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -29,7 +29,7 @@ class AssetHandler {
 	/**
 	 * Script handle.
 	 */
-	const HANDLE = 'swift-image-optimizer-media';
+	const HANDLE = 'omnio-image-optimizer-media';
 
 	/**
 	 * Register hooks.
@@ -56,7 +56,7 @@ class AssetHandler {
 			return;
 		}
 
-		$asset_file = SWIFT_IMAGE_OPTIMIZER_DIR . 'build/media.asset.php';
+		$asset_file = OMNIO_IO_DIR . 'build/media.asset.php';
 
 		if ( ! file_exists( $asset_file ) ) {
 			return;
@@ -68,7 +68,7 @@ class AssetHandler {
 		// carry whatever WordPress scripts it imports (wp-i18n).
 		wp_enqueue_script(
 			self::HANDLE,
-			SWIFT_IMAGE_OPTIMIZER_URL . 'build/media.js',
+			OMNIO_IO_URL . 'build/media.js',
 			array_merge( $asset['dependencies'], array( 'media-views' ) ),
 			$asset['version'],
 			true
@@ -76,16 +76,16 @@ class AssetHandler {
 
 		wp_enqueue_style(
 			self::HANDLE,
-			SWIFT_IMAGE_OPTIMIZER_URL . 'build/media.css',
+			OMNIO_IO_URL . 'build/media.css',
 			array(),
 			$asset['version']
 		);
 
-		wp_set_script_translations( self::HANDLE, 'swift-image-optimizer' );
+		wp_set_script_translations( self::HANDLE, 'omnio-image-optimizer' );
 
 		wp_localize_script(
 			self::HANDLE,
-			'swiftImageOptimizerMedia',
+			'omnioImageOptimizerMedia',
 			array(
 				'restUrl'   => esc_url_raw( rest_url( App::router()->getNamespace() . '/' ) ),
 				'nonce'     => wp_create_nonce( 'wp_rest' ),

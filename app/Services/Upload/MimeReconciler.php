@@ -2,13 +2,13 @@
 /**
  * Repairs the mime-type desync a re-fed upload leaves behind.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Upload;
+namespace OmnioImageOptimizer\App\Services\Upload;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

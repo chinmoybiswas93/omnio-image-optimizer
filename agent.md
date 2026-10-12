@@ -1,21 +1,21 @@
-# Agent Instructions — Swift Image Optimizer
+# Agent Instructions — Omnio Image Optimizer
 
-You are working inside the **swift-image-optimizer** WordPress plugin.
+You are working inside the **omnio-image-optimizer** WordPress plugin.
 PHP 7.4+ and React built with `@wordpress/scripts`. Not Node, not Next.js, no TypeScript.
 
-Everything lives under `app/public/wp-content/plugins/swift-image-optimizer/`. Composer
+Everything lives under `app/public/wp-content/plugins/omnio-image-optimizer/`. Composer
 autoloads three roots, with **no runtime dependencies** — `vendor/` holds only the generated
 autoloader, and it is committed because WordPress.org runs no build step on the destination
 server:
 
 | Namespace | Path | Autoload |
 |---|---|---|
-| `SwiftImageOptimizer\App\` | `app/` | psr-4 — application code |
-| `SwiftImageOptimizer\Framework\` | `framework/` | psr-4 — the kernel |
-| `SwiftImageOptimizer\Api\` | `api/` | psr-4 — stable data-access layer |
-| `SwiftImageOptimizer\Database\` | `database/` | classmap |
+| `OmnioImageOptimizer\App\` | `app/` | psr-4 — application code |
+| `OmnioImageOptimizer\Framework\` | `framework/` | psr-4 — the kernel |
+| `OmnioImageOptimizer\Api\` | `api/` | psr-4 — stable data-access layer |
+| `OmnioImageOptimizer\Database\` | `database/` | classmap |
 
-Text domain, slug, and option prefix are all `swift-image-optimizer`.
+Text domain, slug, and option prefix are all `omnio-image-optimizer`.
 
 ## Layout
 
@@ -25,7 +25,7 @@ The plugin follows a FluentCart-style layout. There is **no `src/`, no `Provider
 FluentCart keeps `FluentCart\Framework\*` outside `app/`.
 
 ```
-swift-image-optimizer.php   IIFE bootstrap: require boot/app.php + vendor/autoload.php
+omnio-image-optimizer.php   IIFE bootstrap: require boot/app.php + vendor/autoload.php
 boot/       app.php (kernel closure), bindings.php (container singletons), globals.php
 config/     app.php, optimizer.php, vite.php — plain arrays, read via App::config()->get('app.slug')
 framework/  Application, Container (reflection auto-wiring), Config, View, Router, Route
@@ -90,7 +90,7 @@ Where they disagree, **this file wins**:
 | `phpcs --standard=WordPress` | `npm run lint:php` — `phpcs.xml.dist` is WordPress-Extra + WordPress-Docs, `testVersion 7.4-` |
 | "WordPress 6.4+, PHP 8.1+" | **PHP 7.4+ / WP 6.2+.** No enums, readonly, constructor promotion, or `never` — `PHPCompatibilityWP` fails the build. This caps `php-pro` too |
 | `wp_enqueue_script()` with `get_*_directory_uri()` and a hand-written version string | `app/Hooks/Handlers/AssetHandler.php`. Dependencies and version come from the generated `build/*.asset.php` — never hand-list them |
-| "don't bundle libraries when WordPress APIs suffice" | True for the **runtime** (`@wordpress/element`, `@wordpress/api-fetch`, `@wordpress/i18n` — all externalized by wp-scripts) and it is why `react`/`react-dom` are not in `package.json`. It is **not** true for UI: `@wordpress/components` is banned, every control is ours, markup uses `sio-*`. Never add a Composer runtime dependency either |
+| "don't bundle libraries when WordPress APIs suffice" | True for the **runtime** (`@wordpress/element`, `@wordpress/api-fetch`, `@wordpress/i18n` — all externalized by wp-scripts) and it is why `react`/`react-dom` are not in `package.json`. It is **not** true for UI: `@wordpress/components` is banned, every control is ours, markup uses `oio-*`. Never add a Composer runtime dependency either |
 | `register_rest_route()` with an inline permission callback | `app/Http/Routes/api.php` fluent DSL; the permission callback *is* the Policy |
 | Settings API, `WP_List_Table`, `add_menu_page` scaffolding | Deliberately absent — `boot/`, `App::`, `Router`, `App::view()`. Do not reintroduce |
 | "run a security audit checklist" | Implementation-time hygiene only. The verdict is still `/security-review` on the diff and `owasp-security-review` on the subsystem |
@@ -167,10 +167,10 @@ stale graph would mislead the next session.
   HTTP from `@wordpress/api-fetch`, translations from `@wordpress/i18n` — wp-scripts externalizes
   all three to the scripts WordPress already loads, and writes them into `build/*.asset.php`.
   **Never import `@wordpress/components`**, and never add `react`/`react-dom` to `package.json`.
-  Every control is ours (`resources/admin/Components/`); markup uses `sio-*` classes, never core's
+  Every control is ours (`resources/admin/Components/`); markup uses `oio-*` classes, never core's
   `notice notice-*`, `button button-*` or `.description`. `build/admin.asset.php` is the check:
   it must list `wp-element` and `wp-api-fetch`, and must not list `wp-components`
-- Never touch `wp-content/uploads/swift-image-optimizer/backup/` — that is user data
+- Never touch `wp-content/uploads/omnio-image-optimizer/backup/` — that is user data
 - Never modify a file outside the current spec's "Files changed"
 - Never add a Composer *runtime* dependency — the plugin ships dependency-free by design.
   npm packages are build-time only and still need to be named in the spec

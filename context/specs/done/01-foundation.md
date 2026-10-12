@@ -5,17 +5,17 @@
 Everything the rest of the plugin stands on: bootstrap, autoloading, the log table, settings,
 and the engine abstraction that decides how images actually get converted.
 
-No image is converted in this unit. The deliverable is that `swift_image_optimizer()` boots
+No image is converted in this unit. The deliverable is that `omnio_io()` boots
 without error, the table exists, and `EngineFactory::get()` returns a usable engine on any
 host that has one.
 
 ## Key decisions
 
 **Hand-rolled autoloader, no Composer.** The plugin ships with zero runtime dependencies, so
-`swift_image_optimizer_autoload()` maps `SwiftImageOptimizer\Foo\Bar` to `src/Foo/Bar.php`
+`omnio_io_autoload()` maps `OmnioImageOptimizer\Foo\Bar` to `src/Foo/Bar.php`
 directly. Composer is not used at all, not even for autoloading.
 
-**One table, not several.** `{prefix}swift_image_optimizer_log` carries stats, restore data,
+**One table, not several.** `{prefix}omnio_io_log` carries stats, restore data,
 bulk dedupe state and the 404 URL map. A separate queue table was considered and rejected —
 `Bulk\Scanner` gets the same result from a `LEFT JOIN`, and one table is one migration.
 

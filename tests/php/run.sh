@@ -4,7 +4,7 @@
 #
 #   tests/php/run.sh                  # every harness
 #   tests/php/run.sh rewriter-test    # one of them
-#   SIO_TEST_ENGINE=gd tests/php/run.sh
+#   OIO_TEST_ENGINE=gd tests/php/run.sh
 #
 # Local names every database `local` and distinguishes sites only by socket,
 # so the socket is pinned here rather than left to chance. Each harness also
@@ -12,20 +12,20 @@
 
 set -uo pipefail
 
-SITE_SOCKET="${SIO_SOCKET:-$HOME/Library/Application Support/Local/run/aRpCXvFUz/mysql/mysqld.sock}"
-PHP_BIN="${SIO_PHP:-$HOME/Library/Application Support/Local/lightning-services/php-8.2.29+0/bin/darwin-arm64/bin/php}"
+SITE_SOCKET="${OIO_SOCKET:-$HOME/Library/Application Support/Local/run/aRpCXvFUz/mysql/mysqld.sock}"
+PHP_BIN="${OIO_PHP:-$HOME/Library/Application Support/Local/lightning-services/php-8.2.29+0/bin/darwin-arm64/bin/php}"
 
 cd "$(dirname "$0")/../.." || exit 2
 
 if [ ! -x "$PHP_BIN" ]; then
   echo "PHP binary not found: $PHP_BIN" >&2
-  echo "Override with SIO_PHP=/path/to/php" >&2
+  echo "Override with OIO_PHP=/path/to/php" >&2
   exit 2
 fi
 
 if [ ! -S "$SITE_SOCKET" ]; then
   echo "MySQL socket not found: $SITE_SOCKET" >&2
-  echo "Is the Local site running? Override with SIO_SOCKET=/path/to/mysqld.sock" >&2
+  echo "Is the Local site running? Override with OIO_SOCKET=/path/to/mysqld.sock" >&2
   exit 2
 fi
 
@@ -53,7 +53,7 @@ failed=0
 # the request and removed immediately after, in every exit path.
 # ---------------------------------------------------------------------------
 if [ "$WEB_MODE" -eq 1 ]; then
-  BASE_URL="${SIO_BASE_URL:-https://cb-test.local}"
+  BASE_URL="${OIO_BASE_URL:-https://cb-test.local}"
   TOKEN_FILE="tests/php/.web-token"
 
   cleanup_token() { rm -f "$TOKEN_FILE"; }
@@ -72,10 +72,10 @@ if [ "$WEB_MODE" -eq 1 ]; then
     printf '%s' "$TOKEN" > "$TOKEN_FILE"
 
     echo
-    echo "########## $suite (web / php-fpm${SIO_TEST_ENGINE:+, engine=$SIO_TEST_ENGINE}) ##########"
+    echo "########## $suite (web / php-fpm${OIO_TEST_ENGINE:+, engine=$OIO_TEST_ENGINE}) ##########"
 
-    url="${BASE_URL}/wp-content/plugins/swift-image-optimizer/tests/php/web-runner.php?token=${TOKEN}&suite=${suite}"
-    [ -n "${SIO_TEST_ENGINE:-}" ] && url="${url}&engine=${SIO_TEST_ENGINE}"
+    url="${BASE_URL}/wp-content/plugins/omnio-image-optimizer/tests/php/web-runner.php?token=${TOKEN}&suite=${suite}"
+    [ -n "${OIO_TEST_ENGINE:-}" ] && url="${url}&engine=${OIO_TEST_ENGINE}"
 
     body="$(curl -sk --max-time 600 "$url")"
     echo "$body"

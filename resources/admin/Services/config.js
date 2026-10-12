@@ -5,6 +5,6 @@
  * never touch a global directly.
  */
 
-const config = window.swiftImageOptimizer || {};
+const config = window.omnioImageOptimizer || {};
 
 export default config;

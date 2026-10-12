@@ -2,16 +2,16 @@
 /**
  * Feature 1: convert images to WebP during upload.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Upload;
+namespace OmnioImageOptimizer\App\Services\Upload;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Services\Backup\BackupManager;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
-use SwiftImageOptimizer\App\Services\Optimizer;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Services\Backup\BackupManager;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Optimizer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -225,7 +225,7 @@ class Interceptor {
 		 * @param bool  $should Whether to optimize.
 		 * @param array $upload The upload array.
 		 */
-		if ( ! apply_filters( 'swift_image_optimizer_should_optimize_upload', true, $upload ) ) {
+		if ( ! apply_filters( 'omnio_io_should_optimize_upload', true, $upload ) ) {
 			return $upload;
 		}
 
@@ -339,7 +339,7 @@ class Interceptor {
 		}
 
 		/** This filter is documented in app/Services/Upload/Interceptor.php */
-		if ( ! apply_filters( 'swift_image_optimizer_should_optimize_upload', true, $upload ) ) {
+		if ( ! apply_filters( 'omnio_io_should_optimize_upload', true, $upload ) ) {
 			return $upload;
 		}
 

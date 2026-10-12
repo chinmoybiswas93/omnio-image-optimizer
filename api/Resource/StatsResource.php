@@ -2,12 +2,12 @@
 /**
  * Aggregate savings figures.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Api\Resource;
+namespace OmnioImageOptimizer\Api\Resource;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

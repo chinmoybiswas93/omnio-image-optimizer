@@ -2,15 +2,15 @@
 /**
  * Schema migrator.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Database;
+namespace OmnioImageOptimizer\Database;
 
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\App\Models\UrlLookup;
-use SwiftImageOptimizer\Database\Migrations\LogMigrator;
-use SwiftImageOptimizer\Database\Migrations\UrlMigrator;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Models\UrlLookup;
+use OmnioImageOptimizer\Database\Migrations\LogMigrator;
+use OmnioImageOptimizer\Database\Migrations\UrlMigrator;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ class DBMigrator {
 	/**
 	 * Option storing the installed schema version.
 	 */
-	const SCHEMA_OPTION = 'swift_image_optimizer_schema_version';
+	const SCHEMA_OPTION = 'omnio_io_schema_version';
 
 	/**
 	 * Migrators to run, in order.

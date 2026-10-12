@@ -2,15 +2,15 @@
 /**
  * Diagnostics endpoint.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Controllers;
+namespace OmnioImageOptimizer\App\Http\Controllers;
 
-use SwiftImageOptimizer\App\Services\Bulk\Scanner;
-use SwiftImageOptimizer\App\Services\Diagnostics\EnvironmentReport;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
-use SwiftImageOptimizer\App\Services\Optimizer;
+use OmnioImageOptimizer\App\Services\Bulk\Scanner;
+use OmnioImageOptimizer\App\Services\Diagnostics\EnvironmentReport;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Optimizer;
 use WP_REST_Response;
 
 if ( ! defined('ABSPATH')) {

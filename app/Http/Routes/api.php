@@ -1,25 +1,25 @@
 <?php
 /**
- * Admin API routes, under swift-image-optimizer/v1.
+ * Admin API routes, under omnio-image-optimizer/v1.
  *
  * The URLs here are load-bearing: the admin bundle calls them by path, so a
  * rename is a breaking change for anyone running a cached build.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-use SwiftImageOptimizer\Framework\Router;
-use SwiftImageOptimizer\App\Http\Controllers\BackupController;
-use SwiftImageOptimizer\App\Http\Controllers\BulkController;
-use SwiftImageOptimizer\App\Http\Controllers\DiagnosticsController;
-use SwiftImageOptimizer\App\Http\Controllers\LogController;
-use SwiftImageOptimizer\App\Http\Controllers\OptimizeController;
-use SwiftImageOptimizer\App\Http\Controllers\ScanController;
-use SwiftImageOptimizer\App\Http\Controllers\StatsController;
-use SwiftImageOptimizer\App\Http\Requests\BulkStartRequest;
-use SwiftImageOptimizer\App\Http\Requests\LogQueryRequest;
-use SwiftImageOptimizer\App\Http\Requests\OptimizeRequest;
-use SwiftImageOptimizer\App\Http\Requests\ScanStartRequest;
+use OmnioImageOptimizer\Framework\Router;
+use OmnioImageOptimizer\App\Http\Controllers\BackupController;
+use OmnioImageOptimizer\App\Http\Controllers\BulkController;
+use OmnioImageOptimizer\App\Http\Controllers\DiagnosticsController;
+use OmnioImageOptimizer\App\Http\Controllers\LogController;
+use OmnioImageOptimizer\App\Http\Controllers\OptimizeController;
+use OmnioImageOptimizer\App\Http\Controllers\ScanController;
+use OmnioImageOptimizer\App\Http\Controllers\StatsController;
+use OmnioImageOptimizer\App\Http\Requests\BulkStartRequest;
+use OmnioImageOptimizer\App\Http\Requests\LogQueryRequest;
+use OmnioImageOptimizer\App\Http\Requests\OptimizeRequest;
+use OmnioImageOptimizer\App\Http\Requests\ScanStartRequest;
 
 if ( ! defined('ABSPATH')) {
     exit;

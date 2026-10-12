@@ -2,10 +2,10 @@
 /**
  * Notice policy for the plugin's own admin screen.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Handlers;
+namespace OmnioImageOptimizer\App\Hooks\Handlers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -42,7 +42,7 @@ class ForeignNoticeHandler {
 	/**
 	 * Namespace prefix identifying this plugin's own callbacks.
 	 */
-	const OWN_NAMESPACE = 'SwiftImageOptimizer\\';
+	const OWN_NAMESPACE = 'OmnioImageOptimizer\\';
 
 	/**
 	 * Register hooks.
@@ -78,7 +78,7 @@ class ForeignNoticeHandler {
 		 *
 		 * @param bool $hide Whether to hide foreign notices. Default true.
 		 */
-		if ( ! apply_filters( 'swift_image_optimizer_hide_foreign_notices', true ) ) {
+		if ( ! apply_filters( 'omnio_io_hide_foreign_notices', true ) ) {
 			return;
 		}
 
@@ -154,7 +154,7 @@ class ForeignNoticeHandler {
 				return $this->is_own_class( strstr( $function, '::', true ) );
 			}
 
-			return 0 === strpos( $function, 'swift_image_optimizer' );
+			return 0 === strpos( $function, 'omnio_io' );
 		}
 
 		if ( is_array( $function ) && isset( $function[0] ) ) {

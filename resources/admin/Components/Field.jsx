@@ -9,23 +9,23 @@
 import useFieldId from './useFieldId';
 
 const Field = ( { label, help, className = '', children } ) => {
-	const id = useFieldId( 'sio-field' );
+	const id = useFieldId( 'oio-field' );
 	const helpId = help ? `${ id }-help` : undefined;
 
 	return (
 		<div
-			className={ [ 'sio-field', className ]
+			className={ [ 'oio-field', className ]
 				.filter( Boolean )
 				.join( ' ' ) }
 		>
 			{ label && (
-				<label className="sio-field__label" htmlFor={ id }>
+				<label className="oio-field__label" htmlFor={ id }>
 					{ label }
 				</label>
 			) }
 			{ children( { id, helpId } ) }
 			{ help && (
-				<p className="sio-field__help" id={ helpId }>
+				<p className="oio-field__help" id={ helpId }>
 					{ help }
 				</p>
 			) }

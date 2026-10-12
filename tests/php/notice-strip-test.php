@@ -14,48 +14,48 @@
  *
  *   php tests/php/notice-strip-test.php
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
 // phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.PHP.DevelopmentFunctions, WordPress.Security.EscapeOutput, WordPress.NamingConventions.PrefixAllGlobals, Squiz.Commenting, Generic.Commenting, WordPress.PHP.DiscouragedPHPFunctions, Universal.Files.SeparateFunctionsFromOO, WordPress.WP.GlobalVariablesOverride
 
 require __DIR__ . '/bootstrap.php';
 
-$sio_plugin_dir = dirname( __DIR__, 2 );
-$sio_wp_root    = dirname( $sio_plugin_dir, 3 );
+$oio_plugin_dir = dirname( __DIR__, 2 );
+$oio_wp_root    = dirname( $oio_plugin_dir, 3 );
 
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', $sio_wp_root . '/' );
+	define( 'ABSPATH', $oio_wp_root . '/' );
 }
 
-require $sio_wp_root . '/wp-includes/plugin.php';
-require $sio_plugin_dir . '/vendor/autoload.php';
+require $oio_wp_root . '/wp-includes/plugin.php';
+require $oio_plugin_dir . '/vendor/autoload.php';
 
 /*
  * The one WordPress function the handler calls that plugin.php does not carry.
  * Backed by a global so the screen guard can be tested both ways.
  */
-$GLOBALS['sio_test_screen_id'] = 'media_page_swift-image-optimizer';
+$GLOBALS['oio_test_screen_id'] = 'media_page_omnio-image-optimizer';
 
 if ( ! function_exists( 'get_current_screen' ) ) {
 	function get_current_screen() {
-		return (object) array( 'id' => $GLOBALS['sio_test_screen_id'] );
+		return (object) array( 'id' => $GLOBALS['oio_test_screen_id'] );
 	}
 }
 
-function swift_image_optimizer_test_own_notice() {}
-function sio_test_other_plugin_notice() {}
+function omnio_io_test_own_notice() {}
+function oio_test_other_plugin_notice() {}
 
-class SIO_Test_Foreign_Notices {
+class OIO_Test_Foreign_Notices {
 
 	public function license_mismatch() {}
 
 	public static function upsell() {}
 }
 
-use SwiftImageOptimizer\App\Hooks\Handlers\ForeignNoticeHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\MenuHandler;
-use SwiftImageOptimizer\App\Hooks\Handlers\NoticeHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\ForeignNoticeHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\MenuHandler;
+use OmnioImageOptimizer\App\Hooks\Handlers\NoticeHandler;
 
 /**
  * Every callback currently registered on a hook, rendered as a sortable name.
@@ -63,7 +63,7 @@ use SwiftImageOptimizer\App\Hooks\Handlers\NoticeHandler;
  * @param string $hook Hook name.
  * @return string[]
  */
-function sio_test_survivors( $hook ) {
+function oio_test_survivors( $hook ) {
 	$names = array();
 
 	if ( empty( $GLOBALS['wp_filter'][ $hook ] ) ) {
@@ -91,49 +91,49 @@ function sio_test_survivors( $hook ) {
 
 Harness::suite( 'Foreign notices are cleared from the plugin screen' );
 
-$sio_hooks = array( 'admin_notices', 'all_admin_notices', 'user_admin_notices', 'network_admin_notices' );
+$oio_hooks = array( 'admin_notices', 'all_admin_notices', 'user_admin_notices', 'network_admin_notices' );
 
-$sio_foreign = new SIO_Test_Foreign_Notices();
-$sio_notice  = new NoticeHandler();
-$sio_menu    = new MenuHandler();
+$oio_foreign = new OIO_Test_Foreign_Notices();
+$oio_notice  = new NoticeHandler();
+$oio_menu    = new MenuHandler();
 
-foreach ( $sio_hooks as $sio_hook ) {
+foreach ( $oio_hooks as $oio_hook ) {
 	// Foreign, in every shape a plugin can register one.
-	add_action( $sio_hook, array( $sio_foreign, 'license_mismatch' ) );
-	add_action( $sio_hook, array( 'SIO_Test_Foreign_Notices', 'upsell' ), 20 );
-	add_action( $sio_hook, 'SIO_Test_Foreign_Notices::upsell', 30 );
-	add_action( $sio_hook, 'sio_test_other_plugin_notice' );
+	add_action( $oio_hook, array( $oio_foreign, 'license_mismatch' ) );
+	add_action( $oio_hook, array( 'OIO_Test_Foreign_Notices', 'upsell' ), 20 );
+	add_action( $oio_hook, 'OIO_Test_Foreign_Notices::upsell', 30 );
+	add_action( $oio_hook, 'oio_test_other_plugin_notice' );
 	add_action(
-		$sio_hook,
+		$oio_hook,
 		function () {}
 	);
 	// Core's own update nag rides the same hook and goes with the rest.
-	add_action( $sio_hook, 'update_nag', 5 );
+	add_action( $oio_hook, 'update_nag', 5 );
 
 	// Ours, in every shape this plugin uses.
-	add_action( $sio_hook, array( $sio_notice, 'maybe_render_no_engine_notice' ) );
-	add_action( $sio_hook, array( $sio_menu, 'missing_build_notice' ) );
-	add_action( $sio_hook, 'swift_image_optimizer_test_own_notice' );
-	add_action( $sio_hook, array( NoticeHandler::class, 'maybe_render_no_engine_notice' ), 40 );
+	add_action( $oio_hook, array( $oio_notice, 'maybe_render_no_engine_notice' ) );
+	add_action( $oio_hook, array( $oio_menu, 'missing_build_notice' ) );
+	add_action( $oio_hook, 'omnio_io_test_own_notice' );
+	add_action( $oio_hook, array( NoticeHandler::class, 'maybe_render_no_engine_notice' ), 40 );
 }
 
 ( new ForeignNoticeHandler() )->strip_foreign_notices();
 
-$sio_expected = array(
+$oio_expected = array(
 	MenuHandler::class . '::missing_build_notice',
 	NoticeHandler::class . '::maybe_render_no_engine_notice',
 	NoticeHandler::class . '::maybe_render_no_engine_notice',
-	'swift_image_optimizer_test_own_notice',
+	'omnio_io_test_own_notice',
 );
-sort( $sio_expected );
+sort( $oio_expected );
 
-foreach ( $sio_hooks as $sio_hook ) {
-	$sio_survivors = sio_test_survivors( $sio_hook );
+foreach ( $oio_hooks as $oio_hook ) {
+	$oio_survivors = oio_test_survivors( $oio_hook );
 
 	Harness::same(
-		$sio_expected,
-		$sio_survivors,
-		$sio_hook . ': the plugin\'s four callbacks survive and the six foreign ones do not'
+		$oio_expected,
+		$oio_survivors,
+		$oio_hook . ': the plugin\'s four callbacks survive and the six foreign ones do not'
 	);
 }
 
@@ -146,7 +146,7 @@ Harness::suite( 'What the suppression must never do' );
  * callback instead of calling remove_all_actions().
  */
 Harness::ok(
-	false !== has_action( 'admin_notices', array( $sio_menu, 'missing_build_notice' ) ),
+	false !== has_action( 'admin_notices', array( $oio_menu, 'missing_build_notice' ) ),
 	'the missing-build notice survives, with no bundle it is the only voice left'
 );
 
@@ -154,7 +154,7 @@ Harness::ok(
 Harness::same(
 	array(),
 	array_filter(
-		sio_test_survivors( 'admin_notices' ),
+		oio_test_survivors( 'admin_notices' ),
 		function ( $name ) {
 			return 'Closure' === $name;
 		}
@@ -163,29 +163,29 @@ Harness::same(
 );
 
 // Core screens belong to whoever put a notice there.
-$GLOBALS['sio_test_screen_id'] = 'upload';
-add_action( 'admin_notices', 'sio_test_other_plugin_notice' );
+$GLOBALS['oio_test_screen_id'] = 'upload';
+add_action( 'admin_notices', 'oio_test_other_plugin_notice' );
 ( new ForeignNoticeHandler() )->strip_foreign_notices();
 
 Harness::ok(
-	false !== has_action( 'admin_notices', 'sio_test_other_plugin_notice' ),
+	false !== has_action( 'admin_notices', 'oio_test_other_plugin_notice' ),
 	'the Media Library is untouched: only the plugin\'s own screen is cleared'
 );
 
-$GLOBALS['sio_test_screen_id'] = 'plugins';
+$GLOBALS['oio_test_screen_id'] = 'plugins';
 ( new ForeignNoticeHandler() )->strip_foreign_notices();
 
 Harness::ok(
-	false !== has_action( 'admin_notices', 'sio_test_other_plugin_notice' ),
+	false !== has_action( 'admin_notices', 'oio_test_other_plugin_notice' ),
 	'the plugin list is untouched too'
 );
 
 Harness::suite( 'The escape hatch' );
 
-$GLOBALS['sio_test_screen_id'] = 'media_page_swift-image-optimizer';
-add_action( 'admin_notices', array( $sio_foreign, 'license_mismatch' ) );
+$GLOBALS['oio_test_screen_id'] = 'media_page_omnio-image-optimizer';
+add_action( 'admin_notices', array( $oio_foreign, 'license_mismatch' ) );
 add_filter(
-	'swift_image_optimizer_hide_foreign_notices',
+	'omnio_io_hide_foreign_notices',
 	function () {
 		return false;
 	}
@@ -194,8 +194,8 @@ add_filter(
 ( new ForeignNoticeHandler() )->strip_foreign_notices();
 
 Harness::ok(
-	false !== has_action( 'admin_notices', array( $sio_foreign, 'license_mismatch' ) ),
-	'swift_image_optimizer_hide_foreign_notices=false gives every notice back'
+	false !== has_action( 'admin_notices', array( $oio_foreign, 'license_mismatch' ) ),
+	'omnio_io_hide_foreign_notices=false gives every notice back'
 );
 
 Harness::summary();

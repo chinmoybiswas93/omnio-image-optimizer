@@ -23,7 +23,7 @@
  * @var string $mountId Element ID the bundle mounts into.
  * @var string $title   Screen title, shown before the bundle boots.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
 if ( ! defined('ABSPATH')) {
@@ -31,12 +31,12 @@ if ( ! defined('ABSPATH')) {
 }
 
 ?>
-<div class="wrap sio-wrap">
+<div class="wrap oio-wrap">
 	<hr class="wp-header-end">
-	<div id="<?php echo esc_attr($mountId); ?>" class="sio-app">
-		<div class="sio-app__booting" role="status" aria-live="polite">
-			<span class="sio-spinner" aria-hidden="true"></span>
-			<span class="sio-app__booting-text"><?php echo esc_html($title); ?></span>
+	<div id="<?php echo esc_attr($mountId); ?>" class="oio-app">
+		<div class="oio-app__booting" role="status" aria-live="polite">
+			<span class="oio-spinner" aria-hidden="true"></span>
+			<span class="oio-app__booting-text"><?php echo esc_html($title); ?></span>
 		</div>
 	</div>
 </div>

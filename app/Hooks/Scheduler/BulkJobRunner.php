@@ -2,13 +2,13 @@
 /**
  * Cron driver for bulk optimization.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Hooks\Scheduler;
+namespace OmnioImageOptimizer\App\Hooks\Scheduler;
 
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Services\Bulk\Runner;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Services\Bulk\Runner;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -33,7 +33,7 @@ class BulkJobRunner {
 	/**
 	 * Cron hook name.
 	 */
-	const HOOK = 'swift_image_optimizer_bulk_batch';
+	const HOOK = 'omnio_io_bulk_batch';
 
 	/**
 	 * Register hooks.

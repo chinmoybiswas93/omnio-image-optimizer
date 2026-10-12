@@ -12,7 +12,7 @@ unit exists, because those units delete user originals.
 ## Layout
 
 ```
-uploads/swift-image-optimizer-backups/2026/08/photo.jpg
+uploads/omnio-image-optimizer-backups/2026/08/photo.jpg
                                       ├── .htaccess   (Deny from all)
                                       └── index.php   (silence)
 ```
@@ -41,7 +41,7 @@ and the `STATUS_BACKUP_EXPIRED` constant was deleted.
 
 ## Cron
 
-`swift_image_optimizer_purge_backups`, daily, 200 rows per run. Self-heals: `register()`
+`omnio_io_purge_backups`, daily, 200 rows per run. Self-heals: `register()`
 reschedules the event if it has gone missing, which happens after some migrations and
 staging-to-live copies.
 

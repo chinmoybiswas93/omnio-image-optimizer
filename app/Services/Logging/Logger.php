@@ -2,12 +2,12 @@
 /**
  * File-backed diagnostic log.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Logging;
+namespace OmnioImageOptimizer\App\Services\Logging;
 
-use SwiftImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\Api\StoreSettings;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -35,12 +35,12 @@ class Logger {
 	 *
 	 * A subdirectory of the plugin's one folder rather than a sibling of it.
 	 */
-	const DIRNAME = 'swift-image-optimizer/logs';
+	const DIRNAME = 'omnio-image-optimizer/logs';
 
 	/**
 	 * Option holding the per-site filename suffix.
 	 */
-	const SUFFIX_OPTION = 'swift_image_optimizer_log_suffix';
+	const SUFFIX_OPTION = 'omnio_io_log_suffix';
 
 	/**
 	 * Rotate once the file reaches this size.
@@ -385,7 +385,7 @@ class Logger {
 			return $dir;
 		}
 
-		return trailingslashit( $dir ) . 'swift-image-optimizer-' . self::suffix() . '.log';
+		return trailingslashit( $dir ) . 'omnio-image-optimizer-' . self::suffix() . '.log';
 	}
 
 	/**
@@ -441,7 +441,7 @@ class Logger {
 		$root = self::root();
 
 		if ( ! is_dir( $root ) && ! wp_mkdir_p( $root ) ) {
-			return new WP_Error( 'log-dir-failed', __( 'The log directory could not be created.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'log-dir-failed', __( 'The log directory could not be created.', 'omnio-image-optimizer' ) );
 		}
 
 		$htaccess = $root . '/.htaccess';
@@ -459,7 +459,7 @@ class Logger {
 		}
 
 		if ( ! wp_is_writable( $root ) ) {
-			return new WP_Error( 'log-dir-unwritable', __( 'The log directory is not writable.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'log-dir-unwritable', __( 'The log directory is not writable.', 'omnio-image-optimizer' ) );
 		}
 
 		return $root;

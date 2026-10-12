@@ -20,7 +20,7 @@ Predicted from writing the code, in rough order of likely volume:
 | `WordPress.WP.AlternativeFunctions` | `file_put_contents`, `rmdir` in `BackupManager` | Justify or move to `WP_Filesystem` |
 | `WordPress.PHP.DiscouragedPHPFunctions.serialize` | `DatabaseRewriter` | Unavoidable — restoring a value to its storage format |
 | `WordPress.Security.NonceVerification` | `ListTable::bulk_notice()` | Already annotated; verify the nonce really is checked before any write |
-| `WordPress.NamingConventions.PrefixAllGlobals` | `swift_image_optimizer_autoload`, `swift_image_optimizer()` | Prefixes are already correct; confirm the ruleset agrees |
+| `WordPress.NamingConventions.PrefixAllGlobals` | `omnio_io_autoload`, `omnio_io()` | Prefixes are already correct; confirm the ruleset agrees |
 | `WordPress.WP.I18n` | Every string | Text domain and `translators:` comments |
 | `Squiz.Commenting` | Docblocks | Should be clean |
 

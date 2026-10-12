@@ -2,18 +2,18 @@
 /**
  * Batched, disk-verified library scan.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Bulk;
+namespace OmnioImageOptimizer\App\Services\Bulk;
 
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
-use SwiftImageOptimizer\App\Models\OptimizationLog;
-use SwiftImageOptimizer\App\Services\AttachmentConverter;
-use SwiftImageOptimizer\App\Services\Lock;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
-use SwiftImageOptimizer\App\Services\Optimizer;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
+use OmnioImageOptimizer\App\Models\OptimizationLog;
+use OmnioImageOptimizer\App\Services\AttachmentConverter;
+use OmnioImageOptimizer\App\Services\Lock;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Optimizer;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -48,17 +48,17 @@ class ScanRunner {
 	/**
 	 * Option holding the last completed snapshot.
 	 */
-	const RESULT_OPTION = 'swift_image_optimizer_library_scan';
+	const RESULT_OPTION = 'omnio_io_library_scan';
 
 	/**
 	 * Option holding in-flight scan state.
 	 */
-	const PROGRESS_OPTION = 'swift_image_optimizer_scan_progress';
+	const PROGRESS_OPTION = 'omnio_io_scan_progress';
 
 	/**
 	 * Lock preventing two scans at once. See Services\Lock for why not a transient.
 	 */
-	const LOCK = 'swift_image_optimizer_scan_lock';
+	const LOCK = 'omnio_io_scan_lock';
 
 	/**
 	 * Snapshot shape version. A mismatch marks a stored snapshot stale.
@@ -138,7 +138,7 @@ class ScanRunner {
 		if ( '' === $chain && $this->bulk_is_running() ) {
 			return new WP_Error(
 				'bulk-active',
-				__( 'A bulk optimization is running. The library will be scanned automatically when it finishes.', 'swift-image-optimizer' ),
+				__( 'A bulk optimization is running. The library will be scanned automatically when it finishes.', 'omnio-image-optimizer' ),
 				array( 'status' => 409 )
 			);
 		}
@@ -172,7 +172,7 @@ class ScanRunner {
 	 */
 	public function process_batch() {
 		if ( ! Lock::acquire( self::LOCK ) ) {
-			return new WP_Error( 'scan-locked', __( 'Another library scan is already running.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'scan-locked', __( 'Another library scan is already running.', 'omnio-image-optimizer' ) );
 		}
 
 		$state = $this->raw_state();
@@ -180,7 +180,7 @@ class ScanRunner {
 		if ( empty( $state['running'] ) ) {
 			Lock::release( self::LOCK );
 
-			return new WP_Error( 'not-scanning', __( 'No library scan is in progress.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'not-scanning', __( 'No library scan is in progress.', 'omnio-image-optimizer' ) );
 		}
 
 		$batch_size = max( 1, (int) $state['batch_size'] );
@@ -457,7 +457,7 @@ class ScanRunner {
 		 * @param string $chain    Chain id, '' when standalone.
 		 */
 		do_action(
-			'swift_image_optimizer_scan_completed',
+			'omnio_io_scan_completed',
 			$snapshot,
 			$snapshot['trigger'],
 			isset( $state['chain'] ) ? (string) $state['chain'] : ''

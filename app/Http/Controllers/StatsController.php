@@ -2,13 +2,13 @@
 /**
  * Statistics endpoint.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Http\Controllers;
+namespace OmnioImageOptimizer\App\Http\Controllers;
 
-use SwiftImageOptimizer\Api\Resource\StatsResource;
-use SwiftImageOptimizer\App\Services\Backup\BackupManager;
+use OmnioImageOptimizer\Api\Resource\StatsResource;
+use OmnioImageOptimizer\App\Services\Backup\BackupManager;
 use WP_REST_Response;
 
 if ( ! defined('ABSPATH')) {

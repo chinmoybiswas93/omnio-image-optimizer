@@ -2,17 +2,17 @@
 /**
  * Batched bulk optimization.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Services\Bulk;
+namespace OmnioImageOptimizer\App\Services\Bulk;
 
-use SwiftImageOptimizer\Api\StoreSettings;
-use SwiftImageOptimizer\App\Services\AttachmentConverter;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
-use SwiftImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
-use SwiftImageOptimizer\App\Services\Lock;
-use SwiftImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
+use OmnioImageOptimizer\Api\StoreSettings;
+use OmnioImageOptimizer\App\Services\AttachmentConverter;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use OmnioImageOptimizer\App\Services\Lock;
+use OmnioImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -32,12 +32,12 @@ class Runner {
 	/**
 	 * Option holding run state.
 	 */
-	const PROGRESS_OPTION = 'swift_image_optimizer_bulk_progress';
+	const PROGRESS_OPTION = 'omnio_io_bulk_progress';
 
 	/**
 	 * Lock preventing two runs at once. See Services\Lock for why it is not a transient.
 	 */
-	const LOCK = 'swift_image_optimizer_bulk_lock';
+	const LOCK = 'omnio_io_bulk_lock';
 
 	/**
 	 * Default images per batch.
@@ -179,7 +179,7 @@ class Runner {
 	 */
 	public function process_batch() {
 		if ( ! Lock::acquire( self::LOCK ) ) {
-			return new WP_Error( 'bulk-locked', __( 'Another bulk optimization is already running.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'bulk-locked', __( 'Another bulk optimization is already running.', 'omnio-image-optimizer' ) );
 		}
 
 		$state = $this->raw_state();
@@ -187,7 +187,7 @@ class Runner {
 		if ( empty( $state['running'] ) ) {
 			Lock::release( self::LOCK );
 
-			return new WP_Error( 'not-running', __( 'No bulk optimization is in progress.', 'swift-image-optimizer' ) );
+			return new WP_Error( 'not-running', __( 'No bulk optimization is in progress.', 'omnio-image-optimizer' ) );
 		}
 
 		Logger::resume_run( isset( $state['run_id'] ) ? $state['run_id'] : '' );
@@ -360,7 +360,7 @@ class Runner {
 		 *
 		 * @param array $state Final run state.
 		 */
-		do_action( 'swift_image_optimizer_bulk_completed', $state );
+		do_action( 'omnio_io_bulk_completed', $state );
 	}
 
 	/**

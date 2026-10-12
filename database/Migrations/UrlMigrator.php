@@ -2,19 +2,19 @@
 /**
  * URL lookup table schema.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\Database\Migrations;
+namespace OmnioImageOptimizer\Database\Migrations;
 
-use SwiftImageOptimizer\App\Models\UrlLookup;
+use OmnioImageOptimizer\App\Models\UrlLookup;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Creates and upgrades {prefix}swift_image_optimizer_urls, the indexed map
+ * Creates and upgrades {prefix}omnio_io_urls, the indexed map
  * backing the 404 fallback.
  */
 class UrlMigrator {

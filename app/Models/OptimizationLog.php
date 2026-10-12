@@ -2,10 +2,10 @@
 /**
  * The optimization log.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-namespace SwiftImageOptimizer\App\Models;
+namespace OmnioImageOptimizer\App\Models;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -25,7 +25,7 @@ class OptimizationLog extends Model {
      *
      * @var string
      */
-    protected static $table = 'swift_image_optimizer_log';
+    protected static $table = 'omnio_io_log';
 
     /**
      * Row statuses.
@@ -39,7 +39,7 @@ class OptimizationLog extends Model {
     /**
      * Transient holding the cached stats aggregate.
      */
-    const STATS_CACHE_KEY = 'swift_image_optimizer_stats';
+    const STATS_CACHE_KEY = 'omnio_io_stats';
 
     /**
      * Default column values for a new row.

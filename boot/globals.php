@@ -5,24 +5,24 @@
  * Autoloaded by Composer, so these are available from the moment
  * vendor/autoload.php is required. Declares functions only.
  *
- * @package SwiftImageOptimizer
+ * @package OmnioImageOptimizer
  */
 
-use SwiftImageOptimizer\App\App;
-use SwiftImageOptimizer\App\Services\Logging\Logger;
+use OmnioImageOptimizer\App\App;
+use OmnioImageOptimizer\App\Services\Logging\Logger;
 
 if ( ! defined('ABSPATH')) {
     exit;
 }
 
-if ( ! function_exists('swift_image_optimizer_app')) {
+if ( ! function_exists('omnio_io_app')) {
     /**
      * The running application, or a service resolved from it.
      *
      * @param string|false $module Binding key, or false for the application.
      * @return mixed
      */
-    function swift_image_optimizer_app( $module = false ) {
+    function omnio_io_app( $module = false ) {
         if ($module) {
             return App::make($module);
         }
@@ -31,7 +31,7 @@ if ( ! function_exists('swift_image_optimizer_app')) {
     }
 }
 
-if ( ! function_exists('swift_image_optimizer_config')) {
+if ( ! function_exists('omnio_io_config')) {
     /**
      * Read a config value by dot-notated key.
      *
@@ -39,12 +39,12 @@ if ( ! function_exists('swift_image_optimizer_config')) {
      * @param mixed  $default Returned when the key is absent.
      * @return mixed
      */
-    function swift_image_optimizer_config( $key, $default = null ) {
+    function omnio_io_config( $key, $default = null ) {
         return App::config()->get($key, $default);
     }
 }
 
-if ( ! function_exists('swift_image_optimizer_view')) {
+if ( ! function_exists('omnio_io_view')) {
     /**
      * Render a view and return it as a string.
      *
@@ -52,12 +52,12 @@ if ( ! function_exists('swift_image_optimizer_view')) {
      * @param array<string, mixed> $data Variables for the template.
      * @return string
      */
-    function swift_image_optimizer_view( $view, array $data = [] ) {
+    function omnio_io_view( $view, array $data = [] ) {
         return App::view()->make($view, $data);
     }
 }
 
-if ( ! function_exists('swift_image_optimizer_log')) {
+if ( ! function_exists('omnio_io_log')) {
     /**
      * Write a line to the plugin log.
      *
@@ -65,7 +65,7 @@ if ( ! function_exists('swift_image_optimizer_log')) {
      * @param string $channel Channel the entry belongs to.
      * @return void
      */
-    function swift_image_optimizer_log( $message, $channel = 'general' ) {
+    function omnio_io_log( $message, $channel = 'general' ) {
         Logger::mark($channel, $message);
     }
 }

@@ -61,6 +61,10 @@ Converting an existing image changes its filename, so the plugin updates every r
 
 No. All processing happens on your own server. The plugin makes no external requests.
 
+= Where is the source code for the JavaScript and CSS? =
+
+The files in `build/` are compiled. Their human-readable source, along with the build tooling, is public at https://github.com/chinmoybiswas93/omnio-image-optimizer in the `resources/` folder. To rebuild them, run `npm install` and then `npm run build` from the plugin folder.
+
 = What happens when a backup expires? =
 
 The original file is deleted and the disk space is reclaimed. The optimized image is unaffected, but it can no longer be restored. Choose "Keep forever" in the settings if you would rather not lose that option.

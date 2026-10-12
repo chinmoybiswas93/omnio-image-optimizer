@@ -13,6 +13,19 @@ last one matters most. "Closed" is not the same as "proven everywhere".
 
 ---
 
+## I-20 — An Author could optimize or restore any user's images through REST (2026-10-12, unit 15)
+
+`MediaPolicy` checked only the global `upload_files` + `edit_posts`, never the IDs in the request,
+and `AttachmentConverter` checks only the post type. An Author could therefore convert an admin's
+image — deleting the original and rewriting posts they cannot edit — or restore one and drop its
+backup. Found by `/security-review`, not by a test. Fixed by requiring `edit_post` on every ID in
+the policy; one failure refuses the whole request. Proven live as an Author (200 before, 403
+after; own images still allowed) — see `specs/Done/15-rest-object-auth-and-source-link.md`.
+Not proven: the converter itself still has no ownership check, so any future entry point that
+skips `MediaPolicy` must add its own.
+
+---
+
 ## I-17 — Block editor showed nothing; a second bookkeeping-desync path fed the same class of bug I-16 closed (2026-08-23, no unit)
 
 **A fourth finding, from a follow-up browser pass after this entry first closed:**

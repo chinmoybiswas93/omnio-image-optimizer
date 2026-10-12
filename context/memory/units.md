@@ -105,7 +105,7 @@ surprising about the *environment* rather than the code, check the environment f
 
 **2026-08-09 — feature folders → layered folders.** `src/` was reorganized from `Admin/`, `Rest/`,
 `Backup/`, `Bulk/` into `Http/`, `Services/`, `Repositories/`, `Providers/`, with a hand-rolled DI
-container and service providers imitating the sibling `swiftlisting` plugin's shape. No hook
+container and service providers imitating a sibling plugin's shape. No hook
 names, routes, commands or schema changed.
 
 **2026-08-10 — layered folders → the current FluentCart-style layout.** Superseded the above

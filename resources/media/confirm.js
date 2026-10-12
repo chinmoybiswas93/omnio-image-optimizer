@@ -10,7 +10,7 @@
  *
  * Returns a promise so a call site reads the way window.confirm() did:
  *
- *     if ( ! await sioConfirm( { ... } ) ) { return; }
+ *     if ( ! await oioConfirm( { ... } ) ) { return; }
  */
 
 import { __ } from '@wordpress/i18n';
@@ -31,7 +31,7 @@ let nextId = 0;
  * @param {boolean} [options.destructive] Style the confirm button as destructive.
  * @return {Promise<boolean>} True when confirmed.
  */
-export default function sioConfirm( options ) {
+export default function oioConfirm( options ) {
 	const {
 		title,
 		message,

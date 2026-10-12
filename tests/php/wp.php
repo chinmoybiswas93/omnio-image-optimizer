@@ -137,7 +137,7 @@ function harness_import_attachment( $source_path ) {
 	$attachment_id = wp_insert_attachment(
 		array(
 			'post_mime_type' => 'image/jpeg',
-			'post_title'     => 'SIO harness fixture',
+			'post_title'     => 'OIO harness fixture',
 			'post_status'    => 'inherit',
 		),
 		$target

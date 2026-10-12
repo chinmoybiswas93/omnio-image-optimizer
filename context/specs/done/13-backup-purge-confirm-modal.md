@@ -97,7 +97,7 @@ React and Backbone surfaces cannot drift apart.
 ### Call sites
 
 `BackupsPage` (typed `DELETE`), `BulkPage`, `TroubleshootPage`, and — through a small vanilla
-`sioConfirm()` promise wrapper building the same `oio-modal` DOM — `media.js`'s restore and
+`oioConfirm()` promise wrapper building the same `oio-modal` DOM — `media.js`'s restore and
 selection-optimize actions.
 
 `BackupsPage`'s toast is rebuilt from `files_removed` and `bytes_freed`: `'%d backups removed.'`

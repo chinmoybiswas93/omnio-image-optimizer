@@ -1,0 +1,1 @@
+{"nodes": [{"id": "components_spinner_spinner", "label": "Spinner", "file_type": "code", "source_file": "resources/admin/Components/Spinner.jsx", "source_location": "L8", "source_url": null, "captured_at": null, "author": null, "contributor": null, "rationale": "Pure CSS, one element, inherits currentColor."}], "edges": [], "hyperedges": []}

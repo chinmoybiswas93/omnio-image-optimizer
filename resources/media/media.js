@@ -15,7 +15,7 @@
 
 import { __, _n, sprintf } from '@wordpress/i18n';
 
-import sioConfirm from './confirm';
+import oioConfirm from './confirm';
 
 import '../styles/media.scss';
 
@@ -416,7 +416,7 @@ function renderPanel( model, container ) {
 
 	const onAction = async ( action, button ) => {
 		if ( 'restore' === action ) {
-			const ok = await sioConfirm( {
+			const ok = await oioConfirm( {
 				title: __(
 					'Restore the original image?',
 					'omnio-image-optimizer'
@@ -612,7 +612,7 @@ async function runSelection( controller, toolbar ) {
 		return;
 	}
 
-	const ok = await sioConfirm( {
+	const ok = await oioConfirm( {
 		title: sprintf(
 			/* translators: %d: number of images. */
 			_n(

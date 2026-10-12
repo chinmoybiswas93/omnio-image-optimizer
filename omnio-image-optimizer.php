@@ -28,6 +28,6 @@ if (!defined('OMNIO_IO_FILE')) {
 }
 
 require __DIR__ . '/vendor/autoload.php';
-$boot = require __DIR__ . '/boot/app.php';
-return $boot(__FILE__);
+$omnio_io_boot = require __DIR__ . '/boot/app.php';
+return $omnio_io_boot(__FILE__);
 

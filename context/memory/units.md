@@ -74,7 +74,7 @@ built before any of them were fixed. Full detail in
 | ~50 unindexable LIKE terms per batch | Two full scans of `postmeta` per five images | `Rewrite\DatabaseRewriter` |
 | 404 fallback was `LIKE` over LONGTEXT, basename-only | Unindexed query per 404 under a bot sweep; wrong image across month folders | `Rewrite\Fallback404` |
 | Memory estimate applied to cwebp | Large images refused on hosts that would have handled them, out of process | `Optimizer` |
-| Temp files written beside the source | A killed process stranded `omnio-tmp-*.webp` in month folders | `Optimizer` |
+| Temp files written beside the source | A killed process stranded `pixelkiln-tmp-*.webp` in month folders | `Optimizer` |
 | APNG flattened, CMYK JPEG marked failed | Animation lost silently; CMYK recorded as a hard failure rather than falling through | `Optimizer`, `Engine\GdEngine` |
 
 ## Earlier bugs found during the build
@@ -82,7 +82,7 @@ built before any of them were fixed. Full detail in
 | Bug | Impact | Where |
 |---|---|---|
 | Soft-error list duplicated and out of sync | 496 images reported as **failed** that were correctly logged as **skipped** | `Bulk\Runner`, `Bulk\Cli` |
-| `optimize_ids()` called but never defined | `wp omnio-image-optimizer optimize --id=N` would fatal | `Bulk\Cli` |
+| `optimize_ids()` called but never defined | `wp pixelkiln-image-optimizer optimize --id=N` would fatal | `Bulk\Cli` |
 | Per-row query for the skip check | Tens of thousands of extra queries during bulk | `Rewrite\DatabaseRewriter` |
 | Backup expiry zeroed savings stats | Stats under-reported over time | the retention cron |
 
@@ -105,7 +105,7 @@ surprising about the *environment* rather than the code, check the environment f
 
 **2026-08-09 — feature folders → layered folders.** `src/` was reorganized from `Admin/`, `Rest/`,
 `Backup/`, `Bulk/` into `Http/`, `Services/`, `Repositories/`, `Providers/`, with a hand-rolled DI
-container and service providers imitating the sibling `swiftlisting` plugin's shape. No hook
+container and service providers imitating a sibling plugin's shape. No hook
 names, routes, commands or schema changed.
 
 **2026-08-10 — layered folders → the current FluentCart-style layout.** Superseded the above

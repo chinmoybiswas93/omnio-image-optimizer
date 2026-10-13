@@ -2,16 +2,16 @@
 /**
  * Plugin activation.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Handlers;
+namespace PixelKilnImageOptimizer\App\Hooks\Handlers;
 
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Hooks\Scheduler\JobRunner;
-use OmnioImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
-use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
-use OmnioImageOptimizer\Database\DBMigrator;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\JobRunner;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
+use PixelKilnImageOptimizer\App\Services\Bulk\ScanRunner;
+use PixelKilnImageOptimizer\Database\DBMigrator;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -81,6 +81,6 @@ class ActivationHandler {
          */
         ( new ScanRunner() )->start('activation');
 
-        do_action('omnio_io/activated');
+        do_action('pixelkiln_io/activated');
     }
 }

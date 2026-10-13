@@ -1,5 +1,5 @@
 {
-	"name": "chinmoybiswas93/omnio-image-optimizer",
+	"name": "chinmoybiswas93/pixelkiln-image-optimizer",
 	"description": "Automatically convert and compress images to WebP on upload, plus individual and bulk optimization for the WordPress Media Library.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
@@ -14,9 +14,9 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"OmnioImageOptimizer\\App\\": "app/",
-			"OmnioImageOptimizer\\Api\\": "api/",
-			"OmnioImageOptimizer\\Framework\\": "framework/"
+			"PixelKilnImageOptimizer\\App\\": "app/",
+			"PixelKilnImageOptimizer\\Api\\": "api/",
+			"PixelKilnImageOptimizer\\Framework\\": "framework/"
 		},
 		"classmap": [
 			"database/"

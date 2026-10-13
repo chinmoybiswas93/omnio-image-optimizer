@@ -1,5 +1,5 @@
 /**
- * Media Library integration for Omnio Image Optimizer.
+ * Media Library integration for PixelKiln Image Optimizer.
  *
  * Two surfaces:
  *   1. A "Bulk Optimize" button in the grid-view toolbar, driving a multi-select run.
@@ -10,16 +10,16 @@
  *
  * The wp.media view hooks below are the Media Library's extension API and
  * have no alternative. Everything this renders inside them, though, uses the
- * plugin's own oio-* classes rather than core's button classes.
+ * plugin's own pkio-* classes rather than core's button classes.
  */
 
 import { __, _n, sprintf } from '@wordpress/i18n';
 
-import sioConfirm from './confirm';
+import pkioConfirm from './confirm';
 
 import '../styles/media.scss';
 
-const config = window.omnioImageOptimizerMedia || {};
+const config = window.pixelKilnImageOptimizerMedia || {};
 
 /**
  * POST to one of the plugin's REST routes.
@@ -78,7 +78,7 @@ const formatDuration = ( ms ) => {
 		return sprintf(
 			/* translators: %d: milliseconds. */ __(
 				'%d ms',
-				'omnio-image-optimizer'
+				'pixelkiln-image-optimizer'
 			),
 			Math.round( value )
 		);
@@ -86,7 +86,7 @@ const formatDuration = ( ms ) => {
 
 	return sprintf(
 		/* translators: %s: seconds, to one decimal place. */
-		__( '%s sec', 'omnio-image-optimizer' ),
+		__( '%s sec', 'pixelkiln-image-optimizer' ),
 		( value / 1000 ).toFixed( 1 )
 	);
 };
@@ -142,7 +142,7 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
  */
 function boltIcon() {
 	const svg = document.createElementNS( SVG_NS, 'svg' );
-	svg.setAttribute( 'class', 'oio-btn__icon' );
+	svg.setAttribute( 'class', 'pkio-btn__icon' );
 	svg.setAttribute( 'width', '14' );
 	svg.setAttribute( 'height', '14' );
 	svg.setAttribute( 'viewBox', '0 0 24 24' );
@@ -165,14 +165,14 @@ function boltIcon() {
 /**
  * The plugin's logo mark, inline, matching resources/admin/Icons/index.jsx's
  * LogoMark — same rounded tile and bolt, same gradient — so the panel this
- * bundle injects into the media modal is legible as Omnio Image Optimizer's,
+ * bundle injects into the media modal is legible as PixelKiln Image Optimizer's,
  * not an unlabeled box of numbers.
  *
  * @return {SVGElement} The mark.
  */
 function logoMark() {
 	const svg = document.createElementNS( SVG_NS, 'svg' );
-	svg.setAttribute( 'class', 'oio-panel__mark' );
+	svg.setAttribute( 'class', 'pkio-panel__mark' );
 	svg.setAttribute( 'width', '16' );
 	svg.setAttribute( 'height', '16' );
 	svg.setAttribute( 'viewBox', '0 0 38 38' );
@@ -181,7 +181,7 @@ function logoMark() {
 
 	const defs = document.createElementNS( SVG_NS, 'defs' );
 	const gradient = document.createElementNS( SVG_NS, 'linearGradient' );
-	gradient.setAttribute( 'id', 'oio-panel-mark-gradient' );
+	gradient.setAttribute( 'id', 'pkio-panel-mark-gradient' );
 	gradient.setAttribute( 'x1', '0' );
 	gradient.setAttribute( 'y1', '0' );
 	gradient.setAttribute( 'x2', '1' );
@@ -204,7 +204,7 @@ function logoMark() {
 	rect.setAttribute( 'width', '38' );
 	rect.setAttribute( 'height', '38' );
 	rect.setAttribute( 'rx', '11' );
-	rect.setAttribute( 'fill', 'url(#oio-panel-mark-gradient)' );
+	rect.setAttribute( 'fill', 'url(#pkio-panel-mark-gradient)' );
 	svg.appendChild( rect );
 
 	const path = document.createElementNS( SVG_NS, 'path' );
@@ -222,26 +222,26 @@ function logoMark() {
 const STATUS_META = {
 	optimized: {
 		dot: 'is-success',
-		label: __( 'Image Optimized', 'omnio-image-optimizer' ),
+		label: __( 'Image Optimized', 'pixelkiln-image-optimizer' ),
 	},
 	skipped: {
 		dot: 'is-muted',
-		label: __( 'Not Optimized', 'omnio-image-optimizer' ),
+		label: __( 'Not Optimized', 'pixelkiln-image-optimizer' ),
 	},
 	failed: {
 		dot: 'is-danger',
-		label: __( 'Optimization Failed', 'omnio-image-optimizer' ),
+		label: __( 'Optimization Failed', 'pixelkiln-image-optimizer' ),
 	},
 	restored: {
 		dot: 'is-muted',
-		label: __( 'Restored to Original', 'omnio-image-optimizer' ),
+		label: __( 'Restored to Original', 'pixelkiln-image-optimizer' ),
 	},
 };
 
 /**
  * Build the optimization panel for an attachment.
  *
- * @param {Object}   data     The omnioImageOptimizer payload.
+ * @param {Object}   data     The pixelKilnImageOptimizer payload.
  * @param {Function} onAction Called with 'optimize' or 'restore'.
  * @return {HTMLElement|null} The panel, or null when there is nothing to say.
  */
@@ -256,15 +256,15 @@ function buildPanel( data, onAction ) {
 		return null;
 	}
 
-	const panel = el( 'div', 'oio-panel' );
+	const panel = el( 'div', 'pkio-panel' );
 
-	const brand = el( 'div', 'oio-panel__brand' );
+	const brand = el( 'div', 'pkio-panel__brand' );
 	brand.appendChild( logoMark() );
 	brand.appendChild(
 		el(
 			'span',
 			null,
-			__( 'Omnio Image Optimizer', 'omnio-image-optimizer' )
+			__( 'PixelKiln Image Optimizer', 'pixelkiln-image-optimizer' )
 		)
 	);
 	panel.appendChild( brand );
@@ -274,18 +274,18 @@ function buildPanel( data, onAction ) {
 	if ( meta ) {
 		panel.classList.add( `is-${ data.status }` );
 
-		const head = el( 'div', 'oio-panel__head' );
-		head.appendChild( el( 'span', `oio-panel__dot ${ meta.dot }` ) );
+		const head = el( 'div', 'pkio-panel__head' );
+		head.appendChild( el( 'span', `pkio-panel__dot ${ meta.dot }` ) );
 		head.appendChild( el( 'strong', null, meta.label ) );
 
 		if ( optimized ) {
 			head.appendChild(
 				el(
 					'span',
-					'oio-panel__percent',
+					'pkio-panel__percent',
 					sprintf(
 						/* translators: %s: percentage saved. */
-						__( 'Saved %s%%', 'omnio-image-optimizer' ),
+						__( 'Saved %s%%', 'pixelkiln-image-optimizer' ),
 						data.percent
 					)
 				)
@@ -299,10 +299,10 @@ function buildPanel( data, onAction ) {
 		panel.appendChild(
 			el(
 				'div',
-				'oio-panel__sizes',
+				'pkio-panel__sizes',
 				sprintf(
 					/* translators: 1: original file size, 2: optimized file size. */
-					__( '%1$s → %2$s', 'omnio-image-optimizer' ),
+					__( '%1$s → %2$s', 'pixelkiln-image-optimizer' ),
 					formatBytes( data.originalSize ),
 					formatBytes( data.optimizedSize )
 				)
@@ -320,14 +320,14 @@ function buildPanel( data, onAction ) {
 		}
 
 		panel.appendChild(
-			el( 'div', 'oio-panel__meta', metaParts.join( ' · ' ) )
+			el( 'div', 'pkio-panel__meta', metaParts.join( ' · ' ) )
 		);
 
 		if ( data.canRestore ) {
 			const restore = el(
 				'button',
-				'oio-btn oio-btn--tertiary oio-panel__restore',
-				__( 'Restore original', 'omnio-image-optimizer' )
+				'pkio-btn pkio-btn--tertiary pkio-panel__restore',
+				__( 'Restore original', 'pixelkiln-image-optimizer' )
 			);
 			restore.type = 'button';
 			restore.addEventListener( 'click', () =>
@@ -341,10 +341,10 @@ function buildPanel( data, onAction ) {
 			panel.appendChild(
 				el(
 					'p',
-					'oio-panel__note',
+					'pkio-panel__note',
 					__(
 						'No original stored, so this cannot be restored.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					)
 				)
 			);
@@ -355,7 +355,7 @@ function buildPanel( data, onAction ) {
 
 	// Not optimized: explain why if we know, and offer the action.
 	if ( data.reason ) {
-		panel.appendChild( el( 'p', 'oio-panel__reason', data.reason ) );
+		panel.appendChild( el( 'p', 'pkio-panel__reason', data.reason ) );
 	}
 
 	if ( data.canOptimize ) {
@@ -363,10 +363,10 @@ function buildPanel( data, onAction ) {
 			panel.appendChild(
 				el(
 					'p',
-					'oio-panel__reason',
+					'pkio-panel__reason',
 					__(
 						'No image conversion engine is available on this server.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					)
 				)
 			);
@@ -375,12 +375,12 @@ function buildPanel( data, onAction ) {
 		}
 
 		const label = data.reason
-			? __( 'Try again', 'omnio-image-optimizer' )
-			: __( 'Optimize', 'omnio-image-optimizer' );
+			? __( 'Try again', 'pixelkiln-image-optimizer' )
+			: __( 'Optimize', 'pixelkiln-image-optimizer' );
 
 		const button = el(
 			'button',
-			'oio-btn oio-btn--secondary oio-panel__optimize',
+			'pkio-btn pkio-btn--secondary pkio-panel__optimize',
 			label
 		);
 		button.type = 'button';
@@ -406,26 +406,26 @@ function renderPanel( model, container ) {
 	}
 
 	// render() runs repeatedly; never stack panels.
-	const existing = container.querySelector( '.oio-panel, .oio-panel-busy' );
+	const existing = container.querySelector( '.pkio-panel, .pkio-panel-busy' );
 
 	if ( existing ) {
 		existing.remove();
 	}
 
-	const data = model.get( 'omnioImageOptimizer' );
+	const data = model.get( 'pixelKilnImageOptimizer' );
 
 	const onAction = async ( action, button ) => {
 		if ( 'restore' === action ) {
-			const ok = await sioConfirm( {
+			const ok = await pkioConfirm( {
 				title: __(
 					'Restore the original image?',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				),
 				message: __(
 					'The optimized file will be removed and every reference to it updated back to the original.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				),
-				confirm: __( 'Restore original', 'omnio-image-optimizer' ),
+				confirm: __( 'Restore original', 'pixelkiln-image-optimizer' ),
 			} );
 
 			if ( ! ok ) {
@@ -434,7 +434,7 @@ function renderPanel( model, container ) {
 		}
 
 		button.disabled = true;
-		button.textContent = __( 'Working…', 'omnio-image-optimizer' );
+		button.textContent = __( 'Working…', 'pixelkiln-image-optimizer' );
 
 		request( action, { ids: [ model.get( 'id' ) ] } )
 			.then( ( result ) => {
@@ -450,9 +450,9 @@ function renderPanel( model, container ) {
 			.then( () => renderPanel( model, container ) )
 			.catch( ( error ) => {
 				button.disabled = false;
-				button.textContent = __( 'Optimize', 'omnio-image-optimizer' );
+				button.textContent = __( 'Optimize', 'pixelkiln-image-optimizer' );
 
-				const message = el( 'p', 'oio-panel__error', error.message );
+				const message = el( 'p', 'pkio-panel__error', error.message );
 				button.parentNode.appendChild( message );
 			} );
 	};
@@ -523,19 +523,19 @@ class OptimizeProgress {
 		this.done = 0;
 		this.saved = 0;
 
-		this.root = el( 'div', 'oio-bulk' );
+		this.root = el( 'div', 'pkio-bulk' );
 
-		this.bar = el( 'div', 'oio-bulk__bar' );
-		this.fill = el( 'div', 'oio-bulk__fill' );
+		this.bar = el( 'div', 'pkio-bulk__bar' );
+		this.fill = el( 'div', 'pkio-bulk__fill' );
 		this.bar.appendChild( this.fill );
 
-		this.label = el( 'span', 'oio-bulk__label' );
-		this.savedLabel = el( 'span', 'oio-bulk__saved' );
+		this.label = el( 'span', 'pkio-bulk__label' );
+		this.savedLabel = el( 'span', 'pkio-bulk__saved' );
 
 		this.stop = el(
 			'button',
-			'oio-btn oio-btn--secondary is-destructive oio-bulk__stop',
-			__( 'Stop', 'omnio-image-optimizer' )
+			'pkio-btn pkio-btn--secondary is-destructive pkio-bulk__stop',
+			__( 'Stop', 'pixelkiln-image-optimizer' )
 		);
 		this.stop.type = 'button';
 		this.stop.addEventListener( 'click', onStop );
@@ -561,7 +561,7 @@ class OptimizeProgress {
 		this.fill.style.width = `${ percent }%`;
 		this.label.textContent = sprintf(
 			/* translators: 1: images completed, 2: total images. */
-			__( '%1$d of %2$d', 'omnio-image-optimizer' ),
+			__( '%1$d of %2$d', 'pixelkiln-image-optimizer' ),
 			this.done,
 			this.total
 		);
@@ -569,7 +569,7 @@ class OptimizeProgress {
 			this.saved > 0
 				? sprintf(
 						/* translators: %s: formatted file size. */
-						__( '%s saved', 'omnio-image-optimizer' ),
+						__( '%s saved', 'pixelkiln-image-optimizer' ),
 						formatBytes( this.saved )
 				  )
 				: '';
@@ -612,14 +612,14 @@ async function runSelection( controller, toolbar ) {
 		return;
 	}
 
-	const ok = await sioConfirm( {
+	const ok = await pkioConfirm( {
 		title: sprintf(
 			/* translators: %d: number of images. */
 			_n(
 				'Optimize %d image?',
 				'Optimize %d images?',
 				models.length,
-				'omnio-image-optimizer'
+				'pixelkiln-image-optimizer'
 			),
 			models.length
 		),
@@ -627,9 +627,9 @@ async function runSelection( controller, toolbar ) {
 			'The original is backed up first, and every reference to it is updated.',
 			'Originals are backed up first, and every reference to them is updated.',
 			models.length,
-			'omnio-image-optimizer'
+			'pixelkiln-image-optimizer'
 		),
-		confirm: __( 'Optimize', 'omnio-image-optimizer' ),
+		confirm: __( 'Optimize', 'pixelkiln-image-optimizer' ),
 	} );
 
 	if ( ! ok ) {
@@ -643,7 +643,7 @@ async function runSelection( controller, toolbar ) {
 		chunks.push( models.slice( i, i + size ) );
 	}
 
-	toolbar.$el.addClass( 'oio-running' );
+	toolbar.$el.addClass( 'pkio-running' );
 
 	let stopped = false;
 	const progress = new OptimizeProgress( toolbar.el, models.length, () => {
@@ -690,14 +690,14 @@ async function runSelection( controller, toolbar ) {
 	};
 
 	runChunk( 0 ).then( () => {
-		toolbar.$el.removeClass( 'oio-running' );
+		toolbar.$el.removeClass( 'pkio-running' );
 
 		progress.finish(
 			sprintf(
 				/* translators: 1: optimized count, 2: skipped count, 3: failed count. */
 				__(
 					'Done — %1$d optimized, %2$d skipped, %3$d failed.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				),
 				optimized,
 				skipped,
@@ -762,7 +762,7 @@ function registerToolbar() {
 		render() {
 			Button.prototype.render.apply( this, arguments );
 			this.$el.addClass(
-				'omnio-optimize-mode-button oio-btn oio-btn--secondary'
+				'pixelkiln-optimize-mode-button pkio-btn pkio-btn--secondary'
 			);
 			this.el.insertBefore( boltIcon(), this.el.firstChild );
 			this.toggleVisible();
@@ -788,10 +788,10 @@ function registerToolbar() {
 				text: count
 					? sprintf(
 							/* translators: %d: number of selected images. */
-							__( 'Optimize (%d)', 'omnio-image-optimizer' ),
+							__( 'Optimize (%d)', 'pixelkiln-image-optimizer' ),
 							count
 					  )
-					: __( 'Optimize', 'omnio-image-optimizer' ),
+					: __( 'Optimize', 'pixelkiln-image-optimizer' ),
 			} );
 		},
 
@@ -804,7 +804,7 @@ function registerToolbar() {
 			Button.prototype.render.apply( this, arguments );
 
 			this.$el.addClass(
-				'omnio-optimize-selected-button oio-btn oio-btn--primary'
+				'pixelkiln-optimize-selected-button pkio-btn pkio-btn--primary'
 			);
 			this.el.insertBefore( boltIcon(), this.el.firstChild );
 
@@ -835,9 +835,9 @@ function registerToolbar() {
 		}
 
 		this.toolbar.set(
-			'omnioOptimizeMode',
+			'pixelkilnOptimizeMode',
 			new OptimizeModeButton( {
-				text: __( 'Bulk Optimize', 'omnio-image-optimizer' ),
+				text: __( 'Bulk Optimize', 'pixelkiln-image-optimizer' ),
 				controller: this.controller,
 				// Core's Button defaults to size 'large', which adds a
 				// `button-large` class fighting our own sizing at equal CSS
@@ -850,12 +850,12 @@ function registerToolbar() {
 		);
 
 		this.toolbar.set(
-			'omnioOptimizeSelected',
+			'pixelkilnOptimizeSelected',
 			new OptimizeSelectedButton( {
 				style: 'primary',
 				size: '',
 				disabled: true,
-				text: __( 'Optimize', 'omnio-image-optimizer' ),
+				text: __( 'Optimize', 'pixelkiln-image-optimizer' ),
 				controller: this.controller,
 				priority: -78,
 			} ).render()
@@ -867,7 +867,7 @@ function registerToolbar() {
 			'select:activate',
 			function () {
 				this.toolbar
-					.$( '.omnio-optimize-selected-button' )
+					.$( '.pixelkiln-optimize-selected-button' )
 					.removeClass( 'hidden' );
 			},
 			this
@@ -877,7 +877,7 @@ function registerToolbar() {
 			'select:deactivate',
 			function () {
 				this.toolbar
-					.$( '.omnio-optimize-selected-button' )
+					.$( '.pixelkiln-optimize-selected-button' )
 					.addClass( 'hidden' );
 			},
 			this

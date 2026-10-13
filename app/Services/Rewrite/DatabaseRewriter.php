@@ -2,12 +2,12 @@
 /**
  * Serialization-safe URL replacement across the database.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Rewrite;
+namespace PixelKilnImageOptimizer\App\Services\Rewrite;
 
-use OmnioImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -616,7 +616,7 @@ class DatabaseRewriter {
 		 *
 		 * Page-cache plugins can hook this to purge their own stores.
 		 */
-		do_action( 'omnio_io_urls_rewritten' );
+		do_action( 'pixelkiln_io_urls_rewritten' );
 	}
 
 	/**

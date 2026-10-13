@@ -2,10 +2,10 @@
 /**
  * Conversion engine backed by the cwebp binary.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Engine;
+namespace PixelKilnImageOptimizer\App\Services\Engine;
 
 use WP_Error;
 
@@ -72,7 +72,7 @@ class CwebpEngine extends AbstractEngine {
 		 *
 		 * @param string $path Absolute path to cwebp, or an empty string to auto-detect.
 		 */
-		$configured = apply_filters( 'omnio_io_cwebp_binary', '' );
+		$configured = apply_filters( 'pixelkiln_io_cwebp_binary', '' );
 
 		if ( $configured && is_executable( $configured ) ) {
 			self::$binary = $configured;
@@ -161,7 +161,7 @@ class CwebpEngine extends AbstractEngine {
 		$binary = self::locate_binary();
 
 		if ( '' === $binary ) {
-			return new WP_Error( 'omnio_io_no_binary', __( 'The cwebp binary is not available.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'pixelkiln_io_no_binary', __( 'The cwebp binary is not available.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$options = $this->parse_options( $options );
@@ -201,10 +201,10 @@ class CwebpEngine extends AbstractEngine {
 
 		if ( 0 !== $return_code || ! file_exists( $destination ) || 0 === filesize( $destination ) ) {
 			return new WP_Error(
-				'omnio_io_cwebp_failed',
+				'pixelkiln_io_cwebp_failed',
 				sprintf(
 					/* translators: %s: error output from the cwebp binary. */
-					__( 'cwebp failed: %s', 'omnio-image-optimizer' ),
+					__( 'cwebp failed: %s', 'pixelkiln-image-optimizer' ),
 					implode( ' ', array_slice( $output, 0, 3 ) )
 				)
 			);

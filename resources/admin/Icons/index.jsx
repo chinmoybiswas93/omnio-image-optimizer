@@ -28,7 +28,7 @@ const Svg = ( { size = 24, children } ) => (
 /** The plugin mark: a rounded tile with a bolt, used beside the wordmark. */
 export const LogoMark = () => (
 	<svg
-		className="oio-masthead__mark"
+		className="pkio-masthead__mark"
 		width="38"
 		height="38"
 		viewBox="0 0 38 38"
@@ -36,12 +36,12 @@ export const LogoMark = () => (
 		focusable="false"
 	>
 		<defs>
-			<linearGradient id="oio-mark-gradient" x1="0" y1="0" x2="1" y2="1">
+			<linearGradient id="pkio-mark-gradient" x1="0" y1="0" x2="1" y2="1">
 				<stop offset="0%" stopColor="#5b76f2" />
 				<stop offset="100%" stopColor="#2c3fc0" />
 			</linearGradient>
 		</defs>
-		<rect width="38" height="38" rx="11" fill="url(#oio-mark-gradient)" />
+		<rect width="38" height="38" rx="11" fill="url(#pkio-mark-gradient)" />
 		<path d="M21.4 8.2 12.2 21.1h5.2l-1.1 8.7 9.4-13.3h-5.4z" fill="#fff" />
 	</svg>
 );

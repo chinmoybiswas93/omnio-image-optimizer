@@ -2,16 +2,16 @@
 /**
  * Feature 1: convert images to WebP during upload.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Upload;
+namespace PixelKilnImageOptimizer\App\Services\Upload;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Services\Backup\BackupManager;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
-use OmnioImageOptimizer\App\Services\Optimizer;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Services\Backup\BackupManager;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\App\Services\Optimizer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -225,7 +225,7 @@ class Interceptor {
 		 * @param bool  $should Whether to optimize.
 		 * @param array $upload The upload array.
 		 */
-		if ( ! apply_filters( 'omnio_io_should_optimize_upload', true, $upload ) ) {
+		if ( ! apply_filters( 'pixelkiln_io_should_optimize_upload', true, $upload ) ) {
 			return $upload;
 		}
 
@@ -339,7 +339,7 @@ class Interceptor {
 		}
 
 		/** This filter is documented in app/Services/Upload/Interceptor.php */
-		if ( ! apply_filters( 'omnio_io_should_optimize_upload', true, $upload ) ) {
+		if ( ! apply_filters( 'pixelkiln_io_should_optimize_upload', true, $upload ) ) {
 			return $upload;
 		}
 

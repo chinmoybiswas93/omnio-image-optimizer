@@ -108,23 +108,23 @@ export const ToastProvider = ( { children } ) => {
 	return (
 		<ToastContext.Provider value={ api }>
 			{ children }
-			<div className="oio-toasts" aria-live="polite" aria-atomic="false">
+			<div className="pkio-toasts" aria-live="polite" aria-atomic="false">
 				{ toasts.map( ( toast ) => (
 					<div
 						key={ toast.id }
-						className={ `oio-toast oio-toast--${ toast.status }` }
+						className={ `pkio-toast pkio-toast--${ toast.status }` }
 						role={ toast.status === 'error' ? 'alert' : 'status' }
 					>
-						<span className="oio-toast__body">
+						<span className="pkio-toast__body">
 							{ toast.message }
 						</span>
 						<button
 							type="button"
-							className="oio-toast__dismiss"
+							className="pkio-toast__dismiss"
 							onClick={ () => dismiss( toast.id ) }
 							aria-label={ __(
 								'Dismiss',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							) }
 						>
 							<span aria-hidden="true">&times;</span>

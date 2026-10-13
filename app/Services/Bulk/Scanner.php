@@ -2,14 +2,14 @@
 /**
  * Finds attachments that still need optimizing.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Bulk;
+namespace PixelKilnImageOptimizer\App\Services\Bulk;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Services\AttachmentConverter;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Services\AttachmentConverter;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

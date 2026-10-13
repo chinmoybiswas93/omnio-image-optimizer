@@ -20,7 +20,7 @@ import { formatBytes } from '../Services/format';
  * The word the operator types to unlock the purge. Translated, because the
  * label tells them what to type and the two have to agree.
  */
-const CONFIRM_WORD = __( 'DELETE', 'omnio-image-optimizer' );
+const CONFIRM_WORD = __( 'DELETE', 'pixelkiln-image-optimizer' );
 
 const BackupsPage = () => {
 	const [ bytes, setBytes ] = useState( config.backupBytes || 0 );
@@ -49,13 +49,13 @@ const BackupsPage = () => {
 								'%d image can be restored again.',
 								'%d images can be restored again.',
 								result.repaired,
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							),
 							result.repaired
 					  )
 					: __(
 							'Nothing to recover. Every backup on disk is already accounted for.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 					  )
 			);
 		} catch ( e ) {
@@ -88,13 +88,13 @@ const BackupsPage = () => {
 							/* translators: %s: formatted size, e.g. 12.4 MB. */
 							__(
 								'Backups deleted. %s reclaimed.',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							),
 							formatBytes( freed )
 					  )
 					: __(
 							'There was nothing left to delete.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 					  )
 			);
 		} catch ( e ) {
@@ -116,28 +116,28 @@ const BackupsPage = () => {
 
 			<Section
 				icon={ <IconArchive /> }
-				title={ __( 'Original backups', 'omnio-image-optimizer' ) }
+				title={ __( 'Original backups', 'pixelkiln-image-optimizer' ) }
 				description={ __(
 					'Every original is kept so any image can be restored.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				) }
 			>
-				<div className="oio-stats">
+				<div className="pkio-stats">
 					<Stat
 						label={ __(
 							'Backup storage used',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 						value={ formatBytes( bytes ) }
 					/>
 				</div>
-				<p className="oio-lede">
+				<p className="pkio-lede">
 					{ __(
 						'Originals are kept so any image can be restored. They are removed automatically once the retention period set in Settings has passed.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 				</p>
-				<div className="oio-actions">
+				<div className="pkio-actions">
 					{ /*
 					 * Repair sits before Delete deliberately. The purge sweeps
 					 * the whole backup folder, including the unreferenced files
@@ -154,7 +154,7 @@ const BackupsPage = () => {
 						) : (
 							__(
 								'Repair backup records',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							)
 						) }
 					</Button>
@@ -169,7 +169,7 @@ const BackupsPage = () => {
 						) : (
 							__(
 								'Delete all backups now',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							)
 						) }
 					</Button>
@@ -180,11 +180,11 @@ const BackupsPage = () => {
 				<ConfirmDialog
 					title={ __(
 						'Repair backup records?',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 					confirmLabel={ __(
 						'Repair records',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 					busy={ busy }
 					onConfirm={ repair }
@@ -193,13 +193,13 @@ const BackupsPage = () => {
 					<p>
 						{ __(
 							'This looks for originals still on disk that no image points at any more, and makes them restorable again. No file is deleted or changed.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					</p>
 					<p>
 						{ __(
 							'Run this before deleting backups. Deleting removes the same files this would recover.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					</p>
 				</ConfirmDialog>
@@ -209,11 +209,11 @@ const BackupsPage = () => {
 				<ConfirmDialog
 					title={ __(
 						'Delete every stored original?',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 					confirmLabel={ __(
 						'Delete backups',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 					confirmWord={ CONFIRM_WORD }
 					isDestructive
@@ -226,7 +226,7 @@ const BackupsPage = () => {
 							/* translators: %s: formatted size, e.g. 831.4 KB. */
 							__(
 								'This permanently deletes every stored original, freeing %s.',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							),
 							formatBytes( bytes )
 						) }
@@ -234,7 +234,7 @@ const BackupsPage = () => {
 					<p>
 						{ __(
 							'Your optimized images are unaffected and stay exactly as they are. But nothing can be restored to its original afterwards, and this cannot be undone.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					</p>
 				</ConfirmDialog>

@@ -1,7 +1,7 @@
 {
-	"name": "omnio-image-optimizer",
+	"name": "pixelkiln-image-optimizer",
 	"version": "1.0.0",
-	"description": "Admin interface for the Omnio Image Optimizer WordPress plugin.",
+	"description": "Admin interface for the PixelKiln Image Optimizer WordPress plugin.",
 	"license": "GPL-2.0-or-later",
 	"private": true,
 	"scripts": {

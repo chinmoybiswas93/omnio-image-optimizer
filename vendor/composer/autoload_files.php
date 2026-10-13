@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    '1aa4730cee6006fee70834f350cf87d7' => $baseDir . '/boot/globals.php',
+    'f9d93af6ce05b2c6a08dd2cde3d51e67' => $baseDir . '/boot/globals.php',
 );

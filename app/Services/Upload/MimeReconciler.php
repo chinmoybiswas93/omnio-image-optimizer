@@ -2,13 +2,13 @@
 /**
  * Repairs the mime-type desync a re-fed upload leaves behind.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Upload;
+namespace PixelKilnImageOptimizer\App\Services\Upload;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

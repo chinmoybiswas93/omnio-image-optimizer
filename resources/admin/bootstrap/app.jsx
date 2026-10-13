@@ -14,7 +14,7 @@ import App from '../App';
 
 import '../../styles/admin.scss';
 
-const mount = document.getElementById( 'omnio-image-optimizer-root' );
+const mount = document.getElementById( 'pixelkiln-image-optimizer-root' );
 
 if ( mount ) {
 	// The view renders a loading state inside the mount; React replaces it.

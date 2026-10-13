@@ -34,7 +34,7 @@ const Modal = ( {
 	children,
 	footer,
 } ) => {
-	const id = useFieldId( 'oio-modal' );
+	const id = useFieldId( 'pkio-modal' );
 	const titleId = `${ id }-title`;
 	const bodyId = `${ id }-body`;
 	const dialog = useRef( null );
@@ -121,7 +121,7 @@ const Modal = ( {
 
 	return (
 		<div
-			className="oio-modal__backdrop"
+			className="pkio-modal__backdrop"
 			// Presentational: the backdrop is a convenience for the mouse.
 			// Escape and the two buttons are what actually close the dialog,
 			// so there is nothing here a keyboard user has to reach.
@@ -135,7 +135,7 @@ const Modal = ( {
 			} }
 		>
 			<div
-				className={ [ 'oio-modal', className ]
+				className={ [ 'pkio-modal', className ]
 					.filter( Boolean )
 					.join( ' ' ) }
 				role="dialog"
@@ -145,18 +145,18 @@ const Modal = ( {
 				ref={ dialog }
 				tabIndex={ -1 }
 			>
-				<div className="oio-modal__head">
-					<h2 className="oio-modal__title" id={ titleId }>
+				<div className="pkio-modal__head">
+					<h2 className="pkio-modal__title" id={ titleId }>
 						{ title }
 					</h2>
 					{ dismissible && (
 						<button
 							type="button"
-							className="oio-modal__dismiss"
+							className="pkio-modal__dismiss"
 							onClick={ close }
 							aria-label={ __(
 								'Close',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							) }
 						>
 							<span aria-hidden="true">&times;</span>
@@ -164,11 +164,11 @@ const Modal = ( {
 					) }
 				</div>
 
-				<div className="oio-modal__body" id={ bodyId }>
+				<div className="pkio-modal__body" id={ bodyId }>
 					{ children }
 				</div>
 
-				{ footer && <div className="oio-modal__foot">{ footer }</div> }
+				{ footer && <div className="pkio-modal__foot">{ footer }</div> }
 			</div>
 		</div>
 	);

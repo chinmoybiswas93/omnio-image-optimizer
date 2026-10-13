@@ -5,24 +5,24 @@ import { LogoMark } from '../Icons';
 import config from '../Services/config';
 
 const Masthead = () => (
-	<div className="oio-masthead">
+	<div className="pkio-masthead">
 		<LogoMark />
-		<div className="oio-masthead__text">
-			<h1 className="oio-masthead__title">
-				{ __( 'Omnio Image Optimizer', 'omnio-image-optimizer' ) }
+		<div className="pkio-masthead__text">
+			<h1 className="pkio-masthead__title">
+				{ __( 'PixelKiln Image Optimizer', 'pixelkiln-image-optimizer' ) }
 			</h1>
-			<p className="oio-masthead__tagline">
+			<p className="pkio-masthead__tagline">
 				{ __(
 					'Convert your media library to WebP and keep it that way.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				) }
 			</p>
 		</div>
 		{ config.engine && (
-			<span className="oio-pill">
+			<span className="pkio-pill">
 				{ sprintf(
 					/* translators: %s: active conversion engine. */
-					__( '%s engine', 'omnio-image-optimizer' ),
+					__( '%s engine', 'pixelkiln-image-optimizer' ),
 					config.engine
 				) }
 			</span>

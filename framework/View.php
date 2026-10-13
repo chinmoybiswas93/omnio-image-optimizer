@@ -2,10 +2,10 @@
 /**
  * Plain-PHP view renderer.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Framework;
+namespace PixelKilnImageOptimizer\Framework;
 
 use RuntimeException;
 

@@ -2,16 +2,16 @@
 /**
  * Static facade over the running Application.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App;
+namespace PixelKilnImageOptimizer\App;
 
 use RuntimeException;
-use OmnioImageOptimizer\Framework\Application;
-use OmnioImageOptimizer\Framework\Config;
-use OmnioImageOptimizer\Framework\Router;
-use OmnioImageOptimizer\Framework\View;
+use PixelKilnImageOptimizer\Framework\Application;
+use PixelKilnImageOptimizer\Framework\Config;
+use PixelKilnImageOptimizer\Framework\Router;
+use PixelKilnImageOptimizer\Framework\View;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -52,7 +52,7 @@ class App {
      */
     public static function getInstance() {
         if (null === self::$app) {
-            throw new RuntimeException('Omnio Image Optimizer has not booted yet.');
+            throw new RuntimeException('PixelKiln Image Optimizer has not booted yet.');
         }
 
         return self::$app;

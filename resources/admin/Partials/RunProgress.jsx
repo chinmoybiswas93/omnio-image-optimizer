@@ -33,16 +33,16 @@ const RunProgress = ( { phase } ) => {
 	}
 
 	return (
-		<div className="oio-phase">
-			<div className="oio-phase__head">
-				<span className="oio-phase__label">{ phase.phase_label }</span>
+		<div className="pkio-phase">
+			<div className="pkio-phase__head">
+				<span className="pkio-phase__label">{ phase.phase_label }</span>
 
 				{ index > 0 && (
-					<span className="oio-phase__steps" aria-hidden="true">
+					<span className="pkio-phase__steps" aria-hidden="true">
 						{ steps.map( ( step ) => (
 							<span
 								key={ step }
-								className={ `oio-phase__dot${
+								className={ `pkio-phase__dot${
 									step <= index ? ' is-done' : ''
 								}` }
 							/>
@@ -51,19 +51,19 @@ const RunProgress = ( { phase } ) => {
 				) }
 			</div>
 
-			<div className="oio-progress">
-				<div className="oio-progress__bar">
+			<div className="pkio-progress">
+				<div className="pkio-progress__bar">
 					<div
-						className="oio-progress__fill"
+						className="pkio-progress__fill"
 						style={ { width: `${ percent }%` } }
 					/>
 				</div>
 
-				<div className="oio-progress__meta">
+				<div className="pkio-progress__meta">
 					<span>
 						{ sprintf(
 							/* translators: %d: overall percentage complete. */
-							__( '%d%% complete', 'omnio-image-optimizer' ),
+							__( '%d%% complete', 'pixelkiln-image-optimizer' ),
 							percent
 						) }
 					</span>
@@ -76,7 +76,7 @@ const RunProgress = ( { phase } ) => {
 									/* translators: 1: optimized, 2: skipped, 3: failed. */
 									__(
 										'%1$d optimized · %2$d skipped · %3$d failed',
-										'omnio-image-optimizer'
+										'pixelkiln-image-optimizer'
 									),
 									bulk.optimized ?? 0,
 									bulk.skipped ?? 0,
@@ -85,7 +85,7 @@ const RunProgress = ( { phase } ) => {
 							</span>
 							<span>
 								{ formatBytes( bulk.saved ) }{ ' ' }
-								{ __( 'saved', 'omnio-image-optimizer' ) }
+								{ __( 'saved', 'pixelkiln-image-optimizer' ) }
 							</span>
 						</>
 					) }

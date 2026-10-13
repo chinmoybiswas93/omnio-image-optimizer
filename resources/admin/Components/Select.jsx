@@ -16,11 +16,11 @@ const Select = ( {
 	onChange,
 	disabled = false,
 } ) => (
-	<Field label={ label } help={ help } className="oio-select">
+	<Field label={ label } help={ help } className="pkio-select">
 		{ ( { id, helpId } ) => (
 			<select
 				id={ id }
-				className="oio-select__input"
+				className="pkio-select__input"
 				value={ value }
 				disabled={ disabled }
 				aria-describedby={ helpId }

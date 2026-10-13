@@ -2,13 +2,13 @@
 /**
  * Environment diagnostics shown in the admin.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Handlers;
+namespace PixelKilnImageOptimizer\App\Hooks\Handlers;
 
-use OmnioImageOptimizer\App\App;
-use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
+use PixelKilnImageOptimizer\App\App;
+use PixelKilnImageOptimizer\App\Services\Engine\EngineFactory;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -50,8 +50,8 @@ class NoticeHandler {
 			'admin.parts.notice',
 			array(
 				'type'    => 'error',
-				'heading' => __( 'Omnio Image Optimizer:', 'omnio-image-optimizer' ),
-				'message' => __( 'No image conversion engine was found on this server. Ask your host to enable the GD extension with WebP support, or the Imagick extension. Image optimization is paused until then.', 'omnio-image-optimizer' ),
+				'heading' => __( 'PixelKiln Image Optimizer:', 'pixelkiln-image-optimizer' ),
+				'message' => __( 'No image conversion engine was found on this server. Ask your host to enable the GD extension with WebP support, or the Imagick extension. Image optimization is paused until then.', 'pixelkiln-image-optimizer' ),
 			)
 		);
 	}

@@ -2,12 +2,12 @@
 /**
  * Enqueues the block editor integration assets.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Handlers;
+namespace PixelKilnImageOptimizer\App\Hooks\Handlers;
 
-use OmnioImageOptimizer\App\App;
+use PixelKilnImageOptimizer\App\App;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,7 +26,7 @@ class EditorAssetHandler {
 	/**
 	 * Script handle.
 	 */
-	const HANDLE = 'omnio-image-optimizer-editor';
+	const HANDLE = 'pixelkiln-image-optimizer-editor';
 
 	/**
 	 * Register hooks.
@@ -47,7 +47,7 @@ class EditorAssetHandler {
 			return;
 		}
 
-		$asset_file = OMNIO_IO_DIR . 'build/editor.asset.php';
+		$asset_file = PIXELKILN_IO_DIR . 'build/editor.asset.php';
 
 		if ( ! file_exists( $asset_file ) ) {
 			return;
@@ -57,7 +57,7 @@ class EditorAssetHandler {
 
 		wp_enqueue_script(
 			self::HANDLE,
-			OMNIO_IO_URL . 'build/editor.js',
+			PIXELKILN_IO_URL . 'build/editor.js',
 			$asset['dependencies'],
 			$asset['version'],
 			true
@@ -65,12 +65,12 @@ class EditorAssetHandler {
 
 		wp_enqueue_style(
 			self::HANDLE,
-			OMNIO_IO_URL . 'build/editor.css',
+			PIXELKILN_IO_URL . 'build/editor.css',
 			array(),
 			$asset['version']
 		);
 
-		wp_set_script_translations( self::HANDLE, 'omnio-image-optimizer' );
+		wp_set_script_translations( self::HANDLE, 'pixelkiln-image-optimizer' );
 
 		/*
 		 * Only the namespace, not a full REST URL or nonce: this bundle only
@@ -82,7 +82,7 @@ class EditorAssetHandler {
 		 */
 		wp_localize_script(
 			self::HANDLE,
-			'omnioImageOptimizerEditor',
+			'pixelKilnImageOptimizerEditor',
 			array(
 				'namespace' => App::router()->getNamespace(),
 			)

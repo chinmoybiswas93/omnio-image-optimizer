@@ -13,17 +13,14 @@
  * masthead's own <h1>, and a notice ends up rendered *inside* this plugin's
  * header, between the title and the tagline.
  *
- * What the marker positions is now this plugin's notices only. Everyone else's
- * are removed on this screen by ForeignNoticeHandler: this is a single-purpose
- * application, and it says what it has to say inside the card that caused it or
- * in a toast. The marker still earns its place, because the plugin's own two
- * bootstrap notices - no engine available, assets not built - travel the same
- * admin_notices hook and would otherwise land in the middle of the masthead.
+ * Other plugins' notices are left alone here, as on every other screen - the
+ * plugin's own two bootstrap notices (no engine available, assets not built)
+ * travel the same admin_notices hook, and all of them land above the masthead.
  *
  * @var string $mountId Element ID the bundle mounts into.
  * @var string $title   Screen title, shown before the bundle boots.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 if ( ! defined('ABSPATH')) {
@@ -31,12 +28,12 @@ if ( ! defined('ABSPATH')) {
 }
 
 ?>
-<div class="wrap oio-wrap">
+<div class="wrap pkio-wrap">
 	<hr class="wp-header-end">
-	<div id="<?php echo esc_attr($mountId); ?>" class="oio-app">
-		<div class="oio-app__booting" role="status" aria-live="polite">
-			<span class="oio-spinner" aria-hidden="true"></span>
-			<span class="oio-app__booting-text"><?php echo esc_html($title); ?></span>
+	<div id="<?php echo esc_attr($mountId); ?>" class="pkio-app">
+		<div class="pkio-app__booting" role="status" aria-live="polite">
+			<span class="pkio-spinner" aria-hidden="true"></span>
+			<span class="pkio-app__booting-text"><?php echo esc_html($title); ?></span>
 		</div>
 	</div>
 </div>

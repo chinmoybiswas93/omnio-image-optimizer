@@ -5,17 +5,17 @@
  * The shared service instances the rest of the plugin resolves by name. These
  * were previously AppServiceProvider::register().
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\App;
-use OmnioImageOptimizer\App\Services\AttachmentConverter;
-use OmnioImageOptimizer\App\Services\Bulk\Coordinator;
-use OmnioImageOptimizer\App\Services\Bulk\Runner;
-use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
-use OmnioImageOptimizer\App\Services\Optimizer;
-use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\App;
+use PixelKilnImageOptimizer\App\Services\AttachmentConverter;
+use PixelKilnImageOptimizer\App\Services\Bulk\Coordinator;
+use PixelKilnImageOptimizer\App\Services\Bulk\Runner;
+use PixelKilnImageOptimizer\App\Services\Bulk\ScanRunner;
+use PixelKilnImageOptimizer\App\Services\Optimizer;
+use PixelKilnImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
 
 if ( ! defined('ABSPATH')) {
     exit;

@@ -9,7 +9,7 @@
  * Borrowing them also meant inheriting core's notice styling, which is what put
  * a WordPress-looking notice on the plugin's own screen and left the plugin's
  * appearance dependent on admin CSS that changes between releases. Position is
- * ours now, via `.oio-notice--standalone`.
+ * ours now, via `.pkio-notice--standalone`.
  *
  * There is deliberately no dismiss button. The two bootstrap notices - no
  * engine available, assets not built - describe conditions that are still true
@@ -22,7 +22,7 @@
  * @var string $message     Notice body. Pre-escaped by the caller.
  * @var string $heading     Optional bold lead-in.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 if ( ! defined('ABSPATH')) {
@@ -41,9 +41,9 @@ $type    = isset($type) ? $type : 'info';
 $heading = isset($heading) ? $heading : '';
 
 $classes = [
-    'oio-notice',
-    'oio-notice--' . sanitize_html_class($type),
-    'oio-notice--standalone',
+    'pkio-notice',
+    'pkio-notice--' . sanitize_html_class($type),
+    'pkio-notice--standalone',
 ];
 
 ?>
@@ -51,9 +51,9 @@ $classes = [
 	class="<?php echo esc_attr(implode(' ', $classes)); ?>"
 	role="<?php echo 'error' === $type ? 'alert' : 'status'; ?>"
 >
-	<p class="oio-notice__body">
+	<p class="pkio-notice__body">
 		<?php if ('' !== $heading) : ?>
-			<strong class="oio-notice__heading"><?php echo esc_html($heading); ?></strong>
+			<strong class="pkio-notice__heading"><?php echo esc_html($heading); ?></strong>
 		<?php endif; ?>
 		<?php echo esc_html($message); ?>
 	</p>

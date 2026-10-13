@@ -2,10 +2,10 @@
 /**
  * GD conversion engine.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Engine;
+namespace PixelKilnImageOptimizer\App\Services\Engine;
 
 use WP_Error;
 
@@ -53,13 +53,13 @@ class GdEngine extends AbstractEngine {
 		$info = @getimagesize( $source ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Invalid images are handled via the false check below.
 
 		if ( ! $info ) {
-			return new WP_Error( 'omnio_io_unreadable', __( 'Could not read the source image.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'pixelkiln_io_unreadable', __( 'Could not read the source image.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$image = $this->create_resource( $source, $info[2] );
 
 		if ( ! $image ) {
-			return new WP_Error( 'omnio_io_decode_failed', __( 'GD could not decode the source image.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'pixelkiln_io_decode_failed', __( 'GD could not decode the source image.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		if ( IMAGETYPE_JPEG === $info[2] ) {
@@ -76,7 +76,7 @@ class GdEngine extends AbstractEngine {
 
 			if ( ! $resized ) {
 				$this->free_image( $image );
-				return new WP_Error( 'omnio_io_resize_failed', __( 'Could not allocate the resized image.', 'omnio-image-optimizer' ) );
+				return new WP_Error( 'pixelkiln_io_resize_failed', __( 'Could not allocate the resized image.', 'pixelkiln-image-optimizer' ) );
 			}
 
 			$this->preserve_alpha( $resized );
@@ -91,7 +91,7 @@ class GdEngine extends AbstractEngine {
 		$this->free_image( $image );
 
 		if ( ! $written || ! file_exists( $destination ) || 0 === filesize( $destination ) ) {
-			return new WP_Error( 'omnio_io_encode_failed', __( 'GD failed to write the WebP file.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'pixelkiln_io_encode_failed', __( 'GD failed to write the WebP file.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		return true;

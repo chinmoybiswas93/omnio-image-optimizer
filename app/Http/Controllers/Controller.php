@@ -2,10 +2,10 @@
 /**
  * Base REST controller.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Controllers;
+namespace PixelKilnImageOptimizer\App\Http\Controllers;
 
 use WP_Error;
 use WP_REST_Response;

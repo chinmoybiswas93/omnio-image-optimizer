@@ -2,15 +2,15 @@
 /**
  * Scheduled purge of expired backups.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Scheduler;
+namespace PixelKilnImageOptimizer\App\Hooks\Scheduler;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\App\Services\Backup\BackupManager;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
-use OmnioImageOptimizer\App\Services\Optimizer;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Services\Backup\BackupManager;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\App\Services\Optimizer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -24,7 +24,7 @@ class JobRunner {
 	/**
 	 * Cron hook name.
 	 */
-	const HOOK = 'omnio_io_purge_backups';
+	const HOOK = 'pixelkiln_io_purge_backups';
 
 	/**
 	 * How many rows to process per run.

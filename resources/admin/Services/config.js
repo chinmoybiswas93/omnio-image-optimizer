@@ -5,6 +5,6 @@
  * never touch a global directly.
  */
 
-const config = window.omnioImageOptimizer || {};
+const config = window.pixelKilnImageOptimizer || {};
 
 export default config;

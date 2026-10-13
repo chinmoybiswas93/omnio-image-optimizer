@@ -49,10 +49,10 @@ const Tabs = ( { tabs, initial, children } ) => {
 	const current = tabs.find( ( t ) => t.name === active ) || tabs[ 0 ];
 
 	return (
-		<div className="oio-tabs">
+		<div className="pkio-tabs">
 			{ /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role */ }
 			<div
-				className="oio-tabs__list"
+				className="pkio-tabs__list"
 				role="tablist"
 				onKeyDown={ onKeyDown }
 			>
@@ -65,13 +65,13 @@ const Tabs = ( { tabs, initial, children } ) => {
 							ref={ ( el ) => ( refs.current[ tab.name ] = el ) }
 							type="button"
 							role="tab"
-							id={ `oio-tab-${ tab.name }` }
-							aria-controls={ `oio-tabpanel-${ tab.name }` }
+							id={ `pkio-tab-${ tab.name }` }
+							aria-controls={ `pkio-tabpanel-${ tab.name }` }
 							aria-selected={ isActive }
 							tabIndex={ isActive ? 0 : -1 }
 							// Reserves the bold width so activating a tab cannot reflow the row.
 							data-title={ tab.title }
-							className={ `oio-tabs__tab${
+							className={ `pkio-tabs__tab${
 								isActive ? ' is-active' : ''
 							}` }
 							onClick={ () => setActive( tab.name ) }
@@ -83,10 +83,10 @@ const Tabs = ( { tabs, initial, children } ) => {
 			</div>
 
 			<div
-				className="oio-tabs__panel"
+				className="pkio-tabs__panel"
 				role="tabpanel"
-				id={ `oio-tabpanel-${ current.name }` }
-				aria-labelledby={ `oio-tab-${ current.name }` }
+				id={ `pkio-tabpanel-${ current.name }` }
+				aria-labelledby={ `pkio-tab-${ current.name }` }
 				tabIndex={ 0 }
 			>
 				{ children( current ) }

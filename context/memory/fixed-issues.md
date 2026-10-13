@@ -13,6 +13,19 @@ last one matters most. "Closed" is not the same as "proven everywhere".
 
 ---
 
+## I-20 — An Author could optimize or restore any user's images through REST (2026-10-12, unit 15)
+
+`MediaPolicy` checked only the global `upload_files` + `edit_posts`, never the IDs in the request,
+and `AttachmentConverter` checks only the post type. An Author could therefore convert an admin's
+image — deleting the original and rewriting posts they cannot edit — or restore one and drop its
+backup. Found by `/security-review`, not by a test. Fixed by requiring `edit_post` on every ID in
+the policy; one failure refuses the whole request. Proven live as an Author (200 before, 403
+after; own images still allowed) — see `specs/Done/15-rest-object-auth-and-source-link.md`.
+Not proven: the converter itself still has no ownership check, so any future entry point that
+skips `MediaPolicy` must add its own.
+
+---
+
 ## I-17 — Block editor showed nothing; a second bookkeeping-desync path fed the same class of bug I-16 closed (2026-08-23, no unit)
 
 **A fourth finding, from a follow-up browser pass after this entry first closed:**
@@ -41,13 +54,13 @@ Three more findings from the original investigation, on a freshly reset cb-test.
 **No status/error UI in Gutenberg.** `expose_to_js()` only reaches attachment
 data fetched via admin-ajax `query-attachments` (`wp_prepare_attachment_for_js`).
 The block editor's Image/Gallery blocks read attachments over
-`/wp/v2/media/...`, which never runs that filter, so `omnioImageOptimizer`
+`/wp/v2/media/...`, which never runs that filter, so `pixelKilnImageOptimizer`
 was silently absent there — the panel rendered by `resources/media/media.js`
 never even runs, since that bundle patches the classic Backbone
 `wp.media.view.Attachment.Details`, not anything the block editor uses.
 Closed by extracting the payload logic out of `expose_to_js()` into
 `MediaLibraryHandler::optimization_payload()`, exposing it via a new
-`register_rest_field('attachment', 'omnioImageOptimizer', ...)`
+`register_rest_field('attachment', 'pixelKilnImageOptimizer', ...)`
 (`RestFieldHandler`), and adding a small React bundle (`resources/editor/`,
 `enqueue_block_editor_assets`) that reads the field and renders the same
 panel inside a selected `core/image` block's `InspectorControls`. Verified
@@ -91,7 +104,7 @@ nothing" pattern — not a modification of `reconcile()` itself) corrects
 `post_mime_type` from the actual file and, only when a prior row with real
 `original_size` data exists, restores the log row to `optimized` with
 `backup_path` deliberately left empty so `BackupManager::reconcile()` picks
-it up next. Exposed as `wp omnio-image-optimizer repair-mime` and
+it up next. Exposed as `wp pixelkiln-image-optimizer repair-mime` and
 `POST reconcile-mime`, documented to run *before* `repair-backups` — same
 "repair before sweep" ordering invariant 26 already established. Verified
 live: deliberately corrupted attachment #30 the way the bug did, ran
@@ -303,7 +316,7 @@ checks and the zip itself were never put through `wp plugin check`.
 
 CLI PHP here has no Imagick; the site's web PHP does, and it is the production engine. So every
 harness run was exercising an engine users never get. `tests/php/run.sh --web` now runs the
-harnesses under the site's php-fpm, and `OIO_TEST_ENGINE` forces one per run with the harness
+harnesses under the site's php-fpm, and `PKIO_TEST_ENGINE` forces one per run with the harness
 asserting on the engine actually recorded — "used" is proven rather than assumed.
 
 ## I-1 — PHPCS never run (Unit 09)

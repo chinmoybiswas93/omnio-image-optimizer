@@ -2,13 +2,13 @@
 /**
  * Bulk run endpoints.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Controllers;
+namespace PixelKilnImageOptimizer\App\Http\Controllers;
 
-use OmnioImageOptimizer\App\Services\Bulk\Coordinator;
-use OmnioImageOptimizer\App\Services\Bulk\Runner;
+use PixelKilnImageOptimizer\App\Services\Bulk\Coordinator;
+use PixelKilnImageOptimizer\App\Services\Bulk\Runner;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;

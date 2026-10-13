@@ -28,8 +28,8 @@ timing out. `max_execution_time = 0` (CLI) assumes a 15 s budget.
 maps are merged, and `DatabaseRewriter::replace()` runs **once per batch**. One table scan
 instead of one per image.
 
-State lives in the `omnio_io_bulk_progress` option, so closing the tab and
-returning resumes. A `omnio_io_bulk_lock` transient stops two admins colliding.
+State lives in the `pixelkiln_io_bulk_progress` option, so closing the tab and
+returning resumes. A `pixelkiln_io_bulk_lock` transient stops two admins colliding.
 Only the last 50 errors are kept so the option cannot grow unbounded.
 
 ## Dry run
@@ -59,11 +59,11 @@ POST /backups/purge
 ## WP-CLI
 
 ```bash
-wp omnio-image-optimizer optimize --dry-run
-wp omnio-image-optimizer optimize --all [--limit=N] [--batch=25]
-wp omnio-image-optimizer optimize --id=123
-wp omnio-image-optimizer restore --all|--id=123
-wp omnio-image-optimizer stats
+wp pixelkiln-image-optimizer optimize --dry-run
+wp pixelkiln-image-optimizer optimize --all [--limit=N] [--batch=25]
+wp pixelkiln-image-optimizer optimize --id=123
+wp pixelkiln-image-optimizer restore --all|--id=123
+wp pixelkiln-image-optimizer stats
 ```
 
 This is the recommended path for a large library: no execution limit, no browser tab.

@@ -6,7 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'OmnioImageOptimizer\\Framework\\' => array($baseDir . '/framework'),
-    'OmnioImageOptimizer\\App\\' => array($baseDir . '/app'),
-    'OmnioImageOptimizer\\Api\\' => array($baseDir . '/api'),
+    'PixelKilnImageOptimizer\\Framework\\' => array($baseDir . '/framework'),
+    'PixelKilnImageOptimizer\\App\\' => array($baseDir . '/app'),
+    'PixelKilnImageOptimizer\\Api\\' => array($baseDir . '/api'),
 );

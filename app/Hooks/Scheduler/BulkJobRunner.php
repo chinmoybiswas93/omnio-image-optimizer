@@ -2,13 +2,13 @@
 /**
  * Cron driver for bulk optimization.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Scheduler;
+namespace PixelKilnImageOptimizer\App\Hooks\Scheduler;
 
-use OmnioImageOptimizer\App\App;
-use OmnioImageOptimizer\App\Services\Bulk\Runner;
+use PixelKilnImageOptimizer\App\App;
+use PixelKilnImageOptimizer\App\Services\Bulk\Runner;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -33,7 +33,7 @@ class BulkJobRunner {
 	/**
 	 * Cron hook name.
 	 */
-	const HOOK = 'omnio_io_bulk_batch';
+	const HOOK = 'pixelkiln_io_bulk_batch';
 
 	/**
 	 * Register hooks.

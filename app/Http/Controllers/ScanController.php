@@ -2,12 +2,12 @@
 /**
  * Library scan endpoints.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Controllers;
+namespace PixelKilnImageOptimizer\App\Http\Controllers;
 
-use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
+use PixelKilnImageOptimizer\App\Services\Bulk\ScanRunner;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;

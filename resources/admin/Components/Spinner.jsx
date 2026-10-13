@@ -7,7 +7,7 @@
 
 const Spinner = ( { className = '' } ) => (
 	<span
-		className={ [ 'oio-spinner', className ].filter( Boolean ).join( ' ' ) }
+		className={ [ 'pkio-spinner', className ].filter( Boolean ).join( ' ' ) }
 		role="status"
 		aria-hidden="true"
 	/>

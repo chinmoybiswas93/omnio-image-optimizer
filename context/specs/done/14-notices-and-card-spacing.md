@@ -3,7 +3,7 @@
 ## Goal
 
 Two user-reported defects on the **Bulk Optimize** screen
-(`upload.php?page=omnio-image-optimizer`, screen id `media_page_omnio-image-optimizer`):
+(`upload.php?page=pixelkiln-image-optimizer`, screen id `media_page_pixelkiln-image-optimizer`):
 
 1. **I-10 (reopened)** — other plugins' admin notices render on this plugin's page. In this
    plugin's UI, only this plugin's own notices and toasts appear.
@@ -53,7 +53,7 @@ not `$wpdb`, so `agent.md`'s "never `global $wpdb`" rule does not apply — but 
 written into the docblock so a later reader does not file it as a smell. Each priority bucket is
 copied before iterating, because `remove_action()` mutates the structure being walked.
 
-**Escape hatch:** `apply_filters( 'omnio_io_hide_foreign_notices', true )`. If a
+**Escape hatch:** `apply_filters( 'pixelkiln_io_hide_foreign_notices', true )`. If a
 host's critical notice is ever the thing a user needs to see, there is a one-line way back.
 
 `.wp-header-end` stays — the plugin's own two notices still ride the same hooks and still need
@@ -71,9 +71,9 @@ in the order the user chose to keep.
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| Info notice flush against the Bulk optimize button | `.oio-notice` has `margin: 0 0 16px` — bottom only | `.oio-actions + .oio-notice { margin-top: 16px }`, scoped to the adjacency rather than changing the shared `.oio-notice` margin every screen uses |
-| Dangling gap under the last notice | Same bottom margin, on top of the card body's 24px padding | `.oio-card__body > :last-child { margin-bottom: 0 }` |
-| "Preview what would change" unstyled, flush against the button | `.oio-dryrun__panel` has **no rule at all** — grep across `resources/styles/` returns nothing | A `.oio-dryrun__panel` block mirroring `.oio-scanmeta__details`, including a focus ring on `summary:focus-visible` — a `<summary>` is interactive, and every other control on this screen keeps one |
+| Info notice flush against the Bulk optimize button | `.pkio-notice` has `margin: 0 0 16px` — bottom only | `.pkio-actions + .pkio-notice { margin-top: 16px }`, scoped to the adjacency rather than changing the shared `.pkio-notice` margin every screen uses |
+| Dangling gap under the last notice | Same bottom margin, on top of the card body's 24px padding | `.pkio-card__body > :last-child { margin-bottom: 0 }` |
+| "Preview what would change" unstyled, flush against the button | `.pkio-dryrun__panel` has **no rule at all** — grep across `resources/styles/` returns nothing | A `.pkio-dryrun__panel` block mirroring `.pkio-scanmeta__details`, including a focus ring on `summary:focus-visible` — a `<summary>` is interactive, and every other control on this screen keeps one |
 
 **Honest limit.** No rule in the source produces literal *overlap*; what the source produces is
 zero separation, which is what `image-8.png`'s abutting boxes are consistent with. If after the
@@ -93,7 +93,7 @@ missing-build notice surviving, closures counting as foreign, `upload.php` and `
 untouched, and the filter escape hatch. Suite total 33 + 9 + 68 + 131.
 
 **What is *not* established: the word "overlap".** `image-8.png` reads as boxes overlapping by
-some pixels. Nothing in the source produces overlap — `.oio-notice`'s missing top margin produces
+some pixels. Nothing in the source produces overlap — `.pkio-notice`'s missing top margin produces
 *zero separation*, which is what abutting boxes look like. The fix is correct for zero separation
 and was verified through the compiled `build/admin.css`. If a real page load still shows overlap,
 this unit did not close I-15 and the cause is still unfound. Recorded in the I-15 entry and added

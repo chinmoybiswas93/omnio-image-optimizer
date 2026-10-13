@@ -1,1 +1,1 @@
-{"nodes": [{"id": "playwright_config_config", "label": "Playwright Config", "file_type": "code", "source_file": "playwright.config.js", "source_location": "L3-18", "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}
+{"nodes": [{"id": "playwright_config", "label": "Playwright e2e config (tests/e2e, cb-test.local)", "file_type": "code", "source_file": "playwright.config.js", "source_location": "L3", "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

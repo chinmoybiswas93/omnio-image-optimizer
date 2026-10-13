@@ -2,10 +2,10 @@
 /**
  * Dependency container.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Framework;
+namespace PixelKilnImageOptimizer\Framework;
 
 use ReflectionClass;
 use ReflectionNamedType;

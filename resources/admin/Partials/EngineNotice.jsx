@@ -9,12 +9,12 @@ const EngineNotice = ( { engine, engines } ) => {
 			( k ) => engines[ k ]
 		);
 		return (
-			<p className="oio-muted">
+			<p className="pkio-muted">
 				{ sprintf(
 					/* translators: 1: active engine, 2: available engines. */
 					__(
 						'Using the %1$s engine. Available here: %2$s.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					),
 					engine,
 					available.join( ', ' )
@@ -27,7 +27,7 @@ const EngineNotice = ( { engine, engines } ) => {
 		<Notice status="error" isDismissible={ false }>
 			{ __(
 				'No image conversion engine is available on this server. Ask your host to enable GD with WebP support, or Imagick.',
-				'omnio-image-optimizer'
+				'pixelkiln-image-optimizer'
 			) }
 		</Notice>
 	);

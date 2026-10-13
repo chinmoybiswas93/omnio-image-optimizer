@@ -19,7 +19,7 @@
  * Driven by `tests/php/run.sh --web`, which creates the token, makes the
  * request, and deletes the token afterwards.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 // phpcs:disable
@@ -75,14 +75,14 @@ if ( isset( $_GET['engine'] ) ) {
 	$engine = preg_replace( '/[^a-z]/', '', strtolower( (string) $_GET['engine'] ) );
 
 	if ( in_array( $engine, array( 'imagick', 'cwebp', 'gd', 'auto' ), true ) ) {
-		putenv( 'OIO_TEST_ENGINE=' . $engine );
-		$_ENV['OIO_TEST_ENGINE'] = $engine;
+		putenv( 'PKIO_TEST_ENGINE=' . $engine );
+		$_ENV['PKIO_TEST_ENGINE'] = $engine;
 	}
 }
 
 // Harnesses are written for CLI and check PHP_SAPI; tell the bootstrap this
 // request is a deliberate exception.
-define( 'OIO_HARNESS_WEB', true );
+define( 'PKIO_HARNESS_WEB', true );
 
 set_time_limit( 600 );
 

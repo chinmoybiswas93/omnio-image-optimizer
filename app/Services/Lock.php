@@ -2,10 +2,10 @@
 /**
  * Cross-request mutual exclusion.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services;
+namespace PixelKilnImageOptimizer\App\Services;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

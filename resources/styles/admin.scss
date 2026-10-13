@@ -9,40 +9,40 @@
 @use 'controls';
 @use 'modal';
 
-$oio-space-xs: 4px;
-$oio-space-sm: 8px;
-$oio-space-md: 16px;
-$oio-space-lg: 24px;
-$oio-space-xl: 32px;
+$pkio-space-xs: 4px;
+$pkio-space-sm: 8px;
+$pkio-space-md: 16px;
+$pkio-space-lg: 24px;
+$pkio-space-xl: 32px;
 
-$oio-brand: #3858e9;
-$oio-brand-dark: #2c3fc0;
-$oio-success: #008a20;
-$oio-warning: #bd8600;
-$oio-danger: #d63638;
+$pkio-brand: #3858e9;
+$pkio-brand-dark: #2c3fc0;
+$pkio-success: #008a20;
+$pkio-warning: #bd8600;
+$pkio-danger: #d63638;
 
-$oio-text: #1e1e1e;
-$oio-text-muted: #757575;
-$oio-border: #e3e5e8;
-$oio-border-light: #f0f0f1;
-$oio-bg-subtle: #f6f7f7;
+$pkio-text: #1e1e1e;
+$pkio-text-muted: #757575;
+$pkio-border: #e3e5e8;
+$pkio-border-light: #f0f0f1;
+$pkio-bg-subtle: #f6f7f7;
 
-$oio-radius: 10px;
-$oio-radius-sm: 8px;
-$oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.05 );
+$pkio-radius: 10px;
+$pkio-radius-sm: 8px;
+$pkio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.05 );
 
-.oio-app {
+.pkio-app {
 	max-width: 1120px;
-	margin: $oio-space-md 0 $oio-space-xl;
+	margin: $pkio-space-md 0 $pkio-space-xl;
 }
 
 /* Masthead --------------------------------------------------------------- */
 
-.oio-masthead {
+.pkio-masthead {
 	display: flex;
 	align-items: center;
-	gap: $oio-space-md;
-	margin-bottom: $oio-space-lg;
+	gap: $pkio-space-md;
+	margin-bottom: $pkio-space-lg;
 
 	&__mark {
 		flex: 0 0 auto;
@@ -61,18 +61,18 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 20px;
 		font-weight: 600;
 		line-height: 1.25;
-		color: $oio-text;
+		color: $pkio-text;
 	}
 
 	&__tagline {
 		margin: 2px 0 0;
 		font-size: 13px;
 		line-height: 1.4;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 }
 
-.oio-pill {
+.pkio-pill {
 	flex: 0 0 auto;
 	padding: 5px 12px;
 	border: 1px solid rgba( 56, 88, 233, 0.22 );
@@ -81,36 +81,36 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	font-size: 12px;
 	font-weight: 600;
 	line-height: 1.4;
-	color: $oio-brand;
+	color: $pkio-brand;
 	text-transform: capitalize;
 }
 
 /* Hero ------------------------------------------------------------------- */
 
-.oio-hero {
-	margin-bottom: $oio-space-lg;
+.pkio-hero {
+	margin-bottom: $pkio-space-lg;
 
 	&__body {
 		display: grid;
 		grid-template-columns: minmax( 220px, 320px ) 1fr;
 		align-items: center;
-		gap: $oio-space-lg;
-		padding: $oio-space-lg $oio-space-xl;
+		gap: $pkio-space-lg;
+		padding: $pkio-space-lg $pkio-space-xl;
 	}
 
 	&__label {
 		display: block;
 		font-size: 13px;
 		font-weight: 600;
-		color: $oio-text;
+		color: $pkio-text;
 	}
 
 	&__figure {
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: $oio-space-sm $oio-space-md;
-		margin: $oio-space-sm 0 $oio-space-xs;
+		gap: $pkio-space-sm $pkio-space-md;
+		margin: $pkio-space-sm 0 $pkio-space-xs;
 	}
 
 	&__value {
@@ -118,7 +118,7 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-weight: 700;
 		line-height: 1.05;
 		letter-spacing: -0.02em;
-		color: $oio-text;
+		color: $pkio-text;
 		font-variant-numeric: tabular-nums;
 	}
 
@@ -132,26 +132,26 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 13px;
 		font-weight: 600;
 		line-height: 1.3;
-		color: $oio-success;
+		color: $pkio-success;
 		white-space: nowrap;
 	}
 
 	&__sub {
 		display: block;
 		font-size: 13px;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 
 	&__metrics {
 		display: grid;
 		grid-template-columns: repeat( 3, 1fr );
-		gap: $oio-space-md;
-		padding-left: $oio-space-xl;
-		border-left: 1px solid $oio-border-light;
+		gap: $pkio-space-md;
+		padding-left: $pkio-space-xl;
+		border-left: 1px solid $pkio-border-light;
 	}
 }
 
-.oio-metric {
+.pkio-metric {
 	text-align: center;
 
 	&__icon {
@@ -160,22 +160,22 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		justify-content: center;
 		width: 44px;
 		height: 44px;
-		margin-bottom: $oio-space-sm;
+		margin-bottom: $pkio-space-sm;
 		border-radius: 12px;
 
 		&.is-blue {
 			background: rgba( 56, 88, 233, 0.1 );
-			color: $oio-brand;
+			color: $pkio-brand;
 		}
 
 		&.is-rose {
 			background: rgba( 214, 54, 56, 0.1 );
-			color: $oio-danger;
+			color: $pkio-danger;
 		}
 
 		&.is-green {
 			background: rgba( 0, 138, 32, 0.1 );
-			color: $oio-success;
+			color: $pkio-success;
 		}
 	}
 
@@ -184,25 +184,25 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-weight: 700;
 		line-height: 1.2;
 		letter-spacing: -0.01em;
-		color: $oio-text;
+		color: $pkio-text;
 		font-variant-numeric: tabular-nums;
 	}
 
 	&__label {
 		margin-top: 2px;
 		font-size: 13px;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 }
 
 /* Tabs ------------------------------------------------------------------- */
 
-.oio-tabs {
+.pkio-tabs {
 	&__list {
 		display: flex;
-		gap: $oio-space-xs;
-		margin-bottom: $oio-space-lg;
-		border-bottom: 1px solid $oio-border;
+		gap: $pkio-space-xs;
+		margin-bottom: $pkio-space-lg;
+		border-bottom: 1px solid $pkio-border;
 	}
 
 	// The indicator is the tab's own bottom border, pulled 1px down so it covers
@@ -211,7 +211,7 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	&__tab {
 		position: relative;
 		margin: 0 0 -1px;
-		padding: 12px $oio-space-md;
+		padding: 12px $pkio-space-md;
 		appearance: none;
 		background: none;
 		border: none;
@@ -220,7 +220,7 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 14px;
 		font-weight: 500;
 		line-height: 1.4;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 		cursor: pointer;
 		// Text colour may fade, but the underline must not: fading it means both
 		// the outgoing and incoming tab carry a part-coloured border for the
@@ -240,7 +240,7 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		}
 
 		&:hover {
-			color: $oio-text;
+			color: $pkio-text;
 		}
 
 		&:focus {
@@ -248,15 +248,15 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		}
 
 		&:focus-visible {
-			outline: 2px solid $oio-brand;
+			outline: 2px solid $pkio-brand;
 			outline-offset: -2px;
-			border-radius: $oio-radius-sm $oio-radius-sm 0 0;
+			border-radius: $pkio-radius-sm $pkio-radius-sm 0 0;
 		}
 
 		&.is-active {
 			font-weight: 600;
-			color: $oio-brand;
-			border-bottom-color: $oio-brand;
+			color: $pkio-brand;
+			border-bottom-color: $pkio-brand;
 		}
 	}
 
@@ -265,29 +265,29 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 
 	&__panel:focus-visible {
-		outline: 2px solid $oio-brand;
+		outline: 2px solid $pkio-brand;
 		outline-offset: 4px;
-		border-radius: $oio-radius-sm;
+		border-radius: $pkio-radius-sm;
 	}
 }
 
 @media ( prefers-reduced-motion: reduce ) {
-	.oio-tabs__tab {
+	.pkio-tabs__tab {
 		transition: none;
 	}
 }
 
 /* Sections --------------------------------------------------------------- */
 
-.oio-card {
-	margin-bottom: $oio-space-lg;
+.pkio-card {
+	margin-bottom: $pkio-space-lg;
 	background: #fff;
-	border: 1px solid $oio-border;
-	border-radius: $oio-radius;
-	box-shadow: $oio-shadow;
+	border: 1px solid $pkio-border;
+	border-radius: $pkio-radius;
+	box-shadow: $pkio-shadow;
 
 	&__body {
-		padding: $oio-space-lg;
+		padding: $pkio-space-lg;
 
 		// Notices carry a bottom margin so they separate from what follows.
 		// On the last one there is nothing to separate from, and it adds a dead
@@ -298,15 +298,15 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 }
 
-.oio-section {
+.pkio-section {
 	&__header {
 		display: flex;
 		align-items: flex-start;
 		justify-content: flex-start;
-		gap: $oio-space-md;
-		padding: $oio-space-md $oio-space-lg;
+		gap: $pkio-space-md;
+		padding: $pkio-space-md $pkio-space-lg;
 		background: #fff;
-		border-bottom: 1px solid $oio-border-light;
+		border-bottom: 1px solid $pkio-border-light;
 		text-align: left;
 	}
 
@@ -317,9 +317,9 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		flex: 0 0 auto;
 		width: 36px;
 		height: 36px;
-		border-radius: $oio-radius-sm;
+		border-radius: $pkio-radius-sm;
 		background: rgba( 56, 88, 233, 0.1 );
-		color: $oio-brand;
+		color: $pkio-brand;
 	}
 
 	&__heading {
@@ -334,7 +334,7 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 15px;
 		font-weight: 600;
 		line-height: 1.3;
-		color: $oio-text;
+		color: $pkio-text;
 	}
 
 	&__desc {
@@ -342,12 +342,12 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		font-size: 13px;
 		font-weight: 400;
 		line-height: 1.4;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 
 	// Consistent breathing room between stacked controls.
-	.oio-field {
-		margin-bottom: $oio-space-lg;
+	.pkio-field {
+		margin-bottom: $pkio-space-lg;
 
 		&:last-child {
 			margin-bottom: 0;
@@ -355,8 +355,8 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 }
 
-.oio-lede {
-	margin: 0 0 $oio-space-md;
+.pkio-lede {
+	margin: 0 0 $pkio-space-md;
 	font-size: 14px;
 	line-height: 1.6;
 	color: #50575e;
@@ -364,47 +364,47 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 
 /* Stats tiles ------------------------------------------------------------ */
 
-.oio-stats {
+.pkio-stats {
 	display: grid;
 	grid-template-columns: repeat( auto-fit, minmax( 150px, 1fr ) );
-	gap: $oio-space-md;
-	margin-bottom: $oio-space-md;
+	gap: $pkio-space-md;
+	margin-bottom: $pkio-space-md;
 }
 
-.oio-stat {
-	padding: $oio-space-md;
-	border: 1px solid $oio-border;
-	border-radius: $oio-radius-sm;
-	background: $oio-bg-subtle;
+.pkio-stat {
+	padding: $pkio-space-md;
+	border: 1px solid $pkio-border;
+	border-radius: $pkio-radius-sm;
+	background: $pkio-bg-subtle;
 
 	&__value {
 		font-size: 24px;
 		font-weight: 700;
 		line-height: 1.2;
-		color: $oio-text;
+		color: $pkio-text;
 		font-variant-numeric: tabular-nums;
 	}
 
 	&__label {
-		margin-top: $oio-space-xs;
+		margin-top: $pkio-space-xs;
 		font-size: 13px;
 		line-height: 1.4;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 
 	&.is-good &__value {
-		color: $oio-success;
+		color: $pkio-success;
 	}
 
 	&.is-warn &__value {
-		color: $oio-warning;
+		color: $pkio-warning;
 	}
 }
 
-.oio-muted {
-	margin: $oio-space-sm 0 0;
+.pkio-muted {
+	margin: $pkio-space-sm 0 0;
 	font-size: 13px;
-	color: $oio-text-muted;
+	color: $pkio-text-muted;
 }
 
 /* Library card ------------------------------------------------------------
@@ -413,127 +413,127 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
  * there were three - and one set of numbers, where there were two.
  */
 
-.oio-library {
+.pkio-library {
 	display: grid;
 	grid-template-columns: auto 1fr;
-	gap: $oio-space-lg;
+	gap: $pkio-space-lg;
 	align-items: center;
-	margin-bottom: $oio-space-md;
+	margin-bottom: $pkio-space-md;
 
 	&__facts {
 		min-width: 0;
 	}
 }
 
-.oio-scanmeta {
+.pkio-scanmeta {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: $oio-space-md;
-	margin-top: $oio-space-md;
+	gap: $pkio-space-md;
+	margin-top: $pkio-space-md;
 
 	&__time {
 		font-size: 13px;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 
 	&__stale {
-		margin: $oio-space-sm 0 0;
+		margin: $pkio-space-sm 0 0;
 		font-size: 13px;
-		color: $oio-warning;
+		color: $pkio-warning;
 	}
 
 	&__details {
-		margin-top: $oio-space-sm;
+		margin-top: $pkio-space-sm;
 		font-size: 13px;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 
 		summary {
 			cursor: pointer;
 		}
 
 		p {
-			margin: $oio-space-sm 0 0;
+			margin: $pkio-space-sm 0 0;
 		}
 	}
 }
 
 /* Run phases -------------------------------------------------------------- */
 
-.oio-phase {
-	margin-bottom: $oio-space-md;
+.pkio-phase {
+	margin-bottom: $pkio-space-md;
 
 	&__head {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: $oio-space-md;
-		margin-bottom: $oio-space-sm;
+		gap: $pkio-space-md;
+		margin-bottom: $pkio-space-sm;
 	}
 
 	&__label {
 		font-weight: 600;
-		color: $oio-text;
+		color: $pkio-text;
 	}
 
 	&__steps {
 		display: flex;
-		gap: $oio-space-xs;
+		gap: $pkio-space-xs;
 	}
 
 	&__dot {
 		width: 8px;
 		height: 8px;
 		border-radius: 999px;
-		background: $oio-border;
+		background: $pkio-border;
 
 		&.is-done {
-			background: $oio-brand;
+			background: $pkio-brand;
 		}
 	}
 }
 
 /* Progress --------------------------------------------------------------- */
 
-.oio-progress {
-	margin-bottom: $oio-space-md;
+.pkio-progress {
+	margin-bottom: $pkio-space-md;
 
 	&__bar {
 		height: 8px;
 		border-radius: 999px;
-		background: $oio-border-light;
+		background: $pkio-border-light;
 		overflow: hidden;
 	}
 
 	&__fill {
 		height: 100%;
 		border-radius: 999px;
-		background: linear-gradient( 90deg, $oio-brand, $oio-brand-dark );
+		background: linear-gradient( 90deg, $pkio-brand, $pkio-brand-dark );
 		transition: width 200ms ease;
 	}
 
 	&__meta {
 		display: flex;
 		flex-wrap: wrap;
-		gap: $oio-space-md;
-		margin-top: $oio-space-sm;
+		gap: $pkio-space-md;
+		margin-top: $pkio-space-sm;
 		font-size: 13px;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 
 		span:first-child {
 			font-weight: 600;
-			color: $oio-text;
+			color: $pkio-text;
 		}
 	}
 }
 
 /* Actions ---------------------------------------------------------------- */
 
-.oio-actions {
+.pkio-actions {
 	display: flex;
 	align-items: center;
-	gap: $oio-space-sm;
-	margin-top: $oio-space-md;
+	gap: $pkio-space-sm;
+	margin-top: $pkio-space-md;
 
 	// No progress bar or copy above it: don't leave a gap at the top of the body.
 	&:first-child {
@@ -542,27 +542,27 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 
 	/*
 	 * A notice explaining the button it follows - "everything is already
-	 * optimized", a stalled run, a resumable one. `.oio-notice` carries a
+	 * optimized", a stalled run, a resumable one. `.pkio-notice` carries a
 	 * bottom margin only, so without this it sits flush against the button.
-	 * Scoped to the adjacency rather than added to `.oio-notice` itself, which
+	 * Scoped to the adjacency rather than added to `.pkio-notice` itself, which
 	 * every screen in the plugin shares.
 	 */
-	+ .oio-notice {
-		margin-top: $oio-space-md;
+	+ .pkio-notice {
+		margin-top: $pkio-space-md;
 	}
 }
 
-.oio-savebar {
+.pkio-savebar {
 	position: sticky;
 	bottom: 0;
 	display: flex;
 	justify-content: flex-end;
-	gap: $oio-space-sm;
-	padding: $oio-space-md $oio-space-lg;
-	border: 1px solid $oio-border;
-	border-radius: $oio-radius;
+	gap: $pkio-space-sm;
+	padding: $pkio-space-md $pkio-space-lg;
+	border: 1px solid $pkio-border;
+	border-radius: $pkio-radius;
 	background: #fff;
-	box-shadow: $oio-shadow;
+	box-shadow: $pkio-shadow;
 }
 
 /* Dry run and failure lists ---------------------------------------------- */
@@ -570,16 +570,16 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 /*
  * The disclosure the dry run sits behind. It had no rule at all, so it rendered
  * with the browser's default marker and no margins - flush against the Bulk
- * optimize button below it. Follows `.oio-scanmeta__details`, the same pattern
+ * optimize button below it. Follows `.pkio-scanmeta__details`, the same pattern
  * solved once already above.
  */
-.oio-dryrun__panel {
-	margin: $oio-space-md 0;
+.pkio-dryrun__panel {
+	margin: $pkio-space-md 0;
 	font-size: 13px;
 
 	summary {
 		cursor: pointer;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 
 		&:focus {
 			outline: none;
@@ -588,32 +588,32 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		// A <summary> is a control, and every control on this screen keeps a
 		// visible ring - core supplies one for its own, not for ours.
 		&:focus-visible {
-			outline: 2px solid $oio-brand;
+			outline: 2px solid $pkio-brand;
 			outline-offset: 2px;
-			border-radius: $oio-radius-sm;
+			border-radius: $pkio-radius-sm;
 		}
 	}
 
 	// Space between the disclosure's own contents and the summary above them.
 	> *:not( summary ) {
-		margin-top: $oio-space-sm;
+		margin-top: $pkio-space-sm;
 	}
 }
 
-.oio-dryrun {
-	margin-top: $oio-space-md;
-	padding: $oio-space-md;
-	border: 1px solid $oio-border-light;
-	border-radius: $oio-radius-sm;
-	background: $oio-bg-subtle;
+.pkio-dryrun {
+	margin-top: $pkio-space-md;
+	padding: $pkio-space-md;
+	border: 1px solid $pkio-border-light;
+	border-radius: $pkio-radius-sm;
+	background: $pkio-bg-subtle;
 
 	p:first-child {
 		margin-top: 0;
 	}
 }
 
-.oio-tablecounts {
-	margin: $oio-space-sm 0 0;
+.pkio-tablecounts {
+	margin: $pkio-space-sm 0 0;
 	list-style: none;
 
 	li {
@@ -622,7 +622,7 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		max-width: 280px;
 		padding: 4px 0;
 		font-size: 13px;
-		border-bottom: 1px solid $oio-border-light;
+		border-bottom: 1px solid $pkio-border-light;
 
 		&:last-child {
 			border-bottom: none;
@@ -630,16 +630,16 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 
 	code {
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 		font-size: 12px;
 	}
 }
 
-.oio-errors {
-	margin-top: $oio-space-md;
+.pkio-errors {
+	margin-top: $pkio-space-md;
 
 	h4 {
-		margin: 0 0 $oio-space-sm;
+		margin: 0 0 $pkio-space-sm;
 		font-size: 14px;
 		font-weight: 600;
 	}
@@ -649,14 +649,14 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		max-height: 220px;
 		overflow-y: auto;
 		font-size: 13px;
-		border: 1px solid $oio-border-light;
-		border-radius: $oio-radius-sm;
+		border: 1px solid $pkio-border-light;
+		border-radius: $pkio-radius-sm;
 	}
 
 	li {
-		padding: $oio-space-sm $oio-space-md;
+		padding: $pkio-space-sm $pkio-space-md;
 		margin: 0;
-		border-bottom: 1px solid $oio-border-light;
+		border-bottom: 1px solid $pkio-border-light;
 
 		&:last-child {
 			border-bottom: none;
@@ -666,55 +666,55 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 
 /* Troubleshoot ----------------------------------------------------------- */
 
-.oio-diagnostics {
-	margin-bottom: $oio-space-lg;
+.pkio-diagnostics {
+	margin-bottom: $pkio-space-lg;
 
 	&:last-of-type {
-		margin-bottom: $oio-space-md;
+		margin-bottom: $pkio-space-md;
 	}
 
 	&__title {
-		margin: 0 0 $oio-space-sm;
+		margin: 0 0 $pkio-space-sm;
 		font-size: 12px;
 		font-weight: 600;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 
 	&__row {
 		display: grid;
 		grid-template-columns: minmax(0, 15em) minmax(0, 1fr) 10px;
-		gap: $oio-space-md;
+		gap: $pkio-space-md;
 		align-items: start;
-		padding: $oio-space-sm $oio-space-md;
-		border: 1px solid $oio-border-light;
+		padding: $pkio-space-sm $pkio-space-md;
+		border: 1px solid $pkio-border-light;
 		border-bottom: none;
 		background: #fff;
 
 		&:first-of-type {
-			border-radius: $oio-radius-sm $oio-radius-sm 0 0;
+			border-radius: $pkio-radius-sm $pkio-radius-sm 0 0;
 		}
 
 		&:last-of-type {
-			border-bottom: 1px solid $oio-border-light;
-			border-radius: 0 0 $oio-radius-sm $oio-radius-sm;
+			border-bottom: 1px solid $pkio-border-light;
+			border-radius: 0 0 $pkio-radius-sm $pkio-radius-sm;
 		}
 
 		&.is-warn,
 		&.is-error {
-			background: $oio-bg-subtle;
+			background: $pkio-bg-subtle;
 		}
 	}
 
 	&__label {
 		font-size: 13px;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 
 	&__value {
 		font-size: 13px;
-		color: $oio-text;
+		color: $pkio-text;
 
 		// Paths and version strings are long and have no spaces to break on.
 		overflow-wrap: anywhere;
@@ -722,10 +722,10 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 
 	&__hint {
 		display: block;
-		margin-top: $oio-space-xs;
+		margin-top: $pkio-space-xs;
 		font-size: 12px;
 		line-height: 1.5;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 
 	&__state {
@@ -733,24 +733,24 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 		height: 10px;
 		margin-top: 4px;
 		border-radius: 50%;
-		background: $oio-success;
+		background: $pkio-success;
 
 		&.is-warn {
-			background: $oio-warning;
+			background: $pkio-warning;
 		}
 
 		&.is-error {
-			background: $oio-danger;
+			background: $pkio-danger;
 		}
 	}
 }
 
-.oio-logtoolbar {
+.pkio-logtoolbar {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: $oio-space-md;
-	margin: $oio-space-md 0 $oio-space-sm;
+	gap: $pkio-space-md;
+	margin: $pkio-space-md 0 $pkio-space-sm;
 
 	&__filter {
 		flex: 1 1 auto;
@@ -758,19 +758,19 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 	}
 }
 
-.oio-logviewer {
+.pkio-logviewer {
 	height: 22em;
 	overflow: auto;
-	padding: $oio-space-md;
-	border: 1px solid $oio-border;
-	border-radius: $oio-radius-sm;
+	padding: $pkio-space-md;
+	border: 1px solid $pkio-border;
+	border-radius: $pkio-radius-sm;
 	background: #1d2327;
 	font-family: Menlo, Consolas, monaco, monospace;
 	font-size: 12px;
 	line-height: 1.6;
 	color: #c3c4c7;
 
-	.oio-muted {
+	.pkio-muted {
 		color: #8c8f94;
 	}
 
@@ -793,30 +793,30 @@ $oio-shadow: 0 1px 2px rgba( 16, 24, 40, 0.04 ), 0 4px 16px rgba( 16, 24, 40, 0.
 /* Narrow screens --------------------------------------------------------- */
 
 @media screen and ( max-width: 782px ) {
-	.oio-hero__body {
+	.pkio-hero__body {
 		grid-template-columns: 1fr;
-		padding: $oio-space-lg;
+		padding: $pkio-space-lg;
 	}
 
-	.oio-hero__metrics {
+	.pkio-hero__metrics {
 		padding-left: 0;
-		padding-top: $oio-space-lg;
+		padding-top: $pkio-space-lg;
 		border-left: none;
-		border-top: 1px solid $oio-border-light;
+		border-top: 1px solid $pkio-border-light;
 	}
 
-	.oio-masthead {
+	.pkio-masthead {
 		flex-wrap: wrap;
 	}
 
 	/* The ring stops sitting beside the figures and sits above them. */
-	.oio-library {
+	.pkio-library {
 		grid-template-columns: 1fr;
 		justify-items: center;
 		text-align: center;
 	}
 
-	.oio-scanmeta {
+	.pkio-scanmeta {
 		justify-content: center;
 	}
 }

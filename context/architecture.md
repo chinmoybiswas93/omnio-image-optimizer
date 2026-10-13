@@ -17,21 +17,21 @@ its own. **None of WordPress's UI components are used** — every control is the
 > exists — trust this file over any spec's file list. See [memory/units.md](memory/units.md).
 
 ```
-omnio-image-optimizer.php   IIFE bootstrap: constants, then boot/app.php + vendor/autoload.php
+pixelkiln-image-optimizer.php   IIFE bootstrap: constants, then boot/app.php + vendor/autoload.php
 uninstall.php               Drops tables + options via DBMigrator. Never deletes user media.
 
 boot/
 ├── app.php                 Returns the kernel closure: builds Application, registers activation/
 │                           deactivation handlers, runs the migrator on init.
 ├── bindings.php            Container singletons: rewriter, optimizer, converter, runner (+ class aliases)
-└── globals.php             omnio_io_app/_config/_view/_log helpers (composer files autoload)
+└── globals.php             pixelkiln_io_app/_config/_view/_log helpers (composer files autoload)
 
 config/                     Plain arrays, read via App::config()->get('app.slug')
 ├── app.php                 slug, text domain, hook prefix, rest_namespace/version, env
 ├── optimizer.php           Settings defaults and the bounds the sanitizer enforces
 └── vite.php                Dev-server host/port, only consulted when app.env is 'dev'
 
-framework/                  namespace OmnioImageOptimizer\Framework — the kernel
+framework/                  namespace PixelKilnImageOptimizer\Framework — the kernel
 ├── Application.php         Loads config, binds view/router, requires the hook manifests,
 │                           registers routes on rest_api_init
 ├── Container.php           bind/singleton/instance/alias + reflection auto-wiring
@@ -49,7 +49,7 @@ app/
 │   ├── Scheduler/JobRunner.php   Daily purge of expired backups
 │   ├── Scheduler/BulkJobRunner.php  Advances an active bulk run from cron
 │   ├── Scheduler/ScanJobRunner.php  Advances a running scan + the scan_frequency schedule
-│   └── CLI/Commands.php    wp omnio-image-optimizer optimize|restore|stats|diagnostics|logs|
+│   └── CLI/Commands.php    wp pixelkiln-image-optimizer optimize|restore|stats|diagnostics|logs|
 │                           requeue|rescan|repair-backups
 ├── Http/
 │   ├── Controllers/        Controller (base), Optimize, Bulk, Backup, Diagnostics, Log, Stats
@@ -69,11 +69,11 @@ app/
 └── Views/                  Plain-PHP templates
     └── admin/              admin_app.php (SPA mount) + parts/{notice,media-column}.php
 
-api/                        namespace OmnioImageOptimizer\Api — stable data-access layer
+api/                        namespace PixelKilnImageOptimizer\Api — stable data-access layer
 ├── StoreSettings.php       Options: defaults, sanitize, register_setting. Singleton aliased `settings`
 └── Resource/               BaseResourceApi + StatsResource (the dashboard aggregate)
 
-database/                   namespace OmnioImageOptimizer\Database, classmap-autoloaded
+database/                   namespace PixelKilnImageOptimizer\Database, classmap-autoloaded
 ├── DBMigrator.php          Schema version gate, migrator list, migrateUp/maybeMigrateDBChanges/dropTables
 ├── DataBackfills.php       Post-upgrade data migrations (url_map -> lookup table)
 └── Migrations/             LogMigrator, UrlMigrator — one dbDelta per table
@@ -118,7 +118,7 @@ so treat them as non-negotiable.
 | 17 | **The logger writes to a file, never to the database.** | It is called from inside the upload handler, cron and WP-CLI, and its whole job is to record what happened while the rewriter was modifying the database. Errors are always written; only the verbose trail is gated on the setting. |
 | 18 | **Cross-request locks use `add_option()`, not transients.** | `get_transient()` then `set_transient()` is check-then-set; two simultaneous requests both see "unlocked". The options table's unique key on `option_name` makes the database arbitrate. See `Services\Lock`. |
 | 19 | **The rewriter invalidates the objects it touched, never the whole cache.** Descriptors carry an `object` column and a cache `group`. | `wp_cache_flush()` once per batch discards a persistent object cache every few seconds during a bulk run — worst on the large sites that need bulk most. |
-| 20 | **Old URLs resolve from an indexed table** (`omnio_io_urls`), matched on full path before basename. | The 404 fallback was a `LIKE` over a LONGTEXT column: unindexable, and triggered by every bot probing an old filename. Basename-only matching also confused two images sharing a name in different month folders. |
+| 20 | **Old URLs resolve from an indexed table** (`pixelkiln_io_urls`), matched on full path before basename. | The 404 fallback was a `LIKE` over a LONGTEXT column: unindexable, and triggered by every bot probing an old filename. Basename-only matching also confused two images sharing a name in different month folders. |
 | 21 | **Uploaded originals are backed up before the source is deleted**, gated on `backup_uploads`, failing closed. | Without it an upload is a one-way door. The manifest is written in the same shape the converter path uses, so Restore needs no separate code path. |
 | 22 | **A column describing a file is not evidence the file exists.** Ask the disk: `BackupManager::manifest_is_intact()` before offering Restore, `AttachmentConverter::optimized_output_exists()` before reporting or refusing an optimization. | The database and the uploads directory can be restored from different points in time, and a plugin backup restore does exactly that. Trusting the column showed a whole library as processed with no way to optimize any of it, and offered Restores that could not succeed. Three of Unit 11's four reports were this same mistake. |
 | 23 | **A batch persists its pending rewrite map before applying it.** `Runner` parks `pending_rewrite`, rewrites, then clears it; the next batch flushes anything left behind. | Conversion writes a terminal log row per image but repoints references once per batch. A death in between leaves those images marked done forever with references pointing at filenames that no longer exist — `Scanner` never revisits a terminal row. Tolerable when a batch was one foreground request; not once cron runs batches unattended. |
@@ -157,7 +157,7 @@ a client shows. Two consumers call it, and neither duplicates its logic:
 - `expose_to_js()`, via `wp_prepare_attachment_for_js` — the classic
   Backbone media modal. `resources/media/media.js` patches
   `wp.media.view.Attachment.Details`/`.TwoColumn` to render it.
-- `RestFieldHandler`, via `register_rest_field('attachment', 'omnioImageOptimizer', ...)`
+- `RestFieldHandler`, via `register_rest_field('attachment', 'pixelKilnImageOptimizer', ...)`
   on the core REST attachment schema — the block editor, which fetches
   attachments over `/wp/v2/media`, not admin-ajax. `resources/editor/`
   (a separate, React `enqueue_block_editor_assets` bundle — `AssetHandler`'s
@@ -212,7 +212,7 @@ pages by primary key in batches of 500 so memory stays flat.
 
 ## Data model
 
-`{$wpdb->prefix}omnio_io_log` — one row per attachment the plugin has touched.
+`{$wpdb->prefix}pixelkiln_io_log` — one row per attachment the plugin has touched.
 This single table backs the stats dashboard, restore, bulk dedupe **and** the 404 fallback map.
 
 | Column | Notes |
@@ -229,7 +229,7 @@ This single table backs the stats dashboard, restore, bulk dedupe **and** the 40
 
 Indexes on `status` and `backup_expires`.
 
-`{$wpdb->prefix}omnio_io_urls` — the 404 fallback's lookup index, added in
+`{$wpdb->prefix}pixelkiln_io_urls` — the 404 fallback's lookup index, added in
 schema v3. One row per old file, not per URL variant: the absolute, protocol-relative and
 escaped forms in a `url_map` all reduce to the same path, and an incoming request only ever
 carries a path.
@@ -276,7 +276,7 @@ other.** GD remains the only in-process engine, and the only one the estimate st
 
 `CwebpEngine` never ships a binary. It checks `function_exists('exec')`, that `exec` is not in
 `disable_functions`, and that a binary exists at a known path or via the
-`omnio_io_cwebp_binary` filter — then escapes every argument. It also **declines any
+`pixelkiln_io_cwebp_binary` filter — then escapes every argument. It also **declines any
 JPEG whose EXIF orientation is not 1**: cwebp has no rotate option and `-metadata icc` discards
 the orientation flag, so it would write portrait photos permanently sideways. It reports
 `decodes_in_process() === false`, which exempts it from the memory estimate — as does Imagick,
@@ -286,7 +286,7 @@ for the reason given above.
 
 | Filter / action | Purpose |
 |---|---|
-| `omnio_io_should_optimize_upload` | Veto conversion for a given upload |
-| `omnio_io_has_memory` | Override the memory-safety estimate |
-| `omnio_io_cwebp_binary` | Point at a cwebp in a non-standard location |
-| `omnio_io_urls_rewritten` | Fires after a rewrite — page caches hook this to purge |
+| `pixelkiln_io_should_optimize_upload` | Veto conversion for a given upload |
+| `pixelkiln_io_has_memory` | Override the memory-safety estimate |
+| `pixelkiln_io_cwebp_binary` | Point at a cwebp in a non-standard location |
+| `pixelkiln_io_urls_rewritten` | Fires after a rewrite — page caches hook this to purge |

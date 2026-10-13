@@ -2,16 +2,16 @@
 /**
  * Media Library integration.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Handlers;
+namespace PixelKilnImageOptimizer\App\Hooks\Handlers;
 
-use OmnioImageOptimizer\App\App;
-use OmnioImageOptimizer\App\Services\AttachmentConverter;
-use OmnioImageOptimizer\App\Services\Backup\BackupManager;
-use OmnioImageOptimizer\App\Services\Bulk\Scanner;
-use OmnioImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\App;
+use PixelKilnImageOptimizer\App\Services\AttachmentConverter;
+use PixelKilnImageOptimizer\App\Services\Backup\BackupManager;
+use PixelKilnImageOptimizer\App\Services\Bulk\Scanner;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -44,7 +44,7 @@ class MediaLibraryHandler {
 	 * @return array
 	 */
 	public function add_column( $columns ) {
-		$columns['omnio_io'] = __( 'Optimization', 'omnio-image-optimizer' );
+		$columns['pixelkiln_io'] = __( 'Optimization', 'pixelkiln-image-optimizer' );
 
 		return $columns;
 	}
@@ -57,7 +57,7 @@ class MediaLibraryHandler {
 	 * @return void
 	 */
 	public function render_column( $column, $attachment_id ) {
-		if ( 'omnio_io' !== $column ) {
+		if ( 'pixelkiln_io' !== $column ) {
 			return;
 		}
 
@@ -85,7 +85,7 @@ class MediaLibraryHandler {
 
 			return array(
 				'state'   => 'pending',
-				'primary' => __( 'Not optimized', 'omnio-image-optimizer' ),
+				'primary' => __( 'Not optimized', 'pixelkiln-image-optimizer' ),
 				'detail'  => '',
 			);
 		}
@@ -99,8 +99,8 @@ class MediaLibraryHandler {
 			&& ! AttachmentConverter::optimized_output_exists( $attachment_id, $row ) ) {
 			return array(
 				'state'   => 'pending',
-				'primary' => __( 'Not optimized', 'omnio-image-optimizer' ),
-				'detail'  => __( 'A previous result was recorded but its file is missing.', 'omnio-image-optimizer' ),
+				'primary' => __( 'Not optimized', 'pixelkiln-image-optimizer' ),
+				'detail'  => __( 'A previous result was recorded but its file is missing.', 'pixelkiln-image-optimizer' ),
 			);
 		}
 
@@ -113,12 +113,12 @@ class MediaLibraryHandler {
 					'state'   => 'optimized',
 					'primary' => sprintf(
 						/* translators: %s: percentage saved. */
-						__( '%s%% smaller', 'omnio-image-optimizer' ),
+						__( '%s%% smaller', 'pixelkiln-image-optimizer' ),
 						number_format_i18n( $percent, 1 )
 					),
 					'detail'  => sprintf(
 						/* translators: 1: original size, 2: optimized size. */
-						__( '%1$s to %2$s', 'omnio-image-optimizer' ),
+						__( '%1$s to %2$s', 'pixelkiln-image-optimizer' ),
 						size_format( (int) $row['original_size'] ),
 						size_format( (int) $row['optimized_size'] )
 					),
@@ -134,14 +134,14 @@ class MediaLibraryHandler {
 			case OptimizationLog::STATUS_FAILED:
 				return array(
 					'state'   => 'failed',
-					'primary' => __( 'Failed', 'omnio-image-optimizer' ),
+					'primary' => __( 'Failed', 'pixelkiln-image-optimizer' ),
 					'detail'  => self::reason_label( $row['reason'] ),
 				);
 
 			case OptimizationLog::STATUS_RESTORED:
 				return array(
 					'state'   => 'restored',
-					'primary' => __( 'Restored to original', 'omnio-image-optimizer' ),
+					'primary' => __( 'Restored to original', 'pixelkiln-image-optimizer' ),
 					'detail'  => '',
 				);
 		}
@@ -160,17 +160,17 @@ class MediaLibraryHandler {
 	 */
 	public static function reason_label( $reason ) {
 		$labels = array(
-			'skipped-larger'      => __( 'Already efficient, WebP would be larger', 'omnio-image-optimizer' ),
-			'insufficient-memory' => __( 'Too large for the available memory', 'omnio-image-optimizer' ),
-			'unsupported-format'  => __( 'Format not supported', 'omnio-image-optimizer' ),
-			'already-webp'        => __( 'Already WebP', 'omnio-image-optimizer' ),
-			'png-disabled'        => __( 'PNG conversion is off', 'omnio-image-optimizer' ),
-			'no-engine'           => __( 'No conversion engine available', 'omnio-image-optimizer' ),
-			'missing-file'        => __( 'File missing on disk', 'omnio-image-optimizer' ),
-			'backup-copy-failed'  => __( 'Backup could not be written', 'omnio-image-optimizer' ),
-			'insufficient-disk'   => __( 'Not enough free disk space to back up safely', 'omnio-image-optimizer' ),
-			'animated-image'      => __( 'Animated, so it was left as it is', 'omnio-image-optimizer' ),
-			'engine-unsupported'  => __( 'No engine here can convert it correctly', 'omnio-image-optimizer' ),
+			'skipped-larger'      => __( 'Already efficient, WebP would be larger', 'pixelkiln-image-optimizer' ),
+			'insufficient-memory' => __( 'Too large for the available memory', 'pixelkiln-image-optimizer' ),
+			'unsupported-format'  => __( 'Format not supported', 'pixelkiln-image-optimizer' ),
+			'already-webp'        => __( 'Already WebP', 'pixelkiln-image-optimizer' ),
+			'png-disabled'        => __( 'PNG conversion is off', 'pixelkiln-image-optimizer' ),
+			'no-engine'           => __( 'No conversion engine available', 'pixelkiln-image-optimizer' ),
+			'missing-file'        => __( 'File missing on disk', 'pixelkiln-image-optimizer' ),
+			'backup-copy-failed'  => __( 'Backup could not be written', 'pixelkiln-image-optimizer' ),
+			'insufficient-disk'   => __( 'Not enough free disk space to back up safely', 'pixelkiln-image-optimizer' ),
+			'animated-image'      => __( 'Animated, so it was left as it is', 'pixelkiln-image-optimizer' ),
+			'engine-unsupported'  => __( 'No engine here can convert it correctly', 'pixelkiln-image-optimizer' ),
 		);
 
 		return isset( $labels[ $reason ] ) ? $labels[ $reason ] : ucfirst( str_replace( '-', ' ', (string) $reason ) );
@@ -194,11 +194,11 @@ class MediaLibraryHandler {
 		if ( $row && OptimizationLog::STATUS_OPTIMIZED === $row['status']
 			&& AttachmentConverter::optimized_output_exists( $post->ID, $row ) ) {
 			if ( BackupManager::manifest_is_intact( $row['backup_path'] ) ) {
-				$actions['omnio_restore'] = sprintf(
-					'<a href="%s" class="oio-row-action oio-row-action--restore" data-action="restore" data-id="%d">%s</a>',
+				$actions['pixelkiln_restore'] = sprintf(
+					'<a href="%s" class="pkio-row-action pkio-row-action--restore" data-action="restore" data-id="%d">%s</a>',
 					esc_url( $this->action_url( 'restore', $post->ID ) ),
 					(int) $post->ID,
-					esc_html__( 'Restore original', 'omnio-image-optimizer' )
+					esc_html__( 'Restore original', 'pixelkiln-image-optimizer' )
 				);
 			}
 
@@ -209,11 +209,11 @@ class MediaLibraryHandler {
 			return $actions;
 		}
 
-		$actions['omnio_optimize'] = sprintf(
-			'<a href="%s" class="oio-row-action oio-row-action--optimize" data-action="optimize" data-id="%d">%s</a>',
+		$actions['pixelkiln_optimize'] = sprintf(
+			'<a href="%s" class="pkio-row-action pkio-row-action--optimize" data-action="optimize" data-id="%d">%s</a>',
 			esc_url( $this->action_url( 'optimize', $post->ID ) ),
 			(int) $post->ID,
-			esc_html__( 'Optimize', 'omnio-image-optimizer' )
+			esc_html__( 'Optimize', 'pixelkiln-image-optimizer' )
 		);
 
 		return $actions;
@@ -230,12 +230,12 @@ class MediaLibraryHandler {
 		return wp_nonce_url(
 			add_query_arg(
 				array(
-					'omnio_io_action' => $action,
+					'pixelkiln_io_action' => $action,
 					'attachment_id'                => (int) $id,
 				),
 				admin_url( 'upload.php' )
 			),
-			'omnio_io_' . $action . '_' . $id
+			'pixelkiln_io_' . $action . '_' . $id
 		);
 	}
 
@@ -246,8 +246,8 @@ class MediaLibraryHandler {
 	 * @return array
 	 */
 	public function add_bulk_actions( $actions ) {
-		$actions['omnio_io_optimize'] = __( 'Optimize images', 'omnio-image-optimizer' );
-		$actions['omnio_io_restore']  = __( 'Restore originals', 'omnio-image-optimizer' );
+		$actions['pixelkiln_io_optimize'] = __( 'Optimize images', 'pixelkiln-image-optimizer' );
+		$actions['pixelkiln_io_restore']  = __( 'Restore originals', 'pixelkiln-image-optimizer' );
 
 		return $actions;
 	}
@@ -263,7 +263,7 @@ class MediaLibraryHandler {
 	public function handle_bulk_action( $redirect, $action, $ids ) {
 		$converter = App::make( 'converter' );
 
-		if ( 'omnio_io_optimize' === $action ) {
+		if ( 'pixelkiln_io_optimize' === $action ) {
 			$done = 0;
 
 			foreach ( (array) $ids as $id ) {
@@ -272,10 +272,10 @@ class MediaLibraryHandler {
 				}
 			}
 
-			return add_query_arg( 'omnio_io_optimized', $done, $redirect );
+			return add_query_arg( 'pixelkiln_io_optimized', $done, $redirect );
 		}
 
-		if ( 'omnio_io_restore' === $action ) {
+		if ( 'pixelkiln_io_restore' === $action ) {
 			$done = 0;
 
 			foreach ( (array) $ids as $id ) {
@@ -284,7 +284,7 @@ class MediaLibraryHandler {
 				}
 			}
 
-			return add_query_arg( 'omnio_io_restored', $done, $redirect );
+			return add_query_arg( 'pixelkiln_io_restored', $done, $redirect );
 		}
 
 		return $redirect;
@@ -322,16 +322,16 @@ class MediaLibraryHandler {
 		$this->maybe_handle_row_action();
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display of a count set by our own redirect.
-		$optimized = isset( $_GET['omnio_io_optimized'] ) ? absint( $_GET['omnio_io_optimized'] ) : null;
+		$optimized = isset( $_GET['pixelkiln_io_optimized'] ) ? absint( $_GET['pixelkiln_io_optimized'] ) : null;
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display of a count set by our own redirect.
-		$restored = isset( $_GET['omnio_io_restored'] ) ? absint( $_GET['omnio_io_restored'] ) : null;
+		$restored = isset( $_GET['pixelkiln_io_restored'] ) ? absint( $_GET['pixelkiln_io_restored'] ) : null;
 
 		if ( null !== $optimized ) {
 			$this->notice(
 				'success',
 				sprintf(
 					/* translators: %d: number of images. */
-					_n( '%d image optimized.', '%d images optimized.', $optimized, 'omnio-image-optimizer' ),
+					_n( '%d image optimized.', '%d images optimized.', $optimized, 'pixelkiln-image-optimizer' ),
 					$optimized
 				)
 			);
@@ -342,7 +342,7 @@ class MediaLibraryHandler {
 				'success',
 				sprintf(
 					/* translators: %d: number of images. */
-					_n( '%d image restored.', '%d images restored.', $restored, 'omnio-image-optimizer' ),
+					_n( '%d image restored.', '%d images restored.', $restored, 'pixelkiln-image-optimizer' ),
 					$restored
 				)
 			);
@@ -356,7 +356,7 @@ class MediaLibraryHandler {
 	 */
 	private function maybe_handle_row_action() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- The nonce is verified immediately below.
-		$action = isset( $_GET['omnio_io_action'] ) ? sanitize_key( wp_unslash( $_GET['omnio_io_action'] ) ) : '';
+		$action = isset( $_GET['pixelkiln_io_action'] ) ? sanitize_key( wp_unslash( $_GET['pixelkiln_io_action'] ) ) : '';
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- The nonce is verified immediately below.
 		$id = isset( $_GET['attachment_id'] ) ? absint( $_GET['attachment_id'] ) : 0;
 
@@ -364,10 +364,10 @@ class MediaLibraryHandler {
 			return;
 		}
 
-		check_admin_referer( 'omnio_io_' . $action . '_' . $id );
+		check_admin_referer( 'pixelkiln_io_' . $action . '_' . $id );
 
 		if ( ! current_user_can( 'edit_post', $id ) ) {
-			wp_die( esc_html__( 'You are not allowed to modify this image.', 'omnio-image-optimizer' ) );
+			wp_die( esc_html__( 'You are not allowed to modify this image.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$converter = App::make( 'converter' );
@@ -382,8 +382,8 @@ class MediaLibraryHandler {
 		$this->notice(
 			'success',
 			'optimize' === $action
-				? __( 'Image optimized.', 'omnio-image-optimizer' )
-				: __( 'Original restored.', 'omnio-image-optimizer' )
+				? __( 'Image optimized.', 'pixelkiln-image-optimizer' )
+				: __( 'Original restored.', 'pixelkiln-image-optimizer' )
 		);
 	}
 
@@ -398,7 +398,7 @@ class MediaLibraryHandler {
 		$payload = self::optimization_payload( $attachment->ID );
 
 		if ( null !== $payload ) {
-			$response['omnioImageOptimizer'] = $payload;
+			$response['pixelKilnImageOptimizer'] = $payload;
 		}
 
 		return $response;

@@ -2,14 +2,14 @@
 /**
  * Core single-image optimization routine.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services;
+namespace PixelKilnImageOptimizer\App\Services;
 
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Services\Engine\EngineFactory;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,7 +39,7 @@ class Optimizer {
 	 *
 	 * A subdirectory of the plugin's one folder rather than a sibling of it.
 	 */
-	const TEMP_DIRNAME = 'omnio-image-optimizer/temp';
+	const TEMP_DIRNAME = 'pixelkiln-image-optimizer/temp';
 
 	/**
 	 * Decide whether a file should be converted at all.
@@ -50,33 +50,33 @@ class Optimizer {
 	 */
 	public function can_optimize( $file, $mime ) {
 		if ( ! $file || ! file_exists( $file ) || ! is_readable( $file ) ) {
-			return new WP_Error( 'missing-file', __( 'The file does not exist or is not readable.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'missing-file', __( 'The file does not exist or is not readable.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		if ( 'image/webp' === $mime ) {
-			return new WP_Error( 'already-webp', __( 'The image is already a WebP.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'already-webp', __( 'The image is already a WebP.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		if ( ! in_array( $mime, self::CONVERTIBLE, true ) ) {
-			return new WP_Error( 'unsupported-format', __( 'This image format is not converted.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'unsupported-format', __( 'This image format is not converted.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		if ( 'image/png' === $mime && ! StoreSettings::get( 'convert_png' ) ) {
-			return new WP_Error( 'png-disabled', __( 'PNG conversion is disabled in settings.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'png-disabled', __( 'PNG conversion is disabled in settings.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		if ( 'image/png' === $mime && $this->is_animated_png( $file ) ) {
-			return new WP_Error( 'animated-image', __( 'Animated images are left alone, because converting one would keep only its first frame.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'animated-image', __( 'Animated images are left alone, because converting one would keep only its first frame.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		if ( ! EngineFactory::chain() ) {
-			return new WP_Error( 'no-engine', __( 'No image conversion engine is available on this server.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'no-engine', __( 'No image conversion engine is available on this server.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$engines = EngineFactory::for_file( $file, $mime );
 
 		if ( ! $engines ) {
-			return new WP_Error( 'engine-unsupported', __( 'No engine on this server can convert this image correctly.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'engine-unsupported', __( 'No engine on this server can convert this image correctly.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		// The memory estimate models an in-process decode. It says nothing
@@ -92,7 +92,7 @@ class Optimizer {
 			wp_raise_memory_limit( 'image' );
 
 			if ( ! $this->has_memory_for( $file, $this->effective_max_dimension() ) ) {
-				return new WP_Error( 'insufficient-memory', __( 'The image is too large to process within the available memory limit.', 'omnio-image-optimizer' ) );
+				return new WP_Error( 'insufficient-memory', __( 'The image is too large to process within the available memory limit.', 'pixelkiln-image-optimizer' ) );
 			}
 		}
 
@@ -194,7 +194,7 @@ class Optimizer {
 
 			$larger = new WP_Error(
 				'skipped-larger',
-				__( 'The converted image was not smaller than the original, so the original was kept.', 'omnio-image-optimizer' ),
+				__( 'The converted image was not smaller than the original, so the original was kept.', 'pixelkiln-image-optimizer' ),
 				array(
 					'original_size'  => $original_size,
 					'optimized_size' => $optimized_size,
@@ -340,7 +340,7 @@ class Optimizer {
 		 * @param int    $available Bytes remaining under the memory limit.
 		 * @param string $file      Absolute path to the image.
 		 */
-		return (bool) apply_filters( 'omnio_io_has_memory', $required < $available, $required, $available, $file );
+		return (bool) apply_filters( 'pixelkiln_io_has_memory', $required < $available, $required, $available, $file );
 	}
 
 	/**
@@ -392,12 +392,12 @@ class Optimizer {
 		// finished file is renamed into it moments later. Checking here means
 		// that failure surfaces before any encoding work is done.
 		if ( ! wp_is_writable( dirname( $file ) ) ) {
-			return new WP_Error( 'directory-not-writable', __( 'The uploads directory is not writable.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'directory-not-writable', __( 'The uploads directory is not writable.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		// Written to a directory of its own rather than beside the source. A
 		// process killed mid-conversion cannot clean up after itself, and a
-		// stray omnio-tmp-*.webp sitting in a month folder gets picked up by
+		// stray pixelkiln-tmp-*.webp sitting in a month folder gets picked up by
 		// media scanners and site backups as though it were real content.
 		$dir = self::temp_dir();
 
@@ -405,7 +405,7 @@ class Optimizer {
 			return $dir;
 		}
 
-		return trailingslashit( $dir ) . wp_unique_filename( $dir, 'omnio-tmp-' . wp_generate_password( 8, false ) . '.webp' );
+		return trailingslashit( $dir ) . wp_unique_filename( $dir, 'pixelkiln-tmp-' . wp_generate_password( 8, false ) . '.webp' );
 	}
 
 	/**
@@ -418,7 +418,7 @@ class Optimizer {
 		$dir     = trailingslashit( $uploads['basedir'] ) . self::TEMP_DIRNAME;
 
 		if ( ! is_dir( $dir ) && ! wp_mkdir_p( $dir ) ) {
-			return new WP_Error( 'temp-dir-failed', __( 'The temporary directory could not be created.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'temp-dir-failed', __( 'The temporary directory could not be created.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$htaccess = $dir . '/.htaccess';
@@ -429,7 +429,7 @@ class Optimizer {
 		}
 
 		if ( ! wp_is_writable( $dir ) ) {
-			return new WP_Error( 'directory-not-writable', __( 'The uploads directory is not writable.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'directory-not-writable', __( 'The uploads directory is not writable.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		return $dir;
@@ -448,7 +448,7 @@ class Optimizer {
 			return 0;
 		}
 
-		$files = glob( trailingslashit( $dir ) . 'omnio-tmp-*.webp' );
+		$files = glob( trailingslashit( $dir ) . 'pixelkiln-tmp-*.webp' );
 
 		if ( ! is_array( $files ) ) {
 			return 0;
@@ -483,7 +483,7 @@ class Optimizer {
 			return 0;
 		}
 
-		$files = glob( trailingslashit( $dir ) . 'omnio-tmp-*.webp' );
+		$files = glob( trailingslashit( $dir ) . 'pixelkiln-tmp-*.webp' );
 
 		if ( ! is_array( $files ) ) {
 			return 0;

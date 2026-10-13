@@ -71,6 +71,6 @@ updating during a live run, stop actually stopping, settings persisting, and the
 dialogs appearing.
 
 Not built: the media **grid** modal sidebar panel. `wp_prepare_attachment_for_js` already
-attaches a `omnioImageOptimizer` key with status, sizes, reason and `canRestore`, but nothing
+attaches a `pixelKilnImageOptimizer` key with status, sizes, reason and `canRestore`, but nothing
 consumes it. The list-view column is currently the only place status is visible. Drafted as
 Unit 09.

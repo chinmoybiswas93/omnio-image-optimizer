@@ -2,13 +2,13 @@
 /**
  * Serves the WebP when an old image URL is requested.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Rewrite;
+namespace PixelKilnImageOptimizer\App\Services\Rewrite;
 
-use OmnioImageOptimizer\App\Models\UrlLookup;
-use OmnioImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Models\UrlLookup;
+use PixelKilnImageOptimizer\Api\StoreSettings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -108,8 +108,8 @@ class Fallback404 {
 	 * @return string Replacement URL, or an empty string when unknown.
 	 */
 	private function lookup( $filename, $relative_path = '' ) {
-		$cache_key = 'omnio_io_404_' . md5( $relative_path . '|' . $filename );
-		$cached    = wp_cache_get( $cache_key, 'omnio-image-optimizer' );
+		$cache_key = 'pixelkiln_io_404_' . md5( $relative_path . '|' . $filename );
+		$cached    = wp_cache_get( $cache_key, 'pixelkiln-image-optimizer' );
 
 		if ( false !== $cached ) {
 			return (string) $cached;
@@ -119,7 +119,7 @@ class Fallback404 {
 
 		// Cached either way. A miss is the common case under a bot sweeping
 		// old URLs, and it is the case that must not reach the database twice.
-		wp_cache_set( $cache_key, $replacement, 'omnio-image-optimizer', HOUR_IN_SECONDS );
+		wp_cache_set( $cache_key, $replacement, 'pixelkiln-image-optimizer', HOUR_IN_SECONDS );
 
 		return $replacement;
 	}

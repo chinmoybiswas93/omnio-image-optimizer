@@ -37,19 +37,19 @@ const formatBytes = ( bytes ) => {
 const STATUS_META = {
 	optimized: {
 		dot: 'is-success',
-		label: __( 'Image Optimized', 'omnio-image-optimizer' ),
+		label: __( 'Image Optimized', 'pixelkiln-image-optimizer' ),
 	},
 	skipped: {
 		dot: 'is-muted',
-		label: __( 'Not Optimized', 'omnio-image-optimizer' ),
+		label: __( 'Not Optimized', 'pixelkiln-image-optimizer' ),
 	},
 	failed: {
 		dot: 'is-danger',
-		label: __( 'Optimization Failed', 'omnio-image-optimizer' ),
+		label: __( 'Optimization Failed', 'pixelkiln-image-optimizer' ),
 	},
 	restored: {
 		dot: 'is-muted',
-		label: __( 'Restored to Original', 'omnio-image-optimizer' ),
+		label: __( 'Restored to Original', 'pixelkiln-image-optimizer' ),
 	},
 };
 
@@ -110,22 +110,22 @@ export default function Panel( { attachmentId } ) {
 	}
 
 	return (
-		<div className={ `oio-panel ${ meta ? `is-${ data.status }` : '' }` }>
-			<div className="oio-panel__brand">
+		<div className={ `pkio-panel ${ meta ? `is-${ data.status }` : '' }` }>
+			<div className="pkio-panel__brand">
 				<span>
-					{ __( 'Omnio Image Optimizer', 'omnio-image-optimizer' ) }
+					{ __( 'PixelKiln Image Optimizer', 'pixelkiln-image-optimizer' ) }
 				</span>
 			</div>
 
 			{ meta && (
-				<div className="oio-panel__head">
-					<span className={ `oio-panel__dot ${ meta.dot }` } />
+				<div className="pkio-panel__head">
+					<span className={ `pkio-panel__dot ${ meta.dot }` } />
 					<strong>{ meta.label }</strong>
 					{ optimized && (
-						<span className="oio-panel__percent">
+						<span className="pkio-panel__percent">
 							{ sprintf(
 								/* translators: %s: percentage saved. */
-								__( 'Saved %s%%', 'omnio-image-optimizer' ),
+								__( 'Saved %s%%', 'pixelkiln-image-optimizer' ),
 								data.percent
 							) }
 						</span>
@@ -135,10 +135,10 @@ export default function Panel( { attachmentId } ) {
 
 			{ optimized && (
 				<>
-					<div className="oio-panel__sizes">
+					<div className="pkio-panel__sizes">
 						{ sprintf(
 							/* translators: 1: original size, 2: optimized size. */
-							__( '%1$s → %2$s', 'omnio-image-optimizer' ),
+							__( '%1$s → %2$s', 'pixelkiln-image-optimizer' ),
 							formatBytes( data.originalSize ),
 							formatBytes( data.optimizedSize )
 						) }
@@ -147,20 +147,20 @@ export default function Panel( { attachmentId } ) {
 					{ data.canRestore ? (
 						<Button
 							variant="tertiary"
-							className="oio-panel__restore"
+							className="pkio-panel__restore"
 							isBusy={ busy }
 							onClick={ () => runAction( 'restore' ) }
 						>
 							{ __(
 								'Restore original',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							) }
 						</Button>
 					) : (
-						<p className="oio-panel__note">
+						<p className="pkio-panel__note">
 							{ __(
 								'No original stored, so this cannot be restored.',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							) }
 						</p>
 					) }
@@ -170,25 +170,25 @@ export default function Panel( { attachmentId } ) {
 			{ ! optimized && (
 				<>
 					{ data.reason && (
-						<p className="oio-panel__reason">{ data.reason }</p>
+						<p className="pkio-panel__reason">{ data.reason }</p>
 					) }
 
 					{ data.canOptimize && (
 						<Button
 							variant="secondary"
-							className="oio-panel__optimize"
+							className="pkio-panel__optimize"
 							isBusy={ busy }
 							onClick={ () => runAction( 'optimize' ) }
 						>
 							{ data.reason
-								? __( 'Try again', 'omnio-image-optimizer' )
-								: __( 'Optimize', 'omnio-image-optimizer' ) }
+								? __( 'Try again', 'pixelkiln-image-optimizer' )
+								: __( 'Optimize', 'pixelkiln-image-optimizer' ) }
 						</Button>
 					) }
 				</>
 			) }
 
-			{ error && <p className="oio-panel__error">{ error }</p> }
+			{ error && <p className="pkio-panel__error">{ error }</p> }
 		</div>
 	);
 }

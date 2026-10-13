@@ -173,7 +173,7 @@ const SettingsPage = ( { values, setValues } ) => {
 						'pixelkiln-image-optimizer'
 					) }
 					help={ __(
-						'Catches references the rewriter could not reach, such as hotlinks and cached pages.',
+						'Catches references the rewriter could not reach, such as hotlinks and cached pages. Needs pretty permalinks and a server that passes missing image requests to WordPress.',
 						'pixelkiln-image-optimizer'
 					) }
 					checked={ bool( 'enable_404_fallback' ) }

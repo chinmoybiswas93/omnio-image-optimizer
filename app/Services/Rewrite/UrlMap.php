@@ -2,10 +2,10 @@
 /**
  * Builds the old-to-new URL pairs for a converted attachment.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Rewrite;
+namespace PixelKilnImageOptimizer\App\Services\Rewrite;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

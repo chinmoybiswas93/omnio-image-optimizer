@@ -2,14 +2,14 @@
 /**
  * Plugin deactivation.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Handlers;
+namespace PixelKilnImageOptimizer\App\Hooks\Handlers;
 
-use OmnioImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
-use OmnioImageOptimizer\App\Hooks\Scheduler\JobRunner;
-use OmnioImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\JobRunner;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -39,6 +39,6 @@ class DeactivationHandler {
         // something cleared it.
         ScanJobRunner::unschedule();
 
-        do_action('omnio_io/deactivated');
+        do_action('pixelkiln_io/deactivated');
     }
 }

@@ -2,13 +2,13 @@
 /**
  * Post-upgrade data migrations.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Database;
+namespace PixelKilnImageOptimizer\Database;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\App\Models\UrlLookup;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Models\UrlLookup;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

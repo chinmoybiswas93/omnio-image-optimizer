@@ -2,10 +2,10 @@
 /**
  * Argument schema for starting a library scan.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Requests;
+namespace PixelKilnImageOptimizer\App\Http\Requests;
 
 if ( ! defined('ABSPATH')) {
     exit;

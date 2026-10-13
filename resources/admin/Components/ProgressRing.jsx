@@ -56,13 +56,13 @@ const ProgressRing = ( {
 		valueText ||
 		sprintf(
 			/* translators: %d: percentage of the library optimized. */
-			__( '%d%% of your library is optimized.', 'omnio-image-optimizer' ),
+			__( '%d%% of your library is optimized.', 'pixelkiln-image-optimizer' ),
 			value
 		);
 
 	return (
 		<div
-			className="oio-ring"
+			className="pkio-ring"
 			style={ { width: size, height: size } }
 			role="progressbar"
 			aria-valuenow={ value }
@@ -72,7 +72,7 @@ const ProgressRing = ( {
 		>
 			{ /* Decorative: every figure it encodes is in aria-valuetext above. */ }
 			<svg
-				className="oio-ring__svg"
+				className="pkio-ring__svg"
 				width={ size }
 				height={ size }
 				viewBox={ `0 0 ${ size } ${ size }` }
@@ -80,7 +80,7 @@ const ProgressRing = ( {
 				focusable="false"
 			>
 				<circle
-					className="oio-ring__track"
+					className="pkio-ring__track"
 					cx={ size / 2 }
 					cy={ size / 2 }
 					r={ radius }
@@ -96,7 +96,7 @@ const ProgressRing = ( {
 				 */ }
 				{ muted > 0 && (
 					<circle
-						className="oio-ring__muted"
+						className="pkio-ring__muted"
 						cx={ size / 2 }
 						cy={ size / 2 }
 						r={ radius }
@@ -111,7 +111,7 @@ const ProgressRing = ( {
 				) }
 
 				<circle
-					className="oio-ring__value"
+					className="pkio-ring__value"
 					cx={ size / 2 }
 					cy={ size / 2 }
 					r={ radius }
@@ -130,12 +130,12 @@ const ProgressRing = ( {
 			 * HTML rather than <text>, so the caption inherits the admin font
 			 * stack and a long translation wraps instead of overflowing.
 			 */ }
-			<div className="oio-ring__center">
-				<span className="oio-ring__figure">
+			<div className="pkio-ring__center">
+				<span className="pkio-ring__figure">
 					{ label ?? `${ value }%` }
 				</span>
 				{ caption && (
-					<span className="oio-ring__caption">{ caption }</span>
+					<span className="pkio-ring__caption">{ caption }</span>
 				) }
 			</div>
 		</div>

@@ -2,13 +2,13 @@
 /**
  * Statistics endpoint.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Controllers;
+namespace PixelKilnImageOptimizer\App\Http\Controllers;
 
-use OmnioImageOptimizer\Api\Resource\StatsResource;
-use OmnioImageOptimizer\App\Services\Backup\BackupManager;
+use PixelKilnImageOptimizer\Api\Resource\StatsResource;
+use PixelKilnImageOptimizer\App\Services\Backup\BackupManager;
 use WP_REST_Response;
 
 if ( ! defined('ABSPATH')) {

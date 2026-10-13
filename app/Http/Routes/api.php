@@ -1,25 +1,25 @@
 <?php
 /**
- * Admin API routes, under omnio-image-optimizer/v1.
+ * Admin API routes, under pixelkiln-image-optimizer/v1.
  *
  * The URLs here are load-bearing: the admin bundle calls them by path, so a
  * rename is a breaking change for anyone running a cached build.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-use OmnioImageOptimizer\Framework\Router;
-use OmnioImageOptimizer\App\Http\Controllers\BackupController;
-use OmnioImageOptimizer\App\Http\Controllers\BulkController;
-use OmnioImageOptimizer\App\Http\Controllers\DiagnosticsController;
-use OmnioImageOptimizer\App\Http\Controllers\LogController;
-use OmnioImageOptimizer\App\Http\Controllers\OptimizeController;
-use OmnioImageOptimizer\App\Http\Controllers\ScanController;
-use OmnioImageOptimizer\App\Http\Controllers\StatsController;
-use OmnioImageOptimizer\App\Http\Requests\BulkStartRequest;
-use OmnioImageOptimizer\App\Http\Requests\LogQueryRequest;
-use OmnioImageOptimizer\App\Http\Requests\OptimizeRequest;
-use OmnioImageOptimizer\App\Http\Requests\ScanStartRequest;
+use PixelKilnImageOptimizer\Framework\Router;
+use PixelKilnImageOptimizer\App\Http\Controllers\BackupController;
+use PixelKilnImageOptimizer\App\Http\Controllers\BulkController;
+use PixelKilnImageOptimizer\App\Http\Controllers\DiagnosticsController;
+use PixelKilnImageOptimizer\App\Http\Controllers\LogController;
+use PixelKilnImageOptimizer\App\Http\Controllers\OptimizeController;
+use PixelKilnImageOptimizer\App\Http\Controllers\ScanController;
+use PixelKilnImageOptimizer\App\Http\Controllers\StatsController;
+use PixelKilnImageOptimizer\App\Http\Requests\BulkStartRequest;
+use PixelKilnImageOptimizer\App\Http\Requests\LogQueryRequest;
+use PixelKilnImageOptimizer\App\Http\Requests\OptimizeRequest;
+use PixelKilnImageOptimizer\App\Http\Requests\ScanStartRequest;
 
 if ( ! defined('ABSPATH')) {
     exit;

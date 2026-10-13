@@ -9,7 +9,7 @@
 
 @use 'controls' as ctl;
 
-.oio-modal__backdrop {
+.pkio-modal__backdrop {
 	position: fixed;
 	inset: 0;
 	// Core's media modal sits at 160000 and the admin menu below that. This
@@ -18,23 +18,23 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: ctl.$oio-space-md;
+	padding: ctl.$pkio-space-md;
 	background: rgba(0, 0, 0, 0.5);
-	animation: oio-modal-fade 120ms ease-out;
+	animation: pkio-modal-fade 120ms ease-out;
 }
 
-.oio-modal {
+.pkio-modal {
 	display: flex;
 	flex-direction: column;
 	width: min(460px, 100%);
-	max-height: calc(100vh - #{ctl.$oio-space-lg * 2});
+	max-height: calc(100vh - #{ctl.$pkio-space-lg * 2});
 	background: #fff;
 	border-radius: 6px;
 	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-	color: ctl.$oio-text;
+	color: ctl.$pkio-text;
 	font-size: 13px;
 	line-height: 1.6;
-	animation: oio-modal-in 140ms ease-out;
+	animation: pkio-modal-in 140ms ease-out;
 
 	&:focus {
 		outline: none;
@@ -43,8 +43,8 @@
 	&__head {
 		display: flex;
 		align-items: flex-start;
-		gap: ctl.$oio-space-sm;
-		padding: ctl.$oio-space-md ctl.$oio-space-md ctl.$oio-space-sm;
+		gap: ctl.$pkio-space-sm;
+		padding: ctl.$pkio-space-md ctl.$pkio-space-md ctl.$pkio-space-sm;
 	}
 
 	&__title {
@@ -53,7 +53,7 @@
 		font-size: 16px;
 		font-weight: 600;
 		line-height: 1.4;
-		color: ctl.$oio-text;
+		color: ctl.$pkio-text;
 	}
 
 	&__dismiss {
@@ -63,25 +63,25 @@
 		border: 0;
 		font-size: 20px;
 		line-height: 1;
-		color: ctl.$oio-text-muted;
+		color: ctl.$pkio-text-muted;
 		cursor: pointer;
 
 		&:hover {
-			color: ctl.$oio-text;
+			color: ctl.$pkio-text;
 		}
 
 		&:focus-visible {
-			@include ctl.oio-focus-ring;
+			@include ctl.pkio-focus-ring;
 		}
 	}
 
 	&__body {
 		flex: 1 1 auto;
 		overflow-y: auto;
-		padding: 0 ctl.$oio-space-md ctl.$oio-space-md;
+		padding: 0 ctl.$pkio-space-md ctl.$pkio-space-md;
 
 		p {
-			margin: 0 0 ctl.$oio-space-sm;
+			margin: 0 0 ctl.$pkio-space-sm;
 			font-size: 13px;
 			line-height: 1.6;
 
@@ -98,42 +98,42 @@
 	&__foot {
 		display: flex;
 		justify-content: flex-end;
-		gap: ctl.$oio-space-sm;
-		padding: ctl.$oio-space-sm ctl.$oio-space-md ctl.$oio-space-md;
-		border-top: 1px solid ctl.$oio-border;
+		gap: ctl.$pkio-space-sm;
+		padding: ctl.$pkio-space-sm ctl.$pkio-space-md ctl.$pkio-space-md;
+		border-top: 1px solid ctl.$pkio-border;
 	}
 
 	// The typed-confirmation input, matching the other text controls.
 	&__confirm-field {
-		margin-top: ctl.$oio-space-md;
+		margin-top: ctl.$pkio-space-md;
 	}
 
 	&__input {
 		width: 100%;
 		max-width: 220px;
 		min-height: 32px;
-		padding: 0 ctl.$oio-space-sm;
+		padding: 0 ctl.$pkio-space-sm;
 		background: #fff;
-		border: 1px solid ctl.$oio-border-strong;
-		border-radius: ctl.$oio-radius-sm;
+		border: 1px solid ctl.$pkio-border-strong;
+		border-radius: ctl.$pkio-radius-sm;
 		font-size: 13px;
 		font-family: monospace;
 		letter-spacing: 0.04em;
-		color: ctl.$oio-text;
+		color: ctl.$pkio-text;
 
 		&:focus {
-			border-color: ctl.$oio-brand;
-			@include ctl.oio-focus-ring;
+			border-color: ctl.$pkio-brand;
+			@include ctl.pkio-focus-ring;
 		}
 	}
 
 	// A destructive dialog says so before the operator reaches the buttons.
 	&--destructive &__title {
-		color: ctl.$oio-danger-dark;
+		color: ctl.$pkio-danger-dark;
 	}
 }
 
-@keyframes oio-modal-fade {
+@keyframes pkio-modal-fade {
 	from {
 		opacity: 0;
 	}
@@ -143,7 +143,7 @@
 	}
 }
 
-@keyframes oio-modal-in {
+@keyframes pkio-modal-in {
 	from {
 		opacity: 0;
 		transform: translateY(8px) scale(0.98);
@@ -157,8 +157,8 @@
 
 // Respect a reduced-motion preference rather than animating regardless.
 @media (prefers-reduced-motion: reduce) {
-	.oio-modal,
-	.oio-modal__backdrop {
+	.pkio-modal,
+	.pkio-modal__backdrop {
 		animation: none;
 	}
 }

@@ -5,7 +5,7 @@
  * Removes the plugin's own data. User media is never touched, and backups are
  * left in place so an accidental uninstall cannot destroy original images.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -19,7 +19,7 @@ global $wpdb;
 // models, so a single-file require is no longer enough.
 require_once __DIR__ . '/vendor/autoload.php';
 
-\OmnioImageOptimizer\Database\DBMigrator::dropTables();
+\PixelKilnImageOptimizer\Database\DBMigrator::dropTables();
 
 /**
  * Remove one of the plugin's own working directories inside uploads.
@@ -31,7 +31,7 @@ require_once __DIR__ . '/vendor/autoload.php';
  * @param string $name Directory name inside uploads.
  * @return void
  */
-function omnio_io_remove_dir( $name ) {
+function pixelkiln_io_remove_dir( $name ) {
 	$uploads = wp_get_upload_dir();
 
 	if ( ! empty( $uploads['error'] ) ) {
@@ -57,29 +57,29 @@ function omnio_io_remove_dir( $name ) {
 	@rmdir( $dir ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir, WordPress.PHP.NoSilencedErrors.Discouraged -- Removing the plugin's own now-empty directory during uninstall; a directory left behind by a failed removal is harmless.
 }
 
-omnio_io_remove_dir( 'omnio-image-optimizer/logs' );
-omnio_io_remove_dir( 'omnio-image-optimizer/temp' );
+pixelkiln_io_remove_dir( 'pixelkiln-image-optimizer/logs' );
+pixelkiln_io_remove_dir( 'pixelkiln-image-optimizer/temp' );
 
 /*
  * Then the parent, which only succeeds once it is empty.
  *
- * `omnio-image-optimizer/backup` is deliberately not removed - those are the
+ * `pixelkiln-image-optimizer/backup` is deliberately not removed - those are the
  * user's original images and often the only copy. rmdir() refuses a directory
  * that still has anything in it, so this tidies up after an install that never
  * backed anything up, and leaves the folder alone the moment it holds
  * originals. Nothing here globs into the backup directory.
  */
-omnio_io_remove_dir( 'omnio-image-optimizer' );
+pixelkiln_io_remove_dir( 'pixelkiln-image-optimizer' );
 
-delete_option( 'omnio_io_settings' );
-delete_option( 'omnio_io_schema_version' );
-delete_option( 'omnio_io_bulk_progress' );
-delete_option( 'omnio_io_log_suffix' );
-delete_option( 'omnio_io_bulk_lock' );
-delete_option( 'omnio_io_bulk_phase' );
-delete_option( 'omnio_io_library_scan' );
-delete_option( 'omnio_io_scan_progress' );
-delete_option( 'omnio_io_scan_lock' );
+delete_option( 'pixelkiln_io_settings' );
+delete_option( 'pixelkiln_io_schema_version' );
+delete_option( 'pixelkiln_io_bulk_progress' );
+delete_option( 'pixelkiln_io_log_suffix' );
+delete_option( 'pixelkiln_io_bulk_lock' );
+delete_option( 'pixelkiln_io_bulk_phase' );
+delete_option( 'pixelkiln_io_library_scan' );
+delete_option( 'pixelkiln_io_scan_progress' );
+delete_option( 'pixelkiln_io_scan_lock' );
 
 // Per-attachment conversion locks are options rather than transients, so they
 // need clearing explicitly. Normally released as each conversion ends; a
@@ -88,12 +88,12 @@ delete_option( 'omnio_io_scan_lock' );
 $wpdb->query(
 	$wpdb->prepare(
 		"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
-		$wpdb->esc_like( 'omnio_io_lock_' ) . '%'
+		$wpdb->esc_like( 'pixelkiln_io_lock_' ) . '%'
 	)
 );
 
-delete_transient( 'omnio_io_stats' );
+delete_transient( 'pixelkiln_io_stats' );
 
-wp_clear_scheduled_hook( 'omnio_io_purge_backups' );
-wp_clear_scheduled_hook( 'omnio_io_scan_batch' );
-wp_clear_scheduled_hook( 'omnio_io_scheduled_scan' );
+wp_clear_scheduled_hook( 'pixelkiln_io_purge_backups' );
+wp_clear_scheduled_hook( 'pixelkiln_io_scan_batch' );
+wp_clear_scheduled_hook( 'pixelkiln_io_scheduled_scan' );

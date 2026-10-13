@@ -2,12 +2,12 @@
 /**
  * Media-editor policy.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Policies;
+namespace PixelKilnImageOptimizer\App\Http\Policies;
 
-use OmnioImageOptimizer\App\Http\Requests\OptimizeRequest;
+use PixelKilnImageOptimizer\App\Http\Requests\OptimizeRequest;
 use WP_REST_Request;
 
 if ( ! defined('ABSPATH')) {

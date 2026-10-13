@@ -2,17 +2,17 @@
 /**
  * REST exposure of the optimization payload.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Handlers;
+namespace PixelKilnImageOptimizer\App\Hooks\Handlers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Adds `omnioImageOptimizer` to the core attachment REST response.
+ * Adds `pixelKilnImageOptimizer` to the core attachment REST response.
  *
  * `MediaLibraryHandler::expose_to_js()` only reaches admin-ajax's
  * `wp_prepare_attachment_for_js` calls, so an attachment fetched over the
@@ -41,11 +41,11 @@ class RestFieldHandler {
 	public function register_field() {
 		register_rest_field(
 			'attachment',
-			'omnioImageOptimizer',
+			'pixelKilnImageOptimizer',
 			array(
 				'get_callback' => array( $this, 'get_field' ),
 				'schema'       => array(
-					'description' => __( 'Omnio Image Optimizer status for this attachment.', 'omnio-image-optimizer' ),
+					'description' => __( 'PixelKiln Image Optimizer status for this attachment.', 'pixelkiln-image-optimizer' ),
 					'type'        => array( 'object', 'null' ),
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,

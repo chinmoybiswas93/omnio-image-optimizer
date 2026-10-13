@@ -16,8 +16,8 @@ is no routine that reconciles the two".
 ## Why the purge deletes nothing
 
 Confirmed against the live cb-test database (socket `aRpCXvFUz`): all **78** rows in
-`wp_omnio_io_log` carry an **empty `backup_path`** and `backup_expires = 0`, while
-`uploads/omnio-image-optimizer/backup/` holds **42 files / 892 KB**. Deletion is entirely
+`wp_pixelkiln_io_log` carry an **empty `backup_path`** and `backup_expires = 0`, while
+`uploads/pixelkiln-image-optimizer/backup/` holds **42 files / 892 KB**. Deletion is entirely
 manifest-driven, so it resolves nothing to delete, returns `purged: 0`, and `disk_usage()` reports
 the same 831.4 KB it reported before.
 
@@ -42,7 +42,7 @@ Fixing I-8 requires deleting files that are, by definition, **not** in our recor
 therefore made narrow enough that it cannot become that incident again:
 
 - Scoped to `BackupManager::root()` — a directory this plugin creates and owns
-  (`DIRNAME = 'omnio-image-optimizer/backup'`), never a shared uploads path. The root must resolve
+  (`DIRNAME = 'pixelkiln-image-optimizer/backup'`), never a shared uploads path. The root must resolve
   and must actually end in `DIRNAME` or the sweep refuses to run.
 - Reachable **only** from the explicit typed-confirmation admin action. Never from cron, never
   from `JobRunner`, never from upload or restore.
@@ -97,7 +97,7 @@ React and Backbone surfaces cannot drift apart.
 ### Call sites
 
 `BackupsPage` (typed `DELETE`), `BulkPage`, `TroubleshootPage`, and — through a small vanilla
-`oioConfirm()` promise wrapper building the same `oio-modal` DOM — `media.js`'s restore and
+`pkioConfirm()` promise wrapper building the same `pkio-modal` DOM — `media.js`'s restore and
 selection-optimize actions.
 
 `BackupsPage`'s toast is rebuilt from `files_removed` and `bytes_freed`: `'%d backups removed.'`

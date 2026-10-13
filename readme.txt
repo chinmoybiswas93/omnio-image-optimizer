@@ -1,4 +1,4 @@
-=== Omnio Image Optimizer ===
+=== PixelKiln Image Optimizer ===
 Contributors: chinmoy709
 Tags: images, webp, optimization, compress, performance
 Requires at least: 6.2
@@ -12,7 +12,7 @@ Automatically convert and compress images to WebP on upload, plus individual and
 
 == Description ==
 
-Omnio Image Optimizer converts your images to WebP and compresses them, cutting image weight by 60-80% without a visible quality loss.
+PixelKiln Image Optimizer converts your images to WebP and compresses them, cutting image weight by 60-80% without a visible quality loss.
 
 Everything happens on your own server. There is no API key, no monthly quota, no account to create, and your images are never sent to a third party.
 
@@ -63,7 +63,7 @@ No. All processing happens on your own server. The plugin makes no external requ
 
 = Where is the source code for the JavaScript and CSS? =
 
-The files in `build/` are compiled. Their human-readable source, along with the build tooling, is public at https://github.com/chinmoybiswas93/omnio-image-optimizer in the `resources/` folder. To rebuild them, run `npm install` and then `npm run build` from the plugin folder.
+The files in `build/` are compiled. Their human-readable source, along with the build tooling, is public at https://github.com/chinmoybiswas93/pixelkiln-image-optimizer in the `resources/` folder. To rebuild them, run `npm install` and then `npm run build` from the plugin folder.
 
 = What happens when a backup expires? =
 

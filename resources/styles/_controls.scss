@@ -11,40 +11,40 @@
  * one for its own controls; owning the controls means owning that too.
  */
 
-$oio-space-xs: 4px;
-$oio-space-sm: 8px;
-$oio-space-md: 16px;
-$oio-space-lg: 24px;
+$pkio-space-xs: 4px;
+$pkio-space-sm: 8px;
+$pkio-space-md: 16px;
+$pkio-space-lg: 24px;
 
-$oio-brand: #3858e9;
-$oio-brand-dark: #2c3fc0;
-$oio-danger: #d63638;
-$oio-danger-dark: #b32d2e;
-$oio-success: #008a20;
-$oio-warning: #bd8600;
+$pkio-brand: #3858e9;
+$pkio-brand-dark: #2c3fc0;
+$pkio-danger: #d63638;
+$pkio-danger-dark: #b32d2e;
+$pkio-success: #008a20;
+$pkio-warning: #bd8600;
 
-$oio-text: #1e1e1e;
-$oio-text-muted: #646970;
-$oio-border: #dcdcde;
-$oio-border-strong: #8c8f94;
-$oio-radius-sm: 4px;
+$pkio-text: #1e1e1e;
+$pkio-text-muted: #646970;
+$pkio-border: #dcdcde;
+$pkio-border-strong: #8c8f94;
+$pkio-radius-sm: 4px;
 
-@mixin oio-focus-ring( $color: $oio-brand ) {
+@mixin pkio-focus-ring( $color: $pkio-brand ) {
 	outline: 2px solid $color;
 	outline-offset: 1px;
 }
 
 /* Buttons ---------------------------------------------------------------- */
 
-.oio-btn {
+.pkio-btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: $oio-space-sm;
+	gap: $pkio-space-sm;
 	min-height: 32px;
 	padding: 0 12px;
 	border: 1px solid transparent;
-	border-radius: $oio-radius-sm;
+	border-radius: $pkio-radius-sm;
 	font-size: 13px;
 	font-weight: 500;
 	line-height: 1;
@@ -53,7 +53,7 @@ $oio-radius-sm: 4px;
 	transition: background-color 0.1s ease, border-color 0.1s ease, color 0.1s ease;
 
 	&:focus-visible {
-		@include oio-focus-ring;
+		@include pkio-focus-ring;
 	}
 
 	&[disabled],
@@ -63,32 +63,32 @@ $oio-radius-sm: 4px;
 	}
 
 	&--primary {
-		background: $oio-brand;
-		border-color: $oio-brand;
+		background: $pkio-brand;
+		border-color: $pkio-brand;
 		color: #fff;
 
 		&:hover:not( [disabled] ) {
-			background: $oio-brand-dark;
-			border-color: $oio-brand-dark;
+			background: $pkio-brand-dark;
+			border-color: $pkio-brand-dark;
 			color: #fff;
 		}
 	}
 
 	&--secondary {
 		background: #fff;
-		border-color: $oio-brand;
-		color: $oio-brand;
+		border-color: $pkio-brand;
+		color: $pkio-brand;
 
 		&:hover:not( [disabled] ) {
 			background: rgba( 56, 88, 233, 0.06 );
-			color: $oio-brand-dark;
+			color: $pkio-brand-dark;
 		}
 	}
 
 	&--tertiary {
 		background: transparent;
 		border-color: transparent;
-		color: $oio-brand;
+		color: $pkio-brand;
 
 		&:hover:not( [disabled] ) {
 			background: rgba( 56, 88, 233, 0.08 );
@@ -97,21 +97,21 @@ $oio-radius-sm: 4px;
 
 	// Destructive modifies whichever variant it is applied to, so it comes last.
 	&.is-destructive {
-		border-color: $oio-danger;
-		color: $oio-danger;
+		border-color: $pkio-danger;
+		color: $pkio-danger;
 
 		&:hover:not( [disabled] ) {
 			background: rgba( 214, 54, 56, 0.06 );
-			color: $oio-danger-dark;
+			color: $pkio-danger-dark;
 		}
 	}
 
 	&--primary.is-destructive {
-		background: $oio-danger;
+		background: $pkio-danger;
 		color: #fff;
 
 		&:hover:not( [disabled] ) {
-			background: $oio-danger-dark;
+			background: $pkio-danger-dark;
 			color: #fff;
 		}
 	}
@@ -119,7 +119,7 @@ $oio-radius-sm: 4px;
 
 /* Spinner ---------------------------------------------------------------- */
 
-.oio-spinner {
+.pkio-spinner {
 	display: inline-block;
 	width: 16px;
 	height: 16px;
@@ -127,11 +127,11 @@ $oio-radius-sm: 4px;
 	border-right-color: transparent;
 	border-radius: 50%;
 	opacity: 0.7;
-	animation: oio-spin 0.7s linear infinite;
+	animation: pkio-spin 0.7s linear infinite;
 	vertical-align: middle;
 }
 
-@keyframes oio-spin {
+@keyframes pkio-spin {
 	to {
 		transform: rotate( 360deg );
 	}
@@ -139,68 +139,68 @@ $oio-radius-sm: 4px;
 
 // Respect a user who has asked for less motion: show the ring, stop the spin.
 @media ( prefers-reduced-motion: reduce ) {
-	.oio-spinner {
+	.pkio-spinner {
 		animation-duration: 3s;
 	}
 }
 
 /* Fields ----------------------------------------------------------------- */
 
-.oio-field {
+.pkio-field {
 	&__label {
 		display: block;
-		margin-bottom: $oio-space-xs;
+		margin-bottom: $pkio-space-xs;
 		font-size: 13px;
 		font-weight: 500;
-		color: $oio-text;
+		color: $pkio-text;
 	}
 
 	&__help {
-		margin: $oio-space-xs 0 0;
+		margin: $pkio-space-xs 0 0;
 		font-size: 12px;
 		line-height: 1.5;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 }
 
-.oio-select__input,
-.oio-number__input {
+.pkio-select__input,
+.pkio-number__input {
 	width: 100%;
 	max-width: 360px;
 	min-height: 32px;
-	padding: 0 $oio-space-sm;
+	padding: 0 $pkio-space-sm;
 	background: #fff;
-	border: 1px solid $oio-border-strong;
-	border-radius: $oio-radius-sm;
+	border: 1px solid $pkio-border-strong;
+	border-radius: $pkio-radius-sm;
 	font-size: 13px;
-	color: $oio-text;
+	color: $pkio-text;
 
 	&:focus {
-		border-color: $oio-brand;
-		@include oio-focus-ring;
+		border-color: $pkio-brand;
+		@include pkio-focus-ring;
 	}
 }
 
-.oio-number__input {
+.pkio-number__input {
 	max-width: 140px;
 }
 
 /* Range ------------------------------------------------------------------ */
 
-.oio-range {
+.pkio-range {
 	&__row {
 		display: flex;
 		align-items: center;
-		gap: $oio-space-md;
+		gap: $pkio-space-md;
 		max-width: 360px;
 	}
 
 	&__input {
 		flex: 1 1 auto;
-		accent-color: $oio-brand;
+		accent-color: $pkio-brand;
 
 		&:focus-visible {
-			@include oio-focus-ring;
+			@include pkio-focus-ring;
 		}
 	}
 
@@ -209,22 +209,22 @@ $oio-radius-sm: 4px;
 		min-width: 40px;
 		padding: 2px 8px;
 		background: rgba( 56, 88, 233, 0.08 );
-		border-radius: $oio-radius-sm;
+		border-radius: $pkio-radius-sm;
 		font-size: 12px;
 		font-weight: 600;
 		font-variant-numeric: tabular-nums;
 		text-align: center;
-		color: $oio-brand;
+		color: $pkio-brand;
 	}
 }
 
 /* Toggle ----------------------------------------------------------------- */
 
-.oio-toggle {
+.pkio-toggle {
 	&__row {
 		display: flex;
 		align-items: flex-start;
-		gap: $oio-space-sm;
+		gap: $pkio-space-sm;
 		cursor: pointer;
 	}
 
@@ -268,11 +268,11 @@ $oio-radius-sm: 4px;
 	&__label {
 		font-size: 13px;
 		line-height: 1.5;
-		color: $oio-text;
+		color: $pkio-text;
 	}
 
 	&__input:checked + &__track {
-		background: $oio-brand;
+		background: $pkio-brand;
 	}
 
 	&__input:checked + &__track &__thumb {
@@ -280,13 +280,13 @@ $oio-radius-sm: 4px;
 	}
 
 	&__input:focus-visible + &__track {
-		@include oio-focus-ring;
+		@include pkio-focus-ring;
 	}
 
 	&.is-disabled {
 		opacity: 0.55;
 
-		.oio-toggle__row {
+		.pkio-toggle__row {
 			cursor: not-allowed;
 		}
 	}
@@ -294,16 +294,16 @@ $oio-radius-sm: 4px;
 
 /* Notices ---------------------------------------------------------------- */
 
-.oio-notice {
+.pkio-notice {
 	display: flex;
 	align-items: flex-start;
-	gap: $oio-space-sm;
-	margin: 0 0 $oio-space-md;
-	padding: 12px $oio-space-md;
+	gap: $pkio-space-sm;
+	margin: 0 0 $pkio-space-md;
+	padding: 12px $pkio-space-md;
 	background: #fff;
-	border: 1px solid $oio-border;
+	border: 1px solid $pkio-border;
 	border-left-width: 4px;
-	border-radius: $oio-radius-sm;
+	border-radius: $pkio-radius-sm;
 	font-size: 13px;
 	line-height: 1.5;
 
@@ -319,32 +319,32 @@ $oio-radius-sm: 4px;
 		border: 0;
 		font-size: 18px;
 		line-height: 1;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 		cursor: pointer;
 
 		&:hover {
-			color: $oio-text;
+			color: $pkio-text;
 		}
 
 		&:focus-visible {
-			@include oio-focus-ring;
+			@include pkio-focus-ring;
 		}
 	}
 
 	&--error {
-		border-left-color: $oio-danger;
+		border-left-color: $pkio-danger;
 	}
 
 	&--warning {
-		border-left-color: $oio-warning;
+		border-left-color: $pkio-warning;
 	}
 
 	&--success {
-		border-left-color: $oio-success;
+		border-left-color: $pkio-success;
 	}
 
 	&--info {
-		border-left-color: $oio-brand;
+		border-left-color: $pkio-brand;
 	}
 
 	/*
@@ -354,39 +354,39 @@ $oio-radius-sm: 4px;
 	 * that made a notice sit correctly under the page heading.
 	 */
 	&--standalone {
-		margin: $oio-space-md 0 $oio-space-md 2px;
+		margin: $pkio-space-md 0 $pkio-space-md 2px;
 		max-width: 100%;
 	}
 }
 
 /* Toasts ----------------------------------------------------------------- */
 
-.oio-toasts {
+.pkio-toasts {
 	position: fixed;
-	right: $oio-space-md;
-	bottom: $oio-space-md;
+	right: $pkio-space-md;
+	bottom: $pkio-space-md;
 	z-index: 100000; // Above WordPress's own admin chrome, including the menu.
 	display: flex;
 	flex-direction: column;
-	gap: $oio-space-sm;
-	width: min(360px, calc(100vw - #{$oio-space-md * 2}));
+	gap: $pkio-space-sm;
+	width: min(360px, calc(100vw - #{$pkio-space-md * 2}));
 	pointer-events: none; // The stack never blocks the page; each toast opts in.
 }
 
-.oio-toast {
+.pkio-toast {
 	display: flex;
 	align-items: flex-start;
-	gap: $oio-space-sm;
-	padding: 12px $oio-space-md;
+	gap: $pkio-space-sm;
+	padding: 12px $pkio-space-md;
 	background: #fff;
-	border: 1px solid $oio-border;
+	border: 1px solid $pkio-border;
 	border-left-width: 4px;
-	border-radius: $oio-radius-sm;
+	border-radius: $pkio-radius-sm;
 	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 	font-size: 13px;
 	line-height: 1.5;
 	pointer-events: auto;
-	animation: oio-toast-in 160ms ease-out;
+	animation: pkio-toast-in 160ms ease-out;
 
 	&__body {
 		flex: 1 1 auto;
@@ -400,36 +400,36 @@ $oio-radius-sm: 4px;
 		border: 0;
 		font-size: 18px;
 		line-height: 1;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 		cursor: pointer;
 
 		&:hover {
-			color: $oio-text;
+			color: $pkio-text;
 		}
 
 		&:focus-visible {
-			@include oio-focus-ring;
+			@include pkio-focus-ring;
 		}
 	}
 
 	&--error {
-		border-left-color: $oio-danger;
+		border-left-color: $pkio-danger;
 	}
 
 	&--warning {
-		border-left-color: $oio-warning;
+		border-left-color: $pkio-warning;
 	}
 
 	&--success {
-		border-left-color: $oio-success;
+		border-left-color: $pkio-success;
 	}
 
 	&--info {
-		border-left-color: $oio-brand;
+		border-left-color: $pkio-brand;
 	}
 }
 
-@keyframes oio-toast-in {
+@keyframes pkio-toast-in {
 	from {
 		opacity: 0;
 		transform: translateY(6px);
@@ -443,14 +443,14 @@ $oio-radius-sm: 4px;
 
 // Respect a reduced-motion preference rather than animating regardless.
 @media (prefers-reduced-motion: reduce) {
-	.oio-toast {
+	.pkio-toast {
 		animation: none;
 	}
 }
 
 /* Media Library cells and row actions ------------------------------------ */
 
-.oio-cell {
+.pkio-cell {
 	display: block;
 	font-size: 13px;
 	line-height: 1.4;
@@ -463,22 +463,22 @@ $oio-radius-sm: 4px;
 		display: block;
 		margin-top: 2px;
 		font-size: 12px;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 
-	&--optimized .oio-cell__primary {
+	&--optimized .pkio-cell__primary {
 		font-weight: 600;
-		color: $oio-success;
+		color: $pkio-success;
 	}
 
-	&--failed .oio-cell__primary {
-		color: $oio-danger;
+	&--failed .pkio-cell__primary {
+		color: $pkio-danger;
 	}
 
-	&--pending .oio-cell__primary,
-	&--skipped .oio-cell__primary,
-	&--restored .oio-cell__primary {
-		color: $oio-text-muted;
+	&--pending .pkio-cell__primary,
+	&--skipped .pkio-cell__primary,
+	&--restored .pkio-cell__primary {
+		color: $pkio-text-muted;
 	}
 }
 
@@ -489,7 +489,7 @@ $oio-radius-sm: 4px;
  * reads as closed rather than stuck short of 100%.
  */
 
-.oio-ring {
+.pkio-ring {
 	position: relative;
 	flex-shrink: 0;
 
@@ -499,17 +499,17 @@ $oio-radius-sm: 4px;
 	}
 
 	&__track {
-		stroke: $oio-border;
+		stroke: $pkio-border;
 	}
 
 	&__muted {
-		stroke: $oio-border-strong;
+		stroke: $pkio-border-strong;
 		opacity: 0.45;
 		transition: stroke-dasharray 300ms ease, stroke-dashoffset 300ms ease;
 	}
 
 	&__value {
-		stroke: $oio-brand;
+		stroke: $pkio-brand;
 		transition: stroke-dasharray 300ms ease;
 	}
 
@@ -532,19 +532,19 @@ $oio-radius-sm: 4px;
 		font-size: 28px;
 		font-weight: 700;
 		line-height: 1.1;
-		color: $oio-text;
+		color: $pkio-text;
 	}
 
 	&__caption {
 		margin-top: 2px;
 		font-size: 12px;
-		color: $oio-text-muted;
+		color: $pkio-text-muted;
 	}
 }
 
 @media ( prefers-reduced-motion: reduce ) {
-	.oio-ring__value,
-	.oio-ring__muted {
+	.pkio-ring__value,
+	.pkio-ring__muted {
 		transition: none;
 	}
 }

@@ -10,7 +10,7 @@
 # Nothing here is pinned to one site. The WordPress root comes from this
 # script's own location; the socket, PHP binary and expected domain come from
 # Local's own sites.json, looked up by the site that owns that root. Override
-# any of it with OIO_SOCKET / OIO_PHP / OIO_WP / OIO_EXPECTED_SITEURL.
+# any of it with PKIO_SOCKET / PKIO_PHP / PKIO_WP / PKIO_EXPECTED_SITEURL.
 #
 # Local names every database `local`; only the socket differs, and the wrong
 # socket silently pairs this site's files with another site's database. So the
@@ -156,7 +156,7 @@ if [ -n "$CANONICAL_ROW" ]; then
   fi
 fi
 
-SITE_SOCKET="${OIO_SOCKET:-$LOCAL_HOME/run/$SITE_ID/mysql/mysqld.sock}"
+SITE_SOCKET="${PKIO_SOCKET:-$LOCAL_HOME/run/$SITE_ID/mysql/mysqld.sock}"
 
 # --------------------------------------------------------------------------
 # Binaries. The site's own PHP version, not the newest on the machine: an
@@ -191,11 +191,11 @@ find_wp() {
   return 1
 }
 
-PHP_BIN="${OIO_PHP:-$(find_php "$SITE_PHP")}"
-WP_BIN="${OIO_WP:-$(find_wp)}"
+PHP_BIN="${PKIO_PHP:-$(find_php "$SITE_PHP")}"
+WP_BIN="${PKIO_WP:-$(find_wp)}"
 
-[ -n "$PHP_BIN" ] && [ -x "$PHP_BIN" ] || { echo "PHP binary not found for $SITE_PHP. Set OIO_PHP=/path/to/php" >&2; exit 2; }
-[ -n "$WP_BIN" ] && [ -f "$WP_BIN" ]   || { echo "wp-cli not found. Set OIO_WP=/path/to/wp" >&2; exit 2; }
+[ -n "$PHP_BIN" ] && [ -x "$PHP_BIN" ] || { echo "PHP binary not found for $SITE_PHP. Set PKIO_PHP=/path/to/php" >&2; exit 2; }
+[ -n "$WP_BIN" ] && [ -f "$WP_BIN" ]   || { echo "wp-cli not found. Set PKIO_WP=/path/to/wp" >&2; exit 2; }
 [ -S "$SITE_SOCKET" ] || { echo "MySQL socket not found: $SITE_SOCKET"$'\n'"Is $SITE_NAME running? Try: tests/php/run-cli.sh --sites" >&2; exit 2; }
 [ -f "$WP_ROOT/wp-load.php" ] || { echo "No wp-load.php at $WP_ROOT" >&2; exit 2; }
 
@@ -220,9 +220,9 @@ if [ -z "$ACTUAL_SITEURL" ]; then
   exit 2
 fi
 
-if [ -n "${OIO_EXPECTED_SITEURL:-}" ]; then
-  if [ "$ACTUAL_SITEURL" != "$OIO_EXPECTED_SITEURL" ]; then
-    echo "REFUSING TO RUN. Expected $OIO_EXPECTED_SITEURL but reached $ACTUAL_SITEURL." >&2
+if [ -n "${PKIO_EXPECTED_SITEURL:-}" ]; then
+  if [ "$ACTUAL_SITEURL" != "$PKIO_EXPECTED_SITEURL" ]; then
+    echo "REFUSING TO RUN. Expected $PKIO_EXPECTED_SITEURL but reached $ACTUAL_SITEURL." >&2
     exit 2
   fi
 else
@@ -233,15 +233,15 @@ else
     echo "REFUSING TO RUN." >&2
     echo "Local says $SITE_NAME is $SITE_DOMAIN, but this socket reached $ACTUAL_SITEURL." >&2
     echo "That is the two-database trap: these files and that database are different sites." >&2
-    echo "Set OIO_EXPECTED_SITEURL=$ACTUAL_SITEURL if the mismatch is deliberate." >&2
+    echo "Set PKIO_EXPECTED_SITEURL=$ACTUAL_SITEURL if the mismatch is deliberate." >&2
     exit 2
   fi
 fi
 
 echo "siteurl: $ACTUAL_SITEURL  (matches $SITE_DOMAIN)"
 
-if ! wp_run plugin is-active omnio-image-optimizer >/dev/null 2>&1; then
-  echo "omnio-image-optimizer is not active on $ACTUAL_SITEURL" >&2
+if ! wp_run plugin is-active pixelkiln-image-optimizer >/dev/null 2>&1; then
+  echo "pixelkiln-image-optimizer is not active on $ACTUAL_SITEURL" >&2
   exit 2
 fi
 
@@ -262,8 +262,8 @@ smoke_failed=0
 
 run_smoke() {
   echo
-  echo "\$ wp omnio-image-optimizer $*"
-  wp_run omnio-image-optimizer "$@" || { echo "FAILED: $*" >&2; smoke_failed=1; }
+  echo "\$ wp pixelkiln-image-optimizer $*"
+  wp_run pixelkiln-image-optimizer "$@" || { echo "FAILED: $*" >&2; smoke_failed=1; }
 }
 
 run_smoke diagnostics
@@ -291,10 +291,10 @@ fi
 echo
 echo "########## cli-bulk-e2e ##########"
 
-OIO_PHP="$PHP_BIN" \
-OIO_WP="$WP_BIN" \
-OIO_SOCKET="$SITE_SOCKET" \
-OIO_EXPECTED_SITEURL="$ACTUAL_SITEURL" \
+PKIO_PHP="$PHP_BIN" \
+PKIO_WP="$WP_BIN" \
+PKIO_SOCKET="$SITE_SOCKET" \
+PKIO_EXPECTED_SITEURL="$ACTUAL_SITEURL" \
 "$PHP_BIN" -d mysqli.default_socket="$SITE_SOCKET" tests/php/cli-bulk-e2e.php
 
 status=$?

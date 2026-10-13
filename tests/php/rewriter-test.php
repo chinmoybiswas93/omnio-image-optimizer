@@ -8,7 +8,7 @@
  *
  *   php tests/php/rewriter-test.php
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 // phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.PHP.DevelopmentFunctions, WordPress.Security.EscapeOutput, WordPress.NamingConventions.PrefixAllGlobals, Squiz.Commenting, Generic.Commenting, WordPress.PHP.DiscouragedPHPFunctions, WordPress.PHP.NoSilencedErrors, Universal.Files.SeparateFunctionsFromOO
@@ -76,8 +76,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 require dirname( __DIR__, 2 ) . '/app/Services/Rewrite/UrlMap.php';
 require dirname( __DIR__, 2 ) . '/app/Services/Rewrite/DatabaseRewriter.php';
 
-use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
-use OmnioImageOptimizer\App\Services\Rewrite\UrlMap;
+use PixelKilnImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use PixelKilnImageOptimizer\App\Services\Rewrite\UrlMap;
 
 /**
  * Reach a private method. The rewriter's dangerous logic is private by design;

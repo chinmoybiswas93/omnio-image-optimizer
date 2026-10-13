@@ -2,10 +2,10 @@
 /**
  * Base model.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Models;
+namespace PixelKilnImageOptimizer\App\Models;
 
 use wpdb;
 

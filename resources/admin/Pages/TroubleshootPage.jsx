@@ -81,7 +81,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 			const result = await request( 'logs/reset', { method: 'POST' } );
 			setLog( result.log );
 			setConfirming( false );
-			toast.push( __( 'Log cleared.', 'omnio-image-optimizer' ) );
+			toast.push( __( 'Log cleared.', 'pixelkiln-image-optimizer' ) );
 		} catch ( e ) {
 			setError( e.message );
 			setConfirming( false );
@@ -98,7 +98,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					/* translators: %d: number of images returned to the queue. */
 					__(
 						'%d image(s) will be tried again on the next bulk run.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					),
 					result.requeued
 				)
@@ -120,7 +120,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 							/* translators: %d: number of records checked. */
 							__(
 								'Checked %d record(s). Every optimized file is present.',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							),
 							result.checked
 					  )
@@ -128,7 +128,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 							/* translators: 1: records checked, 2: records cleared. */
 							__(
 								'Checked %1$d record(s) and cleared %2$d whose file was missing. Those images are pending again.',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							),
 							result.checked,
 							result.cleared
@@ -150,7 +150,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					/* translators: %d: number of leftover files deleted. */
 					__(
 						'%d leftover file(s) removed.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					),
 					result.removed
 				)
@@ -172,14 +172,14 @@ const TroubleshootPage = ( { values, setValues } ) => {
 			toast.push(
 				__(
 					'Diagnostics copied to the clipboard.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				)
 			);
 		} catch ( e ) {
 			setError(
 				__(
 					'Could not copy. Select the text and copy it manually.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				)
 			);
 		}
@@ -206,17 +206,17 @@ const TroubleshootPage = ( { values, setValues } ) => {
 
 			<Section
 				icon={ <IconStethoscope /> }
-				title={ __( 'Server information', 'omnio-image-optimizer' ) }
+				title={ __( 'Server information', 'pixelkiln-image-optimizer' ) }
 				description={ __(
 					'What this server can and cannot do for image conversion.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				) }
 			>
 				{ ! report && <Spinner /> }
 
 				{ report?.sections?.map( ( section ) => (
-					<div className="oio-diagnostics" key={ section.title }>
-						<h3 className="oio-diagnostics__title">
+					<div className="pkio-diagnostics" key={ section.title }>
+						<h3 className="pkio-diagnostics__title">
 							{ section.title }
 						</h3>
 						{ section.rows.map( ( row ) => (
@@ -225,77 +225,77 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					</div>
 				) ) }
 
-				<div className="oio-actions">
+				<div className="pkio-actions">
 					<Button
 						variant="secondary"
 						onClick={ copyReport }
 						disabled={ ! report }
 					>
-						{ __( 'Copy for support', 'omnio-image-optimizer' ) }
+						{ __( 'Copy for support', 'pixelkiln-image-optimizer' ) }
 					</Button>
 					<Button variant="tertiary" onClick={ loadReport }>
-						{ __( 'Refresh', 'omnio-image-optimizer' ) }
+						{ __( 'Refresh', 'pixelkiln-image-optimizer' ) }
 					</Button>
 				</div>
 			</Section>
 
 			<Section
 				icon={ <IconDocument /> }
-				title={ __( 'Activity log', 'omnio-image-optimizer' ) }
+				title={ __( 'Activity log', 'pixelkiln-image-optimizer' ) }
 				description={ __(
 					'A step-by-step record of every conversion, written to a file.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				) }
 			>
 				<Toggle
-					label={ __( 'Enable logging', 'omnio-image-optimizer' ) }
+					label={ __( 'Enable logging', 'pixelkiln-image-optimizer' ) }
 					help={ __(
 						'Records every step of every optimization: backup, encode, file rename, URL rewrite and file deletion. Failures are always recorded, even with this off. The file is capped at 10MB and never leaves your server.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 					checked={ enabled }
 					disabled={ 'toggle' === busy }
 					onChange={ toggleLogging }
 				/>
 
-				<div className="oio-logtoolbar">
+				<div className="pkio-logtoolbar">
 					<input
 						type="search"
-						className="oio-logtoolbar__filter"
+						className="pkio-logtoolbar__filter"
 						placeholder={ __(
 							'Filter lines…',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 						value={ filter }
 						onChange={ ( e ) => setFilter( e.target.value ) }
 					/>
-					<span className="oio-muted">
+					<span className="pkio-muted">
 						{ sprintf(
 							/* translators: 1: number of lines shown, 2: log file size. */
-							__( '%1$d lines · %2$s', 'omnio-image-optimizer' ),
+							__( '%1$d lines · %2$s', 'pixelkiln-image-optimizer' ),
 							visible.length,
 							formatBytes( log.size )
 						) }
 					</span>
 				</div>
 
-				<div className="oio-logviewer" ref={ viewer } tabIndex={ 0 }>
+				<div className="pkio-logviewer" ref={ viewer } tabIndex={ 0 }>
 					{ visible.length === 0 && (
-						<p className="oio-muted">
+						<p className="pkio-muted">
 							{ enabled
 								? __(
 										'Nothing recorded yet. Optimize an image and refresh.',
-										'omnio-image-optimizer'
+										'pixelkiln-image-optimizer'
 								  )
 								: __(
 										'Nothing recorded yet. Turn logging on to capture the full detail of each conversion.',
-										'omnio-image-optimizer'
+										'pixelkiln-image-optimizer'
 								  ) }
 						</p>
 					) }
 					{ visible.map( ( line, i ) => (
 						<div
-							className={ `oio-logviewer__line${
+							className={ `pkio-logviewer__line${
 								line.includes( ' ERROR ' ) ? ' is-error' : ''
 							}${ line.includes( ' WARN ' ) ? ' is-warn' : '' }` }
 							key={ i }
@@ -306,24 +306,24 @@ const TroubleshootPage = ( { values, setValues } ) => {
 				</div>
 
 				{ log.rotated && (
-					<p className="oio-muted">
+					<p className="pkio-muted">
 						{ __(
 							'The log reached its 10MB limit and rolled over. Only the most recent file is shown; the download includes what is on disk now.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					</p>
 				) }
 
-				<div className="oio-actions">
+				<div className="pkio-actions">
 					<Button variant="secondary" onClick={ loadLog }>
-						{ __( 'Refresh', 'omnio-image-optimizer' ) }
+						{ __( 'Refresh', 'pixelkiln-image-optimizer' ) }
 					</Button>
 					<Button
 						variant="secondary"
 						href={ downloadUrl }
 						disabled={ ! log.size }
 					>
-						{ __( 'Download', 'omnio-image-optimizer' ) }
+						{ __( 'Download', 'pixelkiln-image-optimizer' ) }
 					</Button>
 					<Button
 						variant="secondary"
@@ -334,7 +334,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 						{ 'reset' === busy ? (
 							<Spinner />
 						) : (
-							__( 'Reset log', 'omnio-image-optimizer' )
+							__( 'Reset log', 'pixelkiln-image-optimizer' )
 						) }
 					</Button>
 				</div>
@@ -342,17 +342,17 @@ const TroubleshootPage = ( { values, setValues } ) => {
 
 			<Section
 				icon={ <IconLayers /> }
-				title={ __( 'Maintenance', 'omnio-image-optimizer' ) }
+				title={ __( 'Maintenance', 'pixelkiln-image-optimizer' ) }
 				description={ __(
 					'Recover images that were passed over because of a temporary problem.',
-					'omnio-image-optimizer'
+					'pixelkiln-image-optimizer'
 				) }
 			>
-				<div className="oio-stats">
+				<div className="pkio-stats">
 					<Stat
 						label={ __(
 							'Images worth trying again',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 						value={ report?.retryable ?? '—' }
 						tone={ report?.retryable > 0 ? 'warning' : '' }
@@ -360,31 +360,31 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					<Stat
 						label={ __(
 							'Leftover temporary files',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 						value={ report?.tempFiles ?? '—' }
 						tone={ report?.tempFiles > 0 ? 'warning' : '' }
 					/>
 				</div>
-				<p className="oio-lede">
+				<p className="pkio-lede">
 					{ __(
 						'Images skipped because the server ran out of memory or disk space, or because no engine was available, are not retried automatically. Once the cause is fixed, this returns them to the queue. Images skipped because they genuinely cannot be improved are left alone.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 				</p>
-				<p className="oio-lede">
+				<p className="pkio-lede">
 					{ __(
 						'Temporary files are left behind when a conversion is interrupted, for example by a server timeout. They are cleared automatically once a day, and can be cleared now.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 				</p>
-				<p className="oio-lede">
+				<p className="pkio-lede">
 					{ __(
 						'After restoring a site, the database and the uploads folder can come from different points in time, leaving images recorded as optimized whose files are no longer there. Rescanning checks every recorded result against the disk and returns any that no longer exist to the queue. Results whose files are intact are left untouched.',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 				</p>
-				<div className="oio-actions">
+				<div className="pkio-actions">
 					<Button
 						variant="secondary"
 						onClick={ requeue }
@@ -395,7 +395,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 						) : (
 							__(
 								'Requeue for another attempt',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							)
 						) }
 					</Button>
@@ -409,7 +409,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 						) : (
 							__(
 								'Rescan library against disk',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							)
 						) }
 					</Button>
@@ -423,7 +423,7 @@ const TroubleshootPage = ( { values, setValues } ) => {
 						) : (
 							__(
 								'Clean up temporary files',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							)
 						) }
 					</Button>
@@ -432,8 +432,8 @@ const TroubleshootPage = ( { values, setValues } ) => {
 
 			{ confirming && (
 				<ConfirmDialog
-					title={ __( 'Reset the log?', 'omnio-image-optimizer' ) }
-					confirmLabel={ __( 'Reset log', 'omnio-image-optimizer' ) }
+					title={ __( 'Reset the log?', 'pixelkiln-image-optimizer' ) }
+					confirmLabel={ __( 'Reset log', 'pixelkiln-image-optimizer' ) }
 					isDestructive
 					busy={ 'reset' === busy }
 					onConfirm={ reset }
@@ -442,13 +442,13 @@ const TroubleshootPage = ( { values, setValues } ) => {
 					<p>
 						{ __(
 							'This permanently deletes the log file and everything recorded in it. Your images and backups are unaffected.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					</p>
 					<p>
 						{ __(
 							'Download the log first if you still need it for support.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					</p>
 				</ConfirmDialog>

@@ -16,13 +16,13 @@ const Range = ( {
 	max = 100,
 	step = 1,
 } ) => (
-	<Field label={ label } help={ help } className="oio-range">
+	<Field label={ label } help={ help } className="pkio-range">
 		{ ( { id, helpId } ) => (
-			<div className="oio-range__row">
+			<div className="pkio-range__row">
 				<input
 					id={ id }
 					type="range"
-					className="oio-range__input"
+					className="pkio-range__input"
 					value={ value }
 					min={ min }
 					max={ max }
@@ -32,7 +32,7 @@ const Range = ( {
 						onChange && onChange( Number( event.target.value ) )
 					}
 				/>
-				<output className="oio-range__value" htmlFor={ id }>
+				<output className="pkio-range__value" htmlFor={ id }>
 					{ value }
 				</output>
 			</div>

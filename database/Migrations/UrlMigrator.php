@@ -2,19 +2,19 @@
 /**
  * URL lookup table schema.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Database\Migrations;
+namespace PixelKilnImageOptimizer\Database\Migrations;
 
-use OmnioImageOptimizer\App\Models\UrlLookup;
+use PixelKilnImageOptimizer\App\Models\UrlLookup;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Creates and upgrades {prefix}omnio_io_urls, the indexed map
+ * Creates and upgrades {prefix}pixelkiln_io_urls, the indexed map
  * backing the 404 fallback.
  */
 class UrlMigrator {

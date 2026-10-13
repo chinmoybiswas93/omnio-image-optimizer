@@ -2,10 +2,10 @@
 /**
  * Attachment-ID request schema.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Requests;
+namespace PixelKilnImageOptimizer\App\Http\Requests;
 
 if ( ! defined('ABSPATH')) {
     exit;

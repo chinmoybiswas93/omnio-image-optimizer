@@ -9,26 +9,25 @@
  *
  * Required by Framework\Application::requireCommonFiles(). $app is in scope.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-use OmnioImageOptimizer\App\App;
-use OmnioImageOptimizer\App\Hooks\CLI\Commands;
-use OmnioImageOptimizer\App\Hooks\Handlers\AssetHandler;
-use OmnioImageOptimizer\App\Hooks\Handlers\EditorAssetHandler;
-use OmnioImageOptimizer\App\Hooks\Handlers\ForeignNoticeHandler;
-use OmnioImageOptimizer\App\Hooks\Handlers\MediaLibraryHandler;
-use OmnioImageOptimizer\App\Hooks\Handlers\MenuHandler;
-use OmnioImageOptimizer\App\Hooks\Handlers\NoticeHandler;
-use OmnioImageOptimizer\App\Hooks\Handlers\RestFieldHandler;
-use OmnioImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
-use OmnioImageOptimizer\App\Hooks\Scheduler\JobRunner;
-use OmnioImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
-use OmnioImageOptimizer\App\Services\Rewrite\Fallback404;
-use OmnioImageOptimizer\App\Services\Upload\Interceptor;
+use PixelKilnImageOptimizer\App\App;
+use PixelKilnImageOptimizer\App\Hooks\CLI\Commands;
+use PixelKilnImageOptimizer\App\Hooks\Handlers\AssetHandler;
+use PixelKilnImageOptimizer\App\Hooks\Handlers\EditorAssetHandler;
+use PixelKilnImageOptimizer\App\Hooks\Handlers\MediaLibraryHandler;
+use PixelKilnImageOptimizer\App\Hooks\Handlers\MenuHandler;
+use PixelKilnImageOptimizer\App\Hooks\Handlers\NoticeHandler;
+use PixelKilnImageOptimizer\App\Hooks\Handlers\RestFieldHandler;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\JobRunner;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\ScanJobRunner;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Services\Engine\EngineFactory;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\App\Services\Rewrite\Fallback404;
+use PixelKilnImageOptimizer\App\Services\Upload\Interceptor;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -101,7 +100,6 @@ add_action('init', static function () {
     }
 
     ( new NoticeHandler() )->register();
-    ( new ForeignNoticeHandler() )->register();
     ( new MediaLibraryHandler() )->register();
     ( new MenuHandler() )->register();
     ( new AssetHandler() )->register();
@@ -112,15 +110,15 @@ add_action('init', static function () {
  * WP-CLI.
  */
 if (defined('WP_CLI') && WP_CLI) {
-    $omnio_io_commands = App::make(Commands::class);
+    $pixelkiln_io_commands = App::make(Commands::class);
 
-    WP_CLI::add_command('omnio-image-optimizer optimize', [ $omnio_io_commands, 'optimize' ]);
-    WP_CLI::add_command('omnio-image-optimizer restore', [ $omnio_io_commands, 'restore' ]);
-    WP_CLI::add_command('omnio-image-optimizer stats', [ $omnio_io_commands, 'stats' ]);
-    WP_CLI::add_command('omnio-image-optimizer diagnostics', [ $omnio_io_commands, 'diagnostics' ]);
-    WP_CLI::add_command('omnio-image-optimizer logs', [ $omnio_io_commands, 'logs' ]);
-    WP_CLI::add_command('omnio-image-optimizer requeue', [ $omnio_io_commands, 'requeue' ]);
-    WP_CLI::add_command('omnio-image-optimizer rescan', [ $omnio_io_commands, 'rescan' ]);
-    WP_CLI::add_command('omnio-image-optimizer repair-backups', [ $omnio_io_commands, 'repair_backups' ]);
-    WP_CLI::add_command('omnio-image-optimizer repair-mime', [ $omnio_io_commands, 'repair_mime' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer optimize', [ $pixelkiln_io_commands, 'optimize' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer restore', [ $pixelkiln_io_commands, 'restore' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer stats', [ $pixelkiln_io_commands, 'stats' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer diagnostics', [ $pixelkiln_io_commands, 'diagnostics' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer logs', [ $pixelkiln_io_commands, 'logs' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer requeue', [ $pixelkiln_io_commands, 'requeue' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer rescan', [ $pixelkiln_io_commands, 'rescan' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer repair-backups', [ $pixelkiln_io_commands, 'repair_backups' ]);
+    WP_CLI::add_command('pixelkiln-image-optimizer repair-mime', [ $pixelkiln_io_commands, 'repair_mime' ]);
 }

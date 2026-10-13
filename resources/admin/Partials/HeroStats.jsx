@@ -26,62 +26,62 @@ const HeroStats = ( { snapshot } ) => {
 	const scannedAt = snapshot ? formatTimeAgo( snapshot.completed_at ) : '';
 
 	return (
-		<Card className="oio-hero">
-			<CardBody className="oio-hero__body">
-				<div className="oio-hero__primary">
-					<span className="oio-hero__label">
-						{ __( 'Total storage saved', 'omnio-image-optimizer' ) }
+		<Card className="pkio-hero">
+			<CardBody className="pkio-hero__body">
+				<div className="pkio-hero__primary">
+					<span className="pkio-hero__label">
+						{ __( 'Total storage saved', 'pixelkiln-image-optimizer' ) }
 					</span>
-					<div className="oio-hero__figure">
-						<span className="oio-hero__value">
+					<div className="pkio-hero__figure">
+						<span className="pkio-hero__value">
 							{ formatBytes( stats.saved_bytes ) }
 						</span>
 						{ percent > 0 && (
-							<span className="oio-hero__badge">
+							<span className="pkio-hero__badge">
 								<IconTrendDown />
 								{ sprintf(
 									/* translators: %s: percentage saved. */
 									__(
 										'%s%% smaller',
-										'omnio-image-optimizer'
+										'pixelkiln-image-optimizer'
 									),
 									percent
 								) }
 							</span>
 						) }
 					</div>
-					<span className="oio-hero__sub">
+					<span className="pkio-hero__sub">
 						{ scannedAt
 							? sprintf(
 									/* translators: %s: how long ago the library was scanned. */
 									__(
 										'Across all optimized media files, as of %s',
-										'omnio-image-optimizer'
+										'pixelkiln-image-optimizer'
 									),
 									scannedAt
 							  )
 							: __(
 									'Scan your library to see what it has saved',
-									'omnio-image-optimizer'
+									'pixelkiln-image-optimizer'
 							  ) }
 					</span>
 				</div>
 
-				<div className="oio-hero__metrics">
+				<div className="pkio-hero__metrics">
 					<Metric
 						icon={ <IconImage /> }
 						tone="blue"
 						value={ stats.optimized ?? 0 }
 						label={ __(
 							'Images optimized',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					/>
 					<Metric
 						icon={ <IconDisk /> }
 						tone="rose"
 						value={ formatBytes( stats.original_bytes ) }
-						label={ __( 'Original size', 'omnio-image-optimizer' ) }
+						label={ __( 'Original size', 'pixelkiln-image-optimizer' ) }
 					/>
 					<Metric
 						icon={ <IconBolt /> }
@@ -89,7 +89,7 @@ const HeroStats = ( { snapshot } ) => {
 						value={ formatBytes( stats.optimized_bytes ) }
 						label={ __(
 							'Optimized size',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					/>
 				</div>

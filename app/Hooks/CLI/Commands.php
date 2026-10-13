@@ -2,21 +2,21 @@
 /**
  * WP-CLI commands.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\CLI;
+namespace PixelKilnImageOptimizer\App\Hooks\CLI;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\Api\Resource\StatsResource;
-use OmnioImageOptimizer\App\Services\AttachmentConverter;
-use OmnioImageOptimizer\App\Services\Backup\BackupManager;
-use OmnioImageOptimizer\App\Services\Bulk\Runner;
-use OmnioImageOptimizer\App\Services\Bulk\Scanner;
-use OmnioImageOptimizer\App\Services\Diagnostics\EnvironmentReport;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
-use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
-use OmnioImageOptimizer\App\Services\Upload\MimeReconciler;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\Api\Resource\StatsResource;
+use PixelKilnImageOptimizer\App\Services\AttachmentConverter;
+use PixelKilnImageOptimizer\App\Services\Backup\BackupManager;
+use PixelKilnImageOptimizer\App\Services\Bulk\Runner;
+use PixelKilnImageOptimizer\App\Services\Bulk\Scanner;
+use PixelKilnImageOptimizer\App\Services\Diagnostics\EnvironmentReport;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use PixelKilnImageOptimizer\App\Services\Upload\MimeReconciler;
 use WP_CLI;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -81,9 +81,9 @@ class Commands {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp omnio-image-optimizer optimize --dry-run
-	 *     wp omnio-image-optimizer optimize --all
-	 *     wp omnio-image-optimizer optimize --id=123
+	 *     wp pixelkiln-image-optimizer optimize --dry-run
+	 *     wp pixelkiln-image-optimizer optimize --all
+	 *     wp pixelkiln-image-optimizer optimize --id=123
 	 *
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Flags.
@@ -165,7 +165,7 @@ class Commands {
 						++$skipped;
 					} else {
 						++$failed;
-						WP_CLI::debug( sprintf( '#%d failed: %s', $id, $result->get_error_message() ), 'omnio-image-optimizer' );
+						WP_CLI::debug( sprintf( '#%d failed: %s', $id, $result->get_error_message() ), 'pixelkiln-image-optimizer' );
 					}
 				} else {
 					++$optimized;
@@ -331,7 +331,7 @@ class Commands {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp omnio-image-optimizer diagnostics
+	 *     wp pixelkiln-image-optimizer diagnostics
 	 *
 	 * @return void
 	 */
@@ -342,7 +342,7 @@ class Commands {
 
 		if ( $retryable > 0 ) {
 			WP_CLI::log( '' );
-			WP_CLI::warning( sprintf( '%d image(s) are worth trying again. Run: wp omnio-image-optimizer requeue', $retryable ) );
+			WP_CLI::warning( sprintf( '%d image(s) are worth trying again. Run: wp pixelkiln-image-optimizer requeue', $retryable ) );
 		}
 	}
 
@@ -362,8 +362,8 @@ class Commands {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp omnio-image-optimizer logs --lines=500
-	 *     wp omnio-image-optimizer logs --reset
+	 *     wp pixelkiln-image-optimizer logs --lines=500
+	 *     wp pixelkiln-image-optimizer logs --reset
 	 *
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Flags.
@@ -408,7 +408,7 @@ class Commands {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp omnio-image-optimizer requeue
+	 *     wp pixelkiln-image-optimizer requeue
 	 *
 	 * @return void
 	 */
@@ -437,7 +437,7 @@ class Commands {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp omnio-image-optimizer repair-backups
+	 *     wp pixelkiln-image-optimizer repair-backups
 	 *
 	 * @return void
 	 */
@@ -487,7 +487,7 @@ class Commands {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp omnio-image-optimizer repair-mime
+	 *     wp pixelkiln-image-optimizer repair-mime
 	 *
 	 * @return void
 	 */
@@ -538,7 +538,7 @@ class Commands {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp omnio-image-optimizer rescan
+	 *     wp pixelkiln-image-optimizer rescan
 	 *
 	 * @return void
 	 */

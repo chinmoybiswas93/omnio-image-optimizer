@@ -2,18 +2,18 @@
 /**
  * Conversion endpoints.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Controllers;
+namespace PixelKilnImageOptimizer\App\Http\Controllers;
 
-use OmnioImageOptimizer\App\Services\AttachmentConverter;
-use OmnioImageOptimizer\App\Services\Backup\BackupManager;
-use OmnioImageOptimizer\App\Services\Bulk\Runner;
-use OmnioImageOptimizer\App\Services\Bulk\Scanner;
-use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
-use OmnioImageOptimizer\App\Services\Upload\MimeReconciler;
+use PixelKilnImageOptimizer\App\Services\AttachmentConverter;
+use PixelKilnImageOptimizer\App\Services\Backup\BackupManager;
+use PixelKilnImageOptimizer\App\Services\Bulk\Runner;
+use PixelKilnImageOptimizer\App\Services\Bulk\Scanner;
+use PixelKilnImageOptimizer\App\Services\Engine\EngineFactory;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\App\Services\Upload\MimeReconciler;
 use WP_REST_Request;
 use WP_REST_Response;
 

@@ -2,10 +2,10 @@
 /**
  * The optimization log.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Models;
+namespace PixelKilnImageOptimizer\App\Models;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -25,7 +25,7 @@ class OptimizationLog extends Model {
      *
      * @var string
      */
-    protected static $table = 'omnio_io_log';
+    protected static $table = 'pixelkiln_io_log';
 
     /**
      * Row statuses.
@@ -39,7 +39,7 @@ class OptimizationLog extends Model {
     /**
      * Transient holding the cached stats aggregate.
      */
-    const STATS_CACHE_KEY = 'omnio_io_stats';
+    const STATS_CACHE_KEY = 'pixelkiln_io_stats';
 
     /**
      * Default column values for a new row.

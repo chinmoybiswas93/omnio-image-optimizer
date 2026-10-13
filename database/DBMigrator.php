@@ -2,15 +2,15 @@
 /**
  * Schema migrator.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Database;
+namespace PixelKilnImageOptimizer\Database;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\App\Models\UrlLookup;
-use OmnioImageOptimizer\Database\Migrations\LogMigrator;
-use OmnioImageOptimizer\Database\Migrations\UrlMigrator;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Models\UrlLookup;
+use PixelKilnImageOptimizer\Database\Migrations\LogMigrator;
+use PixelKilnImageOptimizer\Database\Migrations\UrlMigrator;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ class DBMigrator {
 	/**
 	 * Option storing the installed schema version.
 	 */
-	const SCHEMA_OPTION = 'omnio_io_schema_version';
+	const SCHEMA_OPTION = 'pixelkiln_io_schema_version';
 
 	/**
 	 * Migrators to run, in order.

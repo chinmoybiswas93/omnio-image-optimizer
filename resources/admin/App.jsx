@@ -31,7 +31,7 @@ const App = () => {
 
 	return (
 		<ToastProvider>
-			<div className="oio-app">
+			<div className="pkio-app">
 				<Masthead />
 				<HeroStats snapshot={ snapshot } />
 
@@ -41,22 +41,22 @@ const App = () => {
 							name: 'bulk',
 							title: __(
 								'Bulk Optimize',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							),
 						},
 						{
 							name: 'settings',
-							title: __( 'Settings', 'omnio-image-optimizer' ),
+							title: __( 'Settings', 'pixelkiln-image-optimizer' ),
 						},
 						{
 							name: 'backups',
-							title: __( 'Backups', 'omnio-image-optimizer' ),
+							title: __( 'Backups', 'pixelkiln-image-optimizer' ),
 						},
 						{
 							name: 'troubleshoot',
 							title: __(
 								'Troubleshoot',
-								'omnio-image-optimizer'
+								'pixelkiln-image-optimizer'
 							),
 						},
 					] }

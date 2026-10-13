@@ -10,9 +10,9 @@
  *   PHP="$HOME/Library/Application Support/Local/lightning-services/php-8.2.29+0/bin/darwin-arm64/bin/php"
  *   "$PHP" -d mysqli.default_socket="$SOCK" tests/php/convert-restore-e2e.php
  *
- * Optional: OIO_TEST_ENGINE=imagick|cwebp|gd forces one engine for the run.
+ * Optional: PKIO_TEST_ENGINE=imagick|cwebp|gd forces one engine for the run.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 // phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.PHP.DevelopmentFunctions, WordPress.Security.EscapeOutput, WordPress.NamingConventions.PrefixAllGlobals, WordPress.DB.DirectDatabaseQuery, Squiz.Commenting, Generic.Commenting, WordPress.PHP.NoSilencedErrors, Universal.Files.SeparateFunctionsFromOO, WordPress.PHP.DiscouragedPHPFunctions
@@ -20,14 +20,14 @@
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/wp.php';
 
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\App\Services\AttachmentConverter;
-use OmnioImageOptimizer\App\Services\Backup\BackupManager;
-use OmnioImageOptimizer\App\Services\Bulk\Scanner;
-use OmnioImageOptimizer\App\Http\Controllers\BackupController;
-use OmnioImageOptimizer\App\Hooks\Scheduler\JobRunner;
-use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Services\AttachmentConverter;
+use PixelKilnImageOptimizer\App\Services\Backup\BackupManager;
+use PixelKilnImageOptimizer\App\Services\Bulk\Scanner;
+use PixelKilnImageOptimizer\App\Http\Controllers\BackupController;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\JobRunner;
+use PixelKilnImageOptimizer\App\Services\Engine\EngineFactory;
 
 harness_require_site();
 harness_set_baseline_settings(
@@ -470,7 +470,7 @@ $harness_foreign_backups = static function () use ( $backup_root ) {
 			continue;
 		}
 
-		if ( false !== strpos( $name, 'oio-harness-' ) ) {
+		if ( false !== strpos( $name, 'pkio-harness-' ) ) {
 			continue;
 		}
 
@@ -667,7 +667,7 @@ if ( $foreign_before ) {
 	// what the folder was left full of (I-8).
 	$orphan_dir = trailingslashit( $backup_root ) . '2099/01';
 	wp_mkdir_p( $orphan_dir );
-	$orphan = trailingslashit( $orphan_dir ) . 'oio-harness-orphan-' . wp_generate_password( 8, false ) . '.jpg';
+	$orphan = trailingslashit( $orphan_dir ) . 'pkio-harness-orphan-' . wp_generate_password( 8, false ) . '.jpg';
 	file_put_contents( $orphan, 'not a real jpeg, but a real file' );
 
 	Harness::ok( file_exists( $orphan ), 'an unreferenced backup file exists before the purge' );
@@ -675,9 +675,9 @@ if ( $foreign_before ) {
 	// A symlink out of the backup root. Removing the link must never remove
 	// what it points at.
 	$uploads = wp_get_upload_dir();
-	$outside = trailingslashit( $uploads['basedir'] ) . 'oio-harness-outside-' . wp_generate_password( 8, false ) . '.txt';
+	$outside = trailingslashit( $uploads['basedir'] ) . 'pkio-harness-outside-' . wp_generate_password( 8, false ) . '.txt';
 	file_put_contents( $outside, 'this file lives outside the backup root' );
-	$link   = trailingslashit( $backup_root ) . 'oio-harness-link-' . wp_generate_password( 8, false );
+	$link   = trailingslashit( $backup_root ) . 'pkio-harness-link-' . wp_generate_password( 8, false );
 	$linked = @symlink( $outside, $link );
 
 	$result = ( new BackupController() )->purge()->get_data();

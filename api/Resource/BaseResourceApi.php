@@ -2,10 +2,10 @@
 /**
  * Base resource API.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Api\Resource;
+namespace PixelKilnImageOptimizer\Api\Resource;
 
 if ( ! defined('ABSPATH')) {
     exit;

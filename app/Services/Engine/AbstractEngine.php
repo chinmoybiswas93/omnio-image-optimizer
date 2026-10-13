@@ -2,10 +2,10 @@
 /**
  * Shared engine behaviour.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Engine;
+namespace PixelKilnImageOptimizer\App\Services\Engine;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

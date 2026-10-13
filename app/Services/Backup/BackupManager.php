@@ -2,14 +2,14 @@
 /**
  * Original-file backups.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Backup;
+namespace PixelKilnImageOptimizer\App\Services\Backup;
 
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,7 +36,7 @@ class BackupManager {
 	 * traversal guard resolves against root() so the extra level costs it
 	 * nothing.
 	 */
-	const DIRNAME = 'omnio-image-optimizer/backup';
+	const DIRNAME = 'pixelkiln-image-optimizer/backup';
 
 	/**
 	 * Absolute path to the backup root.
@@ -90,13 +90,13 @@ class BackupManager {
 	 */
 	public static function backup( $attachment_id ) {
 		if ( ! self::ensure_root() ) {
-			return new WP_Error( 'backup-root-unwritable', __( 'The backup directory could not be created.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'backup-root-unwritable', __( 'The backup directory could not be created.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$main = get_attached_file( $attachment_id );
 
 		if ( ! $main || ! file_exists( $main ) ) {
-			return new WP_Error( 'missing-file', __( 'The attachment file could not be found.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'missing-file', __( 'The attachment file could not be found.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$sources = self::collect_files( $attachment_id, $main );
@@ -114,7 +114,7 @@ class BackupManager {
 		$target_dir = trailingslashit( self::root() ) . $relative;
 
 		if ( ! is_dir( $target_dir ) && ! wp_mkdir_p( $target_dir ) ) {
-			return new WP_Error( 'backup-dir-failed', __( 'The backup subdirectory could not be created.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'backup-dir-failed', __( 'The backup subdirectory could not be created.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$copied = array();
@@ -133,7 +133,7 @@ class BackupManager {
 					'backup-copy-failed',
 					sprintf(
 						/* translators: %s: file name. */
-						__( 'Could not back up %s.', 'omnio-image-optimizer' ),
+						__( 'Could not back up %s.', 'pixelkiln-image-optimizer' ),
 						$name
 					)
 				);
@@ -174,11 +174,11 @@ class BackupManager {
 	 */
 	public static function backup_file( $file ) {
 		if ( ! self::ensure_root() ) {
-			return new WP_Error( 'backup-root-unwritable', __( 'The backup directory could not be created.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'backup-root-unwritable', __( 'The backup directory could not be created.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		if ( ! $file || ! file_exists( $file ) ) {
-			return new WP_Error( 'missing-file', __( 'The file to back up could not be found.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'missing-file', __( 'The file to back up could not be found.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$space = self::has_space_for( array( $file ) );
@@ -194,7 +194,7 @@ class BackupManager {
 		$target_dir = trailingslashit( self::root() ) . $relative;
 
 		if ( ! is_dir( $target_dir ) && ! wp_mkdir_p( $target_dir ) ) {
-			return new WP_Error( 'backup-dir-failed', __( 'The backup subdirectory could not be created.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'backup-dir-failed', __( 'The backup subdirectory could not be created.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$name = wp_basename( $file );
@@ -206,7 +206,7 @@ class BackupManager {
 				'backup-copy-failed',
 				sprintf(
 					/* translators: %s: file name. */
-					__( 'Could not back up %s.', 'omnio-image-optimizer' ),
+					__( 'Could not back up %s.', 'pixelkiln-image-optimizer' ),
 					$name
 				)
 			);
@@ -272,7 +272,7 @@ class BackupManager {
 
 		return new WP_Error(
 			'insufficient-disk',
-			__( 'There is not enough free disk space to back up the original safely.', 'omnio-image-optimizer' )
+			__( 'There is not enough free disk space to back up the original safely.', 'pixelkiln-image-optimizer' )
 		);
 	}
 
@@ -647,14 +647,14 @@ class BackupManager {
 		}
 
 		if ( ! is_dir( $source_dir ) ) {
-			return new WP_Error( 'backup-missing', __( 'The backup for this image no longer exists.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'backup-missing', __( 'The backup for this image no longer exists.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$uploads    = wp_get_upload_dir();
 		$target_dir = trailingslashit( trailingslashit( $uploads['basedir'] ) . $relative_dir );
 
 		if ( ! is_dir( $target_dir ) && ! wp_mkdir_p( $target_dir ) ) {
-			return new WP_Error( 'restore-dir-failed', __( 'The uploads subdirectory could not be recreated.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'restore-dir-failed', __( 'The uploads subdirectory could not be recreated.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		foreach ( $files as $name ) {
@@ -670,7 +670,7 @@ class BackupManager {
 					'restore-copy-failed',
 					sprintf(
 						/* translators: %s: file name. */
-						__( 'Could not restore %s.', 'omnio-image-optimizer' ),
+						__( 'Could not restore %s.', 'pixelkiln-image-optimizer' ),
 						$name
 					)
 				);
@@ -847,14 +847,14 @@ class BackupManager {
 		$real_path = realpath( $path );
 
 		if ( false === $real_root ) {
-			return new WP_Error( 'backup-root-missing', __( 'The backup directory does not exist.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'backup-root-missing', __( 'The backup directory does not exist.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		// A path that does not exist yet is fine, but it must still resolve inside the root.
 		$check = false !== $real_path ? $real_path : $path;
 
 		if ( 0 !== strpos( $check, $real_root ) ) {
-			return new WP_Error( 'backup-path-invalid', __( 'Refusing to access a path outside the backup directory.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'backup-path-invalid', __( 'Refusing to access a path outside the backup directory.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		return $path;

@@ -2,10 +2,10 @@
 /**
  * Base route policy.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Http\Policies;
+namespace PixelKilnImageOptimizer\App\Http\Policies;
 
 use WP_REST_Request;
 

@@ -2,16 +2,16 @@
 /**
  * Cron driver for the library scan.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Scheduler;
+namespace PixelKilnImageOptimizer\App\Hooks\Scheduler;
 
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\App;
-use OmnioImageOptimizer\App\Services\Bulk\Runner;
-use OmnioImageOptimizer\App\Services\Bulk\ScanRunner;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\App;
+use PixelKilnImageOptimizer\App\Services\Bulk\Runner;
+use PixelKilnImageOptimizer\App\Services\Bulk\ScanRunner;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -35,12 +35,12 @@ class ScanJobRunner {
 	/**
 	 * Single, self-re-arming event that advances a running scan.
 	 */
-	const HOOK = 'omnio_io_scan_batch';
+	const HOOK = 'pixelkiln_io_scan_batch';
 
 	/**
 	 * Recurring event that starts a scheduled scan.
 	 */
-	const SCHEDULE_HOOK = 'omnio_io_scheduled_scan';
+	const SCHEDULE_HOOK = 'pixelkiln_io_scheduled_scan';
 
 	/**
 	 * Custom cron interval key.
@@ -48,7 +48,7 @@ class ScanJobRunner {
 	 * WordPress ships hourly, twicedaily, daily and weekly. Monthly is the only
 	 * one of the plugin's four frequencies core does not provide.
 	 */
-	const MONTHLY = 'omnio_io_monthly';
+	const MONTHLY = 'pixelkiln_io_monthly';
 
 	/**
 	 * Register hooks.
@@ -100,7 +100,7 @@ class ScanJobRunner {
 
 		$schedules[ self::MONTHLY ] = array(
 			'interval' => 30 * DAY_IN_SECONDS,
-			'display'  => __( 'About every 30 days', 'omnio-image-optimizer' ),
+			'display'  => __( 'About every 30 days', 'pixelkiln-image-optimizer' ),
 		);
 
 		return $schedules;

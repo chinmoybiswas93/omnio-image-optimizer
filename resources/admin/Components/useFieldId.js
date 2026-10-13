@@ -18,7 +18,7 @@ let counter = 0;
  * @param {string} prefix Short label used to make the id readable in devtools.
  * @return {string} The id, stable for the life of the component.
  */
-const useFieldId = ( prefix = 'oio-field' ) => {
+const useFieldId = ( prefix = 'pkio-field' ) => {
 	const id = useRef( null );
 
 	if ( id.current === null ) {

@@ -13,7 +13,7 @@
 /* Attachment modal panel                                                      */
 /* -------------------------------------------------------------------------- */
 
-.oio-panel {
+.pkio-panel {
 	margin: 8px 0;
 	padding: 8px 10px;
 	border: 1px solid #e0e0e0;
@@ -117,8 +117,8 @@
 /* Grid toolbar                                                                */
 /* -------------------------------------------------------------------------- */
 
-.omnio-optimize-mode-button.hidden,
-.omnio-optimize-selected-button.hidden {
+.pixelkiln-optimize-mode-button.hidden,
+.pixelkiln-optimize-selected-button.hidden {
 	display: none;
 }
 
@@ -127,16 +127,16 @@
  * WordPress's own "Bulk select" (.select-mode-toggle-button, unmodified
  * core markup). Measured in the browser, core's own toolbar button computes
  * to 32px min-height / 0 12px padding / 2px radius — the same box our
- * .oio-btn already uses except for corner radius, so only that needs
+ * .pkio-btn already uses except for corner radius, so only that needs
  * pinning here. The `.media-toolbar` scope keeps it local to the grid
- * toolbar; `.oio-btn` everywhere else (the modal panel, the dashboard) is
+ * toolbar; `.pkio-btn` everywhere else (the modal panel, the dashboard) is
  * untouched.
  */
-.media-toolbar .oio-btn {
+.media-toolbar .pkio-btn {
 	border-radius: 2px;
 }
 
-.oio-btn__icon {
+.pkio-btn__icon {
 	flex: 0 0 auto;
 	width: 14px;
 	height: 14px;
@@ -147,7 +147,7 @@
  * Appended straight to .media-toolbar, outside the primary/secondary priority
  * lists, so core's select-mode show/hide never touches it.
  */
-.oio-bulk {
+.pkio-bulk {
 	display: flex;
 	align-items: center;
 	gap: 12px;
@@ -189,7 +189,7 @@
 }
 
 /* Hide the ordinary toolbar controls while a run is in progress. */
-.media-toolbar.oio-running {
+.media-toolbar.pkio-running {
 	.media-toolbar-primary > *,
 	.media-toolbar-secondary > * {
 		display: none !important;

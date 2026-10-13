@@ -6,12 +6,12 @@
  * because the previous set lived only in a session scratchpad and was lost,
  * taking 143 assertions of regression cover with it.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 // phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.PHP.DevelopmentFunctions, WordPress.Security.EscapeOutput, WordPress.NamingConventions.PrefixAllGlobals, WordPress.DB.DirectDatabaseQuery, Squiz.Commenting, Generic.Commenting, WordPress.WP.GlobalVariablesOverride
 
-if ( PHP_SAPI !== 'cli' && ! defined( 'OIO_HARNESS_WEB' ) ) {
+if ( PHP_SAPI !== 'cli' && ! defined( 'PKIO_HARNESS_WEB' ) ) {
 	exit( 'Harnesses are CLI-only unless invoked through tests/php/web-runner.php.' );
 }
 

@@ -8,7 +8,7 @@
 
 export const Card = ( { className = '', children, ...rest } ) => (
 	<div
-		className={ [ 'oio-card', className ].filter( Boolean ).join( ' ' ) }
+		className={ [ 'pkio-card', className ].filter( Boolean ).join( ' ' ) }
 		{ ...rest }
 	>
 		{ children }
@@ -17,7 +17,7 @@ export const Card = ( { className = '', children, ...rest } ) => (
 
 export const CardHeader = ( { className = '', children, ...rest } ) => (
 	<div
-		className={ [ 'oio-card__header', className ]
+		className={ [ 'pkio-card__header', className ]
 			.filter( Boolean )
 			.join( ' ' ) }
 		{ ...rest }
@@ -28,7 +28,7 @@ export const CardHeader = ( { className = '', children, ...rest } ) => (
 
 export const CardBody = ( { className = '', children, ...rest } ) => (
 	<div
-		className={ [ 'oio-card__body', className ]
+		className={ [ 'pkio-card__body', className ]
 			.filter( Boolean )
 			.join( ' ' ) }
 		{ ...rest }

@@ -2,14 +2,14 @@
 /**
  * Enqueues the Media Library integration assets.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Hooks\Handlers;
+namespace PixelKilnImageOptimizer\App\Hooks\Handlers;
 
-use OmnioImageOptimizer\App\App;
-use OmnioImageOptimizer\App\Services\Bulk\Scanner;
-use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
+use PixelKilnImageOptimizer\App\App;
+use PixelKilnImageOptimizer\App\Services\Bulk\Scanner;
+use PixelKilnImageOptimizer\App\Services\Engine\EngineFactory;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -29,7 +29,7 @@ class AssetHandler {
 	/**
 	 * Script handle.
 	 */
-	const HANDLE = 'omnio-image-optimizer-media';
+	const HANDLE = 'pixelkiln-image-optimizer-media';
 
 	/**
 	 * Register hooks.
@@ -56,7 +56,7 @@ class AssetHandler {
 			return;
 		}
 
-		$asset_file = OMNIO_IO_DIR . 'build/media.asset.php';
+		$asset_file = PIXELKILN_IO_DIR . 'build/media.asset.php';
 
 		if ( ! file_exists( $asset_file ) ) {
 			return;
@@ -68,7 +68,7 @@ class AssetHandler {
 		// carry whatever WordPress scripts it imports (wp-i18n).
 		wp_enqueue_script(
 			self::HANDLE,
-			OMNIO_IO_URL . 'build/media.js',
+			PIXELKILN_IO_URL . 'build/media.js',
 			array_merge( $asset['dependencies'], array( 'media-views' ) ),
 			$asset['version'],
 			true
@@ -76,16 +76,16 @@ class AssetHandler {
 
 		wp_enqueue_style(
 			self::HANDLE,
-			OMNIO_IO_URL . 'build/media.css',
+			PIXELKILN_IO_URL . 'build/media.css',
 			array(),
 			$asset['version']
 		);
 
-		wp_set_script_translations( self::HANDLE, 'omnio-image-optimizer' );
+		wp_set_script_translations( self::HANDLE, 'pixelkiln-image-optimizer' );
 
 		wp_localize_script(
 			self::HANDLE,
-			'omnioImageOptimizerMedia',
+			'pixelKilnImageOptimizerMedia',
 			array(
 				'restUrl'   => esc_url_raw( rest_url( App::router()->getNamespace() . '/' ) ),
 				'nonce'     => wp_create_nonce( 'wp_rest' ),

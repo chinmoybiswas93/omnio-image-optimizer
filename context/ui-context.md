@@ -10,7 +10,6 @@
 | **Media Library, bulk dropdown** | Optimize images / Restore originals | `MediaLibraryHandler` |
 | **Media modal, grid view** | Optimization panel in the attachment sidebar | `resources/media/media.js` (Unit 08) |
 | **Plugins screen** | "Settings" action link | `Hooks\Handlers\MenuHandler` |
-| **This plugin's screen** | Other plugins' notices stripped, ours kept | `Hooks\Handlers\ForeignNoticeHandler` |
 
 ## Design rules
 
@@ -39,19 +38,19 @@ keys with wraparound. Two rules matter if you touch it:
 - The `::after` carrying `attr(data-title)` at `font-weight: 600` is not decoration; it reserves
   the bold width so activating a tab cannot reflow the row.
 
-Classes are all prefixed `oio-`:
+Classes are all prefixed `pkio-`:
 
 ```
-oio-app  oio-masthead  oio-masthead__mark  oio-masthead__title  oio-masthead__tagline  oio-pill
-oio-hero  oio-hero__label  oio-hero__value  oio-hero__badge  oio-hero__sub  oio-hero__metrics
-oio-metric  oio-metric__icon  oio-metric__value  oio-metric__label
-oio-tabs  oio-tabs__list  oio-tabs__tab  oio-tabs__panel  oio-card  oio-section  oio-section__header  oio-section__icon  oio-section__title
-oio-section__desc  oio-lede  oio-stats  oio-stat  oio-stat__value  oio-stat__label  oio-muted
-oio-progress  oio-progress__bar  oio-progress__fill  oio-progress__meta
-oio-actions  oio-savebar  oio-dryrun  oio-tablecounts  oio-errors
-oio-diagnostics  oio-diagnostics__title  oio-diagnostics__row  oio-diagnostics__label
-oio-diagnostics__value  oio-diagnostics__hint  oio-diagnostics__state
-oio-logtoolbar  oio-logtoolbar__filter  oio-logviewer  oio-logviewer__line
+pkio-app  pkio-masthead  pkio-masthead__mark  pkio-masthead__title  pkio-masthead__tagline  pkio-pill
+pkio-hero  pkio-hero__label  pkio-hero__value  pkio-hero__badge  pkio-hero__sub  pkio-hero__metrics
+pkio-metric  pkio-metric__icon  pkio-metric__value  pkio-metric__label
+pkio-tabs  pkio-tabs__list  pkio-tabs__tab  pkio-tabs__panel  pkio-card  pkio-section  pkio-section__header  pkio-section__icon  pkio-section__title
+pkio-section__desc  pkio-lede  pkio-stats  pkio-stat  pkio-stat__value  pkio-stat__label  pkio-muted
+pkio-progress  pkio-progress__bar  pkio-progress__fill  pkio-progress__meta
+pkio-actions  pkio-savebar  pkio-dryrun  pkio-tablecounts  pkio-errors
+pkio-diagnostics  pkio-diagnostics__title  pkio-diagnostics__row  pkio-diagnostics__label
+pkio-diagnostics__value  pkio-diagnostics__hint  pkio-diagnostics__state
+pkio-logtoolbar  pkio-logtoolbar__filter  pkio-logviewer  pkio-logviewer__line
 ```
 
 Icons live in `admin/icons.js` — ten hand-rolled inline SVGs plus the logo mark. Deliberately
@@ -96,7 +95,7 @@ URLs destructively, the user should meet the preview before they meet the trigge
 Three always-visible section cards: Conversion, Existing images, WordPress behaviour. Each has
 an icon, a title and a one-line description saying what the section governs. Accordions were
 dropped — collapsing hid settings behind a click and made the page look unfinished. The Save
-button sits in a sticky `oio-savebar` at the foot so it stays reachable down a long page.
+button sits in a sticky `pkio-savebar` at the foot so it stays reachable down a long page.
 
 Help text on the destructive toggles is written to be honest rather than reassuring, e.g.
 disabling URL rewriting says *"Turning this off will leave broken images."*

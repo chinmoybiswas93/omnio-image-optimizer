@@ -35,8 +35,8 @@ async function loginAndOpenDashboard( page ) {
 	await page.locator( '#wp-submit' ).click();
 	await expect( page ).toHaveURL( /wp-admin/ );
 
-	await page.goto( '/wp-admin/upload.php?page=omnio-image-optimizer' );
-	await expect( page.locator( '#omnio-image-optimizer-root' ) ).toBeVisible();
+	await page.goto( '/wp-admin/upload.php?page=pixelkiln-image-optimizer' );
+	await expect( page.locator( '#pixelkiln-image-optimizer-root' ) ).toBeVisible();
 }
 
 test( 'the Bulk Optimize tab renders one card with a progress ring', async ( {
@@ -56,8 +56,8 @@ test( 'the Bulk Optimize tab renders one card with a progress ring', async ( {
 	 * "Before you start", "Bulk optimization") titled separately; this unit
 	 * merges them, so more than one match here would mean the merge regressed.
 	 */
-	await expect( page.locator( '.oio-library' ) ).toHaveCount( 1 );
-	await expect( page.locator( '.oio-ring' ) ).toHaveCount( 1 );
+	await expect( page.locator( '.pkio-library' ) ).toHaveCount( 1 );
+	await expect( page.locator( '.pkio-ring' ) ).toHaveCount( 1 );
 	await expect(
 		page.locator( '[role="progressbar"]' ).first()
 	).toBeVisible();
@@ -85,7 +85,7 @@ test( 'Scan library disables while running and re-enables on completion', async 
 	await expect( scanButton ).toBeVisible();
 
 	const timeBefore = await page
-		.locator( '.oio-scanmeta__time' )
+		.locator( '.pkio-scanmeta__time' )
 		.textContent()
 		.catch( () => '' );
 
@@ -103,11 +103,11 @@ test( 'Scan library disables while running and re-enables on completion', async 
 	// the batch ceiling exists precisely so this does not hang.
 	await expect( scanButton ).toBeEnabled( { timeout: 60000 } );
 
-	await expect( page.locator( '.oio-scanmeta__time' ) ).toContainText(
+	await expect( page.locator( '.pkio-scanmeta__time' ) ).toContainText(
 		/Last scanned|just now/i
 	);
 
-	const timeAfter = await page.locator( '.oio-scanmeta__time' ).textContent();
+	const timeAfter = await page.locator( '.pkio-scanmeta__time' ).textContent();
 	expect( timeAfter ).not.toBe( timeBefore );
 } );
 

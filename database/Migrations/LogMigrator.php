@@ -2,19 +2,19 @@
 /**
  * Optimization log table schema.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Database\Migrations;
+namespace PixelKilnImageOptimizer\Database\Migrations;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Creates and upgrades {prefix}omnio_io_log.
+ * Creates and upgrades {prefix}pixelkiln_io_log.
  */
 class LogMigrator {
 

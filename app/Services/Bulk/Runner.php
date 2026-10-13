@@ -2,17 +2,17 @@
 /**
  * Batched bulk optimization.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Bulk;
+namespace PixelKilnImageOptimizer\App\Services\Bulk;
 
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Services\AttachmentConverter;
-use OmnioImageOptimizer\App\Services\Logging\Logger;
-use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
-use OmnioImageOptimizer\App\Services\Lock;
-use OmnioImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Services\AttachmentConverter;
+use PixelKilnImageOptimizer\App\Services\Logging\Logger;
+use PixelKilnImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use PixelKilnImageOptimizer\App\Services\Lock;
+use PixelKilnImageOptimizer\App\Hooks\Scheduler\BulkJobRunner;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -32,12 +32,12 @@ class Runner {
 	/**
 	 * Option holding run state.
 	 */
-	const PROGRESS_OPTION = 'omnio_io_bulk_progress';
+	const PROGRESS_OPTION = 'pixelkiln_io_bulk_progress';
 
 	/**
 	 * Lock preventing two runs at once. See Services\Lock for why it is not a transient.
 	 */
-	const LOCK = 'omnio_io_bulk_lock';
+	const LOCK = 'pixelkiln_io_bulk_lock';
 
 	/**
 	 * Default images per batch.
@@ -179,7 +179,7 @@ class Runner {
 	 */
 	public function process_batch() {
 		if ( ! Lock::acquire( self::LOCK ) ) {
-			return new WP_Error( 'bulk-locked', __( 'Another bulk optimization is already running.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'bulk-locked', __( 'Another bulk optimization is already running.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		$state = $this->raw_state();
@@ -187,7 +187,7 @@ class Runner {
 		if ( empty( $state['running'] ) ) {
 			Lock::release( self::LOCK );
 
-			return new WP_Error( 'not-running', __( 'No bulk optimization is in progress.', 'omnio-image-optimizer' ) );
+			return new WP_Error( 'not-running', __( 'No bulk optimization is in progress.', 'pixelkiln-image-optimizer' ) );
 		}
 
 		Logger::resume_run( isset( $state['run_id'] ) ? $state['run_id'] : '' );
@@ -360,7 +360,7 @@ class Runner {
 		 *
 		 * @param array $state Final run state.
 		 */
-		do_action( 'omnio_io_bulk_completed', $state );
+		do_action( 'pixelkiln_io_bulk_completed', $state );
 	}
 
 	/**

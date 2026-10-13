@@ -298,11 +298,11 @@ const BulkPage = ( { snapshot, setSnapshot } ) => {
 				<ConfirmDialog
 					title={ __(
 						'Optimize your media library?',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 					confirmLabel={ __(
 						'Start optimizing',
-						'omnio-image-optimizer'
+						'pixelkiln-image-optimizer'
 					) }
 					onConfirm={ startOptimize }
 					onCancel={ () => setConfirming( false ) }
@@ -310,13 +310,13 @@ const BulkPage = ( { snapshot, setSnapshot } ) => {
 					<p>
 						{ __(
 							'This converts your existing images to WebP and updates every reference to them across your site.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					</p>
 					<p>
 						{ __(
 							'Every original is backed up first, so any image can be restored afterwards.',
-							'omnio-image-optimizer'
+							'pixelkiln-image-optimizer'
 						) }
 					</p>
 				</ConfirmDialog>

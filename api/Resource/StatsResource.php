@@ -2,12 +2,12 @@
 /**
  * Aggregate savings figures.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Api\Resource;
+namespace PixelKilnImageOptimizer\Api\Resource;
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

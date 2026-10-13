@@ -2,10 +2,10 @@
 /**
  * Plugin settings: registration, defaults and sanitization.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Api;
+namespace PixelKilnImageOptimizer\Api;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,7 +22,7 @@ class StoreSettings {
 	/**
 	 * Option name holding the settings array.
 	 */
-	const OPTION = 'omnio_io_settings';
+	const OPTION = 'pixelkiln_io_settings';
 
 	/**
 	 * Default settings.
@@ -82,7 +82,7 @@ class StoreSettings {
 	 */
 	public function register() {
 		register_setting(
-			'omnio_io',
+			'pixelkiln_io',
 			self::OPTION,
 			array(
 				'type'              => 'object',

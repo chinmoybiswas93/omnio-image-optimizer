@@ -2,10 +2,10 @@
 /**
  * The old-URL lookup table.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Models;
+namespace PixelKilnImageOptimizer\App\Models;
 
 if ( ! defined('ABSPATH')) {
     exit;
@@ -26,7 +26,7 @@ class UrlLookup extends Model {
      *
      * @var string
      */
-    protected static $table = 'omnio_io_urls';
+    protected static $table = 'pixelkiln_io_urls';
 
     /**
      * Record where each of an attachment's old URLs now points.

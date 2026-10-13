@@ -4,13 +4,13 @@
  * The admin app has Components/ConfirmDialog.jsx. This bundle deliberately
  * carries no React - the media modal is Backbone and this script loads on
  * screens the admin app never touches - so the same dialog is built here by
- * hand. Both render the identical `oio-modal` markup and share
+ * hand. Both render the identical `pkio-modal` markup and share
  * styles/_modal.scss, which is what stops the two drifting into
  * different-looking dialogs for the same kind of decision.
  *
  * Returns a promise so a call site reads the way window.confirm() did:
  *
- *     if ( ! await oioConfirm( { ... } ) ) { return; }
+ *     if ( ! await pkioConfirm( { ... } ) ) { return; }
  */
 
 import { __ } from '@wordpress/i18n';
@@ -31,20 +31,20 @@ let nextId = 0;
  * @param {boolean} [options.destructive] Style the confirm button as destructive.
  * @return {Promise<boolean>} True when confirmed.
  */
-export default function oioConfirm( options ) {
+export default function pkioConfirm( options ) {
 	const {
 		title,
 		message,
-		confirm = __( 'Confirm', 'omnio-image-optimizer' ),
-		cancel = __( 'Cancel', 'omnio-image-optimizer' ),
+		confirm = __( 'Confirm', 'pixelkiln-image-optimizer' ),
+		cancel = __( 'Cancel', 'pixelkiln-image-optimizer' ),
 		destructive = false,
 	} = options;
 
 	return new Promise( ( resolve ) => {
 		nextId += 1;
 
-		const titleId = `oio-modal-title-${ nextId }`;
-		const bodyId = `oio-modal-body-${ nextId }`;
+		const titleId = `pkio-modal-title-${ nextId }`;
+		const bodyId = `pkio-modal-body-${ nextId }`;
 
 		const backdrop = document.createElement( 'div' );
 
@@ -53,12 +53,12 @@ export default function oioConfirm( options ) {
 		const doc = backdrop.ownerDocument;
 		const opener = doc.activeElement;
 
-		backdrop.className = 'oio-modal__backdrop';
+		backdrop.className = 'pkio-modal__backdrop';
 
 		const dialog = document.createElement( 'div' );
 		dialog.className = destructive
-			? 'oio-modal oio-modal--destructive'
-			: 'oio-modal';
+			? 'pkio-modal pkio-modal--destructive'
+			: 'pkio-modal';
 		dialog.setAttribute( 'role', 'dialog' );
 		dialog.setAttribute( 'aria-modal', 'true' );
 		dialog.setAttribute( 'aria-labelledby', titleId );
@@ -66,19 +66,19 @@ export default function oioConfirm( options ) {
 		dialog.tabIndex = -1;
 
 		const head = document.createElement( 'div' );
-		head.className = 'oio-modal__head';
+		head.className = 'pkio-modal__head';
 
 		const heading = document.createElement( 'h2' );
-		heading.className = 'oio-modal__title';
+		heading.className = 'pkio-modal__title';
 		heading.id = titleId;
 		heading.textContent = title;
 
 		const dismiss = document.createElement( 'button' );
 		dismiss.type = 'button';
-		dismiss.className = 'oio-modal__dismiss';
+		dismiss.className = 'pkio-modal__dismiss';
 		dismiss.setAttribute(
 			'aria-label',
-			__( 'Close', 'omnio-image-optimizer' )
+			__( 'Close', 'pixelkiln-image-optimizer' )
 		);
 		dismiss.innerHTML = '<span aria-hidden="true">&times;</span>';
 
@@ -86,7 +86,7 @@ export default function oioConfirm( options ) {
 		head.appendChild( dismiss );
 
 		const body = document.createElement( 'div' );
-		body.className = 'oio-modal__body';
+		body.className = 'pkio-modal__body';
 		body.id = bodyId;
 
 		const paragraph = document.createElement( 'p' );
@@ -94,18 +94,18 @@ export default function oioConfirm( options ) {
 		body.appendChild( paragraph );
 
 		const foot = document.createElement( 'div' );
-		foot.className = 'oio-modal__foot';
+		foot.className = 'pkio-modal__foot';
 
 		const cancelButton = document.createElement( 'button' );
 		cancelButton.type = 'button';
-		cancelButton.className = 'oio-btn oio-btn--tertiary';
+		cancelButton.className = 'pkio-btn pkio-btn--tertiary';
 		cancelButton.textContent = cancel;
 
 		const confirmButton = document.createElement( 'button' );
 		confirmButton.type = 'button';
 		confirmButton.className = destructive
-			? 'oio-btn oio-btn--primary is-destructive'
-			: 'oio-btn oio-btn--primary';
+			? 'pkio-btn pkio-btn--primary is-destructive'
+			: 'pkio-btn pkio-btn--primary';
 		confirmButton.textContent = confirm;
 
 		foot.appendChild( cancelButton );

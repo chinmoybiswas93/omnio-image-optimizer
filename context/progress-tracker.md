@@ -16,6 +16,12 @@ Not shippable yet: [issues.md](issues.md) issue 1 is a data-loss bug in the uplo
 
 ## Where things stand
 
+- **WordPress.org pre-review (2026-10-13)** — renamed to **PixelKiln Image Optimizer**
+  (`pixelkiln-image-optimizer`, prefix `pixelkiln_io_` / `PIXELKILN_IO_`, namespace
+  `PixelKilnImageOptimizer`, CSS `pkio-`): "Omnio" is an active software brand (Soniox's AI model,
+  with a pending USPTO application). `ForeignNoticeHandler` was removed: stripping other plugins'
+  notices, even on our own screen, was flagged under Guideline 11. The dead `Plugin URI` header was
+  dropped. The reply to the review must request the new slug explicitly.
 - **Unit 15 / I-20** — `/optimize` and `/restore` now require `edit_post` on every ID; an Author
   could previously act on anyone's images. `readme.txt` links the source for `build/`
   (Guideline 4). See [memory/fixed-issues.md](memory/fixed-issues.md).

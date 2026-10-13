@@ -2,10 +2,10 @@
 /**
  * REST route registrar.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Framework;
+namespace PixelKilnImageOptimizer\Framework;
 
 use RuntimeException;
 use WP_REST_Server;
@@ -36,7 +36,7 @@ class Router {
     private $container;
 
     /**
-     * REST namespace, e.g. 'omnio-image-optimizer/v1'.
+     * REST namespace, e.g. 'pixelkiln-image-optimizer/v1'.
      *
      * @var string
      */

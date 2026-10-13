@@ -2,12 +2,12 @@
 /**
  * Engine detection and selection.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\App\Services\Engine;
+namespace PixelKilnImageOptimizer\App\Services\Engine;
 
-use OmnioImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\Api\StoreSettings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

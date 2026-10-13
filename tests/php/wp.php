@@ -7,7 +7,7 @@
  * backups - 228 original files. Nothing in this file deletes by glob. Backups
  * are removed only via the manifest recorded on the harness's own log row.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 // phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.PHP.DevelopmentFunctions, WordPress.Security.EscapeOutput, WordPress.NamingConventions.PrefixAllGlobals, WordPress.DB.DirectDatabaseQuery, Squiz.Commenting, Generic.Commenting, WordPress.PHP.NoSilencedErrors, WordPress.PHP.DiscouragedPHPFunctions
@@ -26,13 +26,13 @@ require_once ABSPATH . 'wp-admin/includes/image.php';
 require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/media.php';
 
-use OmnioImageOptimizer\Api\StoreSettings;
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\App\Services\AttachmentConverter;
-use OmnioImageOptimizer\App\Services\Backup\BackupManager;
-use OmnioImageOptimizer\App\Services\Engine\EngineFactory;
-use OmnioImageOptimizer\App\Services\Optimizer;
-use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
+use PixelKilnImageOptimizer\Api\StoreSettings;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Services\AttachmentConverter;
+use PixelKilnImageOptimizer\App\Services\Backup\BackupManager;
+use PixelKilnImageOptimizer\App\Services\Engine\EngineFactory;
+use PixelKilnImageOptimizer\App\Services\Optimizer;
+use PixelKilnImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
 
 /**
  * Write an explicit settings baseline.
@@ -44,13 +44,13 @@ use OmnioImageOptimizer\App\Services\Rewrite\DatabaseRewriter;
 function harness_set_baseline_settings( array $overrides = array() ) {
 	$settings = array_merge( StoreSettings::defaults(), $overrides );
 
-	$engine = getenv( 'OIO_TEST_ENGINE' );
+	$engine = getenv( 'PKIO_TEST_ENGINE' );
 
 	if ( $engine ) {
 		$settings['engine'] = $engine;
 	}
 
-	update_option( 'omnio_io_settings', StoreSettings::sanitize( $settings ) );
+	update_option( 'pixelkiln_io_settings', StoreSettings::sanitize( $settings ) );
 
 	if ( method_exists( EngineFactory::class, 'reset' ) ) {
 		EngineFactory::reset();
@@ -111,7 +111,7 @@ function harness_make_jpeg( $width, $height ) {
 		);
 	}
 
-	$path = wp_tempnam( 'oio-harness-' . wp_generate_password( 8, false ) . '.jpg' );
+	$path = wp_tempnam( 'pkio-harness-' . wp_generate_password( 8, false ) . '.jpg' );
 	$path = preg_replace( '/\.tmp$/', '.jpg', $path );
 
 	imagejpeg( $image, $path, 90 );
@@ -126,7 +126,7 @@ function harness_make_jpeg( $width, $height ) {
  */
 function harness_import_attachment( $source_path ) {
 	$uploads  = wp_upload_dir();
-	$basename = 'oio-harness-' . wp_generate_password( 10, false ) . '-' . basename( $source_path );
+	$basename = 'pkio-harness-' . wp_generate_password( 10, false ) . '-' . basename( $source_path );
 	$target   = trailingslashit( $uploads['path'] ) . $basename;
 
 	if ( ! copy( $source_path, $target ) ) {
@@ -137,7 +137,7 @@ function harness_import_attachment( $source_path ) {
 	$attachment_id = wp_insert_attachment(
 		array(
 			'post_mime_type' => 'image/jpeg',
-			'post_title'     => 'OIO harness fixture',
+			'post_title'     => 'PKIO harness fixture',
 			'post_status'    => 'inherit',
 		),
 		$target

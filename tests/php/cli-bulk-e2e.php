@@ -13,7 +13,7 @@
  * Portable across sites: the WordPress root comes from this file's location,
  * and the socket, binaries and expected siteurl come from the environment.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
 // phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.PHP.DevelopmentFunctions, WordPress.Security.EscapeOutput, WordPress.NamingConventions.PrefixAllGlobals, WordPress.DB.DirectDatabaseQuery, Squiz.Commenting, Generic.Commenting, WordPress.PHP.NoSilencedErrors, Universal.Files.SeparateFunctionsFromOO, WordPress.PHP.DiscouragedPHPFunctions
@@ -21,8 +21,8 @@
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/wp.php';
 
-use OmnioImageOptimizer\App\Models\OptimizationLog;
-use OmnioImageOptimizer\App\Services\Bulk\Scanner;
+use PixelKilnImageOptimizer\App\Models\OptimizationLog;
+use PixelKilnImageOptimizer\App\Services\Bulk\Scanner;
 
 /**
  * The site this run is allowed to touch.
@@ -32,7 +32,7 @@ use OmnioImageOptimizer\App\Services\Bulk\Scanner;
  * pointed at; if the database disagrees, the socket was wrong and every
  * assertion below would be measuring a different site's media library.
  */
-$expected_siteurl = getenv( 'OIO_EXPECTED_SITEURL' );
+$expected_siteurl = getenv( 'PKIO_EXPECTED_SITEURL' );
 harness_require_site( $expected_siteurl ? $expected_siteurl : 'https://cb-test.local' );
 
 harness_set_baseline_settings( array( 'backup_originals' => true ) );
@@ -53,17 +53,17 @@ function cli_binaries() {
 		return $resolved;
 	}
 
-	$php  = getenv( 'OIO_PHP' );
-	$wp   = getenv( 'OIO_WP' );
-	$sock = getenv( 'OIO_SOCKET' );
+	$php  = getenv( 'PKIO_PHP' );
+	$wp   = getenv( 'PKIO_WP' );
+	$sock = getenv( 'PKIO_SOCKET' );
 
 	if ( ! $php || ! is_executable( $php ) ) {
-		fwrite( STDERR, "OIO_PHP is not set to an executable PHP binary.\nRun this through tests/php/run-cli.sh, which discovers it.\n" );
+		fwrite( STDERR, "PKIO_PHP is not set to an executable PHP binary.\nRun this through tests/php/run-cli.sh, which discovers it.\n" );
 		exit( 2 );
 	}
 
 	if ( ! $wp || ! file_exists( $wp ) ) {
-		fwrite( STDERR, "OIO_WP is not set to a wp-cli phar.\nRun this through tests/php/run-cli.sh, which discovers it.\n" );
+		fwrite( STDERR, "PKIO_WP is not set to a wp-cli phar.\nRun this through tests/php/run-cli.sh, which discovers it.\n" );
 		exit( 2 );
 	}
 
@@ -79,7 +79,7 @@ function cli_binaries() {
 }
 
 /**
- * Run one `wp omnio-image-optimizer ...` invocation.
+ * Run one `wp pixelkiln-image-optimizer ...` invocation.
  *
  * @param string $args Everything after the command namespace.
  * @return array{code:int,out:string,err:string,all:string}
@@ -96,7 +96,7 @@ function cli_run( $args ) {
 	$command .= ' ' . escapeshellarg( $bin['wp'] )
 		. ' --path=' . escapeshellarg( $bin['path'] )
 		. ' --url=' . escapeshellarg( $bin['url'] )
-		. ' omnio-image-optimizer ' . $args;
+		. ' pixelkiln-image-optimizer ' . $args;
 
 	$descriptors = array(
 		1 => array( 'pipe', 'w' ),
@@ -118,7 +118,7 @@ function cli_run( $args ) {
 
 	$code = proc_close( $process );
 
-	echo "\n  \$ wp omnio-image-optimizer {$args}\n";
+	echo "\n  \$ wp pixelkiln-image-optimizer {$args}\n";
 
 	foreach ( preg_split( '/\R/', trim( $out . "\n" . $err ) ) as $line ) {
 		if ( '' !== trim( $line ) ) {
@@ -198,14 +198,14 @@ $pre_restorab = (int) $wpdb->get_var(
 echo "pre-existing pending: {$pre_pending}\n";
 echo "pre-existing restorable: {$pre_restorab}\n";
 
-if ( ( $pre_pending > 0 || $pre_restorab > 0 ) && '1' !== getenv( 'OIO_CLI_ALLOW_DIRTY' ) ) {
+if ( ( $pre_pending > 0 || $pre_restorab > 0 ) && '1' !== getenv( 'PKIO_CLI_ALLOW_DIRTY' ) ) {
 	fwrite(
 		STDERR,
 		"\nREFUSING TO RUN.\n"
 		. "This suite runs `optimize --all` and `restore --all`, which act on the whole\n"
 		. "library, not just its own fixtures. Found {$pre_pending} pending image(s) and\n"
 		. "{$pre_restorab} restorable one(s) that the harness did not create.\n\n"
-		. "Run it on a scratch site, or set OIO_CLI_ALLOW_DIRTY=1 if you genuinely want\n"
+		. "Run it on a scratch site, or set PKIO_CLI_ALLOW_DIRTY=1 if you genuinely want\n"
 		. "every pending image on this site converted and every backup restored.\n"
 	);
 	exit( 2 );

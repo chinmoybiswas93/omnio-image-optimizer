@@ -2,10 +2,10 @@
 /**
  * Configuration repository.
  *
- * @package OmnioImageOptimizer
+ * @package PixelKilnImageOptimizer
  */
 
-namespace OmnioImageOptimizer\Framework;
+namespace PixelKilnImageOptimizer\Framework;
 
 if ( ! defined('ABSPATH')) {
     exit;

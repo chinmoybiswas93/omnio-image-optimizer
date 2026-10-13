@@ -30,7 +30,7 @@ Converting images replaces files on disk and rewrites URLs across your database,
 * Backups are kept for a period you choose, then removed automatically
 * Any image can be restored to its original with one click while its backup exists
 * A dry run reports exactly what would change before anything is written
-* Requests for an old image URL are transparently served the new file, so nothing 404s while caches catch up
+* Requests for an old image URL can be redirected to the new file, catching links the rewrite could not reach. This needs pretty permalinks and a server that passes missing files to WordPress, as standard Apache setups do
 
 Backing up uploaded originals roughly doubles the space your uploads use until the retention period passes. It can be turned off in Settings, but an uploaded original that is not backed up is gone for good once it is converted.
 
@@ -56,6 +56,10 @@ The plugin detects what your host provides and uses the best available option: I
 = Will this break my existing images? =
 
 Converting an existing image changes its filename, so the plugin updates every reference it can find in your database. Originals are backed up first and any image can be restored while its backup exists. Run the dry run before your first bulk optimization to see exactly what will change.
+
+= Why does an old image URL still return a 404? =
+
+The redirect from old image URLs runs inside WordPress, so it only works when the request reaches WordPress. That needs pretty permalinks (anything other than Plain in Settings > Permalinks) and a web server that hands requests for missing files to WordPress. Standard Apache setups do; many Nginx configurations serve images directly and return their own 404. References in your database are rewritten either way, so this only affects links the rewrite could not reach, such as hotlinks and cached pages.
 
 = Are my images sent anywhere? =
 
@@ -103,7 +107,7 @@ In a protected folder inside your uploads directory, under an unguessable filena
 * Individual and bulk optimization for existing media
 * Optimization status in the Media Library and in the block editor Image sidebar
 * Original backups with configurable retention, and restore to original
-* Database URL rewriting with dry run, and old image URLs served the new file
+* Database URL rewriting with dry run, and an optional redirect from old image URLs to the new file
 * Engine detection and fallback across Imagick, the cwebp binary, and GD
 * Troubleshoot tab: server diagnostics, an optional capped activity log, and maintenance tools
 * WP-CLI commands for bulk optimization and repair

@@ -3,7 +3,7 @@
         'name' => 'chinmoybiswas93/pixelkiln-image-optimizer',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '1a5c3a55b8046857f0e2c2a20ccfa8ed51eb0285',
+        'reference' => 'ba222f8114faa8033bad9b2f4c7b0136576d42d6',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'chinmoybiswas93/pixelkiln-image-optimizer' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '1a5c3a55b8046857f0e2c2a20ccfa8ed51eb0285',
+            'reference' => 'ba222f8114faa8033bad9b2f4c7b0136576d42d6',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
